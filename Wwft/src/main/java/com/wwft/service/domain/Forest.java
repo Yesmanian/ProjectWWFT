@@ -2,15 +2,16 @@ package com.wwft.service.domain;
 
 public class Forest {
 
-	int forestNo;
-	int forestNoticeNo;
-	String forestName;
-	int forestCreaterTreeNo;
-	char invitePossibleState;
-	char forestNameChangePossibleState;
-	String forestInformText;
-	String forestInformWriter;
-	String forestInformRegDate;
+	private int forestNo;
+	private int forestNoticeNo;
+	private String forestName;
+	private int forestCreaterTreeNo;
+	private char invitePossibleState;
+	private char forestNameChangePossibleState;
+	private String forestCreateRegDate;
+	private String forestInformText;
+	private String forestInformWriter;
+	private String forestInformRegDate;
 	
 	public Forest() {
 		// TODO Auto-generated constructor stub
@@ -64,6 +65,14 @@ public class Forest {
 		this.forestNameChangePossibleState = forestNameChangePossibleState;
 	}
 
+	public String getForestCreateRegDate() {
+		return forestCreateRegDate;
+	}
+
+	public void setForestCreateRegDate(String forestCreateRegDate) {
+		this.forestCreateRegDate = forestCreateRegDate;
+	}
+
 	public String getForestInformText() {
 		return forestInformText;
 	}
@@ -103,6 +112,8 @@ public class Forest {
 		builder.append(invitePossibleState);
 		builder.append(", forestNameChangePossibleState=");
 		builder.append(forestNameChangePossibleState);
+		builder.append(", forestCreateRegDate=");
+		builder.append(forestCreateRegDate);
 		builder.append(", forestInformText=");
 		builder.append(forestInformText);
 		builder.append(", forestInformWriter=");
@@ -112,6 +123,7 @@ public class Forest {
 		builder.append("]");
 		return builder.toString();
 	}
+
 	
 	
 
