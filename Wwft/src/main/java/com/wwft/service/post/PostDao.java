@@ -3,7 +3,7 @@ package com.wwft.service.post;
 
 import com.wwft.service.domain.Post;
 
-public interface PostDao {
+public interface PostDao {//
 	
 	public void addPost(Post post) throws Exception;
 	
