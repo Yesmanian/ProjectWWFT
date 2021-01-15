@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eventMapper">
+ 	
+ 	
+	<resultMap id="evntSelectMap" type="event">
+		<result property="id" 			column="event_no" 			jdbcType="NUMERIC"/>
+		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
+		<result property="title" 		column="event_title" 			jdbcType="VARCHAR" />
+		<result property="start" 	column="event_start_date" 		jdbcType="DATE" />
+		<result property="end" 				column="event_end_date" 					jdbcType="DATE" />
+		<result property="dDay" 				column="d_day_state" 					jdbcType="CHAR" />
+		<result property="eventDetail" 		column="event_detail" 			jdbcType="VARCHAR" />
+		<!-- <result property="prodName"	column="user_id" 		jdbcType="VARCHAR" /> -->
+		<!-- <result property="" 				column="d_day" 					jdbcType="VARCHAR" /> -->
+		<!-- <result property="price" 			column="all_day" 				jdbcType="varchar"  /> -->
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert 	id="addEvent"		parameterType="event" >
+	 	INSERT
+		INTO calender(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail)
+		VALUES	 (seq_event_no.nextval,	#{treeNo}, #{title:VARCHAR}, to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss') 
+										,to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'), #{dDay:CHAR}, #{eventDetail:VARCHAR} )
+	 </insert>
+	 
+	 <select id="getEventList" resultMap="evntSelectMap">
+	 	SELECT * FROM calender
+	 
+	 </select>
+	 
+	 <delete id="removeEvent" parameterType="int">
+	 DELETE FROM calender WHERE event_no = #{value}
+	 
+	 </delete>
+	 
+	 <!-- <select id="findProduct"
+  			parameterType="int"
+  			resultMap="productSelectMap"
+  			>
+  			SELECT *
+  			FROM product p, transaction t
+  			WHERE p.prod_no=t.prod_no (+)
+  			AND p.prod_no=#{prodNo}
+  			</select>
+  			
+  	<select id="getProductList"
+  				parameterType="search"
+  				resultMap="productSelectMap">
+  		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM ( SELECT   t.tran_status_code, p.*
+  								FROM product p, transaction t 
+  								WHERE p.prod_no=t.prod_no (+)
+  								<if test="searchCondition==null and searchKeyword ==null ">
+													ORDER BY p.reg_date DESC )
+													</if>
+								<if test="searchCondition != null">
+													<if test="searchCondition == 0 and searchKeyword !='' ">  			
+  	 													 AND p.prod_no LIKE '%${searchKeyword}%' ORDER BY p.reg_date DESC)
+  	 												</if>
+  	 												<if test="searchCondition == 0 and searchKeyword =='' ">  			
+  	 													  ORDER BY p.reg_date DESC)
+  	 												</if>
+  	 												<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				AND p.prod_name LIKE '%${searchKeyword}%' ORDER BY p.reg_date DESC )
+													</if>
+													<if test="searchCondition == 1 and searchKeyword =='' ">
+										 				ORDER BY p.reg_date DESC)
+													</if>
+													<if test="searchCondition == 2  ">
+										 				ORDER BY p.price ASC)
+													</if>
+													<if test="searchCondition == 3  ">
+										 				ORDER BY p.price DESC)
+													</if>
+													</if>
+													
+													
+																	 inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+ 		
+ 		
+  	</select>
+  	
+  	<update id="updateProduct" parameterType="product">
+  		UPDATE product
+  			<set>
+  			<if test="prodName!=null">
+  				prod_name = #{prodName},
+  			</if>
+  			<if test="prodDetail!=null">
+  				prod_detail = #{prodDetail},
+  			</if>
+  			<if test="fileName!=null">
+  				image_file = #{fileName},
+  			</if>
+  			<if test="price!=0">
+  				price = #{price},
+  			</if>
+  			<if test="manuDate!=null">
+  				manufacture_day = #{manuDate}
+  			</if>
+  			</set>
+  			WHERE prod_no=#{prodNo}
+  	
+  	
+  	</update>
+  	
+  	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT   t.tran_status_code, p.*
+  								FROM product p, transaction t 
+  								WHERE p.prod_no=t.prod_no (+)
+  								<if test="searchCondition==null ">
+													ORDER BY p.prod_no 
+													</if>
+								<if test="searchCondition != null">
+													<if test="searchCondition == 0 and searchKeyword !='' ">  			
+  	 													 AND p.prod_no = #{searchKeyword} ORDER BY p.prod_no 
+  	 												</if>
+  	 												<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				AND p.prod_name = #{searchKeyword} ORDER BY p.prod_no 
+													</if>
+													<if test="searchCondition == 2  ">
+										 				ORDER BY p.price ASC
+													</if>
+													<if test="searchCondition == 3  ">
+										 				ORDER BY p.price DESC
+													</if>
+													</if>
+														  	) countTable						
+	 </select>
+	 -->
+	 
+</mapper>

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wwft.service.domain.Forest;
 import com.wwft.service.forest.ForestService;
 
-@Controller
+//@Controller
 @RequestMapping("/forest/*")
 public class ForestController {
 	
