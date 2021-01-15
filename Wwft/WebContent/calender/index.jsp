@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src='/resources/packages/moment/main.min.js'></script>
 <link href='/resources/packages/core/main.css' rel='stylesheet' />
 <link href='/resources/packages/daygrid/main.css' rel='stylesheet' />
 <link href='/resources/packages/timegrid/main.css' rel='stylesheet' />
@@ -20,21 +21,34 @@
 <script src='/resources/packages/timegrid/main.js'></script>
 <script src='/resources/packages/list/main.js'></script>
 
+
 <script>
+  
 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     
- 
-
+    
+  
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+
+      plugins: [ 'interaction','interactionPlugin', 'dayGrid', 'timeGrid', 'list', ],
+      
       locale : "ko",
       header: {
         left: 'prev,next today',
+        height : 655,
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
+      intialView:'dayGridMonth',
+      dateClick : function(info){
+        alert('clicked on : '+info.dateStr );
+      },
+      selectable : true,
+      views                     : { 
+                                month : { eventLimit : 2 } // 한 날짜에 최대 이벤트 12개, 나머지는 + 처리됨
+                              },
    /*    defaultDate: '2020-02-12' */
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
@@ -66,9 +80,59 @@
   		}
   	}]
 			
-		});
+    });
+    
+    
     calendar.render(); 
   });
+
+ /*  calendar.on('dateClick', function(info) {
+  console.log('clicked on ' + info.dateStr);
+}); */
+
+
+
+  $('#addEvent').on('click' , function () {
+
+var title = $('#eventTitle').val();
+var treeNo = 1;
+var start =  $('#eventStart').val();
+var end = $('#eventEnd').val();
+var  dDay = $('#dDay').val();
+var  eventDetail = $('#eventDetail').val();
+
+//calendar.addEvent({title : title, treeNo : treeNo, start : start, end : end, dDay : dDay, eventDetail : eventDetail});
+var eventData ={
+  'title' : $('#eventTitle').val(),
+  'tree' : 1,
+  'start' :  $('#eventStart').val(),
+  'end' : $('#eventEnd').val(),
+  'dDay' : $('#dDay').val(),
+  'eventDetail' : $('#eventDetail').val()
+}
+$("#calendar").fullCalendar('renderEvent', eventData, true);
+var dataJson = JSON.stringify(eventData);
+
+
+$.ajax({
+      method: 'GET',
+      url: '/event/json/addEvent',
+      data: {title : title, treeNo : treeNo, start : start, end : end, dDay : dDay, eventDetail : eventDetail},
+      dataType : 'json',
+      
+      success: function (response) {
+        console.log('응답성공')
+          //DB연동시 중복이벤트 방지를 위한
+          $('#calendar').fullCalendar('removeEvents');
+          $('#calendar').fullCalendar( 'rerenderEvents');
+      }
+  });
+
+
+
+
+
+})
 
 </script>
 <style>
@@ -109,7 +173,7 @@
                 <input type="text" name= 'title' id="eventTitle">
 
                 <label>start</label>
-                <input type="text" name= 'start' id="eventStart" >
+                <input type="text" name= 'start'   id="eventStart" >
 
                 <label>end</label>
                 <input type="text" name= 'end' id="eventEnd">
@@ -140,54 +204,10 @@
 		$('#testBtn').click(function(e){
 			e.preventDefault();
 			$('#testModal').modal("show");
-		});
-
-    $('#addEvent').on('click' , function () {
-
-      var title = $('#eventTitle').val();
-      console.log(title)
-      
-    /*   var eventStart = $('#eventStart');
-      var eventEnd = $('#eventEnd');
-      var dDay =  $('#dDay');
-      var eventDtail = $('#eventDetail'); */
-      var eventData ={
-        title : $('#eventTitle').val(),
-        tree : '1',
-        start :  $('#eventStart').val(),
-        end : $('#eventEnd').val(),
-        dDay : $('#dDay').val(),
-        eventDtail : $('#eventDetail').val()
+    });
 
 
-      }
-      
-      console.log(eventData)
-
-      $.ajax({
-            method: "POST",
-            url: "/event/json/addEvent",
-            data: {
-                eventData
-            },
-           
-						headers : {
-							"Accept" : "application/json",
-							"Content-Type" : "application/json"
-						},
-            success: function (response) {
-              console.log('응답성공')
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
-            }
-        });
-
-
-
-
-      
-    })
+   
 
 
 	</script>

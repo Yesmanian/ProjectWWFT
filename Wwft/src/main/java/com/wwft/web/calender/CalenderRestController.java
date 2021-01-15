@@ -1,8 +1,11 @@
 package com.wwft.web.calender;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,12 +44,23 @@ public class CalenderRestController {
 		return map;
 	}
 	
-	@RequestMapping( value = "json/addEvent", method = RequestMethod.POST)
-	public String addEvent(@RequestBody() Event event) throws Exception{
-		System.out.println("addEvent: POST");
+	@RequestMapping( value = "json/addEvent")
+	public String addEvent( @ModelAttribute("event") Event event) throws Exception{
+		//@RequestBody(required = false)  Event event,
+		
+		System.out.println("addEvent: GET");
+	
 		System.out.println(event);
 		
 		eventService.addEvent(event);
+		
+		List<Event> EventList = new ArrayList<Event>();
+		EventList=eventService.getEventList();
+		
+		for(Event e : EventList) {
+			System.out.println(e);
+			
+		}
 		
 		return null;
 	}
