@@ -34,4 +34,12 @@ public class ForestDaoImpl implements ForestDao {
 		return sqlSession.selectOne("ForestMapper.getForest", forestNo);
 	}
 
+
+	@Override
+	public void addForest(Forest forest) throws Exception {
+		System.out.println("ForestDao addForest");
+		sqlSession.insert("ForestMapper.addForest", forest);
+		
+	}
+
 }
