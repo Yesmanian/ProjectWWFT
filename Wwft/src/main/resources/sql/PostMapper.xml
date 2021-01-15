@@ -7,20 +7,20 @@
 <mapper namespace="UserMapper">
  	
  	
-	<resultMap id="postSelectMap" type="com.wwft.service.domaon.Post">
-		<result property="postNo" 			column="post_no" 			jdbcType="NUMBER"/>
+	<resultMap id="postSelectMap" type="com.wwft.service.domain.Post">
+		<result property="postNo" 			column="post_no" 			jdbcType="NUMERIC"/>
 		<result property="postRegDate" 		column="post_reg_date" 			jdbcType="DATE" />
 		<result property="postDetail"	column="post_detail" 		jdbcType="VARCHAR" />
 		<result property="postWriter" 	column="post_writer" 		jdbcType="VARCHAR" />
 		<result property="postState" 				column="post_state" 					jdbcType="CHAR" />
-		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMBER" />
+		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
 		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
 		
 		
 	</resultMap>
 	
 	
-	<insert 	id="addPost"		parameterType="com.wwft.service.domaon.Post" >
+	<insert 	id="addPost"		parameterType="com.wwft.service.domain.Post" >
 		INSERT
 	 	INTO post(post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name)
 	 	VALUES	 (SEQ_POST_NO.NEXTVAL , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
@@ -34,7 +34,7 @@
 	 
 	 </select>
 	 
-	   <update	id="updatePost"	parameterType="com.wwft.service.domaon.Post" >
+	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
 	   	UPDATE post
 	   	<set>
 	   		post_detail =#{postDetail},
