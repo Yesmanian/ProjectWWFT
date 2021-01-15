@@ -16,14 +16,15 @@
 	<typeAliases>
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
 
+		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
 		<!-- <typeAlias alias="user" type="com.model2.mvc.service.domain.User" />
 		<typeAlias alias="search" type="com.model2.mvc.common.Search" /> -->
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
 	</typeAliases>
 	
 	 <!-- SQL Definition :: file include -->
-	
 	<mappers>
+		<mapper resource="sql/PostMapper.xml"/>
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
 	</mappers>
