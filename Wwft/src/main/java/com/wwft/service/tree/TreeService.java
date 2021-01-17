@@ -19,5 +19,6 @@ public interface TreeService {
 	public void updateFamilyMotto(Tree tree) throws Exception;
 	
 	public void removeFamilyMotto(Tree tree) throws Exception;
+	
 
 }

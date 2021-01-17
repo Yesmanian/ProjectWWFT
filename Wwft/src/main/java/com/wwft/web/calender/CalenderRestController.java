@@ -44,11 +44,12 @@ public class CalenderRestController {
 		return map;
 	}
 	
-	@RequestMapping( value = "json/addEvent")
-	public String addEvent( @ModelAttribute("event") Event event) throws Exception{
+	@RequestMapping( value = "json/addEvent" , method = RequestMethod.POST)
+	public String addEvent( @RequestBody Event event) throws Exception{
+		//public String addEvent( @ModelAttribute Event event) throws Exception{
 		//@RequestBody(required = false)  Event event,
 		
-		System.out.println("addEvent: GET");
+		System.out.println("addEvent: POST");
 	
 		System.out.println(event);
 		
@@ -64,5 +65,23 @@ public class CalenderRestController {
 		
 		return null;
 	}
-
+	@RequestMapping( value = "json/removeEvent" , method = RequestMethod.POST)
+	public String removeEvent(@RequestBody Event event) throws Exception{
+		System.out.println("remove = POST");
+		System.out.println(event.getId());
+		eventService.removeEvent(event.getId());
+		
+		
+		return null;
+	}
+	@RequestMapping(value = "json/updateEvent", method = RequestMethod.POST)
+	public String updateEvent(@RequestBody Event event) throws Exception{
+		
+		System.out.println("UPDATE POST");
+		eventService.updateEvent(event);
+		
+		System.out.println(eventService.findEvent(event.getId()));
+		
+		return null;
+	}
 }
