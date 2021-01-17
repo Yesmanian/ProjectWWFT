@@ -7,14 +7,14 @@
 <mapper namespace="TreeMapper">
  	
 	<resultMap id="treeSelectMap" type="tree">
-		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMBER"/>
+		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
 		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
 		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />
 		<result property="seedNo" 				column="seed_no" 					jdbcType="VARCHAR" />
 		<result property="treeImageName" 				column="tree_image_name" 					jdbcType="VARCHAR" />
 		<result property="countryId" 			column="country_id" 		jdbcType="VARCHAR" />
 		<result property="familyMotto" 				column="family_motto" 					jdbcType="VARCHAR" />
-		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMBER" />
+		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMERIC" />
 	</resultMap>
 	
 	
@@ -32,7 +32,7 @@
 	 INSERT
 		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
 		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
-							#{countryId:VARCHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMBER})			
+							#{countryId:VARCHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
 	 </insert>
 	 
 	 
@@ -52,7 +52,7 @@
 	 </delete> 	 
 		 
 	<!-- SQL : SELECT LIST -->
-	<select  id="getUserList"  parameterType="search"	resultMap="userSelectMap">
+	<!-- <select  id="getUserList"  parameterType="search"	resultMap="userSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(	SELECT user_id , user_name , email
@@ -71,7 +71,7 @@
 						WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	 </select>
-	 	<!--  위 두번째 subQuery 의  
+	 	 위 두번째 subQuery 의  
 	 			WHERE ROWNUM &lt;= #{endRowNum} ) 는
 	 			WHERE ROWNUM <= #{endRowNum} ) 의미이며..
 	 			< 는 keyword 로 &lt; 를	사용.
@@ -80,9 +80,9 @@
 	 			CDATA ==> Character Data 의 의미 Java 에서 \n 같은 특수문자 처리  
 
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
-		-->
+		
 	
-	<!-- SQL : SELECT ROW Count -->	 
+	SQL : SELECT ROW Count	 
 	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
 	  	SELECT COUNT(*)
 	  	FROM(	SELECT user_id , user_name , email
@@ -98,6 +98,6 @@
 							</where>
 						</if> ) countTable						
 	 </select>
-	 
+	  -->
 	 
 </mapper>

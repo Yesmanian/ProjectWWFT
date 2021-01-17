@@ -10,9 +10,11 @@ public interface EventService {
 	
 	public void addEvent(Event event) throws Exception;
 	
-	public Event findEvent(String title) throws Exception;
+	public Event findEvent(int id) throws Exception;
 	
 	public void removeEvent(int eventNo) throws Exception;
+	
+	public void updateEvent(Event event) throws Exception;
 		
 	
 

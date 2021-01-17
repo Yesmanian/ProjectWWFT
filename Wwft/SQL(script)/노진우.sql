@@ -1,0 +1,1 @@
+SELECT * FROM calender WHERE event_no = 42 ;
