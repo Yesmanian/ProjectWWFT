@@ -6,14 +6,9 @@
 
 <mapper namespace="TreeMapper">
  	
-<<<<<<< HEAD
-	<resultMap id="treeSelectMap" type="tree">
-<<<<<<< HEAD
-=======
+
 	<resultMap id="treeSelectMap" type="com.wwft.service.domain.Tree">
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/heads/no
+
 		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
 		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
 		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />
@@ -62,7 +57,7 @@
 	  	WHERE tree_no = #{value}
 	 </update> 	 
 		 
-<<<<<<< HEAD
+
 	<!-- SQL : SELECT LIST -->
 	<!-- <select  id="getUserList"  parameterType="search"	resultMap="userSelectMap">
 	  	SELECT *
@@ -92,16 +87,9 @@
 	 			CDATA ==> Character Data 의 의미 Java 에서 \n 같은 특수문자 처리  
 
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
-		
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/heads/no
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+	
+
 >>>>>>> refs/heads/no
 	SQL : SELECT ROW Count	 
 	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
@@ -120,10 +108,6 @@
 						</if> ) countTable						
 	 </select>
 	  -->
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> refs/heads/no
+	  
 	 
 </mapper>

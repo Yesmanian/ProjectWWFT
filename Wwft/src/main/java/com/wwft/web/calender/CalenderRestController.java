@@ -68,6 +68,7 @@ public class CalenderRestController {
 	@RequestMapping( value = "json/removeEvent" , method = RequestMethod.POST)
 	public String removeEvent(@RequestBody Event event) throws Exception{
 		System.out.println("remove = POST");
+		//컨플릭트
 		System.out.println(event.getId());
 		eventService.removeEvent(event.getId());
 		
