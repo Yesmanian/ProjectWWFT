@@ -281,5 +281,5 @@ CREATE TABLE  "USERS"
     신고정보
     INSERT INTO REPORT values(SEQ_REPORT_NO.nextval,'2',2,'0',2,4,SYSDATE);
     
-     INSERT INTO BUCKETLIST values(SQE_BUCKETLIST_NO.nextval,'작성자입니다','내용입니다',SYSDATE,'0',23);
+    INSERT INTO BUCKETLIST values(SQE_BUCKETLIST_NO.nextval,'작성자입니다','내용입니다',SYSDATE,'0',23);
    
