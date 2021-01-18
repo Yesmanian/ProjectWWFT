@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ImageAndLikeMapper">
+ 	
+ 	
+	<resultMap id="imageAndLikeSelectMap" type="com.wwft.service.domain.ImageAndLike">
+		<result property="imageAndLikeNo" 			column="image_and_like_no" 			jdbcType="NUMERIC"/>
+		<result property="imageName" 		column="image_name" 			jdbcType="VARCHAR" />
+		<result property="postNo" 				column="post_no" 					jdbcType="NUMERIC" />
+		<result property="likeWriter" 	column="like_writer" 		jdbcType="VARCHAR" />
+		<result property="imageAndLikeState" 				column="image_and_like_state" 					jdbcType="CHAR" />
+		
+	
+		
+		
+		
+	</resultMap>
+	
+	<!-- 
+	<insert 	id="addImageAndLike"		parameterType="com.wwft.service.domain.ImageAndLike" >
+		INSERT
+	 	INTO post( image_and_like_no, image_name ,post_no,like_writer, image_and_like_state)
+	 	VALUES	 (SEQ_POST_NO.NEXTVAL , #{imageName:VARCHAR} , #{postNo} , #{likeWriter:VARCHAR} , #{imageAndLikeState} )
+	 </insert>
+	 
+	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
+	 	SELECT
+		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
+		FROM post
+		WHERE post_no = #{value}
+	 
+	 </select>
+	 
+	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
+	   	UPDATE post
+	   	<set>
+	   		post_detail = #{postDetail},
+	   		post_state = #{postState},
+	   		
+	   		album_name = #{albumName}
+			
+	   	</set>
+	   	WHERE post_no  = #{postNo}
+	 </update>  
+	 
+	  <delete id="removePost" parameterType="int">
+	 	DELETE
+	 	FROM post
+	 	WHERE post_no =#{postNo}
+	 
+	 </delete> -->
+	 
+	 
+	 
+</mapper>

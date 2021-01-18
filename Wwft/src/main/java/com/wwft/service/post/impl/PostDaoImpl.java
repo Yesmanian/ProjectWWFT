@@ -3,7 +3,13 @@ package com.wwft.service.post.impl;
 
 
 import com.wwft.service.domain.Post;
+
+
 import com.wwft.service.post.PostDao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +21,17 @@ public class PostDaoImpl implements PostDao {
 	
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
-	private SqlSession sqlSession;
+	private	SqlSession sqlSession;
 
 	public PostDaoImpl() {
-		System.out.println(this.getClass());
+		System.out.println(this.getClass()+"»ý¼º");
 	}
 	
-	public void setSqlSession(SqlSession sqlSession) {
-		System.out.println("::"+getClass()+".setSqlSession() Call.....");
-		this.sqlSession = sqlSession;
-	}
+	/*
+	 * public void setSqlSession(SqlSession sqlSession) {
+	 * System.out.println("::"+getClass()+".setSqlSession() Call.....");
+	 * this.sqlSession = sqlSession; }
+	 */
 
 	@Override
 	public void addPost(Post post) throws Exception {
@@ -33,20 +40,25 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public Post getPost(int postNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("PostMapper.getPost", postNo);
 	}
+	
+	@Override
+	public List<Post> getPostList(int postTreeNo) throws Exception {
+		
+		return sqlSession.selectList("PostMapper.gerPostList", postTreeNo);
+	}
+
 
 	@Override
 	public void updatePost(Post post) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("PostMapper.updatePost", post);
 	}
 
 	@Override
 	public int removePost(int postNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("postMapper.removePost", postNo);
 	}
 
+	
 }

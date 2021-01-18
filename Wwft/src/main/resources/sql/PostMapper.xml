@@ -4,7 +4,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="UserMapper">
+<mapper namespace="PostMapper">
  	
  	
 	<resultMap id="postSelectMap" type="com.wwft.service.domain.Post">
@@ -15,6 +15,7 @@
 		<result property="postState" 				column="post_state" 					jdbcType="CHAR" />
 		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
 		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
+		
 		
 		
 	</resultMap>
@@ -30,20 +31,30 @@
 	 	SELECT
 		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
 		FROM post
-		WHERE post_no = #{value}
+		WHERE post_no = #{postNo}
 	 
 	 </select>
 	 
 	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
 	   	UPDATE post
 	   	<set>
-	   		post_detail =#{postDetail},
-	   		post_state =#{postState},
-	   		album_name=#{albumName}
+	   		post_detail = #{postDetail},
+	   		post_state = #{postState},
+	   		
+	   		post_no = #{postNo}
 			
 	   	</set>
-	   	WHERE post_no  = #{prodNo}
+	   	WHERE post_no  = #{postNo}
 	 </update>  
+	 
+	 
+	  <select  id="getPostList"  parameterType="int"	resultMap="postSelectMap">
+	  	SELECT post_no , post_reg_date
+	  	FROM post
+	  	WHERE tree_no = #{postTreeNo}
+	  	ORDER BY post_no
+									
+	 </select> 
 	 
 	  <delete id="removePost" parameterType="int">
 	 	DELETE

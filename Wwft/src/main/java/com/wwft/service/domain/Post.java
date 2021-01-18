@@ -73,6 +73,14 @@ public class Post {
 		this.checkboxState = checkboxState;
 	}
 
+	public String getAlbumName() {
+		return albumName;
+	}
+
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
