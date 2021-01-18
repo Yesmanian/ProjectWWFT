@@ -9,7 +9,7 @@ import com.wwft.service.forest.ForestDao;
 import com.wwft.service.forest.ForestService;
 
 
-@Repository("ForestServiceImpl")
+@Repository("forestServiceImpl")
 public class ForestServiceImpl implements ForestService {
 
 	
@@ -33,6 +33,12 @@ public class ForestServiceImpl implements ForestService {
 	public Forest getForest(int forestNo) throws Exception {
 		System.out.println("forestServiceImpl getForest");
 		return forestDao.getForest(forestNo);
+	}
+
+	@Override
+	public void addForest(Forest forest) throws Exception {
+		System.out.println("forestServiceImpl addForest");
+		forestDao.addForest(forest);
 	}
 
 }
