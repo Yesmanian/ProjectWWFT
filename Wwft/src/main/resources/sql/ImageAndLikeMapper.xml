@@ -20,39 +20,26 @@
 		
 	</resultMap>
 	
-	<!-- 
+	
 	<insert 	id="addImageAndLike"		parameterType="com.wwft.service.domain.ImageAndLike" >
 		INSERT
-	 	INTO post( image_and_like_no, image_name ,post_no,like_writer, image_and_like_state)
-	 	VALUES	 (SEQ_POST_NO.NEXTVAL , #{imageName:VARCHAR} , #{postNo} , #{likeWriter:VARCHAR} , #{imageAndLikeState} )
+	 	INTO image_and_like( image_and_like_no, image_name ,post_no,like_writer, image_and_like_state,like_state)
+	 	VALUES	 (SEQ_IMAGE_AND_LIKE_NO.NEXTVAL , #{imageName:VARCHAR} , #{postNo} , #{likeWriter:VARCHAR} , #{imageAndLikeState} ,#{likeState:CHAR})
 	 </insert>
 	 
-	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
-	 	SELECT
-		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
-		FROM post
-		WHERE post_no = #{value}
+	<select id="getLikeTotalCount" parameterType="int" resultMap="imageAndLikeSelectMap">
+		SELECT COUNT(*)
+		FROM image_and_like
+		WHERE image_and_like_state ='1' AND post_No =#{postNo}
+	
+	</select>
 	 
-	 </select>
-	 
-	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
-	   	UPDATE post
-	   	<set>
-	   		post_detail = #{postDetail},
-	   		post_state = #{postState},
-	   		
-	   		album_name = #{albumName}
-			
-	   	</set>
-	   	WHERE post_no  = #{postNo}
-	 </update>  
-	 
-	  <delete id="removePost" parameterType="int">
+	  <delete id="removeImageAndLike" parameterType="int">
 	 	DELETE
-	 	FROM post
-	 	WHERE post_no =#{postNo}
+	 	FROM image_and_like
+	 	WHERE image_And_Like_no =#{imageAndLikeNo}
 	 
-	 </delete> -->
+	 </delete> 
 	 
 	 
 	 

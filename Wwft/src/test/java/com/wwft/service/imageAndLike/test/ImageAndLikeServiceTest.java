@@ -1,4 +1,4 @@
-package com.wwft.service.post.test;
+package com.wwft.service.imageAndLike.test;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ import com.wwft.service.post.PostService;
 										"classpath:config/context-aspect.xml",
 										"classpath:config/context-mybatis.xml",
 										"classpath:config/context-transaction.xml"})
-public class PostServiceTest {
+public class ImageAndLikeServiceTest {
 
 	
 	//@Autowired
@@ -112,7 +112,7 @@ public class PostServiceTest {
 			Assert.assertEquals("수정테스트앨범", post.getAlbumName());
 		 }
 		
-		@Test
+		// @Test
 		 public void testGetPostListAll() throws Exception{
 			 
 			 

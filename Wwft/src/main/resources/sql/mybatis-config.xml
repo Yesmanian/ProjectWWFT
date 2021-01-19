@@ -17,6 +17,7 @@
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
 
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
+		<typeAlias alias ="comment" type="com.wwft.service.domain.Comment"/>
 		
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
@@ -28,6 +29,7 @@
 		<mapper resource="sql/PostMapper.xml"/>
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
+		<mapper resource="sql/CommentMapper.xml"/>
 	</mappers>
 
 </configuration>

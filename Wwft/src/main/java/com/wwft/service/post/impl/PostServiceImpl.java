@@ -27,7 +27,7 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	public PostServiceImpl() {
-		System.out.println(this.getClass()+"持失");
+		System.out.println(this.getClass()+"postServiceImpl持失");
 	}
 
 	@Override
@@ -42,14 +42,17 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public Map<String, Object> getPostList(int postTreeNo) throws Exception {
+	public List<Post> getPostList(int postTreeNo) throws Exception {
+		
 		
 		List<Post> list = postDao.getPostList(postTreeNo);
 
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("list",  list);
+		/*
+		 * Map<String, Object> map = new HashMap<String,Object>(); map.put("list",
+		 * list);
+		 */
 		
-		return map;
+		return list;
 	
 	}
 

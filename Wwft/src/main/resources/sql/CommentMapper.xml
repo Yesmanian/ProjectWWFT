@@ -24,8 +24,17 @@
 	<insert 	id="addComment"		parameterType="com.wwft.service.domain.Comment" >
 		INSERT
 	 	INTO comments( comment_no,comment_writer,comment_reg_date,comment_detail,post_no,tree_no)
-	 	VALUES	 (SEQ_COMMENTS_NO.NEXTVAL ,#{commentWriter} , SYSDATE , #{postDetail} , #{commentPostNo} , #{commentTreeNo} )
+	 	VALUES	 (SEQ_COMMENT_NO.NEXTVAL ,#{commentWriter} , SYSDATE , #{commentDetail} , #{commentPostNo} , #{commentTreeNo} )
 	 </insert>
+	 
+	 
+	 <select id="getComment" parameterType="string" resultMap="commentSelectMap">
+	 	SELECT
+		comment_no,comment_writer, comment_reg_date, comment_detail, post_no, tree_no		
+		FROM comments
+		WHERE comment_no = #{commentNo}
+	 
+	 </select>
 	 
 	 <select id="getCommentList" parameterType="string" resultMap="commentSelectMap">
 	 	SELECT

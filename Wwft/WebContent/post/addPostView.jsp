@@ -4,13 +4,12 @@
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 
  
 <html>
 <head>
-<title>ê²Œì‹œê¸€ ì‘ì„±</title>
+<title>°Ô½Ã±Û ÀÛ¼º</title>
 <style type="text/css">
 
         input[type=file] {
@@ -51,7 +50,7 @@
 
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
  <script type="text/javascript">
-//ì´ë¯¸ì§€ ì •ë³´ë“¤ì„ ë‹´ì„ ë°°ì—´
+//ÀÌ¹ÌÁö Á¤º¸µéÀ» ´ãÀ» ¹è¿­
  var sel_files = [];
 
 
@@ -66,7 +65,7 @@
 
  function handleImgFileSelect(e) {
 
-     // ì´ë¯¸ì§€ ì •ë³´ë“¤ì„ ì´ˆê¸°í™”
+     // ÀÌ¹ÌÁö Á¤º¸µéÀ» ÃÊ±âÈ­
      sel_files = [];
      $(".imgs_wrap").empty();
 
@@ -76,7 +75,7 @@
      var index = 0;
      filesArr.forEach(function(f) {
          if(!f.type.match("image.*")) {
-             alert("í™•ì¥ìëŠ” ì´ë¯¸ì§€ í™•ì¥ìë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+             alert("È®ÀåÀÚ´Â ÀÌ¹ÌÁö È®ÀåÀÚ¸¸ °¡´ÉÇÕ´Ï´Ù.");
              return;
          }
 
@@ -112,7 +111,7 @@
  }
 
  function submitAction() {
-     console.log("ì—…ë¡œë“œ íŒŒì¼ ê°¯ìˆ˜ : "+sel_files.length);
+     console.log("¾÷·Îµå ÆÄÀÏ °¹¼ö : "+sel_files.length);
      var data = new FormData();
 
      for(var i=0, len=sel_files.length; i<len; i++) {
@@ -122,7 +121,7 @@
      data.append("image_count", sel_files.length);
      
      if(sel_files.length < 1) {
-         alert("í•œê°œì´ìƒì˜ íŒŒì¼ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
+         alert("ÇÑ°³ÀÌ»óÀÇ ÆÄÀÏÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
          return;
      }           
 
@@ -177,7 +176,7 @@
             obj.parent().remove();
         }
         function fn_fileAdd(){
-            var str = "<p><input type='file' name='file_"+(g_count++)+"'/><a href='#this' name='delete' class='btn'>ì‚­ì œí•˜ê¸°</a></p> ";
+            var str = "<p><input type='file' name='file_"+(g_count++)+"'/><a href='#this' name='delete' class='btn'>»èÁ¦ÇÏ±â</a></p> ";
             $("#fileDiv").append(str);
              
             $("a[name='delete']").on("click",function(e){
@@ -194,15 +193,15 @@
                 <col width="15%" >
                 <col width="*" >
             </colgroup>
-            <caption>ê²Œì‹œê¸€ ì‘ì„±</caption>
+            <caption>°Ô½Ã±Û ÀÛ¼º</caption>
             <tbody>
                 <tr>
                  <div>
-        <h2><b>ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°</b></h2>
+        <h2><b>ÀÌ¹ÌÁö ¹Ì¸®º¸±â</b></h2>
         <div class="input_wrap">
-            <a href="javascript:" onclick="fileUploadAction();" class="my_button">íŒŒì¼ ì—…ë¡œë“œ</a>
+            <a href="javascript:" onclick="fileUploadAction();" class="my_button">ÆÄÀÏ ¾÷·Îµå</a>
             <input multiple="multiple" type="file" id="input_imgs" multiple/>
-            <a href="#this" name="delete" class="btn">ì‚­ì œí•˜ê¸°</a>
+            <a href="#this" name="delete" class="btn">»èÁ¦ÇÏ±â</a>
         </div>
     </div>
 
@@ -212,14 +211,14 @@
         </div>
     </div>
                 <tr>
-                    <th scope="row">ë‚´ìš©</th>
-                    <td><textarea cols="100" rows="20" id="CONTENTS" name="CONTENTS" title="ë‚´ìš©"></textarea></td>
+                    <th scope="row">³»¿ë</th>
+                    <td><textarea cols="100" rows="20" id="CONTENTS" name="CONTENTS" title="³»¿ë"></textarea></td>
                 </tr>
             </tbody>
         </table>
        
          
-       <input type="submit" value="ë“±ë¡" />
+       <input type="submit" value="µî·Ï" />
  
       
     </form>

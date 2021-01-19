@@ -9,6 +9,8 @@ public interface CommentService {
 	
 	public void addComment(Comment commnet) throws Exception;
 	
+	public Comment getComment(int commentNo) throws Exception;
+	
 	public List<Comment> getCommentList(int postNo) throws Exception;
 	
 	public int removeComment(int commentNo) throws Exception;

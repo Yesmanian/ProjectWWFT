@@ -68,6 +68,27 @@ public class ImageAndLike {
 	public void setImageAndLikeState(String imageAndLikeState) {
 		this.imageAndLikeState = imageAndLikeState;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ImageAndLike [imageAndLikeNo=");
+		builder.append(imageAndLikeNo);
+		builder.append(", likeWriter=");
+		builder.append(likeWriter);
+		builder.append(", postNo=");
+		builder.append(postNo);
+		builder.append(", likeState=");
+		builder.append(likeState);
+		builder.append(", likeTotalCount=");
+		builder.append(likeTotalCount);
+		builder.append(", imageName=");
+		builder.append(imageName);
+		builder.append(", imageAndLikeState=");
+		builder.append(imageAndLikeState);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 	
 

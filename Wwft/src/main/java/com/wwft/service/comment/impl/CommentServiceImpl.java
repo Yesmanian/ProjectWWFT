@@ -14,18 +14,18 @@ import com.wwft.service.comment.CommentService;
 import com.wwft.service.domain.Comment;
 
 
-//@Service("commenttServiceImpl")
+@Service("commentServiceImpl")
 public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
-	@Qualifier("commenttDaoImpl")
+	@Qualifier("commentDaoImpl")
 	private CommentDao commentDao;
 	public void setCommentDao(CommentDao commentDao) {
 		this.commentDao = commentDao;
 	}
 
 	public CommentServiceImpl() {
-		System.out.println(this.getClass()+"持失");	
+		System.out.println(this.getClass()+"commentServiceImpl持失");	
 		}
 
 	@Override
@@ -33,6 +33,12 @@ public class CommentServiceImpl implements CommentService {
 		commentDao.addComment(commnet);
 	}
 
+	
+	@Override
+	public Comment getComment(int commentNo) throws Exception {
+		return commentDao.getComment(commentNo);
+	}
+	
 	@Override
 	public List<Comment> getCommentList(int postNo) throws Exception {
 		
@@ -47,5 +53,7 @@ public class CommentServiceImpl implements CommentService {
 	public int removeComment(int commentNo) throws Exception {
 		return commentDao.removeComment(commentNo);
 	}
+
+	
 
 }

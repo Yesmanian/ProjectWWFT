@@ -63,5 +63,24 @@ public class Comment {
 		this.commentTreeNo = commentTreeNo;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Comment [commentNo=");
+		builder.append(commentNo);
+		builder.append(", commentWriter=");
+		builder.append(commentWriter);
+		builder.append(", commentRegDate=");
+		builder.append(commentRegDate);
+		builder.append(", commentDetail=");
+		builder.append(commentDetail);
+		builder.append(", commentPostNo=");
+		builder.append(commentPostNo);
+		builder.append(", commentTreeNo=");
+		builder.append(commentTreeNo);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	
 }

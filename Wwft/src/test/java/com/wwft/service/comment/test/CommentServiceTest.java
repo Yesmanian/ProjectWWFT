@@ -6,6 +6,7 @@ import java.util.List;
 
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,28 +32,82 @@ import com.wwft.service.post.PostService;
 public class CommentServiceTest {
 
 	
-	//@Autowired
-	//@Qualifier("commentServiceImpl")
+	@Autowired
+	@Qualifier("commentServiceImpl")
 	private CommentService commentService;
 
 	//@Test
 	public void testinsertComment() throws Exception {
 		
+		Comment comment = new Comment();
+		
+		comment.setCommentDetail("댓글테스트중입니다");
+		comment.setCommentPostNo(5);
+		comment.setCommentTreeNo(1);
+		comment.setCommentWriter("테스트네댓글");
+		
+		commentService.addComment(comment);
+		
+		
+		comment = commentService.getComment(22);
+		
+	
+		
+		Assert.assertEquals("댓글테스트중입니다", comment.getCommentDetail());
+		Assert.assertEquals(5, comment.getCommentPostNo());
+		Assert.assertEquals(1, comment.getCommentTreeNo());
+		Assert.assertEquals("테스트네댓글", comment.getCommentWriter());
 		
 		
 	 }
 	
-	   //@Test
-		public void testfindPost() throws Exception {
+	  // @Test
+		public void testfindComment() throws Exception {
 			
+		   Comment comment = new Comment();
+		   
+		   comment = commentService.getComment(22);
+		   
+		Assert.assertEquals("댓글테스트중입니다", comment.getCommentDetail());
+		Assert.assertEquals(5, comment.getCommentPostNo());
+		Assert.assertEquals(1, comment.getCommentTreeNo());
+		Assert.assertEquals("테스트네댓글", comment.getCommentWriter());
+		
+		Assert.assertNotNull(commentService.getComment(8));
+		Assert.assertNotNull(commentService.getComment(21));
 			
 		}
 	
-		@Test
-		 public void testupdatePost() throws Exception{
+		//@Test
+		 public void testgetCommentList() throws Exception{
 			 
+			Comment comment = new Comment();
+			comment.setCommentPostNo(24);
 			
+			
+			List<Comment> list = commentService.getCommentList(comment.getCommentPostNo());
 		
+			Assert.assertEquals(3, list.size());
+			
+			
+			
+		 }
+		
+	//	@Test
+		 public void testremoveComment() throws Exception{
+			 
+			Comment comment = new Comment();
+			comment.setCommentNo(21);
+			
+            comment.setCommentPostNo(5);
+			commentService.removeComment(comment.getCommentNo());
+			
+			List<Comment> list = commentService.getCommentList(comment.getCommentPostNo());
+			
+					
+		
+			Assert.assertEquals(3,list.size());
+			
 			
 			
 		 }

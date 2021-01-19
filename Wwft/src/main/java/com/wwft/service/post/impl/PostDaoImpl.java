@@ -5,6 +5,7 @@ package com.wwft.service.post.impl;
 import com.wwft.service.domain.Post;
 
 
+
 import com.wwft.service.post.PostDao;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class PostDaoImpl implements PostDao {
 	private	SqlSession sqlSession;
 
 	public PostDaoImpl() {
-		System.out.println(this.getClass()+"持失");
+		System.out.println(this.getClass()+"postDaoImpl持失");
 	}
 	
 	/*
@@ -46,7 +47,7 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public List<Post> getPostList(int postTreeNo) throws Exception {
 		
-		return sqlSession.selectList("PostMapper.gerPostList", postTreeNo);
+		return sqlSession.selectList("PostMapper.getPostList", postTreeNo);
 	}
 
 
