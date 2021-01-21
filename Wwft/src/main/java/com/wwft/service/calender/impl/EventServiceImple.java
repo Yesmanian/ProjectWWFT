@@ -38,14 +38,20 @@ public class EventServiceImple implements EventService {
 	}
 
 	@Override
-	public Event findEvent(String title) throws Exception {
+	public Event findEvent(int id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return eventDao.fineEvent(id);
 	}
 
 	@Override
 	public void removeEvent(int eventNo) throws Exception {
 		eventDao.removeEvent(eventNo);
+	}
+
+	@Override
+	public void updateEvent(Event event) throws Exception {
+		eventDao.updateEvent(event);
+		
 	}
 
 }

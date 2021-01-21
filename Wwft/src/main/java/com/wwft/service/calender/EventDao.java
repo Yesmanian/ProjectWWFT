@@ -10,8 +10,9 @@ public interface EventDao {
 	
 	public void addEvent(Event event) throws Exception;
 	
-	public Event fineEvent(String title) throws Exception;
+	public Event fineEvent(int id) throws Exception;
 	
 	public void removeEvent(int eventNo) throws Exception;
 
+	public void updateEvent(Event event) throws Exception;
 }

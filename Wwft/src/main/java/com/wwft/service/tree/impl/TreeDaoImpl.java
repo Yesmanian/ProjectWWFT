@@ -20,21 +20,27 @@ public class TreeDaoImpl implements TreeDao {
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
 	private SqlSession sqlSession;
+	
+	
+
+	
 	public void setSqlSession(SqlSession sqlSession) {
 		System.out.println("::"+getClass()+".sqlSession() Call..");
 		this.sqlSession = sqlSession;
 	}
 	
-	
-	public TreeDaoImpl() {
-		// TODO Auto-generated constructor stub
-	}
 
+	//Constructor
+	public TreeDaoImpl() {
+		System.out.println("::"+getClass()+".Default Contructor..");
+	}
+	
+	
 
 	@Override
 	public Tree getTree(int treeNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne("TreeMapper.getTree", treeNo);
 	}
 
 
@@ -143,7 +149,10 @@ public class TreeDaoImpl implements TreeDao {
 
 	@Override
 	public void removeFamilyMotto(Tree tree) throws Exception {
-		sqlSession.delete("TreeMapper.removeFamilyMotto", tree);
-
+		sqlSession.update("TreeMapper.removeFamilyMotto", tree);
 	}
-}
+
+
+	
+	}
+
