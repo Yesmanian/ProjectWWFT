@@ -47,12 +47,7 @@ Hello addForest.jsp
 						<input type="radio" name="forestNameChangePossibleState" value="0">비허용
 				    </td>
 				</tr><!-- 두번째 줄 끝 -->
-				<tr><!-- 두번째 줄 시작 -->
-				    <td>초대할 나무 번호</td>
-				    <td>
-				    	<input type="text" name="forestName">
-				    </td>
-				</tr><!-- 두번째 줄 끝 -->
+				
 				<tr><!-- 두번째 줄 시작 -->
 				    <td>
 				  		<input type="submit" value="보내기"> 

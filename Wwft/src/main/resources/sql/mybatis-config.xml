@@ -10,6 +10,7 @@
 	<!-- 기타 설정정보 :: [MyBatis_Home]/mybatis-3.2.1.pdf 참조 -->
 	<settings>
 		<setting name="callSettersOnNulls" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>	
 	
 	<!-- FQCN(Full Qualified Class Name) Alias(별칭관리) -->
