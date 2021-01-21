@@ -10,11 +10,11 @@ import com.wwft.service.calender.EventDao;
 import com.wwft.service.calender.EventService;
 import com.wwft.service.domain.Event;
 
-@Service("eventServiceImple")
+@Service("eventServiceImpl")
 public class EventServiceImple implements EventService {
 	
 	@Autowired
-	@Qualifier("eventDaoImple")
+	@Qualifier("eventDaoImpl")
 	private EventDao eventDao;
 
 	public EventServiceImple() {
