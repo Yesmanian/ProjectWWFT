@@ -6,7 +6,9 @@
 
 <mapper namespace="TreeMapper">
  	
-	<resultMap id="treeSelectMap" type="tree">
+	
+		<resultMap id="treeSelectMap" type="tree">
+	
 		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
 		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
 		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />

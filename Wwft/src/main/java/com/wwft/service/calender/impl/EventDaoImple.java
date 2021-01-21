@@ -39,15 +39,21 @@ public class EventDaoImple implements EventDao {
 	}
 
 	@Override
-	public Event fineEvent(String title) throws Exception {
+	public Event fineEvent(int id) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return null;
+		return sqlSession.selectOne("eventMapper.findEvent", id);
 	}
 
 	@Override
 	public void removeEvent(int eventNo) throws Exception {
 		sqlSession.delete("eventMapper.removeEvent", eventNo );
+		
+	}
+
+	@Override
+	public void updateEvent(Event event) throws Exception {
+		sqlSession.update("eventMapper.updateEvent", event);
 		
 	}
 

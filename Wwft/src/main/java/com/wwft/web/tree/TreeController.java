@@ -37,6 +37,16 @@ public class TreeController {
 		return null;
 	}
 	
+	@RequestMapping(value = "addFamilyMotto", method = RequestMethod.POST)
+	public String addFamilyMotto(@ModelAttribute("tree")Tree tree) throws Exception{
+		
+		System.out.println("/tree/addFamilyMott : POST star");
+		treeService.addFamilyMotto(tree);
+		return null;
+		
+		
+	}
+	
 	
 	
 }
