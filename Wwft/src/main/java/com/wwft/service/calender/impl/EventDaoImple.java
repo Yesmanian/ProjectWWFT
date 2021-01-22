@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.wwft.service.calender.EventDao;
 import com.wwft.service.domain.Event;
 
-@Repository("eventDaoImple")
+@Repository("eventDaoImpl")
 public class EventDaoImple implements EventDao {
 	
 	@Autowired

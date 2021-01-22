@@ -24,7 +24,7 @@ public class CalenderRestController {
 	
 	
 	@Autowired
-	@Qualifier("eventServiceImple")
+	@Qualifier("eventServiceImpl")
 	private EventService eventService;
 
 	public CalenderRestController() {

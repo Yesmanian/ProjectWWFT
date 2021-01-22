@@ -6,10 +6,7 @@
 
 <mapper namespace="TreeMapper">
  	
-	
-
-	<resultMap id="treeSelectMap" type="com.wwft.service.domain.Tree">
-
+	<resultMap id="treeSelectMap" type="tree">
 		
 
 	
@@ -25,7 +22,7 @@
 	
 	
 	  <!-- SQL : SELECT ONE -->
-	 <select 	id="getTree"	parameterType="string"	resultMap="treeSelectMap">
+	 <select 	id="getTree"	parameterType="int"	resultMap="treeSelectMap">
 		SELECT
 		tree_no , user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
 		FROM tree
@@ -38,7 +35,7 @@
 	 INSERT
 		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
 		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
-							#{countryId:VARCHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMBER})			
+							#{countryId:VARCHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
 	 </insert>
 	 
 	 
@@ -61,59 +58,12 @@
 	  	</set>
 	  	WHERE tree_no = #{value}
 	 </update> 	 
-	
-	 <delete id="deleteFamilyMotto" parameterType="String">
-	  	DELETE tree WHERE family_motto = #{familyMotto}
-	 </delete> 	 
-	<!-- 	 
-	SQL : SELECT LIST
-	<select  id="getUserList"  parameterType="search"	resultMap="userSelectMap">
->>>>>>> refs/heads/ian
-	  	SELECT *
-	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT user_id , user_name , email
-											FROM users
-											<if test="searchCondition != null">
-												<where>
-													<if test="searchCondition == 0 and searchKeyword !='' ">
-										 				user_id = #{searchKeyword}
-													</if>
-													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				user_name = #{searchKeyword}
-													</if>
-												</where>
-											</if>
-											ORDER BY user_id ) inner_table
-						WHERE ROWNUM &lt;= #{endRowNum} )
-		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
-	 </select>
-	 	 위 두번째 subQuery 의  
-	 			WHERE ROWNUM &lt;= #{endRowNum} ) 는
-	 			WHERE ROWNUM <= #{endRowNum} ) 의미이며..
-	 			< 는 keyword 로 &lt; 를	사용.
-	 			
-	 			<![CDATA[  ~~~  ]]> 를 이용하여 아래와 같이 사용  할 수 있다.
-	 			CDATA ==> Character Data 의 의미 Java 에서 \n 같은 특수문자 처리  
 
-				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
-		
+		 
+		 
+		 
+		 
+
 	
-	SQL : SELECT ROW Count	 
-	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
-	  	SELECT COUNT(*)
-	  	FROM(	SELECT user_id , user_name , email
-						FROM users
-						<if test="searchCondition != null">
-							<where>
-								<if test="searchCondition == 0 and searchKeyword !='' ">
-						 			user_id = #{searchKeyword}
-								</if>
-								<if test="searchCondition == 1 and searchKeyword !='' ">
-						 		user_name = #{searchKeyword}
-								</if>
-							</where>
-						</if> ) countTable						
-	 </select>
-	  -->
-	 
+	
 </mapper>

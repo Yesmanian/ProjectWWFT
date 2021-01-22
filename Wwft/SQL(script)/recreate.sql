@@ -215,13 +215,13 @@ CREATE TABLE  "USERS"
 	 CONSTRAINT "USERS_U" UNIQUE ("EMAIL") ENABLE
    );
 	회원정보
-    INSERT INTO USERS values('admin', 'admin', 2, 'a1sasd@asd', 'admin',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user01', '1111',3,  'a2asd@asd', 'user',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user02', '2222',4,  'a3sasd@asd', 'user',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user03', '3333',4,  'as4asd@asd', 'user',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user04', '4444',5,  'asa5sd@asd', 'user',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user05', '5555', 6,  'asa6sd@asd', 'user',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user06', '6666',7,  'asasd7@asd', 'user',  SYSDATE, null, 1);
+    INSERT INTO USERS values('admin' , 'admin',2, 'a1sasd@asd', 'admin',  SYSDATE, null, 1);
+    INSERT INTO USERS values('user01', '1111' ,3, 'a2asd@asd' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user02', '2222' ,4, 'a3sasd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user03', '3333' ,4, 'as4asd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user04', '4444' ,5, 'asa5sd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user05', '5555' ,6, 'asa6sd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user06', '6666' ,7, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
     
     
     나무정보
