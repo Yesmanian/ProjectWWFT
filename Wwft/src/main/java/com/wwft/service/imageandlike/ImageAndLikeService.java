@@ -22,6 +22,8 @@ import com.wwft.service.domain.ImageAndLike;
 public interface ImageAndLikeService {
  
 	
+	public List<String> addImageAndLikeList(ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
+	
 	public ImageAndLike getImageAndLike(int imageAndLikeNo, HttpServletRequest request) throws Exception;
 	
 	public List<String> getImageAndLikeList(ImageAndLike imageAndLike, HttpServletRequest request) throws Exception;

@@ -21,10 +21,10 @@
 	</resultMap>
 	
 	
-	<insert 	id="addPost"		parameterType="com.wwft.service.domain.Post" >
+	<insert 	id="addPost"		parameterType="post" >
 		INSERT
 	 	INTO post(post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name)
-	 	VALUES	 (SEQ_POST_NO.NEXTVAL , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
+	 	VALUES	 (#{postNo} , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
 	 </insert>
 	 
 	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
@@ -34,6 +34,12 @@
 		WHERE post_no = #{postNo}
 	 
 	 </select>
+	 
+	 <select id="lastPostNo" resultType="int">
+		SELECT
+		MAX(post_no)+1
+		FROM post
+	</select>
 	 
 	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
 	   	UPDATE post

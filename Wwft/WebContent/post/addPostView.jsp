@@ -46,7 +46,6 @@
 
     </style>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="../javascript/calendar.js"></script>
 
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
  <script type="text/javascript">
@@ -110,7 +109,7 @@
      $("#input_imgs").trigger('click');
  }
 
- function submitAction() {
+ function fncAddPost() {
      console.log("업로드 파일 갯수 : "+sel_files.length);
      var data = new FormData();
 
@@ -123,9 +122,30 @@
      if(sel_files.length < 1) {
          alert("한개이상의 파일을 선택해주세요.");
          return;
-     }           
+     }      
+     
+     var postDetail = $("#postDetail").val();
+ 	 var postState = $("[name='postState']").val();
+     $.ajax({
+    	
+    	 url : "/post/json/addPost/" ,
+    	 method : "POST" ,
+    	 data :  JSON.stringify({postDetail : postDetail, postState : postState }) ,
+    	 dateType : "json" ,
+    	 headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			success : function(redata){
+				alert(redata);
+				fnAddFiles(redata);
+			}
+    	 
+     })
 
-     var xhr = new XMLHttpRequest();
+
+    // $("form").attr("method","POST").attr("enctype","multipart/form-data").attr("action","/post/addPost").submit();
+ /*     var xhr = new XMLHttpRequest();
      xhr.open("POST","./study01_af.php");
      xhr.onload = function(e) {
          if(this.status == 200) {
@@ -133,23 +153,25 @@
          }
      }
 
-     xhr.send(data);
+     xhr.send(data); */
 
  }
 
- 
- 
+ //파일 등록하는 함수
+ function fnAddFiles(postNo){
+	 //ajax 호출해 파일 등록하기
+ }
  
         var g_count =1;
         $(document).ready(function(){
-            $("#list").on("click",function(e){
+           /*  $("#list").on("click",function(e){
                 e.preventDefault();
                 fn_openBoardList();
             })
             $("#write").on("click",function(e){
                 e.preventDefault();
                 fn_writeBoard();
-            })
+            }) 
             $("a[name='delete']").on("click",function(e){
                 e.preventDefault();
                 fn_fileDelete($(this));
@@ -157,10 +179,10 @@
             $("#add").on("click",function(e){
                 e.preventDefault();
                 fn_fileAdd();
-            })
+            })*/
         });
          
-         
+         /* 
         function fn_openBoardList(){
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/openBoardList.do'/>");
@@ -183,11 +205,11 @@
                 e.preventDefault();
                 fn_fileDelete($(this));         
             })
-        }
+        } */
     </script>
 </head>
 <body>
-    <form id="frm" enctype="multipart/form-data" method ="post">
+    <form id="from" enctype="multipart/form-data" method ="post">
         <table class="board_view">
             <colgroup>
                 <col width="15%" >
@@ -200,8 +222,8 @@
         <h2><b>이미지 미리보기</b></h2>
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-            <input multiple="multiple" type="file" id="input_imgs" multiple/>
-            <a href="#this" name="delete" class="btn">삭제하기</a>
+            <input multiple="multiple" type="file" id="input_imgs" maxlength="10"/>
+             
         </div>
     </div>
 
@@ -212,13 +234,16 @@
     </div>
                 <tr>
                     <th scope="row">내용</th>
-                    <td><textarea cols="100" rows="20" id="CONTENTS" name="CONTENTS" title="내용"></textarea></td>
+                    <td><textarea cols="100" rows="20" id="postDetail" name="postDetail" title="내용"></textarea></td>
                 </tr>
             </tbody>
         </table>
        
+         <input type='radio' name='postState' value='0' />공개
+  		<input type='radio' name='postState' value='1' />비공개
+         <br/>
          
-       <input type="submit" value="등록" />
+       <input type="button" value="등록" onclick="fncAddPost();"/>
  
       
     </form>

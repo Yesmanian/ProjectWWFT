@@ -30,7 +30,7 @@
 	 
 	 <select id="getComment" parameterType="string" resultMap="commentSelectMap">
 	 	SELECT
-		comment_no,comment_writer, comment_reg_date, comment_detail, post_no, tree_no		
+		comment_no,comment_writer, comment_reg_date, comment_detail		
 		FROM comments
 		WHERE comment_no = #{commentNo}
 	 
@@ -38,7 +38,7 @@
 	 
 	 <select id="getCommentList" parameterType="string" resultMap="commentSelectMap">
 	 	SELECT
-	 	comment_no,comment_writer,comment_reg_date,comment_detail,post_no,tree_no
+	 	comment_no,comment_writer,comment_reg_date,comment_detail
 		FROM comments
 		WHERE post_no= #{postNo}
 	 

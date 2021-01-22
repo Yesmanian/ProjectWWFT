@@ -20,7 +20,7 @@ public class ImageAndLikeDaoImpl implements ImageAndLikeDao {
 	private SqlSession sqlSession;
 	
 	public ImageAndLikeDaoImpl() {
-		System.out.println(this.getClass()+"持失");
+		System.out.println(this.getClass()+"ImageAndLikeDaoImpl持失");
 	}
 
 	public void setSqlSession(SqlSession sqlSession) {
@@ -29,24 +29,34 @@ public class ImageAndLikeDaoImpl implements ImageAndLikeDao {
 	}
 
 	@Override
-	public ImageAndLike getImageAndLike(int imageAndLikeNo, MultipartHttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<String> getImageAndLikeList(ImageAndLike imageAndLike, MultipartHttpServletRequest request)
+	public List<String> addImageAndLikeList(ImageAndLike imageAndLike, MultipartHttpServletRequest request)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<String> updateImageAndLike(ImageAndLike imageAndLike, MultipartHttpServletRequest request)
+	public ImageAndLike getImageAndLike(int imageAndLikeNo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ImageAndLike> getImageAndLikeList(int postNo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> removeImageAndLike(ImageAndLike imageAndLike, MultipartHttpServletRequest request)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
+
 	
 
 

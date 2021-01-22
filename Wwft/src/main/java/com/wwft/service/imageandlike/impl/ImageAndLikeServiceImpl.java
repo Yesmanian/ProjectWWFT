@@ -35,6 +35,15 @@ public class ImageAndLikeServiceImpl implements ImageAndLikeService {
 		System.out.println(this.getClass()+"»ý¼º");	
 		}
 
+	
+	@Override
+	public List<String> addImageAndLikeList(ImageAndLike imageAndLike, MultipartHttpServletRequest request)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	@Override
 	public ImageAndLike getImageAndLike(int imageAndLikeNo, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
@@ -53,6 +62,8 @@ public class ImageAndLikeServiceImpl implements ImageAndLikeService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 	}

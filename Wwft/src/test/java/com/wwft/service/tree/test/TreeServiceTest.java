@@ -22,8 +22,8 @@ import junit.framework.Assert;
 
 public class TreeServiceTest {
 	
-	@Autowired
-	@Qualifier("treeServiceImpl")
+	//@Autowired
+	//@Qualifier("treeServiceImpl")
 	private TreeService treeService;
 	
 	

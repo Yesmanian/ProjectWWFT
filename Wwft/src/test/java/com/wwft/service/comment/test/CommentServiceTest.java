@@ -93,7 +93,7 @@ public class CommentServiceTest {
 			
 		 }
 		
-	//	@Test
+		//@Test
 		 public void testremoveComment() throws Exception{
 			 
 			Comment comment = new Comment();
