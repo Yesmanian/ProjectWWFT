@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	///Method
+	@Override
 	public void addUser(User user) throws Exception {
 		userDao.addUser(user);
 		
@@ -51,46 +52,41 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateUser(User user) throws Exception {
 		userDao.updateUser(user);
-		
 	}
-
-	public void findId(Search search) throws Exception {
-		
-	}
-
-	public void findPassword(Search search) throws Exception {
-		
-	}
-
+//	
 //	@Override
-//	public void userWithdrawal(User user) throws Exception {
-//		// TODO Auto-generated method stub
-//		
+//	public void findId(Search search) throws Exception {
+//		userDao.findId(search);
+//	}
+//	
+//	@Override
+//	public void findPassword(Search search) throws Exception {
+//		userDao.findPassword(search);
 //	}
 //
+////	@Override
+////	public void userWithdrawal(User user) throws Exception {
+////		// TODO Auto-generated method stub
+////		
+////	}
+////
+////	@Override
+////	public void userActivation(User user) throws Exception {
+////		// TODO Auto-generated method stub
+////		
+////	}
+//	
 //	@Override
-//	public void userActivation(User user) throws Exception {
-//		// TODO Auto-generated method stub
-//		
+//	public boolean checkDuplication(String userId) throws Exception {
+//		boolean result=true;
+//		User user=userDao.getUser(userId);
+//		if(user != null) {
+//			result=false;
+//		}
+//		return result;
 //	}
-
-	public boolean checkDuplication(String userId) throws Exception {
-		boolean result=true;
-		User user=userDao.getUser(userId);
-		if(user != null) {
-			result=false;
-		}
-		return result;
-	}
 	
 
-	public User Certified(User userId) throws Exception {
-		return null;
-	}
-
-	public User Authentication(User userId) throws Exception {
-		return null;
-	}
 
 
 }

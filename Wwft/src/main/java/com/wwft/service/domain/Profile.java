@@ -9,85 +9,123 @@ public class Profile {
 	private String profileState;
 	private String profileName;
 	private String phone;
-	private Date familyRelations;	
-	private Date profileImage;	
+	private String familyRelations;	
+	private String profileImage;	
 	private Date birthday;
 	private String address;
 
 	public Profile() {
 	}
 
+	
+
 	public int getProfileNo() {
 		return profileNo;
 	}
+
+
 
 	public void setProfileNo(int profileNo) {
 		this.profileNo = profileNo;
 	}
 
+
+
 	public int getTreeNo() {
 		return treeNo;
 	}
+
+
 
 	public void setTreeNo(int treeNo) {
 		this.treeNo = treeNo;
 	}
 
+
+
 	public String getProfileState() {
 		return profileState;
 	}
+
+
 
 	public void setProfileState(String profileState) {
 		this.profileState = profileState;
 	}
 
+
+
 	public String getProfileName() {
 		return profileName;
 	}
+
+
 
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
 	}
 
+
+
 	public String getPhone() {
 		return phone;
 	}
+
+
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Date getFamilyRelations() {
+
+
+	public String getFamilyRelations() {
 		return familyRelations;
 	}
 
-	public void setFamilyRelations(Date familyRelations) {
+
+
+	public void setFamilyRelations(String familyRelations) {
 		this.familyRelations = familyRelations;
 	}
 
-	public Date getProfileImage() {
+
+
+	public String getProfileImage() {
 		return profileImage;
 	}
 
-	public void setProfileImage(Date profileImage) {
+
+
+	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+
+
 
 	public Date getBirthday() {
 		return birthday;
 	}
 
+
+
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
+
+
 
 	public String getAddress() {
 		return address;
 	}
 
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -95,8 +133,5 @@ public class Profile {
 				+ ", profileName=" + profileName + ", phone=" + phone + ", familyRelations=" + familyRelations
 				+ ", profileImage=" + profileImage + ", birthday=" + birthday + ", address=" + address + "]";
 	}
-
-	
-
 
 }

@@ -29,33 +29,38 @@ public class UserDaoImpl implements UserDao {
 	public UserDaoImpl() {
 		System.out.println(this.getClass());
 	}
-	
+	@Override
 	public void addUser(User user) throws Exception {
 		sqlSession.insert("UserMapper.addUser", user);
-		
+	
 	}
 	//Method
+	@Override
 	public User getUser(String userId) throws Exception {
 		return sqlSession.selectOne("UserMapper.getUser", userId);
 	}
-
+	
+	@Override
 	public List<User> getUserList(Search search) throws Exception {
 		return sqlSession.selectList("UserMapper.getUserList", search);
 	}
-
+	
+	@Override
 	public void updateUser(User user) throws Exception {
 		sqlSession.update("UserMapper.updateUser", user);
 		
 	}
-
-	public void findId(Search search) throws Exception {
-		return;
+//	
+//	@Override
+//	public void findId(Search search) throws Exception {
+//		return;	
+//	}
+//	
+//	@Override
+//	public void findPassword(Search search) throws Exception {
+//		return;
+//		
+//	}
 		
-	}
-
-	public void findPassword(Search search) throws Exception {
-		return;
-		
-	}
-
+	
 }

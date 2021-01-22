@@ -1,45 +1,56 @@
 package com.wwft.service.profile.impl;
 
-import java.util.Map;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.Profile;
 import com.wwft.service.profile.ProfileDao;
 
+@Repository("profileDaoImpl")
 public class ProfileDaoImpl implements ProfileDao {
-
-	public ProfileDaoImpl() {
-		// TODO Auto-generated constructor stub
+	
+	
+	///Field
+	@Autowired
+	@Qualifier("sqlSessionTemplate")
+	private SqlSession sqlSession;
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
 	}
-
+	
+	///Constructor
+	public ProfileDaoImpl() {
+		System.out.println(this.getClass());
+	}
+	
 	@Override
 	public void addProfile(Profile profile) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("ProfileMapper.addProfile", profile);
 	}
-
+	
 	@Override
-	public Profile getProfile(int profileno) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Profile getProfile(int profileNo) throws Exception {
+		return sqlSession.selectOne("ProfileMapper.getProfile", profileNo);
 	}
-
-	@Override
-	public Map<String, Object> getProfileList(Search search) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+//	
+//	@Override
+//	public List<Profile> getProfileList(Search search) throws Exception {
+//		return sqlSession.selectList("ProfileMapper.getProfileList", search);
+//	}
+//	
 	@Override
 	public void updateProfile(Profile profile) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("ProfileMapper.updateProfile", profile);
 	}
-
+	
 	@Override
-	public void removeProfile(int profileno) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void removeProfile(Profile profile) throws Exception {
+		 sqlSession.delete("ProfileMapper.removeProfile", profile);
 	}
 
 }

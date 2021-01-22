@@ -11,16 +11,16 @@ public interface ProfileService {
 	public void addProfile(Profile profile) throws Exception ;
 	
 	// SELECT ONE
-	public Profile getProfile(int profileno) throws Exception ;
+	public Profile getProfile(int profileNo) throws Exception ;
 
-	// SELECT LIST
-	public Map<String , Object> getProfileList(Search search) throws Exception ;
-
+//	// SELECT LIST
+//	public Map<String , Object> getProfileList(Search search) throws Exception ;
+//
 	// UPDATE
 	public void updateProfile(Profile profile) throws Exception ;
 
-	// UPDATE
-	public void removeProfile(int profileno) throws Exception ;
+	// REMOVE
+	public void removeProfile(Profile profile) throws Exception ;
 	
 	
 }
