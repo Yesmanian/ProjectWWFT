@@ -35,14 +35,14 @@ import com.wwft.service.domain.Event;
 																	"classpath:config/context-mybatis.xml",
 																	"classpath:config/context-transaction.xml" })
 //@ContextConfiguration(locations = { "classpath:config/context-common.xml" })
-public class eventServiceTest {
+public class EventServiceTest {
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("eventServiceImple")
+	@Qualifier("eventServiceImpl")
 	private EventService eventService;
 
-	@Test
+//	@Test
 	public void testAddEvent() throws Exception {
 		
 		//Event event = new Event();
@@ -55,11 +55,14 @@ public class eventServiceTest {
 		//Date newDate = 
 		Event event = new Event();
 		event.setTreeNo(1);
-		event.setTitle("테스트제목");
-		event.setStart("2021-01-12 00:30");
-		event.setEnd("2021-01-13 01:30");
+		event.setTitle("주반복테스트");
+		event.setStart("2021-01-21 00:30");
+		event.setEnd("2021-01-21 01:30");
 		event.setdDay("0");
 		event.setEventDetail("추가되는일정");
+		event.setFreq("weekly");
+		event.setByDay("byweekday");
+		event.setDow("4");
 		eventService.addEvent(event);
 		
 	}
@@ -100,6 +103,52 @@ public class eventServiceTest {
 				
 			}
 		
+		@Test
+		public void testUpdateEvent() throws Exception {
+			
+			//Event event = new Event();
+			/*
+			 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
+			 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
+			 * transFormat.format(new Date(time)); System.out.println(nowTime);
+			 */
+			//String date = "2012/01/14 10:48:43";
+			//Date newDate = 
+			Event event = new Event();
+			event.setId(119);
+			event.setTreeNo(1);
+			event.setTitle("타이틀변경");
+			event.setStart("2021-01-17 00:30");
+			event.setEnd("2021-01-17 01:30");
+			event.setdDay("0");
+			event.setFreq("weekly");
+			event.setByDay("byweekday");
+			event.setDow("2");
+			event.setEventDetail("변경된일정");
+//			eventService.addEvent(event);
+			eventService.updateEvent(event);
+			
+			System.out.println(eventService.findEvent(119));
+			
+			
+		}
+		
+		//@Test
+		public void testFindEvent() throws Exception {
+			
+			//Event event = new Event();
+			/*
+			 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
+			 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
+			 * transFormat.format(new Date(time)); System.out.println(nowTime);
+			 */
+			//String date = "2012/01/14 10:48:43";
+			//Date newDate = 
+		Event event = eventService.findEvent(42);
+		System.out.println(event);
+			
+		}
+
 		
 
 	

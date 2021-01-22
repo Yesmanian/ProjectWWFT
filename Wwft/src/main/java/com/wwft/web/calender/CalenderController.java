@@ -16,7 +16,7 @@ import com.wwft.service.domain.Event;
 public class CalenderController {
 	
 	@Autowired
-	@Qualifier("eventServiceImple")
+	@Qualifier("eventServiceImpl")
 	private EventService eventService;
 	
 	

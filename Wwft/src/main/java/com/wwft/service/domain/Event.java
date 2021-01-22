@@ -12,6 +12,10 @@ public class Event {
 	private String end;
 	private String dDay;
 	private String eventDetail;
+	private String freq;
+	private String byDay;
+	private String dow;
+	private String dom;
 	public int getId() {
 		return id;
 	}
@@ -54,6 +58,30 @@ public class Event {
 	public void setEventDetail(String eventDetail) {
 		this.eventDetail = eventDetail;
 	}
+	public String getFreq() {
+		return freq;
+	}
+	public void setFreq(String freq) {
+		this.freq = freq;
+	}
+	public String getByDay() {
+		return byDay;
+	}
+	public void setByDay(String by) {
+		this.byDay = by;
+	}
+	public String getDow() {
+		return dow;
+	}
+	public void setDow(String dow) {
+		this.dow = dow;
+	}
+	public String getDom() {
+		return dom;
+	}
+	public void setDom(String dom) {
+		this.dom = dom;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -71,10 +99,17 @@ public class Event {
 		builder.append(dDay);
 		builder.append(", eventDetail=");
 		builder.append(eventDetail);
+		builder.append(", freq=");
+		builder.append(freq);
+		builder.append(", byDay=");
+		builder.append(byDay);
+		builder.append(", dow=");
+		builder.append(dow);
+		builder.append(", dom=");
+		builder.append(dom);
 		builder.append("]");
 		return builder.toString();
 	}
-	
 	
 	
 	

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ForestMapper">
+ 	
+ 	
+	<resultMap id="forestSelectMap" type="forest">
+	<result property="forestNo" 		column="FOREST_NO" 		jdbcType="NUMERIC"/>
+	<result property="forestName"			column="FOREST_NAME" 	jdbcType="VARCHAR" />
+	<result property="forestCreaterTreeNo" 			column="FOREST_CTREATER_TREE_NO" 				jdbcType="NUMERIC" />
+	<result property="invitePossibleState" 		column="INVITE_POSSIBLE_STATE" 		jdbcType="CHAR" />
+	<result property="forestNameChangePossibleState" 		column="FOREST_NAME_CHANGE_POSSIBLE_STATE" 			jdbcType="CHAR" />
+	<result property="forestCreateRegDate" 		column="FOREST_CREATE_TIME" 	jdbcType="DATE" />
+	<result property="forestInformText" 			column="FOREST_INFORM_TEXT" 			jdbcType="VARCHAR" />
+	<result property="forestInformWriter" 			column="FOREST_INFORM_WRITER" 			jdbcType="VARCHAR" />
+	<result property="forestInformRegDate" 		column="FOREST_INFORM_REG_DATE" 	jdbcType="DATE" />
+	</resultMap>
+	
+	
+	 
+	<!--  SQL : SELECT ONE -->
+	 <select 	id="getForest"	parameterType="int"	resultMap="forestSelectMap">
+		SELECT
+		 	FOREST_NO,FOREST_NAME,FOREST_CTREATER_TREE_NO,INVITE_POSSIBLE_STATE,FOREST_NAME_CHANGE_POSSIBLE_STATE,FOREST_CREATE_TIME,
+		 	FOREST_INFORM_TEXT,FOREST_INFORM_WRITER,FOREST_INFORM_REG_DATE
+		FROM FOREST 
+		WHERE FOREST_NO = #{value}
+	 </select>
+ 	
+ 	<!-- SQL : INSERT -->
+	<insert 	id="addForest"		parameterType="forest" >
+	 	INSERT
+		INTO FOREST(FOREST_NO,FOREST_NAME,FOREST_CTREATER_TREE_NO,INVITE_POSSIBLE_STATE,
+					FOREST_NAME_CHANGE_POSSIBLE_STATE,FOREST_CREATE_TIME,FOREST_INFORM_TEXT,FOREST_INFORM_WRITER,FOREST_INFORM_REG_DATE ) 
+		VALUES	 (	SEQ_FOREST_NO.nextval,#{forestName},#{forestCreaterTreeNo},
+				#{invitePossibleState},#{forestNameChangePossibleState},SYSDATE,
+				#{forestInformText},#{forestInformWriter},NULL )
+	 </insert>
+ 	
+	 
+</mapper>

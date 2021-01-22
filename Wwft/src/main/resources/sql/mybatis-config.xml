@@ -22,8 +22,8 @@
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
 
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
-		<!-- <typeAlias alias="user" type="com.model2.mvc.service.domain.User" />
-		<typeAlias alias="search" type="com.model2.mvc.common.Search" /> -->
+		
+		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
 	</typeAliases>
 	
@@ -31,6 +31,7 @@
 	<mappers>
 		<mapper resource="sql/UserMapper.xml"/>
 		<mapper resource="sql/ProfileMapper.xml"/>
+		<mapper resource="sql/ForestMapper.xml"/>
 		<mapper resource="sql/PostMapper.xml"/>
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
