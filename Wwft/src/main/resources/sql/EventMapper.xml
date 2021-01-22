@@ -15,6 +15,10 @@
 		<result property="end" 				column="event_end_date" 					jdbcType="DATE" />
 		<result property="dDay" 				column="d_day_state" 					jdbcType="CHAR" />
 		<result property="eventDetail" 		column="event_detail" 			jdbcType="VARCHAR" />
+		<result property="freq" 			column="freq"                   jdbcType="VARCHAR"/>
+		<result property="byDay" 				column="by_day" 					jdbcType="VARCHAR" />
+		<result property="dow"				column="dow"					jdbcType="VARCHAR"	/>   
+		<result property="dom"				column="dom"					jdbcType="VARCHAR"	/>   
 		<!-- <result property="prodName"	column="user_id" 		jdbcType="VARCHAR" /> -->
 		<!-- <result property="" 				column="d_day" 					jdbcType="VARCHAR" /> -->
 		<!-- <result property="price" 			column="all_day" 				jdbcType="varchar"  /> -->
@@ -23,9 +27,9 @@
 	<!-- SQL : INSERT -->
 	<insert 	id="addEvent"		parameterType="event" >
 	 	INSERT
-		INTO calender(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail)
+		INTO calender(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail,freq, by_day,  dow, dom)
 		VALUES	 (seq_event_no.nextval,	#{treeNo}, #{title:VARCHAR}, to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss') 
-										,to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'), #{dDay:CHAR}, #{eventDetail:VARCHAR} )
+										,to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'), #{dDay:CHAR}, #{eventDetail:VARCHAR},#{freq:VARCHAR},#{byDay:VARCHAR},  #{dow:VARCHAR}, #{dom:VARCHAR} )
 	 </insert>
 	 
 	 <select id="getEventList" resultMap="eventSelectMap">
@@ -50,7 +54,11 @@
 	  	event_start_date = to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss'),
 	  	event_end_date = to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'),
 	  	d_day_state = #{dDay:CHAR},
-	  	event_detail = #{eventDetail:VARCHAR}
+	  	event_detail = #{eventDetail:VARCHAR},
+	  	freq = #{freq:VARCHAR},
+	  	by_day =#{byDay:VARCHAR},
+	  	dow = #{dow:VARCHAR},
+	  	dom = #{dom:VARCHAR}
 	  	WHERE event_no = #{id}
 	 </update>
 	 
