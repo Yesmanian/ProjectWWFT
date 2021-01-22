@@ -19,7 +19,7 @@ import com.wwft.service.domain.Post;
 import com.wwft.service.imageandlike.ImageAndLikeService;
 import com.wwft.service.post.PostService;
 
-@RestController
+@Controller
 @RequestMapping("/post/*")
 public class PostController {
 
@@ -40,7 +40,7 @@ public class PostController {
 		return "redirect:/post/addPostView.jsp";
 	}
 
-	@RequestMapping(value = "json/addPost", method = RequestMethod.POST)
+	//@RequestMapping(value = "json/addPost", method = RequestMethod.POST)
 	public int addPost(@RequestBody(required = false ) Post post	) throws Exception {
 		System.out.println("post:"+post.getPostDetail());
 		System.out.println("/post/addPost : POST");

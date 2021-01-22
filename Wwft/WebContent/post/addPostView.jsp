@@ -46,6 +46,8 @@
 
     </style>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
  <script type="text/javascript">
