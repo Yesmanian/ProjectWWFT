@@ -85,7 +85,7 @@
 		$('input[name=informTextconfirmButton]').on("click",function(){
 			
 			var params = {
-					forestNo         : ${forest.forestNo}
+					forestNo         : ${forest.forestNo},
 					forestInformText : $('input[name=changeInformText]').val(),
 					forestInformWriter   : ${param.profileNo}
 			}

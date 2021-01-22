@@ -92,7 +92,9 @@
 	 <update	id="updateForestInform"	parameterType="forest" >
 	   	UPDATE FOREST
 	   	<set>
-	   		FOREST_INFORM_TEXT = #{forestInformText}
+	   		FOREST_INFORM_TEXT = #{forestInformText},
+	   		FOREST_INFORM_WRITER = #{forestInformWriter},
+	   		FOREST_INFORM_REG_DATE = SYSDATE
 	   	</set>
 	   	WHERE FOREST_NO = #{forestNo}
 	 </update>

@@ -93,8 +93,11 @@ public class ForestDaoImpl implements ForestDao {
 	@Override
 	public Forest updateForestInform(Forest forest) throws Exception {
 		System.out.println("ForestDao updateForestInform");
-		Profile profile = sqlSession.selectOne("ForestMapper.getProfile", forest.getForestInformWriter());
-		//String profileName = profile.get
+		//추후 프로필 번호로 프로필 이름 가져오기
+		//Profile profile = sqlSession.selectOne("ForestMapper.getProfile", forest.getForestInformWriter());
+		System.out.println(forest.getForestNo());
+		System.out.println(forest.getForestInformText());
+		System.out.println(forest.getForestInformWriter());
 		sqlSession.update("ForestMapper.updateForestInform", forest);
 		return sqlSession.selectOne("ForestMapper.getForest", forest);
 	}
