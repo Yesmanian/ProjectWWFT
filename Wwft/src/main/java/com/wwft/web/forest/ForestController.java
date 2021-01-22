@@ -1,5 +1,7 @@
 package com.wwft.web.forest;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wwft.service.domain.Forest;
 import com.wwft.service.forest.ForestService;
 
-//@Controller
+@Controller
 @RequestMapping("/forest/*")
 public class ForestController {
 	
@@ -49,21 +51,39 @@ public class ForestController {
 		return modelAndView;
 	}
 	
-	
+	//추가로 나무숲 디비에
 	@RequestMapping(value = "addForest", method = RequestMethod.POST)
-	public ModelAndView addForest(@ModelAttribute("forest")Forest forest) {
+	public ModelAndView addForest(@ModelAttribute("forest")Forest forest) throws Exception {
 		
 		System.out.println("/addForest Start...");
 		
 		//Business Logic
 		System.out.println(forest);
-		
+		forestService.addForest(forest);
 		
 		
 		System.out.println("/addForest End...");
 		
 		return null;
 		
+	}
+	
+	@RequestMapping(value = "getTreeList", method = RequestMethod.GET )
+	public ModelAndView getTreeList(@RequestParam("forestNo")int forestNo) throws Exception{
+		
+		System.out.println("/forest/getTreeList start..");
+		
+		//Business Logic
+		Map<String, Object> map = forestService.getTreeList(forestNo);
+		System.out.println(forestNo);
+		//ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/forest/getTreeList.jsp");
+		modelAndView.addObject("list", map.get("list"));
+		
+		System.out.println("/forest/getTreeList End....");
+		
+		return modelAndView;
 	}
 	
 }
