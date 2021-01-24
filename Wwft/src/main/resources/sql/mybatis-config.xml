@@ -17,16 +17,17 @@
 	<typeAliases>
 		
 		<typeAlias alias="profile" type="com.wwft.service.domain.Profile"/>
-		
+		<typeAlias alias="bucketList" type="com.wwft.service.domain.BucketList"/>
 		<typeAlias alias="user" type="com.wwft.service.domain.User"/>
-		
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
-
+		<typeAlias alias="treeImage" type="com.wwft.service.domain.TreeImage"/>
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
 		<typeAlias alias ="comment" type="com.wwft.service.domain.Comment"/>
-		
+		<typeAlias alias="activityPoint" type="com.wwft.service.domain.ActivityPoint"/>
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
+		<typeAlias alias="treeForest" type="com.wwft.service.domain.TreeForest"/>
+		
 	</typeAliases>
 	
 	 <!-- SQL Definition :: file include -->

@@ -1,16 +1,20 @@
 package com.wwft.service.tree.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.wwft.service.domain.ActivityPoint;
+import com.wwft.service.domain.BucketList;
 import com.wwft.service.domain.Calender;
 import com.wwft.service.domain.Forest;
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.Tree;
+import com.wwft.service.domain.TreeForest;
 import com.wwft.service.tree.TreeDao;
 
 @Repository("treeDaoImpl")
@@ -45,16 +49,33 @@ public class TreeDaoImpl implements TreeDao {
 
 
 	@Override
-	public List<Profile> getProfileIntroduce() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void addTree(Tree tree) throws Exception {
+		sqlSession.insert("TreeMapper.addTree", tree);
 	}
 
 
 	@Override
+	public void removeTree(int treeNo) throws Exception {
+		sqlSession.delete("TreeMapper.removeTree", treeNo);
+		
+	}
+	
+
+	@Override
+	public void addTreeForest(TreeForest treeForest) throws Exception {
+		sqlSession.insert("TreeMapper.addTreeForest", treeForest);
+	}
+
+	@Override
+	public List<Profile> getProfileIntroduceList(int treeNo) throws Exception {
+		return sqlSession.selectList("TreeMapper.getProfileIntroduceList", treeNo);
+	}
+
+
+
+	@Override
 	public Tree getTreeRanking(int treeNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("TreeMapper.getTreeRanking", treeNo);
 	}
 
 
@@ -73,9 +94,8 @@ public class TreeDaoImpl implements TreeDao {
 
 
 	@Override
-	public List<Forest> getForestList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Forest> getForestList(int treeNo) throws Exception {
+		return sqlSession.selectList("TreeMapper.getForestList", treeNo);
 	}
 
 
@@ -85,32 +105,34 @@ public class TreeDaoImpl implements TreeDao {
 		return null;
 	}
 
-
 	@Override
-	public Tree getBucketList(int treeNo) throws Exception {
-		return sqlSession.selectOne("BucketListMapper.getBucketList", treeNo);
+	public List<BucketList> getBucketList(int treeNo) throws Exception {
+		return sqlSession.selectList("TreeMapper.getBucketList", treeNo);
+	
 	}
 
-
 	@Override
-	public void addBucketList(Tree tree) throws Exception {
-		sqlSession.insert("BucketListMapper.addBucketList", tree);
+	public void addBucketList(BucketList bucketList) throws Exception {
+		sqlSession.insert("TreeMapper.addBucketList", bucketList);
 		
 	}
 
 
 	@Override
-	public void updateBucketList(Tree tree) throws Exception {
-		sqlSession.update("BucketListMapper.updateBucketList", tree);
+	public void updateBucketList(BucketList bucketList) throws Exception {
+		sqlSession.update("TreeMapper.updateBucketList", bucketList);
+		
 		
 	}
 
 
 	@Override
-	public void removeBucketList(Tree tree) throws Exception {
-		sqlSession.delete("BucketListMapper.removeBucketList", tree);
+	public void removeBucketList(BucketList bucketList) throws Exception {
+		sqlSession.delete("TreeMapper.removeBucketList", bucketList);
 		
 	}
+
+
 
 
 	@Override
@@ -153,6 +175,14 @@ public class TreeDaoImpl implements TreeDao {
 	}
 
 
+
+
 	
-	}
+
+}
+
+
+	
+
+	
 
