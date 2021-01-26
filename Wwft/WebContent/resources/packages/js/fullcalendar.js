@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // alert("Event :" + info.event.end);
 
         $('#exampleModalLabel').html('일정 수정');
+      
         $('#eventId').val(info.event.id);
         $('#eventTitle').val(info.event.title);
 
@@ -62,6 +63,13 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#eventDetail').val(info.event.extendedProps.eventDetail);
         $('select[name=freq]').val(info.event.extendedProps.freq);
         $('select[name=byDay]').val(info.event.extendedProps.byDay);
+        
+        if(info.event.allDay==true){
+          $('#allDay_checkbox').attr('checked',true)
+        }else{
+          $('#allDay_checkbox').attr('checked', false)
+        }
+        $('#allDay_checkbox').val(info.event.extendedProps.allDay);
         // $('select[name=byDay]').val(info.event.extendedProps.byDay);
         $('#addEvent').hide();
         $('#removeEvent').show();
@@ -85,9 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var end = start.end;
         var start = moment(start.start).format('YYYY-MM-DD HH:mm');
         // alert(start)
-        var end = moment(end).format('YYYY-MM-DD HH:mm');
+        var end = moment(end).add(-1,'days').format('YYYY-MM-DD HH:mm');
         // alert(end)
-
+        
        addEvent(start, end);//이놈은 addEvent.js함수를 호출한다 .
 
         // $('#exampleModalLabel').html('일정 등록');
@@ -126,6 +134,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
               $.each(data.event, function (index, item) {
 
+               
+
                 if (!item.freq == '') {
                   var rrule = {
                     //  freq: '',
@@ -154,13 +164,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 events.push({
                   id: item.id,
+                  allDay : item.allDay,
                   title: item.title,
                   start: item.start,
                   end: item.end,
                   eventDetail: item.eventDetail,
+                  dDay : item.dDay,
                   rrule: rrule
 
                 });
+
+                
+                if(item.strat==item.end){
+                var allday={
+                  allday : true
+                }
+                Object.assign(evnts, allday);
+              }
                 
                 console.log(events)
                 // Object.assign(events,rrule);
@@ -201,21 +221,33 @@ document.addEventListener('DOMContentLoaded', function () {
       }],
 
     });
-
-
     calendar.render();
+    // calendar.removeAllEvents();
 
     //add시작
     $('#addEvent').on('click', function (e) {
       // e.preventDefault();
-  
+      if($('#eventStart').val() > $('#eventEnd').val() ){
+        alert('종료시간이 시작시간보다 앞설 수 없습니다.');
+        return false;
+      }
+
+
   
       var eventData = $('#event').serializeObject();
+      eventData.allDay= false;
       // alert(JSON.stringify(eventData))
+      if($('#allDay_checkbox').is(":checked")==true ){
+        eventData.allDay = true;
+        
+      }
+      alert(eventData.allDay)
+      
+      
      
       console.log('넘어갈 데이터 : '+JSON.stringify(eventData))
   
-      calendar.addEvent(eventData)
+      // calendar.addEvent(eventData)
   
   
       alert('post')
@@ -230,12 +262,16 @@ document.addEventListener('DOMContentLoaded', function () {
           "Content-Type": "application/json"
         },
   
-        success: function (response, status) {
-          alert(status)
+        success: function (response) {
+          calendar.addEvent(eventData);
+          calendar.removeAllEvents();
+          calendar.refetchEvents();
+          alert(response)
          
           // alert("응답확인용")
           // console.log('응답성공')
         }
+        
       });//ajax 끝
   
   
@@ -272,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           alert('삭제')
         }
-
+        
 
       });//removeAjax끝
 
@@ -288,15 +324,18 @@ document.addEventListener('DOMContentLoaded', function () {
       var event = calendar.getEventById(eventId);
       
       var eventData = $('#event').serializeObject();
+      if($('#allDay_checkbox').is(":checked")==true ){
+        eventData.allDay = true;
+        
+      }
       // alert($('#eventTitle').val())
       event.setExtendedProp('eventDetail', $('#eventDetail').val())
       event.setProp('title', $('#eventTitle').val());
       event.setStart($('#eventStart').val());
       event.setEnd($('#eventEnd').val());
-
-      var eventData = $('#event').serializeObject();
+      event.setAllDay(eventData.allDay);
       // alert(JSON.stringify(eventData))
-      console.log(eventData)
+      console.log('수정된 내용'+eventData)
 
       // calendar.addEvent({title : title, treeNo : treeNo, start : start, end : end, dDay : dDay, eventDetail : eventDetail});
 
@@ -338,5 +377,4 @@ document.addEventListener('DOMContentLoaded', function () {
   /*  calendar.on('dateClick', function(info) {
    console.log('clicked on ' + info.dateStr);
  }); */
-
 
