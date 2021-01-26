@@ -229,6 +229,14 @@ CREATE SEQUENCE   "SQE_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user05', '나무이름5', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user06', '나무이름6', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user07', '나무이름7', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user08', '나무이름8', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user09', '나무이름9', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user10', '나무이름10', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user11', '나무이름11', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user12', '나무이름12', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user13', '나무이름13', '0', '나무이미지이름' , 'kr', '가훈', 0 );
    
     프로필정보
     INSERT INTO profiles values(SEQ_PROFILE_NO.nextval,나무번호넣어야됩니다,'프로필이름','2001-08-18','가족관계','서울시','01088311324','프로필이미지','1');

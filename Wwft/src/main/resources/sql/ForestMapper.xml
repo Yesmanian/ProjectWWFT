@@ -42,6 +42,17 @@
 		WHERE FOREST_NO = #{value}
 	 </select>
  	
+ 	
+ 	<!-- SQL : select one max forest_no -->
+ 		<select id="getMaxForestNo" resultType="int">
+ 		
+ 		SELECT
+ 			MAX(FOREST_NO) FROM FOREST
+ 	
+ 		</select>
+ 	
+ 	
+ 	
  	<!-- SQL : INSERT -->
 	<insert 	id="addForest"		parameterType="forest" >
 	 	INSERT
@@ -50,6 +61,13 @@
 		VALUES	 (	SEQ_FOREST_NO.nextval,#{forestName},#{forestCreaterTreeNo},
 				#{invitePossibleState},#{forestNameChangePossibleState},SYSDATE,
 				#{forestInformText},#{forestInformWriter},NULL )
+	 </insert>
+	 
+	<insert 	id="addTreeForest"		parameterType="forest" >
+	 	INSERT
+		INTO TREE_FOREST( TREE_AND_FOREST_NO,FOREST_NO,TREE_NO,FOREST_ENTER_REG_DATE ) 
+		VALUES	 (	SEQ_TREE_AND_FOREST_NO.nextval,#{forestNo},#{forestCreaterTreeNo},SYSDATE
+				 )
 	 </insert>
 	 
 	 <!-- SQL : UPDATE -->
@@ -87,15 +105,21 @@
 			where rnum BETWEEN #{pageNumber}*4-3 and #{pageNumber}*4
 	
 	</select> 
+	<!-- SQL : SELECT INVITE TREE REST LIST -->
+	<select id="getInviteTreeList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
+		select tr.*
+    		from tree tr,(select * from tree_forest where forest_no is null or forest_no !=#{forestNo}) tf
+    		where tr.tree_no = tf.tree_no and tr.tree_name like '%' ||#{searchCondition}||'%'
+	
+	</select> 
  	
  	<!-- SQL : UPDATE -->
 	 <update	id="updateForestInform"	parameterType="forest" >
 	   	UPDATE FOREST
-	   	<set>
+	   	SET
 	   		FOREST_INFORM_TEXT = #{forestInformText},
 	   		FOREST_INFORM_WRITER = #{forestInformWriter},
 	   		FOREST_INFORM_REG_DATE = SYSDATE
-	   	</set>
 	   	WHERE FOREST_NO = #{forestNo}
 	 </update>
  	

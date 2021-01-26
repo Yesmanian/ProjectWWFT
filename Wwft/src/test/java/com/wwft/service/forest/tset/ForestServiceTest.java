@@ -44,7 +44,7 @@ public class ForestServiceTest {
 	@Qualifier("forestServiceImpl")
 	private ForestService forestService;
 
-	@Test
+	//@Test
 	public void testgetTreeList() throws Exception {
 		
 		//Event event = new Event();
@@ -62,6 +62,29 @@ public class ForestServiceTest {
 		
 
 		forestService.getTreeRestList(forest.getForestNo(), pageNumber);
+		
+	}
+	
+	
+	@Test
+	public void testupdateInformText() throws Exception {
+		
+		//Event event = new Event();
+		/*
+		 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
+		 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
+		 * transFormat.format(new Date(time)); System.out.println(nowTime);
+		 */
+		Forest forest =  new Forest();
+		forest.setForestNo(21);
+		forest.setForestInformText("gggg");
+		forest.setForestInformWriter("kimian");
+		
+		
+		
+		
+		
+		forestService.updateForestInform(forest);
 		
 	}
 	

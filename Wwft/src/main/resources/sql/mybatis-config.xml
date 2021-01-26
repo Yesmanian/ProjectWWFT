@@ -26,6 +26,7 @@
 		
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
+		<typeAlias alias="noticeMessage" type="com.wwft.service.domain.NoticeMessage" />
 	</typeAliases>
 	
 	 <!-- SQL Definition :: file include -->
@@ -36,6 +37,7 @@
 		<mapper resource="sql/PostMapper.xml"/>
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
+		<mapper resource="sql/NoticeMessageMapper.xml"/>
 	</mappers>
 
 </configuration>
