@@ -1,21 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
   <%@ page pageEncoding="UTF-8" %>
-
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html>
 
     <head>
       <meta charset='euc-kr' />
 
-      <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+      <link rel="stylesheet" href='/resources/packages/css/main.css'>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+      <link href="/resources/packages/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" /> -->
       <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
       <!-- <script src='/resources/packages/moment-timezone/main.js'></script> -->
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.0-beta.4/moment/main.js" ></script> -->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
 
       <link href='/resources/packages/core/main.css' rel='stylesheet' />
       <link href='/resources/packages/daygrid/main.css' rel='stylesheet' />
@@ -24,19 +35,27 @@
 
 
 
+
+
       <script>
         $(document).ready(function () {
           setDateBox();
 
-          $('input[name=dow]').on('click',function(){
+          $('#datetimepicker1, #datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm',
+            ignoreReadonly: true,
+            locale: 'ko'
+          });//시간설정
+
+          $('input[name=dow]').on('click', function () {
             alert($(this).val())
-            
+
           })
           //반복일정 눌렀을떄
           $("#repeat").change(function () {
             if ($("#repeat").is(":checked")) {// 반복이 체크 됬다면
               $('.repeat').attr('disabled', true); // 반복과 관련된 이벤트들을 disavled한다.
-              $(".freq").attr('disabled',false);//반복의 년,월,주를 활성화 시킨다
+              $(".freq").attr('disabled', false);//반복의 년,월,주를 활성화 시킨다
               $(".freq").show();//반복 select창을 보여준다
             } else {
               $('.repeat').attr('disabled', false);//반복과 관련된 tag 비활성화
@@ -45,38 +64,38 @@
 
           });
           //반복일정 눌렀을때
-          $("select[name=freq]").change(function(){
+          $("select[name=freq]").change(function () {
             alert($(this).val())
-            if($(this).val()=="yearly"){//매년을 선택시  매월,매주 form tag를 비활성화 시키고 하이드 시킨다.
+            if ($(this).val() == "yearly") {//매년을 선택시  매월,매주 form tag를 비활성화 시키고 하이드 시킨다.
               $(".dom").hide();
-              $('.dom').attr('disabled',true);
-              
+              $('.dom').attr('disabled', true);
+
               $(".dow").hide();
-              $(".dow").attr('disabled',true);
+              $(".dow").attr('disabled', true);
 
             }
-            else if($(this).val()=="monthly"){//매월을 선택시
+            else if ($(this).val() == "monthly") {//매월을 선택시
               // $("select[name=dow]").attr('disabled',true);
-              $('input[name=dow]').attr('checked',false);
+              $('input[name=dow]').attr('checked', false);
               $(".dow").hide();//요일 라디오체크 숨김
-              $(".dow").attr('disabled',true);//요일  비활성화
+              $(".dow").attr('disabled', true);//요일  비활성화
               $('.dow').val('');
               $('.dom').val('');
 
-              $("select[name=byDay]").attr('disabled',false);
+              $("select[name=byDay]").attr('disabled', false);
               $("select[name=byDay]").val('bymonthday');// by의 값은 bymothday가 된다.  
               $(".dom").show();//며칠날 반복할건지 select창 출력
               // $(".dow").show();
-            }else if($(this).val()=="weekly"){//매주 선택시
-              $(".dow").attr('disabled',false);//요일 활성화
-              $('input[name=dow]').attr('checked',false);
-              $(".dom").attr('disabled',true);//며칠 비활성화
+            } else if ($(this).val() == "weekly") {//매주 선택시
+              $(".dow").attr('disabled', false);//요일 활성화
+              $('input[name=dow]').attr('checked', false);
+              $(".dom").attr('disabled', true);//며칠 비활성화
               // $('.dom').prop()
-               $("select[name=byDay]").attr('disabled',false);
+              $("select[name=byDay]").attr('disabled', false);
               $("select[name=byDay]").val('byweekday');//by의 값 설정
-               
+
               $(".dom").hide();//며칠 select창 숨김
-              
+
               $(".dow").show();//요일 라디오 체크박스 on
             }
 
@@ -107,18 +126,33 @@
         }
 
         #calendar {
-          max-width: 900px;
+          max-width: 1000px;
           margin: 0 auto;
         }
+        header {
+	width:100%;
+	height:100px;
+	display: flex;
+	align-items: center;
+  justify-content: center;
+}
+
+
+
       </style>
     </head>
 
     <body>
-      <script>
+      <span>
+      <header id="wrap"> 
+        
+          
+        <jsp:include page="../resources//weather/index.jsp"/>
+      
 
-
-      </script>
-
+      </header>
+     
+    </span>
       <div id='calendar'></div>
 
 
@@ -135,22 +169,67 @@
                   <button type="button" class="close" aria-label="Close"><span
                       aria-hidden="true">&times;</span></button>
                 </button>
-                <h3 class="modal-title" id="exampleModalLabel">addEvent</h5>
+                <h3 class="modal-title" id="exampleModalLabel">일정 등록</h5>
               </div>
 
-              <input type="hidden" name='id' id="eventId">
-              <label>title</label>
-              <input type="text" name='title' id="eventTitle">
+              <label>종일</label>
+              <input type="checkbox" name="allDay" id="allDay_checkbox"  value=""> 
+              
 
-              <label>start</label>
-              <input type="text" name='start' id="eventStart">
 
-              <label>end</label>
+              <div>
+                <input type="hidden" name='id' id="eventId">
+                <label>일정명</label>
+                <input type="text" name='title' id="eventTitle">
+              </div>
+
+
+              <!-- <div class="form-group" > 
+               
+              <div class="input-group date" id="datetimepicker">
+              
+              
+     
+              <span class="input-group-addon"> 
+                <span class="glyphicon-calendar glyphicon"></span>            
+              </span>
+            </div>
+              </div> -->
+
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                  <label>시작 시간
+                    <input type="text" class="inputModal" name='start' id="eventStart" readonly>
+                  </label>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                  <label>종료 시간
+                    <input type="text" class="inputModal" name='end' id="eventEnd" readonly>
+                  </label>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+
+              
+              <!-- <div>
+              <label>종료 시간</label>
               <input type="text" name='end' id="eventEnd">
+            </div> -->
 
               <!-- 체크시 밑에꺼 나오도록 첨엔다 disable -->
-              <label>반복일정<input type="checkbox" value="" id="repeat"></label>
-
+              <div>
+                <label>반복일정<input type="checkbox" value="" id="repeat"></label>
+              </div>
               <div class="repeat freq" id="repeatr" style="display: none;">
                 <label>반복</label>
                 <select class='freq' type="text" name="freq" disabled>
@@ -163,7 +242,7 @@
                   매주(weekly) 선택시 일(byweekday) 일 선택은 한개 ? 여러개 ?
                   우선 한개만 
             -->
-              <div class="repeat by" style="display: none;" >
+              <div class="repeat by" style="display: none;">
                 <label>며칠</label>
                 <select type="hidden" name="byDay" id="byDay" disabled>
                   <option value="bymonthday">월</option>
@@ -205,13 +284,18 @@
 
                 </select>
               </div>
-
+              <!-- 
               <label>D-DAY</label>
-              <input type="text" name='dDay' id="dDay">
+              <input type="text" name='dDay' id="dDay"> -->
 
 
-              <label>even ntDetail</label>
-              <input type="text" ame='eventDetail' id="eventDetail">
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <label class="col-xs-4" for="eventDetail">일정내용</label>
+                  <textarea rows="4" cols="50" class="inputModal" name="eventDetail" id="eventDetail"></textarea>
+                </div>
+              </div>
 
               <!-- <label>반복일정</label>
                 <input type="number" name= 'dow[]' id="dow"> -->
@@ -219,10 +303,10 @@
 
 
 
-              <div class="modal-body">내용 입력 !!</div>
-      
+              <!-- <div class="modal-body">내용 입력 !!</div> -->
+
               <div class="modal-footer modalBtnContainer-modifyEvent">
-                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="addEvent">저장</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="addEvent">저장</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="updateEvent">수정</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="removeEvent">삭제</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -238,8 +322,9 @@
 
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-      <script src='/resources/packages/moment/main.min.js'></script>
+      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+      <!-- <script src='/resources/packages/moment/main.min.js'></script> -->
+      <!-- <script src='/resources/packages/bootstrap/bootstrap-datetimepicker.min.js'></script> -->
       <script src='https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js'></script>
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js"></script> -->
       <script src='/resources/packages/core/main.js'></script>
@@ -248,8 +333,8 @@
       <script src='/resources/packages/daygrid/main.js'></script>
       <script src='/resources/packages/timegrid/main.js'></script>
       <script src='/resources/packages/list/main.js'></script>
-      <script src='/resources/packages/js/addEvent.js?ver=1'></script>
       <script src='/resources/packages/js/fullcalendar.js?ver=1 '></script>
+      <script src='/resources/packages/js/addEvent.js?ver=1'></script>
 
     </body>
 

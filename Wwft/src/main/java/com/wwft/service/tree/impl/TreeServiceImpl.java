@@ -1,11 +1,20 @@
 package com.wwft.service.tree.impl;
 
+
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-
+import com.wwft.service.domain.ActivityPoint;
+import com.wwft.service.domain.BucketList;
+import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.Tree;
+import com.wwft.service.domain.TreeForest;
 import com.wwft.service.tree.TreeDao;
 import com.wwft.service.tree.TreeService;
 
@@ -24,7 +33,7 @@ public class TreeServiceImpl implements TreeService {
 	
 	//Constructor
 	public TreeServiceImpl() {
-		System.out.println("::"+getClass()+"default Constructor Call..");
+		System.out.println("::"+getClass()+":: default Constructor Call..");
 	}
 
 	@Override
@@ -33,32 +42,40 @@ public class TreeServiceImpl implements TreeService {
 	}
 	
 	@Override
-	public Tree getBucketList(int treeNo) throws Exception {
-		return treeDao.getBucketList(treeNo);
+	public void addTree(Tree tree) throws Exception {
+		treeDao.addTree(tree);
 	}
 
 
 	@Override
-	public void addBucketList(Tree tree) throws Exception {
-		treeDao.addBucketList(tree);
-		
+	public void removeTree(int treeNo) throws Exception {
+		treeDao.removeTree(treeNo);
 	}
 
 
 	@Override
-	public void updateBucketList(Tree tree) throws Exception {
-		treeDao.updateBucketList(tree);
-		
+	public void addTreeForest(TreeForest treeForest) throws Exception {
+		treeDao.addTreeForest(treeForest);
 	}
 
-
+	
 	@Override
-	public void removeBucketList(Tree tree) throws Exception {
-		treeDao.removeBucketList(tree);
-		
+	public List<Profile> getProfileIntroduceList(int treeNo) throws Exception {
+		return treeDao.getProfileIntroduceList(treeNo);
+	}
+	
+	@Override
+	public Tree getTreeRanking(int treeNo) throws Exception {
+		return treeDao.getTreeRanking(treeNo);
+	}
+	
+	@Override
+	public List<Forest> getForestList(int treeNo) throws Exception {
+		return treeDao.getForestList(treeNo);
 	}
 
 
+	
 	@Override
 	public void addFamilyMotto(Tree tree) throws Exception {
 		treeDao.addFamilyMotto(tree);
@@ -76,7 +93,43 @@ public class TreeServiceImpl implements TreeService {
 	public void removeFamilyMotto(Tree tree) throws Exception {
 		treeDao.removeFamilyMotto(tree);
 	}
-}		
+
+
+	@Override
+	public List<BucketList> getBucketList(int treeNo) throws Exception {
+		return treeDao.getBucketList(treeNo);
+		
+	}
+
+
+	@Override
+	public void addBucketList(BucketList bucketList) throws Exception {
+		treeDao.addBucketList(bucketList);
+	}
+
+
+	@Override
+	public void updateBucketList(BucketList bucketList) throws Exception {
+		treeDao.updateBucketList(bucketList);
+	}
+
+
+	@Override
+	public void removeBucketList(BucketList bucketList) throws Exception {
+		treeDao.removeBucketList(bucketList);
+	}
+
+
+
+
+
+
+	
+}
+
+
+
+
 
 
 	
