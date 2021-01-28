@@ -27,7 +27,7 @@ DROP sequence SEQ_PROFILE_NO;
 DROP sequence SEQ_REPORT_NO;
 DROP sequence SEQ_TREE_AND_FOREST_NO;
 DROP sequence SEQ_TREE_NO;
-DROP sequence SQE_BUCKETLIST_NO;
+DROP sequence SEQ_BUCKETLIST_NO;
 
 
 CREATE SEQUENCE   "SEQ_ACTIVITY_POINT_NO"   INCREMENT BY 1 START WITH 1 ;
@@ -42,7 +42,7 @@ CREATE SEQUENCE   "SEQ_PROFILE_NO"   INCREMENT BY 1 START WITH 1 ;
 CREATE SEQUENCE   "SEQ_REPORT_NO"   INCREMENT BY 1 START WITH 1 ;
 CREATE SEQUENCE   "SEQ_TREE_AND_FOREST_NO"   INCREMENT BY 1 START WITH 1 ;
 CREATE SEQUENCE   "SEQ_TREE_NO"   INCREMENT BY 1 START WITH 1 ;
-CREATE SEQUENCE   "SQE_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
+CREATE SEQUENCE   "SEQ_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
 
 	CREATE TABLE  "USERS" 
    (	"USER_ID" VARCHAR2(30) NOT NULL ENABLE, 
@@ -161,9 +161,9 @@ CREATE SEQUENCE   "SQE_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
 	 
 	  CREATE TABLE  "IMAGE_AND_LIKE" 
    (	"IMAGE_AND_LIKE_NO" NUMBER(10,0) NOT NULL ENABLE, 
-	"IMAGE_NAME" VARCHAR2(50) NOT NULL ENABLE, 
-	"POST_NO" NUMBER(10,0), 
-	"LIKE_WRITER" VARCHAR2(30) NOT NULL ENABLE, 
+	"IMAGE_NAME" VARCHAR2(50) , 
+	"POST_NO" NUMBER(10,0) NOT NULL, 
+	"LIKE_WRITER" VARCHAR2(30) , 
 	"IMAGE_AND_LIKE_STATE" CHAR(1) NOT NULL ENABLE, 
 	 CONSTRAINT "IMAGE_AND_LIKE_PK" PRIMARY KEY ("IMAGE_AND_LIKE_NO") ENABLE );
 	 
@@ -229,6 +229,14 @@ CREATE SEQUENCE   "SQE_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user05', '나무이름5', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user06', '나무이름6', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user07', '나무이름7', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user08', '나무이름8', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user09', '나무이름9', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user10', '나무이름10', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user11', '나무이름11', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user12', '나무이름12', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user13', '나무이름13', '0', '나무이미지이름' , 'kr', '가훈', 0 );
    
     프로필정보
     INSERT INTO profiles values(SEQ_PROFILE_NO.nextval,나무번호넣어야됩니다,'프로필이름','2001-08-18','가족관계','서울시','01088311324','프로필이미지','1');
@@ -275,5 +283,5 @@ CREATE SEQUENCE   "SQE_BUCKETLIST_NO"   INCREMENT BY 1 START WITH 1 ;
     신고정보
     INSERT INTO REPORT values(SEQ_REPORT_NO.nextval,'2',2,'0',2,4,SYSDATE);
     
-    INSERT INTO BUCKETLIST values(SQE_BUCKETLIST_NO.nextval,'작성자입니다','내용입니다',SYSDATE,'0',23);
+    INSERT INTO BUCKETLIST values(SEQ_BUCKETLIST_NO.nextval,'작성자입니다','내용입니다',SYSDATE,'0',23);
    

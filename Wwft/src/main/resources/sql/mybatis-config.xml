@@ -10,21 +10,26 @@
 	<!-- 기타 설정정보 :: [MyBatis_Home]/mybatis-3.2.1.pdf 참조 -->
 	<settings>
 		<setting name="callSettersOnNulls" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>	
 	
 	<!-- FQCN(Full Qualified Class Name) Alias(별칭관리) -->
 	<typeAliases>
 		
 		<typeAlias alias="profile" type="com.wwft.service.domain.Profile"/>
-		
+		<typeAlias alias="bucketList" type="com.wwft.service.domain.BucketList"/>
 		<typeAlias alias="user" type="com.wwft.service.domain.User"/>
-		
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
-
+		<typeAlias alias="treeImage" type="com.wwft.service.domain.TreeImage"/>
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
-		
+		<typeAlias alias ="comment" type="com.wwft.service.domain.Comment"/>
+		<typeAlias alias="activityPoint" type="com.wwft.service.domain.ActivityPoint"/>
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
+		<typeAlias alias="noticeMessage" type="com.wwft.service.domain.NoticeMessage" />
+		<typeAlias alias="report" type="com.wwft.service.domain.Report" />
+		<typeAlias alias="treeForest" type="com.wwft.service.domain.TreeForest"/>
+		
 	</typeAliases>
 	
 	 <!-- SQL Definition :: file include -->
@@ -35,6 +40,9 @@
 		<mapper resource="sql/PostMapper.xml"/>
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
+		<mapper resource="sql/NoticeMessageMapper.xml"/>
+		<mapper resource="sql/AdminMapper.xml"/>
+		<mapper resource="sql/CommentMapper.xml"/>
 	</mappers>
 
 </configuration>

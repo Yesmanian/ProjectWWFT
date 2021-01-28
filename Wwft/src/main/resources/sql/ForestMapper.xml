@@ -8,15 +8,27 @@
  	
  	
 	<resultMap id="forestSelectMap" type="forest">
-	<result property="forestNo" 		column="FOREST_NO" 		jdbcType="NUMERIC"/>
-	<result property="forestName"			column="FOREST_NAME" 	jdbcType="VARCHAR" />
+	<result property="forestNo" 					column="FOREST_NO" 		jdbcType="NUMERIC"/>
+	<result property="forestName"					column="FOREST_NAME" 	jdbcType="VARCHAR" />
 	<result property="forestCreaterTreeNo" 			column="FOREST_CTREATER_TREE_NO" 				jdbcType="NUMERIC" />
-	<result property="invitePossibleState" 		column="INVITE_POSSIBLE_STATE" 		jdbcType="CHAR" />
+	<result property="invitePossibleState" 			column="INVITE_POSSIBLE_STATE" 		jdbcType="CHAR" />
 	<result property="forestNameChangePossibleState" 		column="FOREST_NAME_CHANGE_POSSIBLE_STATE" 			jdbcType="CHAR" />
-	<result property="forestCreateRegDate" 		column="FOREST_CREATE_TIME" 	jdbcType="DATE" />
+	<result property="forestCreateRegDate" 			column="FOREST_CREATE_TIME" 	jdbcType="DATE" />
 	<result property="forestInformText" 			column="FOREST_INFORM_TEXT" 			jdbcType="VARCHAR" />
 	<result property="forestInformWriter" 			column="FOREST_INFORM_WRITER" 			jdbcType="VARCHAR" />
-	<result property="forestInformRegDate" 		column="FOREST_INFORM_REG_DATE" 	jdbcType="DATE" />
+	<result property="forestInformRegDate" 			column="FOREST_INFORM_REG_DATE" 	jdbcType="DATE" />
+	</resultMap>
+	
+	
+	<resultMap id="treeSelectMap" type="tree">
+		<result property="treeNo" 			column="tree_no" 		jdbcType="NUMERIC"/>
+		<result property="userId"			column="user_id" 		jdbcType="VARCHAR" />
+		<result property="treeName" 		column="tree_name" 		jdbcType="VARCHAR" />
+		<result property="seedNo" 			column="seed_no" 		jdbcType="VARCHAR" />
+		<result property="treeImageName" 	column="tree_image_name" 	jdbcType="VARCHAR" />
+		<result property="countryId" 		column="country_id" 		jdbcType="VARCHAR" />
+		<result property="familyMotto" 		column="family_motto" 		jdbcType="VARCHAR" />
+		<result property="activityTotalPoint" 	column="activity_total_point" 	jdbcType="NUMERIC" />
 	</resultMap>
 	
 	
@@ -30,6 +42,17 @@
 		WHERE FOREST_NO = #{value}
 	 </select>
  	
+ 	
+ 	<!-- SQL : select one max forest_no -->
+ 		<select id="getMaxForestNo" resultType="int">
+ 		
+ 		SELECT
+ 			MAX(FOREST_NO) FROM FOREST
+ 	
+ 		</select>
+ 	
+ 	
+ 	
  	<!-- SQL : INSERT -->
 	<insert 	id="addForest"		parameterType="forest" >
 	 	INSERT
@@ -39,6 +62,66 @@
 				#{invitePossibleState},#{forestNameChangePossibleState},SYSDATE,
 				#{forestInformText},#{forestInformWriter},NULL )
 	 </insert>
+	 
+	<insert 	id="addTreeForest"		parameterType="forest" >
+	 	INSERT
+		INTO TREE_FOREST( TREE_AND_FOREST_NO,FOREST_NO,TREE_NO,FOREST_ENTER_REG_DATE ) 
+		VALUES	 (	SEQ_TREE_AND_FOREST_NO.nextval,#{forestNo},#{forestCreaterTreeNo},SYSDATE
+				 )
+	 </insert>
+	 
+	 <!-- SQL : UPDATE -->
+	 <update	id="updateForestName"	parameterType="forest" >
+	   	UPDATE FOREST
+	   	<set>
+	   		FOREST_NAME = #{forestName}
+	   	</set>
+	   	WHERE FOREST_NO = #{forestNo}
+	 </update>
+ 	
+ 	<!--  SQL : SELECT ONE -->
+	 <select 	id="checkForestName"	parameterType="forest"	resultType="int">
+		SELECT
+		 	count(*)
+		FROM FOREST 
+		WHERE FOREST_NAME = #{forestName}
+	 </select>
+	 
+	<!-- SQL : SELECT LIST -->
+	<select id="getTreeList" parameterType="int" resultMap="treeSelectMap">
+		select tree.*
+			from tree,(select * from tree_forest where forest_no = #{value}) treef
+			where tree.tree_no = treef.tree_no
+	
+	</select>
+	 
+	<!-- SQL : SELECT REST LIST -->
+	<select id="getTreeRestList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
+		select rt.*
+    		from (select rownum rnum,tree.*
+                from tree,(select * from tree_forest where forest_no = #{forestNo}) treef
+                where tree.tree_no = treef.tree_no
+                order by tree.tree_no) rt                
+			where rnum BETWEEN #{pageNumber}*4-3 and #{pageNumber}*4
+	
+	</select> 
+	<!-- SQL : SELECT INVITE TREE REST LIST -->
+	<select id="getInviteTreeList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
+		select tr.*
+    		from tree tr,(select * from tree_forest where forest_no is null or forest_no !=#{forestNo}) tf
+    		where tr.tree_no = tf.tree_no and tr.tree_name like '%' ||#{searchCondition}||'%'
+	
+	</select> 
+ 	
+ 	<!-- SQL : UPDATE -->
+	 <update	id="updateForestInform"	parameterType="forest" >
+	   	UPDATE FOREST
+	   	SET
+	   		FOREST_INFORM_TEXT = #{forestInformText},
+	   		FOREST_INFORM_WRITER = #{forestInformWriter},
+	   		FOREST_INFORM_REG_DATE = SYSDATE
+	   	WHERE FOREST_NO = #{forestNo}
+	 </update>
  	
 	 
 </mapper>

@@ -16,6 +16,7 @@ public class Event {
 	private String byDay;
 	private String dow;
 	private String dom;
+	private Boolean allDay;
 	public int getId() {
 		return id;
 	}
@@ -67,8 +68,8 @@ public class Event {
 	public String getByDay() {
 		return byDay;
 	}
-	public void setByDay(String by) {
-		this.byDay = by;
+	public void setByDay(String byDay) {
+		this.byDay = byDay;
 	}
 	public String getDow() {
 		return dow;
@@ -81,6 +82,12 @@ public class Event {
 	}
 	public void setDom(String dom) {
 		this.dom = dom;
+	}
+	public Boolean getAllDay() {
+		return allDay;
+	}
+	public void setAllDay(Boolean allDay) {
+		this.allDay = allDay;
 	}
 	@Override
 	public String toString() {
@@ -107,6 +114,8 @@ public class Event {
 		builder.append(dow);
 		builder.append(", dom=");
 		builder.append(dom);
+		builder.append(", allDay=");
+		builder.append(allDay);
 		builder.append("]");
 		return builder.toString();
 	}
