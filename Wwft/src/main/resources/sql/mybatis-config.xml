@@ -29,6 +29,7 @@
 		<typeAlias alias="noticeMessage" type="com.wwft.service.domain.NoticeMessage" />
 		<typeAlias alias="report" type="com.wwft.service.domain.Report" />
 		<typeAlias alias="treeForest" type="com.wwft.service.domain.TreeForest"/>
+		<typeAlias alias="activityPoint" type="com.wwft.service.domain.ActivityPoint"/>
 		
 	</typeAliases>
 	
@@ -43,6 +44,7 @@
 		<mapper resource="sql/NoticeMessageMapper.xml"/>
 		<mapper resource="sql/AdminMapper.xml"/>
 		<mapper resource="sql/CommentMapper.xml"/>
+		<mapper resource="sql/ActivityPointMapper.xml"/>
 	</mappers>
 
 </configuration>

@@ -6,17 +6,17 @@ public class NoticeMessage {
 	public NoticeMessage() {
 	}
 
-	int noticeMessageNo;
-	char noticeMessageState;
-	char noticeMessageType;
-	int postNo;
-	int treeNo;
-	String sender;
-	String receiver;
-	String noticeMessageDate;
-	String noticeMessageDetail;
-	String postImageName;
-	char noticeMessageboxState;
+	int noticeMessageNo; //삭제할때 필요
+	char noticeMessageState; // 0안읽음 1은 읽음 메시지 조회 했을때 모든건 0에서 1로 업데이트 
+	char noticeMessageType; // 0=댓글 , 1=신고, 2=초대중 초대중인것을 수락 거절 하면 해당 메시지 삭제 수락시 숲에다 인설트해줌
+	int postNo; //댓글일 경우 post를 iframe에 넣어주기위함
+	int treeNo;//그냥 다필요함
+	String sender;//누가 보냈는지 나무id+프로필닉네임
+	String receiver;//누구한테 갈지 treeNo겠지 
+	String noticeMessageDate; // 메시지 등록일자
+	String noticeMessageDetail;//메시지 내용
+//	String postImageName;//필요없음
+//	char noticeMessageboxState;//필요없음 
 	public int getNoticeMessageNo() {
 		return noticeMessageNo;
 	}
@@ -71,17 +71,30 @@ public class NoticeMessage {
 	public void setNoticeMessageDetail(String noticeMessageDetail) {
 		this.noticeMessageDetail = noticeMessageDetail;
 	}
-	public String getPostImageName() {
-		return postImageName;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("NoticeMessage [noticeMessageNo=");
+		builder.append(noticeMessageNo);
+		builder.append(", noticeMessageState=");
+		builder.append(noticeMessageState);
+		builder.append(", noticeMessageType=");
+		builder.append(noticeMessageType);
+		builder.append(", postNo=");
+		builder.append(postNo);
+		builder.append(", treeNo=");
+		builder.append(treeNo);
+		builder.append(", sender=");
+		builder.append(sender);
+		builder.append(", receiver=");
+		builder.append(receiver);
+		builder.append(", noticeMessageDate=");
+		builder.append(noticeMessageDate);
+		builder.append(", noticeMessageDetail=");
+		builder.append(noticeMessageDetail);
+		builder.append("]");
+		return builder.toString();
 	}
-	public void setPostImageName(String postImageName) {
-		this.postImageName = postImageName;
-	}
-	public char getNoticeMessageboxState() {
-		return noticeMessageboxState;
-	}
-	public void setNoticeMessageboxState(char noticeMessageboxState) {
-		this.noticeMessageboxState = noticeMessageboxState;
-	}
+
 	
 }
