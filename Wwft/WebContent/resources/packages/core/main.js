@@ -3427,6 +3427,7 @@ Docs & License: https://fullcalendar.io/
             attrs = null;
         }
         attrs = attrs ? ' ' + attrsToStr(attrs) : ''; // will have a leading space
+        
         innerHtml = innerHtml || '';
         if (!forceOff && allOptions.navLinks) {
             return '<a' + attrs +

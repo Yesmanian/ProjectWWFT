@@ -1,5 +1,6 @@
 package com.wwft.service.forest.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,10 @@ public class ForestDaoImpl implements ForestDao {
 	public void addForest(Forest forest) throws Exception {
 		System.out.println("ForestDao addForest");
 		sqlSession.insert("ForestMapper.addForest", forest);
+		int forestNo = sqlSession.selectOne("ForestMapper.getMaxForestNo");
+		System.out.println(forestNo);
+		forest.setForestNo(forestNo);
+		sqlSession.insert("ForestMapper.addTreeForest", forest);
 		
 	}
 
@@ -95,11 +100,44 @@ public class ForestDaoImpl implements ForestDao {
 		System.out.println("ForestDao updateForestInform");
 		//추후 프로필 번호로 프로필 이름 가져오기
 		//Profile profile = sqlSession.selectOne("ForestMapper.getProfile", forest.getForestInformWriter());
+		System.out.println(forest);
 		System.out.println(forest.getForestNo());
 		System.out.println(forest.getForestInformText());
 		System.out.println(forest.getForestInformWriter());
 		sqlSession.update("ForestMapper.updateForestInform", forest);
-		return sqlSession.selectOne("ForestMapper.getForest", forest);
+		return sqlSession.selectOne("ForestMapper.getForest", forest.getForestNo());
+	}
+
+
+	@Override
+	public List<Tree> getInviteTreeList(int forestNo,String searchCondition) throws Exception {
+		System.out.println("ForestDao getInviteTreeList");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("forestNo", forestNo);
+		map.put("searchCondition",searchCondition);
+		
+		return sqlSession.selectList("ForestMapper.getInviteTreeList", map);
+	}
+
+
+	@Override
+	public void inviteTree(List<Integer> treeNo,int forestNo,int profileNo) throws Exception {
+		System.out.println("ForestDao inviteTree");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", treeNo);
+		map.put("forestNo", forestNo);
+		
+		for (int i = 0; i < treeNo.size(); i++) {
+			map.put("profileNo", treeNo.get(i));
+			sqlSession.insert("NoticeMessageMapper.inviteTree", map);
+			map.remove("profileNo");
+		}
+		
+		
+		
+		
 	}
 
 }

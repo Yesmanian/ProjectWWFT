@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NoticeMessageMapper">
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<!-- SQL : INSERT  state 1 =  초대중-->
+	<insert 	id="inviteTree"		parameterType="java.util.HashMap" >
+	 	INSERT
+		INTO NOTICE_MESSAGE(NOTICE_MESSAGE_NO, SENDER,FOREST_NO,NOTICE_REG_DATE,NOTICE_MESSAGE_STATE,
+					NOTICE_MESSAGE_TYPE,NOTICE_MESSAGE_DETAIL,POST_IMAGE_NAME,NOTICE_MESSAGEBOX_STATE,POST_NO,RECEIVER,TREE_NO) 
+		VALUES (
+			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'1','1','숲에서 초대중','POSTIMAGENAME','1',null,
+			#{profileNo},#{profileNo})
+	 </insert>
+ 	
+	
+</mapper>
