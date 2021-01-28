@@ -6,13 +6,13 @@ public class Post {
 	
 
 	private int postNo;
-	private DATE postRegDate;
-	private String postDetail;
-	private String postWriter;
-	private String postState;
-	private int postTreeNo;
-	private String checkboxState;
-	private String albumName;
+	private DATE postRegDate;			//게시글 작성 날짜	
+	private String postDetail;			//게시글 내용
+	private String postWriter;			//게시글 작성자
+	private String postState;			//게시글 공개여부
+	private int postTreeNo;				//게시글이 작성된 나부번호
+	private String checkboxState;		//게시글 체크박스 선택여부(이동,삭제등)
+	private String albumName;			//앨범이름
 	
 	public Post() {
 		}
@@ -71,6 +71,14 @@ public class Post {
 
 	public void setCheckboxState(String checkboxState) {
 		this.checkboxState = checkboxState;
+	}
+
+	public String getAlbumName() {
+		return albumName;
+	}
+
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 
 	@Override

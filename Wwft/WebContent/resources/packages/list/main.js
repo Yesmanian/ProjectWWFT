@@ -67,6 +67,34 @@ Docs & License: https://fullcalendar.io/
             var classes = ['fc-list-item'].concat(eventUi.classNames);
             var bgColor = eventUi.backgroundColor;
             var timeHtml;
+
+            let today = moment();
+            today.format('YYYY-MM-DD hh:mm');
+           let eventDay = moment(eventRange.instance.range.start,'YYYY-MM-DD hh:mm' );            console.log('오늘 : '+today)
+           console.log('이벤트 시작 날짜 : '+eventDay)
+           // console.log('계산'+today.diff(eventDay,'days'))
+           console.log(today.diff(eventDay, 'days'));
+           let dDay;
+           dDay = today.diff(eventDay, 'days');
+           // console.log('디데이는 ?'+dDay)
+           let dDayState = eventRange.def.extendedProps.dDay;
+
+          if(dDayState=='1') {
+           if(dDay>0){
+               dDay = 'D+'+dDay;
+           }else if(dDay==0){
+               dDay= 'D-Day';
+           }else if(dDay<0){
+               dDay= 'D'+(dDay-1);
+           }
+        }else{
+            dDay = null;
+        }
+
+           
+
+
+
             if (eventDef.allDay) {
                 timeHtml = core.getAllDayHtml(options);
             }
@@ -106,6 +134,9 @@ Docs & License: https://fullcalendar.io/
                 '<td class="fc-list-item-title ' + theme.getClass('widgetContent') + '">' +
                 '<a' + (url ? ' href="' + core.htmlEscape(url) + '"' : '') + '>' +
                 core.htmlEscape(eventDef.title || '') +
+                '</a>' +
+                '<a class="abcd"' + (url ? ' href="' + core.htmlEscape(url) + '"' : '') + '>' +
+                core.htmlEscape(dDay || '') +
                 '</a>' +
                 '</td>' +
                 '</tr>';

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CommentMapper">
+ 	
+ 	
+	<resultMap id="commentSelectMap" type="com.wwft.service.domain.Comment">
+	
+		<result property="commentNo" 			column="comment_no" 			jdbcType="NUMERIC"/>
+		<result property="commentWriter" 	column="comment_writer" 		jdbcType="VARCHAR" />
+		<result property="commentRegDate" 		column="comment_reg_date" 			jdbcType="DATE" />
+		<result property="commentDetail"	column="comment_detail" 		jdbcType="VARCHAR" />
+		<result property="commentPostNo" 				column="post_no" 					jdbcType="NUMERIC" />
+		<result property="commentTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
+		
+		
+		
+	</resultMap>
+	
+	
+	<insert 	id="addComment"		parameterType="com.wwft.service.domain.Comment" >
+		INSERT
+	 	INTO comments( comment_no,comment_writer,comment_reg_date,comment_detail,post_no,tree_no)
+	 	VALUES	 (SEQ_COMMENT_NO.NEXTVAL ,#{commentWriter} , SYSDATE , #{commentDetail} , #{commentPostNo} , #{commentTreeNo} )
+	 </insert>
+	 
+	 
+	 <select id="getComment" parameterType="string" resultMap="commentSelectMap">
+	 	SELECT
+		comment_no,comment_writer, comment_reg_date, comment_detail		
+		FROM comments
+		WHERE comment_no = #{commentNo}
+	 
+	 </select>
+	 
+	 <select id="getCommentList" parameterType="string" resultMap="commentSelectMap">
+	 	SELECT
+	 	comment_no,comment_writer,comment_reg_date,comment_detail
+		FROM comments
+		WHERE post_no= #{postNo}
+	 
+	 </select>
+	 
+	  
+	 
+	  <delete id="removeComment" parameterType="int">
+	 	DELETE
+	 	FROM comments
+	 	WHERE comment_no =#{commentNo}
+	 
+	 </delete>
+	 
+	 
+	 
+</mapper>

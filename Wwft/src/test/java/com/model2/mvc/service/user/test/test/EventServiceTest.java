@@ -115,12 +115,11 @@ public class EventServiceTest {
 			//String date = "2012/01/14 10:48:43";
 			//Date newDate = 
 			Event event = new Event();
-			event.setId(119);
+			event.setId(203);
 			event.setTreeNo(1);
 			event.setTitle("타이틀변경");
-			event.setStart("2021-01-17 00:30");
-			event.setEnd("2021-01-17 01:30");
-			event.setdDay("0");
+			event.setStart("2021-01-24 00:30");
+			event.setEnd("2021-01-24 01:30");
 			event.setFreq("weekly");
 			event.setByDay("byweekday");
 			event.setDow("2");
@@ -128,7 +127,7 @@ public class EventServiceTest {
 //			eventService.addEvent(event);
 			eventService.updateEvent(event);
 			
-			System.out.println(eventService.findEvent(119));
+			System.out.println(eventService.findEvent(203));
 			
 			
 		}

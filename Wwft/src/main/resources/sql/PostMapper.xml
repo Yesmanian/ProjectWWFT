@@ -4,7 +4,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="UserMapper">
+<mapper namespace="PostMapper">
  	
  	
 	<resultMap id="postSelectMap" type="com.wwft.service.domain.Post">
@@ -17,33 +17,50 @@
 		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
 		
 		
+		
 	</resultMap>
 	
 	
-	<insert 	id="addPost"		parameterType="com.wwft.service.domain.Post" >
+	<insert 	id="addPost"		parameterType="post" >
 		INSERT
 	 	INTO post(post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name)
-	 	VALUES	 (SEQ_POST_NO.NEXTVAL , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
+	 	VALUES	 (#{postNo} , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
 	 </insert>
 	 
 	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
 	 	SELECT
 		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
 		FROM post
-		WHERE post_no = #{value}
+		WHERE post_no = #{postNo}
 	 
 	 </select>
+	 
+	 <select id="lastPostNo" resultType="int">
+		SELECT
+		MAX(post_no)+1
+		FROM post
+	</select>
 	 
 	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
 	   	UPDATE post
 	   	<set>
-	   		post_detail =#{postDetail},
-	   		post_state =#{postState},
-	   		album_name=#{albumName}
+	   		post_detail = #{postDetail},
+	   		post_state = #{postState},
+	   		
+	   		post_no = #{postNo}
 			
 	   	</set>
-	   	WHERE post_no  = #{prodNo}
+	   	WHERE post_no  = #{postNo}
 	 </update>  
+	 
+	 
+	  <select  id="getPostList"  parameterType="int"	resultMap="postSelectMap">
+	  	SELECT post_no , post_reg_date
+	  	FROM post
+	  	WHERE tree_no = #{postTreeNo}
+	  	ORDER BY post_no
+									
+	 </select> 
 	 
 	  <delete id="removePost" parameterType="int">
 	 	DELETE

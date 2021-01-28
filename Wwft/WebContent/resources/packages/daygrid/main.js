@@ -235,10 +235,45 @@ Docs & License: https://fullcalendar.io/
                     timeHtml = '<span class="fc-time">' + core.htmlEscape(timeText) + '</span>';
                 }
             }
+            //  console.log("eventDef:"+JSON.stringify(eventDef))
+            // console.log("eventRange:"+JSON.stringify(eventRange.instance.range.start))// 이벤트 시작되는날짜
+            console.log("eventRange:def.extendedProps.dDay"+JSON.stringify(eventRange.def.extendedProps.dDay))// 이벤트 시작되는날짜
+            // console.log("eventDef.BT : "+JSON.stringify(eventDef.typeData))
+            // console.log(dateEnv)
+            //수정
+            let today = moment();
+             today.format('YYYY-MM-DD hh:mm');
+            let eventDay = moment(eventRange.instance.range.start,'YYYY-MM-DD hh:mm' );            console.log('오늘 : '+today)
+            console.log('이벤트 시작 날짜 : '+eventDay)
+            // console.log('계산'+today.diff(eventDay,'days'))
+            console.log(today.diff(eventDay, 'days'));
+            let dDay;
+            dDay = today.diff(eventDay, 'days');
+            // console.log('디데이는 ?'+dDay)
+            if(dDay>0){
+                dDay = 'D+'+dDay;
+            }else if(dDay==0){
+                dDay= 'D-Day';
+            }else if(dDay<0){
+                dDay= 'D'+(dDay-1);
+            }
+
+            let dDayState = eventRange.def.extendedProps.dDay;
+
+            if(dDayState=='1'){
+                console.log('dDay가 1')
             titleHtml =
                 '<span class="fc-title">' +
-                    (core.htmlEscape(eventDef.title || '') || '&nbsp;') + // we always want one line of height
+                    (core.htmlEscape(eventDef.title+dDay +'') || '&nbsp;') + // we always want one line of height
                     '</span>';
+                }else {
+                    console.log('dDay가 1이 아님')
+            titleHtml =     '<span class="fc-title">' +
+           
+                    (core.htmlEscape(eventDef.title +'') || '&nbsp;') + // we always want one line of height
+                    '</span>';
+
+                }
             return '<a class="' + classes.join(' ') + '"' +
                 (eventDef.url ?
                     ' href="' + core.htmlEscape(eventDef.url) + '"' :
