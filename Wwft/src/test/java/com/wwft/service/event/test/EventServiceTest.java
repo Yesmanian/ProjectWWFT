@@ -1,4 +1,4 @@
-package com.model2.mvc.service.user.test.test;
+package com.wwft.service.event.test;
 
 
 

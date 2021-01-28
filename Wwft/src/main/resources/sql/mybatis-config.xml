@@ -27,6 +27,7 @@
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
 		<typeAlias alias="treeForest" type="com.wwft.service.domain.TreeForest"/>
+		<typeAlias alias="activityPoint" type="com.wwft.service.domain.ActivityPoint"/>
 		
 	</typeAliases>
 	
@@ -39,6 +40,7 @@
 		<mapper resource="sql/TreeMapper.xml"/> 
 		<mapper resource="sql/EventMapper.xml"/>
 		<mapper resource="sql/CommentMapper.xml"/>
+		<mapper resource="sql/ActivityPointMapper.xml"/>
 	</mappers>
 
 </configuration>
