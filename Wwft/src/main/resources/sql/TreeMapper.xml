@@ -6,64 +6,234 @@
 
 <mapper namespace="TreeMapper">
  	
+	<!-- TREE -->
 	<resultMap id="treeSelectMap" type="tree">
-		
-
-	
 		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
 		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
 		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />
 		<result property="seedNo" 				column="seed_no" 					jdbcType="VARCHAR" />
 		<result property="treeImageName" 				column="tree_image_name" 					jdbcType="VARCHAR" />
-		<result property="countryId" 			column="country_id" 		jdbcType="VARCHAR" />
+		<result property="countryId" 			column="country_id" 		jdbcType="CHAR" />
 		<result property="familyMotto" 				column="family_motto" 					jdbcType="VARCHAR" />
-		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMERIC" />
+		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMERIC" />	
+	</resultMap>
+	
+	<!-- TREE_IMAGE -->
+	<resultMap id="treeImageSelectMap" 	type="treeImage">
+		<result property="treeImageNo" 			column="tree_image_no" 			jdbcType="NUMERIC"/>
+		<result property="seedNo"						column="seed_no" 		jdbcType="CHAR" />
+		<result property="treeImageName" 		column="tree_image_name" 		jdbcType="VARCHAR" />
+		<result property="activityPointStart" 	column="activity_point_start" 					jdbcType="NUMERIC" />
+		<result property="activityPointEnd" 		column="activity_point_end" 		jdbcType="NUMERIC" />
+	</resultMap>
+
+	
+	<!-- BUCKETLIST -->
+	<resultMap id="bucketListSelectMap" type="bucketList">
+		<result property="bucketListNo" 			column="bucketlist_no" 			jdbcType="NUMERIC"/>
+		<result property="bucketListWriter"	column="bucketlist_writer" 		jdbcType="VARCHAR" />
+		<result property="bucketListDetail" 	column="bucketlist_detail" 		jdbcType="VARCHAR" />
+		<result property="bucketListRegDate" 				column="bucketlist_reg_date" 					jdbcType="DATE" />
+		<result property="stampState" 				column="stamp_state" 					jdbcType="CHAR" />
+		<result property="treeNo" 			column="tree_no" 		jdbcType="NUMERIC" />
+	</resultMap>
+	
+	<!-- PROFILE -->
+	<resultMap id="profileSelectMap" type="profile">
+		<result property="profileNo" 			column="profile_no" 			jdbcType="NUMERIC"/>
+		<result property="treeNo"	column="tree_no" 		jdbcType="NUMERIC" />
+		<result property="profileName" 	column="profile_name" 		jdbcType="VARCHAR" />
+		<result property="birthday" 				column="birthday" 					jdbcType="VARCHAR" />
+		<result property="familyRelations" 				column="family_relations" 					jdbcType="VARCHAR" />
+		<result property="address" 			column="address" 		jdbcType="VARCHAR" />
+		<result property="phone" 				column="phone" 					jdbcType="VARCHAR" />
+		<result property="profileImage" 				column="profile_image" 					jdbcType="VARCHAR" />
+		<result property="profileState" 				column="profile_state" 					jdbcType="CHAR" />
+	</resultMap> 
+
+	
+	
+	
+	
+	
+	<!-- FOREST 테이블이랑 VO 의연이한테 확인 후 다시 구현하기 -->
+	<resultMap id="forestSelectMap" type="forest">
+	<result property="forestNo" 					column="FOREST_NO" 		jdbcType="NUMERIC"/>
+	<result property="forestName"					column="FOREST_NAME" 	jdbcType="VARCHAR" />
+	<result property="forestCreaterTreeNo" 			column="FOREST_CTREATER_TREE_NO" 				jdbcType="NUMERIC" />
+	<result property="invitePossibleState" 			column="INVITE_POSSIBLE_STATE" 		jdbcType="CHAR" />
+	<result property="forestNameChangePossibleState" 		column="FOREST_NAME_CHANGE_POSSIBLE_STATE" 			jdbcType="CHAR" />
+	<result property="forestCreateRegDate" 			column="FOREST_CREATE_TIME" 	jdbcType="DATE" />
+	<result property="forestInformText" 			column="FOREST_INFORM_TEXT" 			jdbcType="VARCHAR" />
+	<result property="forestInformWriter" 			column="FOREST_INFORM_WRITER" 			jdbcType="VARCHAR" />
+	<result property="forestInformRegDate" 			column="FOREST_INFORM_REG_DATE" 	jdbcType="DATE" />
 	</resultMap>
 	
 	
-	  <!-- SQL : SELECT ONE -->
+
+	<select id="addTree" parameterType="tree">
+		 INSERT
+		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
+		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
+							#{countryId:CHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
+	</select>
+	
+	<delete id="removeTree" parameterType="int">
+	DELETE 
+	FROM tree
+	WHERE tree_no = #{value}
+	</delete>
+	
+	<insert id="addTreeForest">
+	 INSERT
+		INTO tree( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
+		VALUES	(seq_tree_and_forest_no.nextval, #{forestNo} , #{treeNo} , SYSDATE)
+								
+	</insert>
+	
+	
+	
+		  
 	 <select 	id="getTree"	parameterType="int"	resultMap="treeSelectMap">
 		SELECT
-		tree_no , user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
-		FROM tree
+		tree_no, user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
+		FROM 
+		tree 
 		WHERE tree_no = #{value}
 	 </select>
+	 
+	 <!-- SQL : PROFILE SELECT LIST -->
+	 <select id="getProfileIntroduceList"  parameterType="int"  resultMap="profileSelectMap"> 
+		SELECT
+    	t.tree_no, t.family_motto, p.tree_no, p.profile_state, p.profile_name, p.phone, 
+		p.family_relations, p.profile_image, p.birthday, p.address
+		FROM 
+		tree t, profiles p
+		WHERE t.tree_no = p.tree_no 
+		AND t.tree_no = #{value}
+		ORDER BY profile_no 
+	</select>
 	
-
-	<!-- SQL :  INSERT -->
+	<!--  
+	 <select id="getTreeRanking"  parameterType="int" resultMap="activityPointSelectMap"> 	
+		SELECT
+    	t.country_id,  t.tree_name ,(SUM(a.point)), DENSE_RANK() OVER (ORDER BY  (SUM(a.point)) DESC) 순위
+ 		FROM activity_point a
+		LEFT JOIN tree t 
+		ON a.tree_no = t.tree_no
+ 		WHERE t.tree_no = #{value}
+		GROUP BY t.country_id,  t.tree_name
+	</select>
+	-->
+	
+	<!-- SQL : FOREST SELECT LIST 
+			숲에 속한 나무 닉네임들을 어떻게 가져와야 하는지 모르겠뜸
+			-->
+	<select id="getFroestList" parameterType="int"  resultMap="forestSelectMap"  >
+	SELECT
+	f.forest_name, t.tree_name, t.tree_image_name
+	FROM tree t, forest f
+	WHERE t.tree_no = f.forest_ctreater_tree_no
+	ORDER BY f.forest_name 
+	</select>
+		 
+		
+	
+	
+	
+	
+	<!-- SQL :  FAMILYMOTTO INSERT -->
 	<insert 	id="addFamilyMotto"		parameterType="tree" >
 	 INSERT
 		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
 		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
-							#{countryId:VARCHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
+							#{countryId:CHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
 	 </insert>
 	 
 	 
-	 <!-- SQL : UPDATE -->
-	 <update	id="updateFamilyMotto"	parameterType="tree" >
+	 <!-- SQL : FAMILYMOTTO UPDATE -->
+	 <update	id="updateFamilyMotto"	 parameterType="tree" >
 	   	UPDATE tree
 	   	<set>
 	   	 family_motto = #{familyMotto}
 	   	</set>
-	   	WHERE tree_no = #{treeNo}
+	   	WHERE tree_no = #{treeNo	}
 	 </update>
 	 
 	 
-
-	 <!-- SQL : UPDATE -->
+	 <!-- SQL : FAMILYMOTTO UPDATE -->
 	 <update id="removeFamilyMotto" parameterType="tree">
 	  	UPDATE tree 
 	  	<set>
-	  	family_motto = NULL
+	  	family_motto = #{familyMotto, jdbcType=VARCHAR}
 	  	</set>
-	  	WHERE tree_no = #{value}
-	 </update> 	 
+	  	WHERE tree_no = #{treeNo}
+	 </update>
+	 
+	 
+	 <!-- SQL : BUCKETLIST SELECT LIST -->
+	 <select id="getBucketList"   parameterType="int"  resultMap="bucketListSelectMap"> 
+	 	SELECT
+		bucketlist_no, bucketlist_writer, bucketlist_detail, bucketlist_reg_date, stamp_state, b.tree_no
+		FROM bucketList b, tree t
+		WHERE b.tree_no = t.tree_no
+		AND b.tree_no = #{value}
+		ORDER BY bucketlist_no
+	 </select>
+	 
+	 <!-- SQL : BUCKETLIST INSERT -->
+	 <insert id="addBucketList" parameterType="bucketList">
+	   INSERT
+	   		INTO bucketList( bucketlist_no, bucketlist_writer, bucketlist_detail, bucketlist_reg_date, stamp_state, tree_no)
+	   		VALUES( seq_bucketlist_no.nextval, #{bucketListWriter:VARCHAR}, #{bucketListDetail:VARCHAR}, 
+	   						SYSDATE, #{stampState:CHAR}, #{treeNo:NUMERIC})
+	   </insert>			
+	 
+	 <!-- SQL : BUCKETLIST UPDATE -->
+	 <update id="updateBucketList"  parameterType="bucketList">
+	 UPDATE bucketList
+	 <set>
+	 	bucketlist_no = #{bucketListNo},
+	 	bucketlist_detail = #{bucketListDetail},
+	 	stamp_state = #{stampState:CHAR}
+	 </set>
+	   WHERE bucketlist_no =#{bucketListNo}
+	 </update>
+	 
+	 <!-- SQL : BUCKETLIST DELETE -->
+	 <delete id="removeBucketList"  parameterType="bucketList">
+	 DELETE 
+	  	FROM bucketList 
+	  	WHERE bucketlist_no = #{bucketListNo}
+	 </delete>
+	 
+	 <select id="searchForest" 	parameterType="search"	resultMap="forestSelectMap">
+		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM		(	SELECT forest_name 
+											FROM forest
+											<if test="searchCondition != null">
+												<where>
+													<if test="searchCondition == 0 ">
+										 				 forest_name LIKE '%'||#{searchKeyword}||'%'
+													</if>
+												</where>
+											</if>
+											ORDER BY forest_name DESC ) inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
+	 		
+	 
+	 
+	 
+	 
+	 
+	 
 
-		 
-		 
-		 
-		 
+	 
+	 
+	 
+	  
 
-	
-	
 </mapper>
