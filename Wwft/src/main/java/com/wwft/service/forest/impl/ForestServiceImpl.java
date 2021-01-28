@@ -83,4 +83,24 @@ public class ForestServiceImpl implements ForestService {
 		return forestDao.updateForestInform(forest);
 	}
 
+	@Override
+	public Map<String, Object> getInviteTreeList(int forestNo,String searchCondition) throws Exception {
+		System.out.println("forestServiceImpl getInviteTreeList");
+		
+		
+		List<Tree> list = forestDao.getInviteTreeList(forestNo,searchCondition);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		
+		return map;
+	}
+
+	@Override
+	public void inviteTree(List<Integer> treeNo,int forestNo,int profileNo) throws Exception {
+		System.out.println("forestServiceImpl inviteTree");
+		
+		forestDao.inviteTree(treeNo,forestNo,profileNo);
+		
+	}
+
 }

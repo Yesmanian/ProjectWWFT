@@ -1,5 +1,8 @@
 package com.wwft.service.admin;
 
-public interface AdminDao {
+import com.wwft.service.domain.Report;
 
+public interface AdminDao {
+	
+	public void addReport(Report report) throws Exception;
 }
