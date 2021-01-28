@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public List<User> getUserList(Search search) throws Exception {
-		return sqlSession.selectList("UserMapper.getUserList", search);
+	public List<User> getUserList(String userId) throws Exception {
+		return sqlSession.selectList("UserMapper.getUserList");
 	}
 	
 	@Override
@@ -50,17 +50,22 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.update("UserMapper.updateUser", user);
 		
 	}
-//	
-//	@Override
-//	public void findId(Search search) throws Exception {
-//		return;	
-//	}
-//	
-//	@Override
-//	public void findPassword(Search search) throws Exception {
-//		return;
-//		
-//	}
+	
+	@Override
+	public void findId(User user) throws Exception {
+		return;	
+	}
+	
+	@Override
+	public void findPassword(User user) throws Exception {
+		return;
+		
+	}
+
+	@Override
+	public void removeUser(User user) throws Exception {
+		sqlSession.delete("UserMapper.removeUser", user);
+	}
 		
 	
 }

@@ -38,34 +38,28 @@
 	<update	id="updateUser"	parameterType="user" >
 	   	UPDATE users
 	   	<set>
-	   		user_id 			= #{userId} ,
-			password			= #{password},
-			email				= #{email:VARCHAR},
-			user_state 			= 1
+			password=#{password}
+			user_state=#{userState}
 	   	</set>
 	   	WHERE user_id = #{userId}
 	 </update>
 		 
 	<!-- SQL : SELECT LIST -->
-	<!--  <select  id="getUserList"  parameterType="search"	resultMap="userSelectMap">
-	  	SELECT *
-	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT user_id , user_name , email
-											FROM users
-											<if test="searchCondition != null">
-												<where>
-													<if test="searchCondition == 0 and searchKeyword !='' ">
-										 				user_id = #{searchKeyword}
-													</if>
-													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				user_name = #{searchKeyword}
-													</if>
-												</where>
-											</if>
-											ORDER BY user_id ) inner_table
-						WHERE ROWNUM &lt;= #{endRowNum} )
-		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
-	 </select>  -->
+	 <select  id="getUserList"  	resultMap="userSelectMap">
+	  	SELECT 
+	  		user_id AS userId
+			email AS email
+			user_reg_date AS userRegDate
+		FROM users
+		ORDER BY userRegDate
+			
+	 </select>  
+	 
+	 <delete id="removeUser" parameterType="user" >
+		delete
+			DELETE users
+			WHERE user_id=#{userId} and password=#{password}
+	</delete>
 
 	 	<!--  위 두번째 subQuery 의  
 	 			WHERE ROWNUM &lt;= #{endRowNum} ) 는
@@ -77,6 +71,7 @@
 
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
 		-->
+		
 	
 	
 	 

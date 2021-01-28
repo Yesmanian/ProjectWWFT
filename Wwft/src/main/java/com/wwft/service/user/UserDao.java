@@ -15,17 +15,18 @@ public interface UserDao {
 		public User getUser(String userId) throws Exception ;
 
 		// SELECT LIST
-		public List<User> getUserList(Search search) throws Exception ;
+		public List<User> getUserList(String userId) throws Exception ;
 
 		// UPDATE
 		public void updateUser(User user) throws Exception ;
 		
-//		// 아이디 찾기
-//		public void findId(Search search) throws Exception ;
-//
-//		// 비밀번호  찾기
-//		public void findPassword(Search search) throws Exception ;
-//
+		public void removeUser(User user) throws Exception;
+		// 아이디 찾기
+		public void findId(User user) throws Exception ;
+
+		// 비밀번호  찾기
+		public void findPassword(User user) throws Exception ;
+
 //		public void Certified(String user) throws Exception;
 //
 //		public void Authentication(String user) throws Exception;

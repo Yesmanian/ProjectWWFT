@@ -87,5 +87,15 @@ public class User {
 				+ userState + ", role=" + role + "]";
 	}
 
+	public void setAuthKey(String authKey) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getAuthKey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
