@@ -20,6 +20,7 @@
 		<typeAlias alias="bucketList" type="com.wwft.service.domain.BucketList"/>
 		<typeAlias alias="user" type="com.wwft.service.domain.User"/>
 		<typeAlias alias="tree" type="com.wwft.service.domain.Tree"/>
+		<typeAlias alias="search" type="com.wwft.common.web.Search"/>
 		<typeAlias alias="treeImage" type="com.wwft.service.domain.TreeImage"/>
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
 		<typeAlias alias ="comment" type="com.wwft.service.domain.Comment"/>

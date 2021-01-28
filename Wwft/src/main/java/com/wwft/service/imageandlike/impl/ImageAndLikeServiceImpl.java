@@ -1,3 +1,4 @@
+/*
 package com.wwft.service.imageandlike.impl;
 
 import java.io.File;
@@ -68,5 +69,5 @@ public class ImageAndLikeServiceImpl implements ImageAndLikeService {
 	
 	}
 	
-
+*/
 
