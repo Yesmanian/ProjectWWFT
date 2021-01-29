@@ -9,7 +9,8 @@
 <title>버킷리스트 목록 보기</title>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
-	
+
+
 
 	
 
@@ -30,72 +31,71 @@
 						},
 				success : function(response,status){
 							alert("확인요:"+status);
-							alert(response);
+							
+							
 				},
 				error : function (status) {
 				}
 			})	
+			
 		})	
+	
 	})	
 		
-
-	
-
-
-	
-					
 		
-	
-	
-	
-	</script>
-</head>
-<body>
+		
+		
+</script>
+ </head>
+	<body>	
+<div class="container">
+	<form id="bucketListForm"	name="bucketListForm" method="get"> 
+	<br><br>
+		<div>
+		<div>
+		 <span><strong>버킷리스트 목록</strong></span> <span id="bll"></span>
+		</div>
+		<div>
+		<table class="table">
+		<tr>
+		<td>
+		
+		
+		
+		<input type = "hidden" id="treeNo"  value=${tree.treeNo }><br>
+		 <input type = "text" name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/><br>
+		 <input type = "text" name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
+		<button id="btn1" class="btn btn-primary" type="button" onclick="fn_bucketList('${tree.treeNo}')">등록</button>
+		
+		<div id="result"></div>
+</div>
+
+	 
 
 
+	 
+	 
+	 
+	 <div id="bucketListAjax">
+	 
+	 <c:set var="i" value="0" />
+		<c:forEach var="bucketList" items="${list}">
+			<c:set var="i" value="${ i+1 }" />
 
-<div>
-	 버킷리스트 목록 보기
-	</div>
-
-
-	
-	<input type = "hidden" id="treeNo"  value=${tree.treeNo }><br>
-	 <input type = "text" name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/><br>
-	 <input type = "text" name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
-	 <input type="button"  id="btn1" value="등록" /><br><br>
-
-	
-
- 
- <c:set var="i" value="0" />
-	<c:forEach var="bucketList" items="${list}">
-		<c:set var="i" value="${ i+1 }" />
-
-
-
-
-
-
-	
-
-		버킷리스트 번호: ${bucketList.bucketListNo}<br/>
-		작성자 : ${bucketList.bucketListWriter}<br/>
-		작성 내용 : ${bucketList.bucketListDetail}<br/>
-		작성 일자 : ${bucketList.bucketListRegDate}<br/>
-		도장		: ${bucketList.stampState}<br/>
-	
-	
-	
-	 <input type="button" name="informTextconfirmButton" value="수정">
-	 <input type="button" name="informTextconfirmButton" value="삭제"><br/>
-	</c:forEach>
-	
-
-
-
-
-
-
+		
+			<div class="wrap">
+			<div>버킷리스트 번호: ${bucketList.bucketListNo}<br/></div>
+			<div>작성자 : ${bucketList.bucketListWriter}<br/></div>
+			<div>작성 내용 : ${bucketList.bucketListDetail}<br/></div>
+			<div>작성 일자 : ${bucketList.bucketListRegDate}<br/></div>
+			<div>도장		: ${bucketList.stampState}<br/></div>
+		
+		
+		
+		 <input type="button" name="informTextconfirmButton" value="수정">
+		 <input type="button" name="informTextconfirmButton" value="삭제"><br/>
+		</div>
+		</c:forEach>
+		</div>
 </body>
 </html>

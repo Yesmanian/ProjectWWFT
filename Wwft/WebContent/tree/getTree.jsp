@@ -9,7 +9,10 @@
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
 
-
+	
+	history.replaceState({}, null, location.pathname);
+	
+	
 	$(function(){
 		$('#btn-remove').click(function(){
 			if(confirm("나무를 삭제하시겠습니까?")){
@@ -18,6 +21,10 @@
 		});
 	});
 
+	function goGetBucketList() {
+		window.location.href="getBucketList?treeNo="+${tree.treeNo};
+		
+	}
 	
 	
 
@@ -41,8 +48,8 @@
 		국가		: ${tree.countryId}</br>
 		가훈 : ${tree.familyMotto}</br>
 		총 활동지수 : ${tree.activityTotalPoint}</br>
-	<input type="button" name="informTextchangeButton" value="버킷리스트 목록">
-	 <input type="button" name="informTextconfirmButton" value="가훈 입력">
+	<td><input type=button name="btn-bucketList-List" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
+	 <input type="button" name="informTextconfirmButton"  value="가훈 입력">
 	<div>
 	
 	<button id="btn-remove" >나무 삭제</button>  

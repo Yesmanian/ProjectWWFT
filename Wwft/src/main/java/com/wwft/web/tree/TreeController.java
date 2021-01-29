@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wwft.service.domain.BucketList;
 import com.wwft.service.domain.Tree;
@@ -70,7 +71,7 @@ public class TreeController {
 	}
 	
 	@RequestMapping(value = "getBucketList", method = RequestMethod.GET)
-	public String getBucketList(@RequestParam(value = "treeNo", required = false)  int treeNo, Model model) throws Exception{
+	public String getBucketList(@RequestParam("treeNo")  int treeNo, Model model) throws Exception{
 		
 		System.out.println("getBucketList : GET");
 		
@@ -79,13 +80,12 @@ public class TreeController {
 		
 		model.addAttribute("list", map.get("list"));
 		
-		return "forward:/tree/getBucketList.jsp";
+		return "/tree/getBucketList.jsp";
 		
 		
 	}
 		
-	
+}
 
 	
 	
-}
