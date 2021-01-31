@@ -27,14 +27,21 @@ public class TreeRestController {
 	}
 	
 	@RequestMapping(value = "json/addBucketList", method = RequestMethod.POST)
-	public String addBucketList(@RequestBody  BucketList bucketList) throws Exception{
+	public  Map<String, Object>	addBucketList(@RequestBody  BucketList bucketList) throws Exception{
 		System.out.println("addBucketList : POST");
-		System.out.println("확인:"+bucketList);
-	
-
-		treeService.addBucketList(bucketList);
+		System.out.println("확인:");
 		
-		return null;		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bucketList", bucketList);
+		
+		return map;
+		
+		
+
+		
+		
+	
+		
 	}	
 		
 	@RequestMapping(value = "json/getBucketList", method = RequestMethod.POST)
