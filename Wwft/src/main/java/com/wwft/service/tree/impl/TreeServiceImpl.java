@@ -2,6 +2,7 @@ package com.wwft.service.tree.impl;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,8 +97,15 @@ public class TreeServiceImpl implements TreeService {
 
 
 	@Override
-	public List<BucketList> getBucketList(int treeNo) throws Exception {
-		return treeDao.getBucketList(treeNo);
+	public Map<String, Object> getBucketList(int treeNo) throws Exception {
+		
+		List<BucketList> list = treeDao.getBucketList(treeNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		
+		return map;
+		
+		
 		
 	}
 
@@ -140,4 +148,5 @@ public class TreeServiceImpl implements TreeService {
 
 
 	
+
 

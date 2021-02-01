@@ -57,6 +57,14 @@ from image_and_like
 where image_and_like_state ='1' AND post_No ='5';
 
 
+get imageAndLike
+
+SELECT image_and_like_no,save_image_name
+FROM image_and_like
+WHERE post_no= 190
+AND image_and_like_state = 0 
+AND delete_image_state = 'N';
+
 
 
 

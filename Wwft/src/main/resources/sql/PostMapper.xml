@@ -27,6 +27,10 @@
 	 	VALUES	 (#{postNo} , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
 	 </insert>
 	 
+	 
+	 
+	 
+	 
 	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
 	 	SELECT
 		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
@@ -57,7 +61,7 @@
 	  <select  id="getPostList"  parameterType="int"	resultMap="postSelectMap">
 	  	SELECT post_no , post_reg_date
 	  	FROM post
-	  	WHERE tree_no = #{postTreeNo}
+	  	WHERE tree_no = #{value}
 	  	ORDER BY post_no
 									
 	 </select> 

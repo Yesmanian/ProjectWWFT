@@ -85,7 +85,7 @@ public class ProfileServiceTest {
 		//==> console 확인
 		//System.out.println(profile);
 	}
-	//@Test
+	@Test
 	public void testRemoveProfile() throws Exception{
 			
 		Profile profile = profileService.getProfile(46);
@@ -99,7 +99,7 @@ public class ProfileServiceTest {
 
 					
 		//==> console 확인
-		//System.out.println(profile);
+		System.out.println(profile);
 	}
 
 	
