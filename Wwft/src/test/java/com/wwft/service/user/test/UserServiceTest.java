@@ -77,16 +77,32 @@ public class UserServiceTest {
 		System.out.println(user);
 				
 	}
+//	@Test
+//	public void testRemoveUser() throws Exception{
+//		 
+//		 User user = userService.removeUser("testUserId5");
+//		 Assert.assertNotNull(user);
+//		 
+//		 user.setPassword("change123456");
+//		 user.setEmail("change6@gmail.com");
+//		 user.setUserState("1");
+//			
+//		userService.updateUser(user);
+//			
+//		user = userService.getUser("testUserId5");
+//		Assert.assertNotNull(user);
+//			
+//		//==> console 확인
+//		System.out.println(user);
+//				
+//	}
 
 //	 //@Test
-//	 public void testGetUserListAll() throws Exception{
+//	 public void testGetUserList() throws Exception{
 //		 
-//	 	Search search = new Search();
-//	 	search.setCurrentPage(1);
-//	 	search.setPageSize(3);
-//	 	Map<String,Object> map = userService.getUserList(search);
+//	 	Map<String,Object> map = userService.getUserList();
 //	 	
-//	 	List<Object> list = (List<Object>)map.get("list");
+//	 	List<User> list = (List<User>)map.get("list");
 //	 	Assert.assertEquals(3, list.size());
 //	 	
 //		//==> console 확인
@@ -97,13 +113,9 @@ public class UserServiceTest {
 //	 	
 //	 	System.out.println("=======================================");
 //	 	
-//	 	search.setCurrentPage(1);
-//	 	search.setPageSize(3);
-//	 	search.setSearchCondition("0");
-//	 	search.setSearchKeyword("");
-//	 	map = userService.getUserList(search);
+//	 	map = userService.getUserList();
 //	 	
-//	 	list = (List<Object>)map.get("list");
+//	 	list = (List<User>)map.get("list");
 //	 	Assert.assertEquals(3, list.size());
 //	 	
 //	 	//==> console 확인

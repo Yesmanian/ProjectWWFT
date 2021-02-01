@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Map<String, Object> getUserList(Search search) throws Exception {
-		List<User> list= userDao.getUserList(search);
+	public Map<String, Object> getUserList(String userId) throws Exception {
+		List<User> list= userDao.getUserList(userId);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list );
@@ -53,17 +53,17 @@ public class UserServiceImpl implements UserService{
 	public void updateUser(User user) throws Exception {
 		userDao.updateUser(user);
 	}
-//	
-//	@Override
-//	public void findId(Search search) throws Exception {
-//		userDao.findId(search);
-//	}
-//	
-//	@Override
-//	public void findPassword(Search search) throws Exception {
-//		userDao.findPassword(search);
-//	}
-//
+	
+	@Override
+	public void findId(User user) throws Exception {
+		userDao.findId(user);
+	}
+	
+	@Override
+	public void findPassword(User user) throws Exception {
+		userDao.findPassword(user);
+	}
+
 ////	@Override
 ////	public void userWithdrawal(User user) throws Exception {
 ////		// TODO Auto-generated method stub
@@ -85,6 +85,10 @@ public class UserServiceImpl implements UserService{
 //		}
 //		return result;
 //	}
+	@Override
+	public void removeUser(User user) throws Exception {
+		userDao.removeUser(user);
+	}
 	
 
 

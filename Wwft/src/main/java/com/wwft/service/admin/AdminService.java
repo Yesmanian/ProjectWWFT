@@ -1,5 +1,8 @@
 package com.wwft.service.admin;
 
-public interface AdminService {
+import com.wwft.service.domain.Report;
 
+public interface AdminService {
+	
+	public void addReport(Report report) throws Exception;
 }

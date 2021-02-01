@@ -45,7 +45,7 @@ public class CalenderRestController {
 	}
 	
 	@RequestMapping( value = "json/addEvent" , method = RequestMethod.POST)
-	public String addEvent( @RequestBody Event event) throws Exception{
+	public Map addEvent( @RequestBody Event event) throws Exception{
 		//public String addEvent( @ModelAttribute Event event) throws Exception{
 		//@RequestBody(required = false)  Event event,
 		
@@ -62,8 +62,10 @@ public class CalenderRestController {
 			System.out.println(e);
 			
 		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("abc", "리턴확인");
 		
-		return null;
+		return map;
 	}
 	@RequestMapping( value = "json/removeEvent" , method = RequestMethod.POST)
 	public String removeEvent(@RequestBody Event event) throws Exception{
@@ -79,9 +81,10 @@ public class CalenderRestController {
 	public String updateEvent(@RequestBody Event event) throws Exception{
 		
 		System.out.println("UPDATE POST");
+		System.out.println("수정할 내용 : "+event);
 		eventService.updateEvent(event);
 		
-		System.out.println(eventService.findEvent(event.getId()));
+		System.out.println("수정된 정보 : "+eventService.findEvent(event.getId()));
 		
 		return null;
 	}

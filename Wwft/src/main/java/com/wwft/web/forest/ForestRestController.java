@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +56,7 @@ public class ForestRestController {
 		System.out.println(map);
 		
 		
-		return null;
+		return map;
 		
 	}
 	
@@ -83,6 +82,21 @@ public class ForestRestController {
 		System.out.println("/forest/json/getTreeList End..");
 		return map;
 		
+	}
+	
+	@RequestMapping(value = "json/getInviteTreeList", method = RequestMethod.POST)
+	public Map<String ,Object> getInviteTreeList(@RequestBody HashMap<String, Object> restMap) throws Exception {
+		
+		System.out.println("/forest/json/getInviteTreeList start...");
+		System.out.println(restMap.get("searchCondition"));
+		System.out.println(restMap.get("forestNo"));
+		//Business Logic
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inviteTreeList",forestService.getInviteTreeList((Integer)restMap.get("forestNo"),(String)restMap.get("searchCondition")));
+		
+		System.out.println(map.get("inviteTreeList"));
+		
+		return map;
 	}
 	
 }
