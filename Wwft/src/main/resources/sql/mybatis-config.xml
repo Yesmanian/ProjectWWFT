@@ -25,6 +25,8 @@
 		<typeAlias alias ="post" type="com.wwft.service.domain.Post"/>
 		<typeAlias alias ="comment" type="com.wwft.service.domain.Comment"/>
 		<typeAlias alias="activityPoint" type="com.wwft.service.domain.ActivityPoint"/>
+		<typeAlias alias ="imageAndLike" type="com.wwft.service.domain.ImageAndLike"/>
+		
 		<typeAlias alias="forest" type="com.wwft.service.domain.Forest" />
 		<typeAlias alias="event" type="com.wwft.service.domain.Event" />
 		<typeAlias alias="noticeMessage" type="com.wwft.service.domain.NoticeMessage" />
@@ -45,6 +47,7 @@
 		<mapper resource="sql/NoticeMessageMapper.xml"/>
 		<mapper resource="sql/AdminMapper.xml"/>
 		<mapper resource="sql/CommentMapper.xml"/>
+		<mapper resource="sql/ImageAndLikeMapper.xml"/>
 		<mapper resource="sql/ActivityPointMapper.xml"/>
 	</mappers>
 

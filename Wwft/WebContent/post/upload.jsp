@@ -10,14 +10,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>파일 업로드 화면</title>
+<title>getPost화면</title>
 </head>
 <body>
 
 	<form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
-		<input type="file" name="file" multiple />
-		
-		<input type="submit" value="업로드" />
+		<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="26">
+					console.log(${fileList} );
+						<c:forEach var="file" items="${fileList}">
+						${file}
+							<img src = "/resources/images/uploadFiles/${file}"/><br/>
+						</c:forEach>
+					</td>
+				</tr>
+			</table>
+			
+			내용:${post.postDetail }
 	</form>
 
 </body>

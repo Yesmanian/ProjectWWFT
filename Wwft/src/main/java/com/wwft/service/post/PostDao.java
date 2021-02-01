@@ -24,11 +24,11 @@ public interface PostDao {
 	
 	public int removePost(int postNo) throws Exception;
 	
-	public void addImageAndLike(Map<String, Object> map) throws Exception;
+	public void addImageAndLike(ImageAndLike imageAndLike) throws Exception;
 	
-	public ImageAndLike getImageAndLike(int imageAndLikeNo) throws Exception;
+	public ImageAndLike getImageAndLike(int postNo) throws Exception;
 	
-	public List<ImageAndLike> getImageAndLikeList(int postNo) throws Exception;
+	public List<String> getImageAndLikeList(int postNo) throws Exception;
 		
 	public int removeImageAndLike(int imageAndLikeNo) throws Exception;
 

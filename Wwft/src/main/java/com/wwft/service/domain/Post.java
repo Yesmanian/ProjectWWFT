@@ -6,7 +6,7 @@ public class Post {
 	
 
 	private int postNo;
-	private DATE postRegDate;			//게시글 작성 날짜	
+	private String postRegDate;			//게시글 작성 날짜	
 	private String postDetail;			//게시글 내용
 	private String postWriter;			//게시글 작성자
 	private String postState;			//게시글 공개여부
@@ -25,11 +25,13 @@ public class Post {
 		this.postNo = postNo;
 	}
 
-	public DATE getPostRegDate() {
+
+
+	public String getPostRegDate() {
 		return postRegDate;
 	}
 
-	public void setPostRegDate(DATE postRegDate) {
+	public void setPostRegDate(String postRegDate) {
 		this.postRegDate = postRegDate;
 	}
 

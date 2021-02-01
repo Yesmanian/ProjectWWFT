@@ -7,7 +7,7 @@ public class Comment {
 	
 	private int commentNo;		
 	private String commentWriter;			//´ñ±ÛÀÛ¼ºÀÚ
-	private DATE commentRegDate;			//´ñ±Û ÀÛ¼º³¯Â¥
+	private String commentRegDate;			//´ñ±Û ÀÛ¼º³¯Â¥
 	private String commentDetail;			//´ñ±Û³»¿ë	
 	private int commentPostNo;				//´ñ±ÛÀÌ´Þ¸° °Ô½Ã±Û¹øÈ£
 	private int commentTreeNo;				
@@ -31,11 +31,13 @@ public class Comment {
 		this.commentWriter = commentWriter;
 	}
 
-	public DATE getCommentRegDate() {
+
+
+	public String getCommentRegDate() {
 		return commentRegDate;
 	}
 
-	public void setCommentRegDate(DATE commentRegDate) {
+	public void setCommentRegDate(String commentRegDate) {
 		this.commentRegDate = commentRegDate;
 	}
 

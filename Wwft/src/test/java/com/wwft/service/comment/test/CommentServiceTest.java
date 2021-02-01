@@ -87,6 +87,11 @@ public class CommentServiceTest {
 			
 			List<Comment> list = commentService.getCommentList(comment.getCommentPostNo());
 		
+			Assert.assertEquals("ÀÇÀÇ",list.get(0).getCommentWriter());
+			Assert.assertEquals("¿ÀÈ«È«´ñ±ÛÀÌ´Ù",list.get(0).getCommentDetail());
+			Assert.assertEquals("±¸±¸",list.get(1).getCommentWriter());
+			Assert.assertEquals("´ñ±Û´ñ±Û",list.get(1).getCommentDetail());
+			
 			Assert.assertEquals(3, list.size());
 			
 			

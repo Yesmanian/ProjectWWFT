@@ -32,7 +32,7 @@ body{
 
 .cbp_tmtimeline>li:first-child .cbp_tmicon {
     background: #fff;
-    color: #666
+    color: rgb(255, 255, 255)
 }
 
 .cbp_tmtimeline>li:nth-child(odd) .cbp_tmtime span:last-child {
@@ -153,7 +153,14 @@ body{
     top: 0;
     margin: 0 0 0 -25px
 }
+.remove {
+    color: #1d2124;
+    font-size: 1.7em;
+    line-height: 20x;
+    float: right;
+    
 
+}
 @media screen and (max-width: 992px) and (min-width: 768px) {
     .cbp_tmtimeline>li .cbp_tmtime {
         padding-right: 60px
@@ -209,7 +216,7 @@ body{
 }
 
 .bg-blush {
-    background-color: #ff758e !important;
+    background-color: #ff0000 !important;
     color: #fff;
 }
 
