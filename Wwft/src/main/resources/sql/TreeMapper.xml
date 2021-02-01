@@ -193,15 +193,14 @@
 	 <update id="updateBucketList"  parameterType="bucketList">
 	 UPDATE bucketList
 	 <set>
-	 	bucketlist_no = #{bucketListNo},
-	 	bucketlist_detail = #{bucketListDetail},
+	 	bucketlist_detail = #{bucketListDetail:VARCHAR},
 	 	stamp_state = #{stampState:CHAR}
 	 </set>
 	   WHERE bucketlist_no =#{bucketListNo}
 	 </update>
 	 
 	 <!-- SQL : BUCKETLIST DELETE -->
-	 <delete id="removeBucketList"  parameterType="bucketList">
+	 <delete id="removeBucketList"  parameterType="int">
 	 DELETE 
 	  	FROM bucketList 
 	  	WHERE bucketlist_no = #{bucketListNo}

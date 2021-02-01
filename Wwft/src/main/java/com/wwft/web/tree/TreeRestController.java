@@ -33,21 +33,49 @@ public class TreeRestController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bucketList", bucketList);
+		System.out.println("확인2:"+map);
+		
+		treeService.addBucketList(bucketList);
+		
+		return map;
+	}	
+	
+	@RequestMapping(value = "json/updateBucketList")
+	public Map<String, Object> updateBucketList(@RequestBody BucketList bucketList) throws Exception{
+		
+		System.out.println("json/updateBucketList : START");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bucketList", bucketList);
+		treeService.updateBucketList(bucketList);
 		
 		return map;
 		
+	}
 		
-
+	@RequestMapping(value = "json/removeBucketList", method = RequestMethod.POST)
+	public Map<String, Object> removeBucketList(@RequestBody BucketList bucketList) throws Exception{
+		
+		System.out.println("json/removeBucketList : START");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bucketList", bucketList);
+		System.out.println("확인:"+map);
+		treeService.removeBucketList(bucketList);
+		
+		return map;
+		
+	}
 		
 		
 	
 		
-	}	
+	
 		
-	@RequestMapping(value = "json/getBucketList", method = RequestMethod.POST)
+	@RequestMapping(value = "json/getBucketList", method = RequestMethod.GET)
 	public Map<String, Object> getBucketList(@RequestBody HashMap<String, Object> treeMap) throws Exception{
 		
-		System.out.println("/tree/json/getBucketList : POST");
+		System.out.println("/tree/json/getBucketList : GET");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 	

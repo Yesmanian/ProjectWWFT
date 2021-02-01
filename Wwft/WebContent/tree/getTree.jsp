@@ -16,7 +16,7 @@
 	$(function(){
 		$('#btn-remove').click(function(){
 			if(confirm("나무를 삭제하시겠습니까?")){
-				self.location.href = "/tree/removeTree?treeNo=${tree.treeNo}";
+				self.location.href = "/tree/removeTree?treeNo="+${tree.treeNo};
 			}
 		});
 	});
