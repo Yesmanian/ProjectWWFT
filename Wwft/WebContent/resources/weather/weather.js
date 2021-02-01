@@ -1,14 +1,50 @@
+
+let latitude;
+let longitude;
+function getLocation() {
+	if (navigator.geolocation) { // GPS를 지원하면
+	  navigator.geolocation.getCurrentPosition(function(position) {
+		latitude = position.coords.latitude;
+		longitude = position.coords.longitude;
+	
+		// alert(latitude + ' ' + longitude);
+	  }, function(error) {
+		console.error(error);
+	  }, {
+		enableHighAccuracy: false,
+		maximumAge: 0,
+		timeout: Infinity
+	  });
+	} else {
+	  alert('GPS를 지원하지 않습니다');
+	}
+  }
+  getLocation();
+
+
 $(document).ready(function(){
 
-	$.ajax({
+	
+	
 
-		url:"http://api.openweathermap.org/data/2.5/forecast?lat=37.56826&lon=126.977829&units=metric&appid=9757e2feaa36992cfefe1fef3b91199d",
+
+	// navigator.geolocation.getCurrentPosition(function (position) {
+	// 		latitude = position.coords.latitude;
+	// 		longitude = position.coords.longitude;
+	// 		console.log(latitude)
+	// 	})
+	  
+	
+	$.ajax({
+		
+
+		url: `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=9757e2feaa36992cfefe1fef3b91199d`,
 
 		dataType:"json",
 
 		success:function(city){
 
-			console.log(city);
+			// console.log(city);
 
 			$.each(city.list, function(key) {
 				// console.log('city.list Size'+city.list.length);

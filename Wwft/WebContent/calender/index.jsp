@@ -171,6 +171,9 @@
                 </button>
                 <h3 class="modal-title" id="exampleModalLabel">일정 등록</h5>
               </div>
+                         
+              <label>D-DAY</label>
+              <input type="checkbox" name='dDay' id="dDay" value=""> 
 
               <label>종일</label>
               <input type="checkbox" name="allDay" id="allDay_checkbox"  value=""> 
@@ -284,9 +287,7 @@
 
                 </select>
               </div>
-              <!-- 
-              <label>D-DAY</label>
-              <input type="text" name='dDay' id="dDay"> -->
+  
 
 
 

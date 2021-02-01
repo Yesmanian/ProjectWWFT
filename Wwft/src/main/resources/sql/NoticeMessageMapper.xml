@@ -5,6 +5,20 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="NoticeMessageMapper">
+
+	<resultMap type="noticeMessage" id="noticeMessageSelectMap">
+	
+		<result property="noticeMessageNo" 	column="notice_message_no" jdbcType="NUMERIC" />
+		<result property="sender" 	column="sender" jdbcType="VARCHAR"/>
+		<result property="receiver" 	column="receiver" jdbcType="VARCHAR"/>
+		<result property="noticeMessageState"	column="notice_message_state" jdbcType="CHAR" />
+		<result property="noticeMessageType" 	column="notice_message_type" jdbcType="CHAR" />
+		<result property="noticeMessageDetail"		column="notice_message_detail" jdbcType="VARCHAR" />
+		<result property="postNo" 	column="post_no" jdbcType="NUMERIC"/>
+		<result property="treeNo" 	column="tree_no" jdbcType="NUMERIC"/>
+		<result property="forestNo" 	column="forest_no" jdbcType="NUMERIC"/>
+		<result property="noticeMessageDate" 	column="notice_reg_date" jdbcType="DATE" />
+	</resultMap>
  	
  	
  	
@@ -13,6 +27,7 @@
  	
  	
  	<!-- SQL : INSERT  state 1 =  초대중-->
+ 	<!--
 	<insert 	id="inviteTree"		parameterType="java.util.HashMap" >
 	 	INSERT
 		INTO NOTICE_MESSAGE(NOTICE_MESSAGE_NO, SENDER,FOREST_NO,NOTICE_REG_DATE,NOTICE_MESSAGE_STATE,
@@ -21,6 +36,31 @@
 			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'1','1','숲에서 초대중','POSTIMAGENAME','1',null,
 			#{profileNo},#{profileNo})
 	 </insert>
+	 -->
+	 
+	 <insert id="sendNoticeMessage" parameterType="noticeMessage">
+	 	INSERT 
+	 	INTO notice_message(notice_message_no, sender, receiver, 
+	 	notice_message_type, notice_message_detail, post_no, tree_no, forest_no, notice_reg_date )
+	 	VALUES(seq_notice_message_no.nextval,#{sender},#{receiver}, #{noticeMessageType},
+	 	#{noticeMessageDetail}, #{postNo}, #{treeNo}, #{forestNo}, SYSDATE)
+	 	
+	 
+	 </insert>
+	 
+	 <select id="getTreeNoticeMessage" parameterType="int" resultMap="noticeMessageSelectMap">
+	 	SELECT notice_message_no, sender, notice_message_state, notice_message_type, notice_message_detail, tree_no, forest_no, notice_reg_date
+	 	FROM notice_message
+	 	WHERE tree_no = #{value}
+	 	AND notice_message_type !=3
+	 	ORDER BY NOTICE_REG_DATE DESC
+	 </select>
+	 
+	 <delete id="removeNoticeMessage" parameterType="int">
+	 	DELETE 
+		FROM notice_message
+		WHERE notice_message_no = #{value}
+	 </delete>
  	
 	
 </mapper>
