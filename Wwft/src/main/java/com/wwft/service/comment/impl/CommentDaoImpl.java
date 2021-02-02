@@ -35,8 +35,9 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
-	public List<Comment> getCommentList(int postNo) throws Exception {
-		return sqlSession.selectList("CommentMapper.getCommentList", postNo);
+	public List<Comment> getCommentList(int commentPostNo) throws Exception {
+		System.out.println("commentDao ¿¡ getCommentList µé¾î¿È");
+		return sqlSession.selectList("CommentMapper.getCommentList", commentPostNo);
 	}
 
 	@Override

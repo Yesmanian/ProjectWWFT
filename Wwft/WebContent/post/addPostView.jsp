@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page pageEncoding="EUC-KR"%>
+<%@ page import ="java.util.Map" %>
 
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
  
 <html>
 <head>
+
 <title>게시글 작성</title>
 <style type="text/css">
 
@@ -45,6 +47,7 @@
         }
 
     </style>
+    
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
@@ -59,10 +62,10 @@
      $("#input_imgs").on("change", handleImgFileSelect);
  }); 
 
- function fileUploadAction() {
+/*  function fileUploadAction() {
      console.log("fileUploadAction");
      $("#input_imgs").trigger('click');
- }
+ } */
 
  function handleImgFileSelect(e) {
 
@@ -84,7 +87,7 @@
 
          var reader = new FileReader();
          reader.onload = function(e) {
-             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' title='Click to remove'></a>";
              $(".imgs_wrap").append(html);
              index++;
 
@@ -95,16 +98,27 @@
  }
 
 
-
+//미리보기 이미지 삭제
  function deleteImageAction(index) {
      console.log("index : "+index);
      console.log("sel length : "+sel_files.length);
 
      sel_files.splice(index, 1);
-
+     console.log( $("#input_imgs").val())
+	 
      var img_id = "#img_id_"+index;
      $(img_id).remove(); 
+     
+ 	/* var data = new FormData();
+	 
+	 for(var i =0; i<sel_files.length; i++){
+		 var name = "image_"+i;
+		 data.append(name, sel_files[i]);
+		 
+	 }
+	 alert(data); */
  }
+ 
 
  function fileUploadAction() {
      console.log("fileUploadAction");
@@ -112,7 +126,7 @@
  }
 
  function fncAddPost() {
-     console.log("업로드 파일 갯수 : "+sel_files.length);
+     /* console.log("업로드 파일 갯수 : "+sel_files.length);
      var data = new FormData();
 
      for(var i=0, len=sel_files.length; i<len; i++) {
@@ -124,7 +138,7 @@
      if(sel_files.length < 1) {
          alert("한개이상의 파일을 선택해주세요.");
          return;
-     }      
+     } */      
      
      var postDetail = $("#postDetail").val();
  	 var postState = $("[name='postState']").val();
@@ -144,7 +158,20 @@
 			}
     	 
      })
+     console.log("업로드 파일 갯수 : "+sel_files.length);
+     var data = new FormData();
 
+     for(var i=0, len=sel_files.length; i<len; i++) {
+         var name = "image_"+i;
+         data.append(name, sel_files[i]);
+     }
+     data.append("image_count", sel_files.length);
+     
+     if(sel_files.length < 1) {
+         alert("한개이상의 파일을 선택해주세요.");
+         return;
+     }
+	
 
     // $("form").attr("method","POST").attr("enctype","multipart/form-data").attr("action","/post/addPost").submit();
  /*     var xhr = new XMLHttpRequest();
@@ -159,9 +186,36 @@
 
  }
 
- //파일 등록하는 함수
- function fnAddFiles(postNo){
-	 //ajax 호출해 파일 등록하기
+ //파일 등록하기ajax
+ function fnAddFiles(redate){
+/* 	 var postNo = redate;
+	 var data = new FormData();
+	 
+	 for(var i =0; i<sel_files.length; i++){
+		 var name = "image_"+i;
+		 data.append(name, sel_files[i]);
+	 }
+	 
+	    $.ajax({
+	    	
+	    	 url : "/post/json/addPost/"+postNo ,
+	    	 method : "POST" ,
+	    	 data : data ,
+	    	 dateType : "json" ,
+	    	 headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				success : function(res,status){
+					alert(redata);
+					fnAddFiles(redata);
+				}
+	    	 
+	     }) */
+	 
+	 
+	 $("form").attr("method","POST").attr("enctype","multipart/form-data").attr("action","/post/addPost?postNo="+redate).submit();
+	 
  }
  
         var g_count =1;
@@ -211,7 +265,7 @@
     </script>
 </head>
 <body>
-    <form id="from" enctype="multipart/form-data" method ="post">
+    <form id="form" enctype="multipart/form-data" method ="post">
         <table class="board_view">
             <colgroup>
                 <col width="15%" >
@@ -224,7 +278,7 @@
         <h2><b>이미지 미리보기</b></h2>
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-            <input multiple="multiple" type="file" id="input_imgs" maxlength="10"/>
+            <input multiple="multiple" type="file" id="input_imgs" name = "input_imgs" maxlength="10"/>
              
         </div>
     </div>

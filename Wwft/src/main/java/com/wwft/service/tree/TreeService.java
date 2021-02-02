@@ -26,7 +26,7 @@ public interface TreeService {
 		
 	public List<Forest> getForestList(int treeNo) throws Exception;
 
-	public List<BucketList> getBucketList(int treeNo) throws Exception;
+	public Map<String, Object> getBucketList(int treeNo) throws Exception;
 	
 	public void addBucketList(BucketList bucketList) throws Exception;
 

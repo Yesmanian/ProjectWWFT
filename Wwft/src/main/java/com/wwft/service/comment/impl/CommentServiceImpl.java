@@ -40,12 +40,13 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public List<Comment> getCommentList(int postNo) throws Exception {
+	public List<Comment> getCommentList(int commentPostNo) throws Exception {
+		System.out.println("getCommentList Service들어왔다");
 		
+		List<Comment> list= commentDao.getCommentList(commentPostNo);
 		
-		List<Comment> list= commentDao.getCommentList(postNo);
-		
-		
+		System.out.println("commentServiceImpl에서 getCommentList다녀옴");
+		System.out.println("commentdao화인"+list);
 		return list;
 	}
 

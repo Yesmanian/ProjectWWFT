@@ -6,10 +6,8 @@
 
 <mapper namespace="TreeMapper">
  	
-
 	<!-- TREE -->
 	<resultMap id="treeSelectMap" type="tree">
-
 		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
 		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
 		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />
@@ -18,15 +16,6 @@
 		<result property="countryId" 			column="country_id" 		jdbcType="CHAR" />
 		<result property="familyMotto" 				column="family_motto" 					jdbcType="VARCHAR" />
 		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMERIC" />	
-		<collection property="activityPoint"  column="tree_no" javaType="List"  ofType="Map"  select="getTreeRanking"/>
-	</resultMap>
-	
-	
-	<resultMap id="treeForestSelectMap" type="treeForest">
-	<result property="treeAndForestNo" 		column="tree_and_forest_no" 		jdbcType="NUMERIC"/>
-	<result property="forestNo"			column="forest_no" 	jdbcType="NUMERIC" />
-	<result property="treeNo" 			column="tree_no" 				jdbcType="NUMERIC" />
-	<result property="forestEnterRegDate" 		column="forest_enter_reg_date" 		jdbcType="DATE" />
 	</resultMap>
 	
 	<!-- TREE_IMAGE -->
@@ -62,14 +51,7 @@
 		<result property="profileState" 				column="profile_state" 					jdbcType="CHAR" />
 	</resultMap> 
 
-	<resultMap id="activityPointSelectMap" type="activityPoint">
-	<result property="activityPointNo" 		column="activity_point_no" 		jdbcType="NUMERIC"/>
-	<result property="treeNo"			column="tree_no" 	jdbcType="NUMERIC" />
-	<result property="point" 			column="point" 				jdbcType="NUMERIC" />
-	<result property="activityDate" 		column="activity_date" 		jdbcType="DATE" />
-	<result property="activityType" 		column="activty_type" 		jdbcType="CHAR" />
-	</resultMap>
-		
+	
 	
 	
 	
@@ -89,32 +71,36 @@
 	
 	
 
-	  <!-- SQL : TREE SELECT ONE -->
-			  
+	<select id="addTree" parameterType="tree">
+		 INSERT
+		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
+		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
+							#{countryId:CHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
+	</select>
+	
+	<delete id="removeTree" parameterType="int">
+	DELETE 
+	FROM tree
+	WHERE tree_no = #{value}
+	</delete>
+	
+	<insert id="addTreeForest">
+	 INSERT
+		INTO tree( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
+		VALUES	(seq_tree_and_forest_no.nextval, #{forestNo} , #{treeNo} , SYSDATE)
+								
+	</insert>
+	
+	
+	
+		  
 	 <select 	id="getTree"	parameterType="int"	resultMap="treeSelectMap">
 		SELECT
-	tree_no , user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
-	FROM tree
-	WHERE tree_no = #{treeNo}
+		tree_no, user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
+		FROM 
+		tree 
+		WHERE tree_no = #{value}
 	 </select>
-	
-	<insert id="addTree" parameterType="tree">
-	INSERT INTO tree  (tree_no, user_id, tree_name, seed_no, tree_image_name, country_id, family_motto, activity_total_point)
-    VALUES(SEQ_TREE_NO.nextval, #{userId:VARCHAR}, #{treeName:VARCHAR}, #{seedNo}, #{treeImageName:VARCHAR}, #{countryId:CHAR}, #{familyMotto:VARCHAR}, #{activityTotalPoint})
-	</insert>
-	 
-	 <delete id="removeTree"  parameterType="int">
-	 DELETE 
-	 FROM tree
-	 WHERE tree_no = #{treeNo}
-	 </delete>
-	 
-	 <insert id="addTreeForest" parameterType="treeForest">
-	 INSERT INTO tree_forest  (tree_and_forest_no, forest_no, tree_no, forest_enter_reg_date)
-     VALUES(SEQ_tree_and_forest_no.nextval, #{forestNo}, #{treeNo}, SYSDATE)
-	 </insert>
-	 
-	 
 	 
 	 <!-- SQL : PROFILE SELECT LIST -->
 	 <select id="getProfileIntroduceList"  parameterType="int"  resultMap="profileSelectMap"> 
@@ -128,7 +114,7 @@
 		ORDER BY profile_no 
 	</select>
 	
-	<!-- SQL : TREE RANKING SELECT ONE	 -->
+	<!--  
 	 <select id="getTreeRanking"  parameterType="int" resultMap="activityPointSelectMap"> 	
 		SELECT
     	t.country_id,  t.tree_name ,(SUM(a.point)), DENSE_RANK() OVER (ORDER BY  (SUM(a.point)) DESC) 순위
@@ -138,7 +124,7 @@
  		WHERE t.tree_no = #{value}
 		GROUP BY t.country_id,  t.tree_name
 	</select>
-	
+	-->
 	
 	<!-- SQL : FOREST SELECT LIST 
 			숲에 속한 나무 닉네임들을 어떻게 가져와야 하는지 모르겠뜸
@@ -171,14 +157,11 @@
 	   	<set>
 	   	 family_motto = #{familyMotto}
 	   	</set>
-	   	WHERE tree_no = #{treeNo}
+	   	WHERE tree_no = #{treeNo	}
 	 </update>
 	 
 	 
-
-
-
-	 <!-- SQL : UPDATE -->
+	 <!-- SQL : FAMILYMOTTO UPDATE -->
 	 <update id="removeFamilyMotto" parameterType="tree">
 	  	UPDATE tree 
 	  	<set>
@@ -223,14 +206,34 @@
 	  	FROM bucketList 
 	  	WHERE bucketlist_no = #{bucketListNo}
 	 </delete>
-
-</mapper>	 
+	 
+	 <select id="searchForest" 	parameterType="search"	resultMap="forestSelectMap">
+		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM		(	SELECT forest_name 
+											FROM forest
+											<if test="searchCondition != null">
+												<where>
+													<if test="searchCondition == 0 ">
+										 				 forest_name LIKE '%'||#{searchKeyword}||'%'
+													</if>
+												</where>
+											</if>
+											ORDER BY forest_name DESC ) inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
+	 		
+	 
+	 
+	 
 	 
 	 
 	 
 
 	 
-	  	 
+	 
+	 
+	  
 
-		 
-		 
+</mapper>

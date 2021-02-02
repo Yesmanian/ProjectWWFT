@@ -20,3 +20,16 @@ CREATE TABLE  "CALENDER"
 	"DOM" VARCHAR2(10), 
 	 CONSTRAINT "CALENDER_PK" PRIMARY KEY ("EVENT_NO") ENABLE
    )
+
+   INSERT INTO tree_image VALUES(1, '0', 'seed0_0.jpg' , 0, 100);
+INSERT INTO tree_image VALUES(2, '0', 'seed0_1.jpg' ,101, 200);
+INSERT INTO tree_image VALUES(3, '0', 'seed0_2.jpg' , 201, 300);
+   
+   
+
+SELECT 
+i.tree_image_name
+FROM tree_image i, tree t
+WHERE i.seed_no = t.seed_no
+AND t.activity_total_point BETWEEN i.activity_point_start AND i.activity_point_end
+AND t.tree_no = 1;
