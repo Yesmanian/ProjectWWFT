@@ -2,9 +2,6 @@ package com.wwft.service.noticemessage.test;
 
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.BasicConfigurator;
@@ -16,8 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.wwft.service.calender.EventService;
-import com.wwft.service.domain.Event;
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
 import com.wwft.service.noticemessage.NoticeMessageService;
 
@@ -53,17 +49,21 @@ public class NoticeMessageServiceTest {
 	@Test
 	public void testSendNoticeMessage() throws Exception {
 		
-//		NoticeMessage message = new NoticeMessage();
-//		message.setSender("진구네나무#노진구");//누가 댓글을 남겼는지
-//		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-//		message.setTreeNo(1); //1번나무에게
-//		message.setNoticeMessageDetail("게시글에 댓글이 달렸어요~");
+		NoticeMessage message = new NoticeMessage();
+		message.setSender("진구네나무#노진구");//누가 댓글을 남겼는지
+		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+		message.setTreeNo(1); //1번나무에게
+		message.setNoticeMessageDetail("게시글에 댓글이 달렸어요~");
 		
-//		message.setSender("가을하늘공활한데숲");//숲아이디 
-//		message.setNoticeMessageType('2'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-//		message.setTreeNo(1); //1번나무에게
-//		message.setForestNo(1); // 숲번호
-//		message.setNoticeMessageDetail("초대 했습니다.");
+		noticeMessageService.sendNoticeMessage(message);
+		
+		message.setSender("가을하늘공활한데숲");//숲아이디 
+		message.setNoticeMessageType('2'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+		message.setTreeNo(1); //1번나무에게
+		message.setForestNo(1); // 숲번호
+		message.setNoticeMessageDetail("초대 했습니다.");
+		
+		noticeMessageService.sendNoticeMessage(message);
 		
 //		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
 //		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
@@ -71,7 +71,9 @@ public class NoticeMessageServiceTest {
 //		message.setForestNo(1); // 1번 숲에게
 //		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
 		
-		NoticeMessage message = new NoticeMessage();
+		noticeMessageService.sendNoticeMessage(message);
+		
+//		NoticeMessage message = new NoticeMessage();
 		message.setSender("관리자");//누가 댓글을 남겼는지
 		message.setNoticeMessageType('1'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
 		message.setTreeNo(1); //1번나무에게
@@ -108,6 +110,56 @@ public class NoticeMessageServiceTest {
 		
 		
 	}
+	
+//	@Test
+	public void testGetTreeNoticeMessageList() throws Exception{
+		Search search = new Search();
+		
+		search.setCurrentPage(1);
+		search.setPageSize(3);
+		
+		int treeNo = 1;
+		
+		System.out.println(search.getEndRowNum());
+		
+	Map<String, Object> map =	noticeMessageService.getTreeNoticeMessageList(treeNo, search);
+	BasicConfigurator.configure();
+	logger.debug("[debug : list]"+map.get("list"));
+		
+	
+		
+		
+		
+	}
+	
+//	@Test
+	public void testGetTreeNoticeMessageStateCount() throws Exception{
+		
+		
+		int treeNo = 1;
+		
+		
+	BasicConfigurator.configure();
+	logger.debug("[debug : COUNT]"+noticeMessageService.getTreeNoticeMessageStateCount(treeNo));
+		
+		
+	}
+	
+//	@Test
+	public void testupdateTreeNoticeMessageState() throws Exception{
+		
+		
+		int treeNo = 1;
+		
+		
+	BasicConfigurator.configure();
+	noticeMessageService.updateNoticeMessageState(treeNo);
+	logger.debug("[debug : COUNT]"+noticeMessageService.getTreeNoticeMessageStateCount(treeNo));
+		
+		
+	}
+	
+	
 	
 
 		
