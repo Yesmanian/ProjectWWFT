@@ -13,9 +13,9 @@ public interface ProfileDao {
 	// SELECT ONE
 	public Profile getProfile(int profileNo) throws Exception ;
 
-//	// SELECT LIST
-//	public List<Profile> getProfileList(Search search) throws Exception ;
-//
+	// SELECT LIST
+	public List<Profile> getProfileList() throws Exception ;
+
 	// UPDATE
 	public void updateProfile(Profile profile) throws Exception ;
 

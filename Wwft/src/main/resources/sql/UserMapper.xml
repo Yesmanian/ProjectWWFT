@@ -28,7 +28,7 @@
 	 
 	 <select 	id="getUser"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
-					user_id , tree_no , password , email , user_reg_date , user_withdraw_reg_date , user_state 		
+		user_id , tree_no , password , email , user_reg_date , user_withdraw_reg_date , user_state 		
 		FROM users 
 		WHERE user_id = #{value}
 	 </select> 
@@ -47,11 +47,11 @@
 	<!-- SQL : SELECT LIST -->
 	 <select  id="getUserList"  	resultMap="userSelectMap">
 	  	SELECT 
-	  		user_id AS userId
-			email AS email
+	  		user_id AS userId,
+			email AS email,
 			user_reg_date AS userRegDate
 		FROM users
-		ORDER BY userRegDate
+		ORDER BY userId
 			
 	 </select>  
 	 
