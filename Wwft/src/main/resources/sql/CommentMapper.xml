@@ -36,11 +36,12 @@
 	 
 	 </select>
 	 
-	 <select id="getCommentList" parameterType="string" resultMap="commentSelectMap">
+	 <select id="getCommentList" parameterType="int" resultMap="commentSelectMap">
 	 	SELECT
-	 	comment_no,comment_writer,comment_reg_date,comment_detail
+	 	comment_no,comment_writer,comment_reg_date,comment_detail,post_no,tree_no
 		FROM comments
-		WHERE post_no= #{postNo}
+		WHERE post_no= #{postNo} 
+		ORDER BY comment_no
 	 
 	 </select>
 	 

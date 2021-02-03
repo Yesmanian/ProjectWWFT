@@ -5,5 +5,72 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		
 <mapper namespace="AdminMapper">
-
+	
+	<resultMap type="report" id="reportSelectMap">
+		<result property="reportNo" column="REPORT_NO" jdbcType="NUMERIC"/>
+		<result property="reporterTreeNo" column="REPORTER_TREE_NO" jdbcType="NUMERIC"/>
+		<result property="reportedPostNo" column="REPORTED_POST_NO" jdbcType="NUMERIC"/>
+		<result property="reportedTreeNo" column="REPORTED_TREE_NO" jdbcType="NUMERIC"/>
+		<result property="reportType" column="REPORT_TYPE" jdbcType="CHAR"/>
+		<result property="reportState" column="REPORT_STATE" jdbcType="CHAR"/>
+		<result property="reportRegDate" column="REPORT_REG_DATE" jdbcType="DATE"/>
+	</resultMap>
+	
+	
+	
+	<insert id="addReport" parameterType="report">
+		INSERT
+		INTO REPORT (REPORT_NO,REPORTER_TREE_NO,REPORTED_POST_NO
+					,REPORTED_TREE_NO,REPORT_TYPE,REPORT_STATE,REPORT_REG_DATE)
+		VALUES	( SEQ_REPORT_NO.nextval,#{reporterTreeNo},#{reportedPostNo},#{reportedTreeNo},
+					#{reportType},#{reportState},SYSDATE)
+	</insert>
+	
+	<select id="getReportList" parameterType="search" resultMap="reportSelectMap">
+		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM		(	SELECT REPORT_NO , REPORTER_TREE_NO,REPORTED_POST_NO,REPORTED_TREE_NO,
+	  									REPORT_TYPE,REPORT_STATE,REPORT_REG_DATE
+											FROM REPORT
+											<if test="searchCondition != null">
+												<where>
+													<if test="searchCondition == 0 and searchKeyword !='' ">
+										 				REPORT_NO = #{searchKeyword}
+													</if>
+													<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				REPORT_TYPE = #{searchKeyword}
+													</if>
+													<if test="searchCondition == 2 and searchKeyword !='' ">
+										 				REPORT_STATE = #{searchKeyword}
+													</if>
+												</where>
+											</if>
+											ORDER BY REPORT_NO ) inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+	<!-- SQL : SELECT ROW Count -->	 
+	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT REPORT_NO , REPORTER_TREE_NO,REPORTED_POST_NO,REPORTED_TREE_NO
+						FROM REPORT
+						<if test="searchCondition != null">
+							<where>
+								<if test="searchCondition == 0 and searchKeyword !='' ">
+					 				REPORT_NO = #{searchKeyword}
+								</if>
+								<if test="searchCondition == 1 and searchKeyword !='' ">
+					 				REPORT_TYPE = #{searchKeyword}
+								</if>
+								<if test="searchCondition == 2 and searchKeyword !='' ">
+					 				REPORT_STATE = #{searchKeyword}
+								</if>
+							</where>
+						</if> ) countTable						
+	 </select>
+	
+	
+	
+	
 </mapper>

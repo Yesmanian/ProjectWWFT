@@ -67,20 +67,25 @@ public class PostDaoImpl implements PostDao {
 
 	
 	@Override
-	public void addImageAndLike(Map<String, Object> map) throws Exception {
-		 sqlSession.insert("ImageAndLikeMapper.addImageAndLike", map);
+	public void addImageAndLike(ImageAndLike imageAndLike) throws Exception {
+		
+		System.out.println("postDaoImpl:addImageAndLikeµé¾î¿È");
+		sqlSession.insert("ImageAndLikeMapper.addImageAndLike", imageAndLike);
 	}
 	
 
 
 	@Override
-	public ImageAndLike getImageAndLike(int imageAndLikeNo) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", imageAndLikeNo);
+	public ImageAndLike getImageAndLike(int postNo) throws Exception {
+			
+		//sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", postNo);
+		int minPostNo = sqlSession.selectOne("ImageAndLikeMapper.getMinImageAndLike", postNo);
+			System.out.println("minPostNo"+minPostNo);
+		return sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", minPostNo);
 	}
 	
 	@Override
-	public List<ImageAndLike> getImageAndLikeList(int postNo) throws Exception {
+	public List<String> getImageAndLikeList(int postNo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("ImageAndLikeMapper.getImageAndLikeList", postNo);
 	}

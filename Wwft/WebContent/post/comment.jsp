@@ -9,16 +9,25 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
     <script>
 /*
  * 댓글 등록하기(Ajax)
  */
-function fn_comment(code){
+function fn_comment(commentPostNo){
     
     $.ajax({
-        type:'POST',
-        url : "<c:url value='/comment/addComment'/>",
-        data:$("#commentForm").serialize(),
+       
+        url : "/comment/json/addComment/",
+        method :'POST',
+        data : $("#commentForm").serialize(),
+        dateType : "json",
+        headers : {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json"
+		},
         success : function(data){
             if(data=="success")
             {
@@ -49,7 +58,7 @@ function getCommentList(){
     
     $.ajax({
         type:'GET',
-        url : "<c:url value='/comment/getcommentList'/>",
+        url : "/comment/json/getCommentList/",
         dataType : "json",
         data:$("#commentForm").serialize(),
         contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -105,14 +114,14 @@ function getCommentList(){
                             <textarea style="width: 1100px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
                             <br>
                             <div>
-                                <a href='#' onClick="fn_comment('${result.code }')" class="btn pull-right btn-success">등록</a>
+                                <a href='#' onClick="fn_comment('${post.postNo }')" class="btn pull-right btn-success">등록</a>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-        <input type="hidden" id="b_code" name="b_code" value="${result.code }" />        
+        <input type="hidden" id="postNo" name="postNo" value="${post.postNo }" />        
     </form>
 </div>
 <div class="container">

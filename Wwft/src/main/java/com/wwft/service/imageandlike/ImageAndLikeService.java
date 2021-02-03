@@ -1,3 +1,4 @@
+/*
 package com.wwft.service.imageandlike;
 
 import java.io.File;
@@ -6,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,3 +31,4 @@ public interface ImageAndLikeService {
 	public List<String> updateImageAndLike(ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 	
 }
+*/
