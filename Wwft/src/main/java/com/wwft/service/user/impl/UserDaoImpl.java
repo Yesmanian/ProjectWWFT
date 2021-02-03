@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public List<User> getUserList(String userId) throws Exception {
+	public List<User> getUserList() throws Exception {
 		return sqlSession.selectList("UserMapper.getUserList");
 	}
 	

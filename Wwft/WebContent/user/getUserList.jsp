@@ -1,48 +1,73 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%@ page pageEncoding="EUC-KR"%>
-<!DOCTYPE html >
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<title>회원 목록</title>
-	<script src="https://cod.jquery.com/jquery-4.5.3.min.js"></script>
-	<script type="js/bootstrap.js"></script>
+<title>회원 목록</title>
+
+<link rel="stylesheet" href="/css/admin.css" type="text/css">
+
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+
+
+</script>
 </head>
-<body>
-	<br>
-	<div class="container">
-		<div class="form-group row pull-right">
+<body leftmargin="0" topmargin="0">
+
+	<p>${user.userId}님로그인을 유지중</p>
+	<!-- *********************************************** -->
+	<form name="frmList" id="frmList">
+	
+		<p align="center">
+			<u>회원 목록</u>
+		</p>
+		
+		<div align="right" class="form-group row pull-right">
 			<div class="col-xs-8">
 				<input class="form-control" type="text" size="20">
 			</div>
-			<div class="col-xs-2">
-				<button class="btn btn-primary" type="button">검색</button>
+			<div align="right" class="col-xs-2">
+				<button class="btn btn-primary pull-right" type="button">검색</button>
 			</div>
-		</div>	
-		<table class="table" style="text-align: center; border: 1px solid #dddddd">
-			<thead>
-				<tr>
-					<th style="background-color: #fafafa; text-align: center;">아이디</th>
-					<th style="background-color: #fafafa; text-align: center;">이메일</th>
-					<th style="background-color: #fafafa; text-align: center;">가입날짜</th>
-					<th style="background-color: #fafafa; text-align: center;">기타</th>
-				</tr>
-			</thead>
-		</table>
 		</div>
+		
+		<table align="center" width="80%" border="1" cellspacing="0"
+			cellpadding="0">
+
+			<tr>
+				<th style="background-color: #fafafa; text-align: center;">아이디</th>
+				<th style="background-color: #fafafa; text-align: center;">이메일</th>
+				<th style="background-color: #fafafa; text-align: center;">가입날짜</th>
+			</tr>
 			
-	
-	</body>
-	
+			<c:forEach items="${getUserList}" var="list">
+				<tr align="center" style="padding: 2 0 2 0">
+					<td>${list.userId}&nbsp;</td>
+					<td>${list.email}&nbsp;</td>
+					<td>${list.userRegDate}&nbsp;</td>
+				</tr>
+			</c:forEach>
 
+			<tr>
+				<td align="center">&nbsp;${user.userId}</td>
+				<td align="center">&nbsp;${user.email}</td>
+				<td align="center">&nbsp;${user.userRegDate}</td>
+			</tr>
 
-
+		</table>
+		<div align="center">
+		<Button onclick="location.href='/uesr/loginOk.jsp'">돌아가기</Button>
+		</div>
+		<div align="center">
+			[<a href="/user/loginOk.jsp">뒤로가기</a>]
+		</div>
+	</form>
 
 </body>
 </html>

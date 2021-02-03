@@ -41,12 +41,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Map<String, Object> getUserList(String userId) throws Exception {
-		List<User> list= userDao.getUserList(userId);
+	public List<User> getUserList() throws Exception {
+		List<User> list= userDao.getUserList();
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list );
-		return map;
+		return list;
 	}
 
 	@Override
@@ -76,15 +74,15 @@ public class UserServiceImpl implements UserService{
 ////		
 ////	}
 //	
-//	@Override
-//	public boolean checkDuplication(String userId) throws Exception {
-//		boolean result=true;
-//		User user=userDao.getUser(userId);
-//		if(user != null) {
-//			result=false;
-//		}
-//		return result;
-//	}
+	@Override
+	public boolean checkDuplication(String userId) throws Exception {
+		boolean result=true;
+		User user=userDao.getUser(userId);
+		if(user != null) {
+			result=false;
+		}
+		return result;
+	}
 	@Override
 	public void removeUser(User user) throws Exception {
 		userDao.removeUser(user);
