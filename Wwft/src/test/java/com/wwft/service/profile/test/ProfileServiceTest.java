@@ -1,5 +1,7 @@
 package com.wwft.service.profile.test;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +30,7 @@ public class ProfileServiceTest {
 	@Qualifier("profileServiceImpl")
 	private ProfileService profileService;
 	
-	@Test
+	//@Test
 	public void testAddProfile() throws Exception {
 			
 		Profile profile = new Profile();
@@ -44,7 +46,7 @@ public class ProfileServiceTest {
 			
 		profile = profileService.getProfile(46);
 	}
-	@Test
+	//@Test
 	public void testGetProfile() throws Exception {
 				
 		Profile profile = new Profile();
@@ -60,7 +62,7 @@ public class ProfileServiceTest {
 				
 	}
 	
-	@Test
+	//@Test
 	public void testUpdateUser() throws Exception{
 		
 		
@@ -85,7 +87,7 @@ public class ProfileServiceTest {
 		//==> console 확인
 		//System.out.println(profile);
 	}
-	@Test
+	//@Test
 	public void testRemoveProfile() throws Exception{
 			
 		Profile profile = profileService.getProfile(46);
@@ -101,6 +103,16 @@ public class ProfileServiceTest {
 		//==> console 확인
 		System.out.println(profile);
 	}
-
+	 @Test
+	 public void testGetProfileList() throws Exception{
+		 System.out.println("profileList =================");
+		 
+	 	List<Profile> list = profileService.getProfileList();
+	 	
+	 	System.out.println(list.size());
+	 	
+	 	//==> console 확인
+	 	System.out.println(list);
+	 }
 	
 }

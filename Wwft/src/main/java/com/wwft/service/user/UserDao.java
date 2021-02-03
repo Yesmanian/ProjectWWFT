@@ -15,7 +15,7 @@ public interface UserDao {
 		public User getUser(String userId) throws Exception ;
 
 		// SELECT LIST
-		public List<User> getUserList(String userId) throws Exception ;
+		public List<User> getUserList() throws Exception ;
 
 		// UPDATE
 		public void updateUser(User user) throws Exception ;

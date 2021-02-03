@@ -2,6 +2,8 @@ package com.wwft.web.user;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wwft.service.domain.User;
 import com.wwft.service.user.UserService;
@@ -49,19 +52,22 @@ public class UserController {
 		
 		return "redirect:/user/login.jsp";
 	}
+
 	
 	
-	@RequestMapping( value="getUser", method=RequestMethod.GET )
+	@RequestMapping( value="getUser", method=RequestMethod.GET  )
 	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
 		
 		System.out.println("/user/getUser : GET");
+		System.out.println("/user/getUser start..");		
 		//Business Logic
 		User user = userService.getUser(userId);
 		// Model 과 View 연결
 		model.addAttribute("user", user);
 		
-		return "redirect:/user/getUser.jsp";
+		return "forward:/user/getUser.jsp";
 	}
+	
 	@RequestMapping( value="updateUser", method=RequestMethod.GET)
 	public String updateUser(@RequestParam("userId") String userId , Model model ) throws Exception {
 		
@@ -72,7 +78,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		
 		
-		return "redirect:/user/updateUser.jsp";
+		return "forward:/user/updateUser.jsp";
 	}
 	
 	@RequestMapping( value="updateUser", method=RequestMethod.POST )
@@ -93,20 +99,23 @@ public class UserController {
 	
 	@RequestMapping(value = "getUserList", method = RequestMethod.GET)
 	public String getUserList(HttpSession session, Model model) throws Exception{
+	
+		System.out.println("/user/getUserList start..");
 		// 1. 관리자 세션 제어
 		String id = (String) session.getAttribute("id");
 		if(id == null || !(id.equals("admin"))){
 			return "redirect:/user/getUserList";
 	}
-
+			
+		System.out.println("/user/getUserList end..");
 		// 2. 서비스 - 회원 목록 가져오는 동작
 		//List<MemberVO> memberList = service.getMemberList();
 
 		// 3. 정보 저장 -> 뷰(/member/memberlist.jsp) -> (Model 객체 )
-		model.addAttribute("getUserList", userService.getUserList(id));
+		model.addAttribute("getUserList", userService.getUserList());
 
 		// 4. 페이지이동
-		return "/user/getUserList";
+		return "forward:/user/getUserList.jsp";
 	}	
 	
 	
@@ -120,7 +129,7 @@ public class UserController {
 	
 	
 	@RequestMapping( value="login", method=RequestMethod.POST )
-	public String login(@ModelAttribute("user") User user , HttpSession session ) throws Exception{
+	public String login(@ModelAttribute("user") User user , HttpSession session, HttpServletResponse response) throws Exception{
 		
 		System.out.println("/user/login : POST");
 		//Business Logic
@@ -128,22 +137,22 @@ public class UserController {
 		
 		if( user.getPassword().equals(dbUser.getPassword())){
 			session.setAttribute("user", dbUser);
+		Cookie userCookie = new Cookie("userId",user.getUserId());
+		response.addCookie(userCookie);
 		}
 		
-		return "redirect:/user/loginOk.jsp";
+		return "redirect:/profile/getProfileList.jsp";
 	}
 	
 	
-	@RequestMapping( value="logout", method=RequestMethod.POST )
+	@RequestMapping( value="logout", method=RequestMethod.GET )
 	public String logout(HttpSession session ) throws Exception{
 		
 		System.out.println("/user/logout : POST");
 		
 		session.invalidate();
 		
-		return "redirect:/user/login.jsp";
-		
-		
+		return "redirect:/user/login.jsp";	
 	}
 	
 	
@@ -156,5 +165,39 @@ public class UserController {
 		
 		return "redirect:/user/removeUser.jsp";
 	}
-
+	
+	@RequestMapping( value="findId", method=RequestMethod.GET )
+	public String findId(@ModelAttribute("user") User user , HttpSession session ) throws Exception{
+		
+		System.out.println("/user/findId : GET");
+		
+		session.invalidate();
+		
+		return "redirect:/user/findId.jsp";
+	}
+	
+	@RequestMapping( value="findPassword", method=RequestMethod.GET )
+	public String findPassword(@ModelAttribute("user") User user , HttpSession session ) throws Exception{
+		
+		System.out.println("/user/findPassword : GET");
+		
+		session.invalidate();
+		
+		return "redirect:/user/findPassword.jsp";
+	}
+	
+	@RequestMapping(value = "post")
+	@ResponseBody
+	public String record(@RequestParam("userid") String userID) throws Exception {
+		System.out.println("ajax call :" + userID);
+		String returnValue = "";
+		boolean isUser =  userService.checkDuplication(userID);
+		if(isUser == false) {
+			returnValue = "error";
+		}
+		else {
+			returnValue = "success";
+		}
+		return returnValue;
+	}
 }

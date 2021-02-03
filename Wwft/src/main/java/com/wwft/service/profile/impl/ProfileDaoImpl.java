@@ -37,12 +37,12 @@ public class ProfileDaoImpl implements ProfileDao {
 	public Profile getProfile(int profileNo) throws Exception {
 		return sqlSession.selectOne("ProfileMapper.getProfile", profileNo);
 	}
-//	
-//	@Override
-//	public List<Profile> getProfileList(Search search) throws Exception {
-//		return sqlSession.selectList("ProfileMapper.getProfileList", search);
-//	}
-//	
+	
+	@Override
+	public List<Profile> getProfileList() throws Exception {
+		return sqlSession.selectList("ProfileMapper.getProfileList");
+	}
+	
 	@Override
 	public void updateProfile(Profile profile) throws Exception {
 		sqlSession.update("ProfileMapper.updateProfile", profile);
@@ -52,5 +52,6 @@ public class ProfileDaoImpl implements ProfileDao {
 	public void removeProfile(Profile profile) throws Exception {
 		 sqlSession.delete("ProfileMapper.removeProfile", profile);
 	}
+
 
 }
