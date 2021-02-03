@@ -50,7 +50,11 @@
         
 
     </style>
-    
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.css">
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
@@ -303,17 +307,49 @@
                 </tr>
             </tbody>
         </table>
-       
-         <input type='radio' name='postState' value='0' />공개
-  		<input type='radio' name='postState' value='1' />비공개
+	     <label class="radio-inline">
+			  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 공개
+		</label>
+		<label class="radio-inline">
+			  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 비공개
+		</label>
+        
          <br/>
-         
-       <input type="button" value="등록" onclick="fncAddPost();"/>
+         <button type="button" class="btn btn-lg btn-primary" disabled="disabled" value="등록" onclick="fncAddPost();"/>
+     <!--  // <input type="button" value="등록" onclick="fncAddPost();"/> -->
  
       
     </form>
    <%--  <%@ include file="/WEB-INF/include/include-body.jspf" %>   --%>
-     
+     <div class="container">
+		<div class="row">
+			<form method="post" action="writeAction.jsp">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2"
+								style="background-color: #eee; text-align: center;">게시판 글쓰기
+								양식</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control"
+								placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+						</tr>
+						<tr>
+							<td><textarea type="text" class="form-control"
+									placeholder="글 내용" name="bbsContent" maxlength="2048"
+									style="height: 350px;">
+                        </textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			</form>
+		</div>
+	</div>
     
 </body>
 </html>

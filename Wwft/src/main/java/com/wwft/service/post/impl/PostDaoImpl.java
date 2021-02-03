@@ -2,6 +2,7 @@ package com.wwft.service.post.impl;
 
 
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
 
@@ -49,9 +50,28 @@ public class PostDaoImpl implements PostDao {
 	}
 	
 	@Override
-	public List<Post> getPostList(int postTreeNo) throws Exception {
+	public List<Post> getPostList(Search search,int postTreeNo) throws Exception {
+		System.out.println("PostDaoImpl getPostListµé¾î¿ÔÀ½");
+		System.out.println("@@@@@@@@@@@@@@@@@@8888888"+search.getSearchCondition());
+		System.out.println(search.getSearchKeyword());
 		
-		return sqlSession.selectList("PostMapper.getPostList", postTreeNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("postTreeNo", postTreeNo);
+		
+		List<Post> list = sqlSession.selectList("PostMapper.getPostList", map);
+		
+		System.out.println(list.size());
+		
+		System.out.println("PostDaoImpl getPostList Mapper°¬´Ù¿È");
+		
+		return list;
+	}
+	
+	@Override
+	public List<String> getAlbumList(int postTreeNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PostMapper.getAlbumList", postTreeNo);
 	}
 
 
@@ -84,6 +104,8 @@ public class PostDaoImpl implements PostDao {
 		return sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", minPostNo);
 	}
 	
+	
+	
 	@Override
 	public List<String> getImageAndLikeList(int postNo) throws Exception {
 		// TODO Auto-generated method stub
@@ -102,6 +124,8 @@ public class PostDaoImpl implements PostDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("PostMapper.lastPostNo");
 	}
+
+	
 
 	
 

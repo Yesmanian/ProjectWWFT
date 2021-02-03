@@ -1,12 +1,6 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <!DOCTYPE html>
 
@@ -17,15 +11,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getPost화면</title>
-<!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
-    
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
-  <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
- <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>  -->
+    
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <style type="text/css">
 	
@@ -132,27 +122,27 @@ img {vertical-align: middle;}
 </head>
 <body>
 <form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="postNo" value="${post.postNo}">
-	<input type="hidden"  name="menu" value="${menu}" />
+	<input type="hidden" name="postNo" value="${post.postNo }">
+	<input type="hidden"  name="menu" value=${menu} />
 
 
 <div class="slideshow-container shadow-lg bg-white">
-<c:set var ="i" value="0"/>
+<%-- <c:set var ="i" value="0"/>
 <c:forEach var="file" items="${fileList}">
-	<c:set var ="i" value="${i+1}"/>
+	<c:set var ="i" value="${i+1 }"/>
 		<div class="mySlides fade">
-		  <div class="numbertext">1 / 3</div>
+		  <div class="numbertext">${i} / 3</div>
 		  <img src = "/resources/images/uploadFiles/${file}" style=" width:50%; display: block; margin: 0px auto;">
 	</div>
-</c:forEach>
-
-
-<!-- "C:\\uploadFiles\\"; -->
+</c:forEach> --%>
 
 
 
 
-<!-- <div class="mySlides fade">
+
+
+
+ <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
   <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_11.jfif" style=" width:50%; display: block; margin: 0px auto;">
 </div>
@@ -166,11 +156,11 @@ img {vertical-align: middle;}
   <div class="numbertext" >3 / 3</div>
   <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_14.jfif" style=" width:50%; display: block; margin: 0px auto;">
 </div> -->
-</div>
+
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-<!-- </div> -->
+ </div> 
 <br>
 
 <div style="text-align:center">
@@ -178,25 +168,30 @@ img {vertical-align: middle;}
   <span class="dot"  onclick="currentSlide(2)"></span> 
   <span class="dot"  onclick="currentSlide(3)"></span> 
   
-  <p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p>
+  <p style="display: block; margin: 0px auto;"><h4>2020-02-02</h4> </p>
   <button type="button" class="btn btn-danger" style="">신고</button>
 </div>
 
 <div style="text-align:center;">
 <p style="width:500px; display: block; margin: 0px auto;">
-${post.postDetail}
+게시글입니다
+두번째 게시글입니다
+세번째 게시글 입니다
+네버째 게시글 입니다
+다섯번째 게시글 입니다
+게시글입니다
+두번째 게시글입니다
+세번째 게시글 입니다
+네버째 게시글 입니다
+다섯번째 게시글 입니다
 </p>
 </div>
-</form>
- </tr></tr></tr> </tr></tr>
-   
-  
- 
 
-<div class="container" style=" width:50%; display: block; margin: 0px auto;">
-	<form id="commentForm" name="commentForm" method="post">
+
+<div class="container">
+
 	<div class="shadow-lg p-4 mb-2 bg-white author" style=" width:50%; display: block; margin: 0px auto;">
-		  <p><span ><strong>Comment</strong></span>  <span id="cCnt"></span></p> 
+		  <span><strong>Comment</strong></span>  <span id="cCnt"></span>	    
        <textarea style="width: 500px" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
                 <!-- <div> -->
             <a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
@@ -208,13 +203,12 @@ ${post.postDetail}
 			 
 			</div>
 		   </div><!--/ col-lg-3 -->
-		   <div class="container"  style=" width:500px; display: block; margin: 0px auto;">
-		    <form id="commentListForm" name="commentListForm" method="post">
-		        <div id="commentList">
-		       
-		        </div>
-    		</form>
-		</div>
+		   <div class="container">
+    <form id="commentListForm" name="commentListForm" method="post">
+        <div id="commentList">
+        </div>
+    </form>
+</div>
 </div>
 	</form>
 	
@@ -284,7 +278,7 @@ ${post.postDetail}
 		
 		var commentNo = $('input[name=commentNo]').val();
 		var postNo = $('input[name=commentPostNo]').val();
-		alert(commentNo);
+		//alert(commentNo);
 	    $.ajax({
 	       
 	        url : "/comment/json/removeComment/"+commentNo,
@@ -349,24 +343,12 @@ ${post.postDetail}
 	           // alert(res.length);
 	            if(res.length > 0){
 	                
-	                 for(i=0; i<res.length; i++){
-	                	 
-	                	   html += `<div style= width:50%; display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
-		                	   </strong></h6>\${res[i].commentDetail} 
-		                	   <a href=# onClick=remove_comment(\${res[i].commentNo}) class = btn pull-right btn-success style=text-decoration:none>삭제</a>
-		                	   <input type=hidden name=commentNo
-		                	   value='\${res[i].commentNo}'<tr><td></td></tr></table></div></div>`;
-	                	/*    html += `<div style= width:50%; display: block; margin: 0px auto;> \${res[i].commentRegDate}<tr><strong>\${res[i].commentWriter}
-	                	   </strong></h6>\${res[i].commentDetail} 
-	                	   <a href=# onClick=remove_comment(\${res[i].commentNo}) class = btn pull-right btn-success>삭제</a>
-	                	   <input type=hidden name=commentNo
-	                	   value='\${res[i].commentNo}'</div>`; */
-		                   
-	                  /*    html += "<div>";
+	                for(i=0; i<res.length; i++){
+	                    html += "<div>";
 	                    html += res[i].commentRegDate + "<tr><td></td></tr>";
 	                    html +=" <div><table class='table'><h6><strong>"+res[i].commentWriter+"</strong></h6>";
 	                    html += res[i].commentDetail + "<tr><td></td></tr>&emsp; <a href='#' onClick=\'remove_comment("+res[i].commentNo+")\; return false;' class='btn pull-right btn-success'>삭제</a><input type='hidden' name='commentNo' value='"+res[i].commentNo+"'>";
-	                    html += "</table></div>"; 							 */
+	                    html += "</table></div>";							
 	                   // html += "</div><input type= 'button' value='삭제'><input type='hidden' name='commentNo' value='${res[i].commentNo }'>";
 	                   
 	                }
