@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wwft.service.domain.Tree;
 import com.wwft.service.domain.User;
+import com.wwft.service.tree.TreeService;
 import com.wwft.service.user.UserService;
 
 @Controller
@@ -27,7 +29,11 @@ public class UserController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
-		
+	
+	@Autowired
+	@Qualifier("treeServiceImpl")
+	private TreeService treeService;
+	
 	public UserController() {
 		
 		System.out.println("User Controller"+this.getClass());
@@ -44,14 +50,18 @@ public class UserController {
 	
 	
 	@RequestMapping( value = "addUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute() User user) throws Exception{
+	public String addUser(@ModelAttribute() User user,@ModelAttribute Tree tree) throws Exception{
 		System.out.println("/user/addUser: POST");
 		System.out.println(user);
-		
+		System.out.println(tree);
 		userService.addUser(user);
+		treeService.addTree(tree);
+		userService.updateUser(user);
+		
 		
 		return "redirect:/user/login.jsp";
 	}
+	
 
 	
 	
@@ -134,14 +144,12 @@ public class UserController {
 		System.out.println("/user/login : POST");
 		//Business Logic
 		User dbUser=userService.getUser(user.getUserId());
-		
+		dbUser.setTreeNo(1);
 		if( user.getPassword().equals(dbUser.getPassword())){
 			session.setAttribute("user", dbUser);
-		Cookie userCookie = new Cookie("userId",user.getUserId());
-		response.addCookie(userCookie);
 		}
 		
-		return "redirect:/profile/getProfileList.jsp";
+		return "redirect:/profile/getProfileList";
 	}
 	
 	

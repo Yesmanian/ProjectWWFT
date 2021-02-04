@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
-import com.wwft.service.imageandlike.ImageAndLikeService;
 import com.wwft.service.post.PostService;
 
 @Controller
