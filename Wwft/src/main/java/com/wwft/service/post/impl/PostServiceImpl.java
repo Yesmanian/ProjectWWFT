@@ -77,20 +77,23 @@ public class PostServiceImpl implements PostService {
 		}
 	
 	@Override
-	public Map<String, Object> getPostList(Search search ,int postTreeNo,int postNo) throws Exception {
+	public Map<String, Object> getPostList(Search search ,int postTreeNo) throws Exception {
 		System.out.println("getPostList들어왔나");
 		System.out.println(postTreeNo);
-		System.out.println(postNo);
+		/* System.out.println(postNo); */
 		
 		List<Post> list = postDao.getPostList(search,postTreeNo);
 		List<String> albumList = postDao.getAlbumList(postTreeNo);
 		
-		ImageAndLike fileName = postDao.getImageAndLike(postNo);
-			
+		/*
+		 * ImageAndLike fileName = postDao.getImageAndLike(postNo);
+		 * System.out.println("getPostList에서 filName"+fileName);
+		 */
+		System.out.println("list !!!!!!!111?????? : "+list.get(0).getPostNo());
 		System.out.println("???????????????"+albumList.size());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
-		map.put("fileName", fileName);
+		/* map.put("fileName", fileName); */
 		map.put("albumList", albumList);
 		
 
@@ -98,7 +101,7 @@ public class PostServiceImpl implements PostService {
 		 * Map<String, Object> map = new HashMap<String,Object>(); map.put("list",
 		 * list);
 		 */
-		
+		System.out.println("postServiceImpl에서 controller로 넘어간다");
 		return map;
 	
 	}

@@ -123,12 +123,12 @@ public class PostServiceTest {
 	 * post.getAlbumName()); 
 	 */
 	}
-	 // @Test
+	//  @Test
 	public void testGetPostListAll() throws Exception{
 	  
 		  Search search = new Search();
 		  search.setCurrentPage(1);
-		  search.setPageSize(3);
+		  search.setPageSize(9);
 		  
 	  
 	  Post post = new Post(); 
@@ -140,18 +140,18 @@ public class PostServiceTest {
 	  imageAndLike.setImageAndLikeState("0");
 	  imageAndLike.setDeleteImageState("N");
 	  
-	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo(), imageAndLike.getPostNo());
+	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo());
 
 
 	  List<Post> dbList = (List<Post>)map.get("list");
-	  ImageAndLike dbfileName = (ImageAndLike)map.get("fileName");
+	  
 	  List<String> albumList = (List<String>)map.get("albumList");
 	 
 	  System.out.println("!!!!!!!!!!!!!!!!여기야"+dbList.size());
 	  System.out.println("!!!!!!!!!!!!!!!!여기야!!!!!!!!!!!!!!!!!!11"+albumList.size());
 	  
-	  Assert.assertEquals(3, dbList.size());
-	  Assert.assertEquals("24067966-7956-4676-8d6d-d0c402c09665_8.jpg", dbfileName.getSaveImageName());
+	  Assert.assertEquals(9, dbList.size());
+	 // Assert.assertEquals("24067966-7956-4676-8d6d-d0c402c09665_8.jpg", dbfileName.getSaveImageName());
 	  Assert.assertEquals(7, albumList.size());
 	  
 	  
@@ -160,7 +160,7 @@ public class PostServiceTest {
 	  
 	  }
 	
-	  @Test
+	//  @Test
 	public void testGetPostListByAlbum() throws Exception{
 	  
 		  Search search = new Search();
@@ -178,7 +178,7 @@ public class PostServiceTest {
 	  imageAndLike.setImageAndLikeState("0");
 	  imageAndLike.setDeleteImageState("N");
 	  
-	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo(), imageAndLike.getPostNo());
+	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo());
 
 
 	  List<Post> dbList = (List<Post>)map.get("list");
