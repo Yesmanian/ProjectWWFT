@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wwft.service.domain.BucketList;
+import com.wwft.service.domain.Tree;
 import com.wwft.service.tree.TreeService;
 
 @RestController
@@ -40,53 +42,28 @@ public class TreeRestController {
 		return map;
 	}	
 	
-	@RequestMapping(value = "json/updateBucketList")
-	public Map<String, Object> updateBucketList(@RequestBody BucketList bucketList) throws Exception{
 		
-		System.out.println("json/updateBucketList : START");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("bucketList", bucketList);
-		treeService.updateBucketList(bucketList);
-		
-		return map;
-		
-	}
-		
-	@RequestMapping(value = "json/removeBucketList", method = RequestMethod.POST)
-	public Map<String, Object> removeBucketList(@RequestBody BucketList bucketList) throws Exception{
-		
-		System.out.println("json/removeBucketList : START");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("bucketList", bucketList);
-		System.out.println("»Æ¿Œ:"+map);
-		treeService.removeBucketList(bucketList);
-		
-		return map;
-		
-	}
-		
-		
-	
-		
-	
-		
-	@RequestMapping(value = "json/getBucketList", method = RequestMethod.GET)
-	public Map<String, Object> getBucketList(@RequestBody HashMap<String, Object> treeMap) throws Exception{
-		
-		System.out.println("/tree/json/getBucketList : GET");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-	
-		 map.put("bucketList", treeService.getBucketList((Integer)treeMap.get("treeNo")));
-	
-			System.out.println("/tree/json/getBucketList End");
 
+	@RequestMapping(value = "json/updateFamilyMotto", method = RequestMethod.POST)
+	public Map	addFamilyMotto(@RequestBody Tree tree) throws Exception{
+		
+		System.out.println("/tree/json/updateFamilyMotto : POST");
+		
+		System.out.println(tree);
+			
+		treeService.updateFamilyMotto(tree);
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tree", tree);
+
+			
+			
 		return map;
 		
 		}
 		
+
+	
 }
 	
 		 

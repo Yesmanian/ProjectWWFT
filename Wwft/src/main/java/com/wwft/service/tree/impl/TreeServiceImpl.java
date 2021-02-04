@@ -37,10 +37,15 @@ public class TreeServiceImpl implements TreeService {
 		System.out.println("::"+getClass()+":: default Constructor Call..");
 	}
 
+
+
 	@Override
-	public Tree getTree(int treeNo) throws Exception {
-		return treeDao.getTree(treeNo);
+	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception {
+		return treeDao.getUserTree(treeNo, userId);
+	
 	}
+
+
 	
 	@Override
 	public void addTree(Tree tree) throws Exception {
@@ -76,24 +81,12 @@ public class TreeServiceImpl implements TreeService {
 	}
 
 
-	
-	@Override
-	public void addFamilyMotto(Tree tree) throws Exception {
-		treeDao.addFamilyMotto(tree);
-		
-	}
-
-
 	@Override
 	public void updateFamilyMotto(Tree tree) throws Exception {
 		treeDao.updateFamilyMotto(tree);
 		
 	}
 
-	@Override
-	public void removeFamilyMotto(Tree tree) throws Exception {
-		treeDao.removeFamilyMotto(tree);
-	}
 
 
 	@Override
@@ -117,14 +110,20 @@ public class TreeServiceImpl implements TreeService {
 
 
 	@Override
-	public void updateBucketList(BucketList bucketList) throws Exception {
-		treeDao.updateBucketList(bucketList);
+	public void updateBucketList(int bucketListNo) throws Exception {
+		treeDao.updateBucketList(bucketListNo);
 	}
 
 
 	@Override
-	public void removeBucketList(BucketList bucketList) throws Exception {
-		treeDao.removeBucketList(bucketList);
+	public void removeBucketList(int bucketListNo) throws Exception {
+		treeDao.removeBucketList(bucketListNo);
+	}
+
+
+	@Override
+	public Tree getFamilyMotto(int treeNo) throws Exception {
+		return treeDao.getFamilyMotto(treeNo);
 	}
 
 

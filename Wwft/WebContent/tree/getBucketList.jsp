@@ -46,18 +46,15 @@
 	
 	})	
 
-	function fn_del() {
-		
-		if(confirm("정말 삭제하겠습니까?")==true){
-			location.href = "/tree/getBucketList?bucketListNo="+${bucketList.bucketListNo};
-			console.log('success');
-			
-			
-		}
-		
-	}		
 	
-	
+		$(document).ready(function () {
+			$("#delete_bucketList").click(function () {
+				var result = confirm("버킷리스트를 삭제하시겠습니까?");
+				
+			})
+			
+		})
+
 	
 		
 </script>
@@ -69,24 +66,24 @@
 			<header>
 				<h1>버킷리스트 목록</h1>
 			</header>
-			<hr />
+		
 			 
-			<nav>
-			  홈 - 글 작성
-			</nav>
-			<hr />
+			
+			
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
-		<input type = "hidden" id="treeNo"  value="${tree.treeNo }"><br>
 				</form>
 
 		
 		 <input type = "text" 	name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/><br>
 		 <input type = "text" 	name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
-		<button id="btn1"  type="button" >등록</button>
+		<input id="btn1"  type="button" value="등록" >
 		
-	
+		   <input type="button" value="수정하기" onclick='location.href="/tree/updateBucketListView?treeNo=${param.treeNo}"'>
+		<input type="button" value="뒤로가기" onclick="history.back(-1);">
+		
+
 
 	 
 
@@ -103,12 +100,11 @@
 			<form>
 			<div>버킷리스트 번호: ${bucketList.bucketListNo}<br/></div>
 			<div>작성자 : ${bucketList.bucketListWriter}<br/></div>
-			<div id="bucketList_detail">작성 내용 : ${bucketList.bucketListDetail}<br/></div>
+			<div >작성 내용 : ${bucketList.bucketListDetail}<br/></div>
 			<div>작성 일자 : ${bucketList.bucketListRegDate}<br/></div>
-			<div id="bucketList_stamp">도장		: ${bucketList.stampState}<br/></div>
+			<div >도장		: ${bucketList.stampState}<br/></div>
 		
-          <input type="button" value="수정" onclick='location.href="/tree/updateBucketList?bucketListNo=${bucketList.bucketListNo}"'>
-		  <button 	type="button"		onclick="fn_del();">삭제</button>
+          <input type="button" id="delete_bucketList" value="삭제" onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'>
 		</form>
 		</c:forEach>
 	
