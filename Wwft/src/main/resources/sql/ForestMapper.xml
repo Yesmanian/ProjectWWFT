@@ -31,7 +31,15 @@
 		<result property="activityTotalPoint" 	column="activity_total_point" 	jdbcType="NUMERIC" />
 	</resultMap>
 	
-	
+	<resultMap id="postSelectMap" type="com.wwft.service.domain.Post">
+		<result property="postNo" 			column="post_no" 			jdbcType="NUMERIC"/>
+		<result property="postRegDate" 		column="post_reg_date" 			jdbcType="DATE" />
+		<result property="postDetail"	column="post_detail" 		jdbcType="VARCHAR" />
+		<result property="postWriter" 	column="post_writer" 		jdbcType="VARCHAR" />
+		<result property="postState" 				column="post_state" 					jdbcType="CHAR" />
+		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
+		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
+	</resultMap>
 	 
 	<!--  SQL : SELECT ONE -->
 	 <select 	id="getForest"	parameterType="int"	resultMap="forestSelectMap">
@@ -103,8 +111,18 @@
                 where tree.tree_no = treef.tree_no
                 order by tree.tree_no) rt                
 			where rnum BETWEEN #{pageNumber}*4-3 and #{pageNumber}*4
+
 	
 	</select> 
+	<!-- SQL : SELECT REST LIST -->
+	<select id="getPostRestList" parameterType="java.util.HashMap" resultMap="postSelectMap">
+		select rt.*
+    		from (select rownum rnum,post.*
+                from post,(select * from tree_forest where forest_no = #{forestNo}) treef
+                where post.tree_no = treef.tree_no
+                order by post.post_no) rt                
+			where rnum BETWEEN #{pageNumber}*4-3 and #{pageNumber}*4
+	</select>
 	<!-- SQL : SELECT INVITE TREE REST LIST -->
 	<select id="getInviteTreeList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
 		select tr.*

@@ -91,6 +91,45 @@ function createTag(value) {
                         </div>
                     </li>`)
 
+        }else if (item.noticeMessageType == '3') {
+            let date = timeForToday(item.noticeMessageDate);
+            let ampm = formatAMPM(item.noticeMessageDate)
+
+            $(".cbp_tmtimeline").append(`<li>
+                        <time class="cbp_tmtime" datetime="${item.noticeMessageDate}"><span>${ampm}</span> <span>${date}</span></time>
+                        <div class="cbp_tmicon bg-orange"><i class="zmdi zmdi-account-add"></i></div>
+                        <div class="cbp_tmlabel">
+                            
+                            <div class="btn-group btg" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-primary btn-sm" id="accept">수락</button>
+                                <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
+                                <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
+                            </div>
+                            <h2><a href="javascript:void(0);">${item.sender}</a></h2>
+                            <p>${item.noticeMessageDetail}</p>
+                        </div>
+                    </li>`)
+
+        }else if (item.noticeMessageType == '4') {
+            let date = timeForToday(item.noticeMessageDate);
+            let ampm = formatAMPM(item.noticeMessageDate)
+
+            $(".cbp_tmtimeline").append(`<li>
+                        <time class="cbp_tmtime" datetime="${item.noticeMessageDate}"><span>${ampm}</span> <span>${date}</span></time>
+                        <div class="cbp_tmicon bg-orange"><i class="zmdi zmdi-account-add"></i></div>
+                        <div class="cbp_tmlabel">
+                            
+                            <div class="btn-group btg" role="group" aria-label="Basic example">
+                                <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
+                                <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
+                            </div>
+                            <h2><a href="javascript:void(0);">${item.sender}</a></h2>
+                            <p>${item.sender}의 일원이되셨습니다.
+                            <a href="javascript:void(0);">숲 둘러보기</a>
+                            </p>
+                        </div>
+                    </li>`)
+
         }
 
 

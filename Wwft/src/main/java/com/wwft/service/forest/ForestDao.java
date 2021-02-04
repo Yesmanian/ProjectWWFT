@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Post;
 import com.wwft.service.domain.Tree;
 
 public interface ForestDao {
@@ -17,6 +18,8 @@ public interface ForestDao {
 	public List<Tree> getTreeList(int forestNo) throws Exception;
 	
 	public List<Tree> getTreeRestList(int forestNo, int pageNumber) throws Exception;
+	
+	public List<Post> getPostRestList(int forestNo, int pageNumber) throws Exception;
 	
 	public Forest updateForestInform(Forest forest) throws Exception;
 	

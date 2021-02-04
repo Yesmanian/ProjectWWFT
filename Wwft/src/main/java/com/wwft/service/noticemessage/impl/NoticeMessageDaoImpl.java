@@ -58,15 +58,15 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("treeNo", forestNo);
+		map.put("forestNo", forestNo);
 		map.put("search", search);
 
-		List<NoticeMessage> list = sqlSession.selectList("NoticeMessageMapper.getTreeNoticeMessage", map);
-		int totalCount = sqlSession.selectOne("NoticeMessageMapper.getTreeTotalCount", forestNo);
+		List<NoticeMessage> list = sqlSession.selectList("NoticeMessageMapper.getForestNoticeMessage", map);
+//		int totalCount = sqlSession.selectOne("NoticeMessageMapper.getTreeTotalCount", forestNo);
 		System.out.println(list.size());
 		//int totalCount = productDao.getTotalCount(search);
 		map.put("list", list);
-		map.put("totalCount", totalCount);
+//		map.put("totalCount", totalCount);
 		return map;		
 		
 		
@@ -76,12 +76,26 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception {
 		
 		
-		return sqlSession.selectOne("NoticeMessageMapper.getNoticeMessageStateCount", treeNo);
+		return sqlSession.selectOne("NoticeMessageMapper.getTreeNoticeMessageStateCount", treeNo);
 	}
 
 	@Override
-	public void updateNoticeMessageState(int treeNo) throws Exception {
-		sqlSession.update("NoticeMessageMapper.updateNoticeMessageState", treeNo);
+	public int getForestNoticeMessageStateCount(int forestNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("NoticeMessageMapper.getForestNoticeMessageStateCount", forestNo);
+	}
+	
+	@Override
+	public void updateTreeNoticeMessageState(int treeNo) throws Exception {
+		sqlSession.update("NoticeMessageMapper.updateTreeNoticeMessageState", treeNo);
+	}
+
+
+
+	@Override
+	public void updateForestNoticeMessageState(int forest) throws Exception {
+		sqlSession.update("NoticeMessageMapper.updateForestNoticeMessageState", forest);
+		
 	}
 
 

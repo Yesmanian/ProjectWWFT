@@ -46,7 +46,7 @@ public class NoticeMessageServiceTest {
 	
 	
 	
-	@Test
+//	@Test
 	public void testSendNoticeMessage() throws Exception {
 		
 		NoticeMessage message = new NoticeMessage();
@@ -65,11 +65,11 @@ public class NoticeMessageServiceTest {
 		
 		noticeMessageService.sendNoticeMessage(message);
 		
-//		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
-//		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-//		message.setTreeNo(1); //1번나무가
-//		message.setForestNo(1); // 1번 숲에게
-//		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
+		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
+		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+		message.setTreeNo(1); //1번나무가
+		message.setForestNo(1); // 1번 숲에게
+		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
 		
 		noticeMessageService.sendNoticeMessage(message);
 		
@@ -145,6 +145,19 @@ public class NoticeMessageServiceTest {
 		
 	}
 	
+	@Test
+	public void testGetForstNoticeMessageStateCount() throws Exception{
+		
+		
+		int forestNo = 1;
+		
+		
+	BasicConfigurator.configure();
+	logger.debug("[debug : COUNT]"+noticeMessageService.getForestNoticeMessageStateCount(forestNo));
+		
+		
+	}
+	
 //	@Test
 	public void testupdateTreeNoticeMessageState() throws Exception{
 		
@@ -153,8 +166,29 @@ public class NoticeMessageServiceTest {
 		
 		
 	BasicConfigurator.configure();
-	noticeMessageService.updateNoticeMessageState(treeNo);
+	noticeMessageService.updateTreeNoticeMessageState(treeNo);
 	logger.debug("[debug : COUNT]"+noticeMessageService.getTreeNoticeMessageStateCount(treeNo));
+		
+		
+	}
+	
+//	@Test
+	public void testGetForestNoticeMessageList() throws Exception{
+		Search search = new Search();
+		
+		search.setCurrentPage(1);
+		search.setPageSize(3);
+		
+		int forest = 1;
+		
+		System.out.println(search.getEndRowNum());
+		
+	Map<String, Object> map =	noticeMessageService.getForestNoticeMessageList(forest, search);
+	BasicConfigurator.configure();
+	logger.debug("[debug : list]"+map.get("list"));
+		
+	
+		
 		
 		
 	}
