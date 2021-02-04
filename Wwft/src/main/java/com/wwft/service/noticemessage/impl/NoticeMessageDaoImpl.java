@@ -1,14 +1,16 @@
 package com.wwft.service.noticemessage.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
-import com.wwft.service.domain.Tree;
 import com.wwft.service.noticemessage.NoticeMessageDao;
 
 @Repository("noticeMessageDaoImpl")
@@ -27,23 +29,54 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 		sqlSession.insert("NoticeMessageMapper.sendNoticeMessage", noticeMessage);	
 	}
 
-	@Override
-	public List<NoticeMessage> getTreeNoticeMessageList(int treeNo) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("NoticeMessageMapper.getTreeNoticeMessage", treeNo);
-	}
 
-	@Override
-	public List<NoticeMessage> getForestNoticeMessageList(int forestNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void removeNoticeMessage(int noticeMessageNo) throws Exception {
 		
 		sqlSession.delete("NoticeMessageMapper.removeNoticeMessage", noticeMessageNo);
 		
+	}
+
+	@Override
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", treeNo);
+		map.put("search", search);
+
+		List<NoticeMessage> list = sqlSession.selectList("NoticeMessageMapper.getTreeNoticeMessage", map);
+//		int totalCount = sqlSession.selectOne("NoticeMessageMapper.getTreeTotalCount", treeNo);
+		System.out.println(list.size());
+		//int totalCount = productDao.getTotalCount(search);
+		map.put("list", list);
+//		map.put("totalCount", totalCount);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", forestNo);
+		map.put("search", search);
+
+		List<NoticeMessage> list = sqlSession.selectList("NoticeMessageMapper.getTreeNoticeMessage", map);
+		int totalCount = sqlSession.selectOne("NoticeMessageMapper.getTreeTotalCount", forestNo);
+		System.out.println(list.size());
+		//int totalCount = productDao.getTotalCount(search);
+		map.put("list", list);
+		map.put("totalCount", totalCount);
+		return map;		
+		
+		
+	}
+
+	@Override
+	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception {
+		
+		
+		return sqlSession.selectOne("NoticeMessageMapper.getNoticeMessageStateCount", treeNo);
 	}
 
 	@Override

@@ -28,29 +28,29 @@
 	<!-- SQL : INSERT -->
 	<insert 	id="addEvent"		parameterType="event" >
 	 	INSERT
-		INTO calender(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail,freq, by_day,  dow, dom,all_day)
+		INTO calendar(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail,freq, by_day,  dow, dom,all_day)
 		VALUES	 (seq_event_no.nextval,	#{treeNo}, #{title:VARCHAR}, to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss') 
 										,to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'), #{dDay:CHAR}, #{eventDetail:VARCHAR},#{freq:VARCHAR},#{byDay:VARCHAR},  #{dow:VARCHAR}, #{dom:VARCHAR},#{allDay} )
 	 </insert>
 	 
 	 <select id="getEventList" resultMap="eventSelectMap">
-	 	SELECT * FROM calender
+	 	SELECT * FROM calendar
 	 
 	 </select>
 	 
 	 <select id="findEvent" parameterType="int" resultMap="eventSelectMap" >
-	 SELECT * FROM calender 
+	 SELECT * FROM calendar 
 	 WHERE event_no = #{value}
 	 
 	 </select>
 	 
 	 <delete id="removeEvent" parameterType="int">
-	 DELETE FROM calender WHERE event_no = #{value}
+	 DELETE FROM calendar WHERE event_no = #{value}
 	 
 	 </delete>
 	 
 	 <update id="updateEvent" parameterType="event">
-	  UPDATE calender 
+	  UPDATE calendar 
 	  <set>
 	  	<if test="title !=null">
 	  		event_title = #{title:VARCHAR}, 

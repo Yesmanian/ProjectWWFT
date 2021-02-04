@@ -4,47 +4,42 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+
+function dup() {
+	$.ajax({
+		Type : "GET",
+		url : "/user/post",
+		data : {userid:"1111"},
+		error : function(error) {
+			console.log("error");
+			alert('가입불가');
+		},
+		success : function(data) {
+			if(data =="error"){
+			alert('가입 불가능');			
+			}else{
+			alert(data);	
+			}
+		}
+	});
+}
+		
+
+</script>
+
 <title>회원가입</title>
 </head>
 <body>
 
-<form action="/user/addUser" method="post">
 <h3>회원가입</h3>
-		<script>
-			function checkValue()
-			{
-				var form = document.userInfo;
-				
-				if(!form.id.vlaue){
-					alert("아이디를 입력하세요.");
-					return false;
-				}
-
-				if(!form.idDuplication.value !="idCheck"){
-					alert("아이디 중복체크를 해주세요.");
-					return false;
-				}	
-			
-				if(!form.password.value){
-					alert("비밀번호를 입력하세요.");
-					return false;
-				}	
-				
-				if(!form.password.value != form.passwordcheck.value){
-					alert("비밀번호를 동일하게 입력하세요.");
-					return false;
-				}
-				
-				if(!form.email.value){
-					alert("이메일을 입력하세요.");
-					return false;
-				}
-			}
-		</script>
+		
 		<p>
 			<label for="userid">아이디:</label>
 			 <input id="userid" type="text" name="userId">
-			  <input type="submit" value="ID중복 체크" />
+			  <button onclick="dup();">ID중복 체크</button>
 		</p>
 		<p>
 			<label for="password">비밀번호:</label>
@@ -88,6 +83,6 @@
 		<p>
 		<input type="submit" value="회원가입 완료" /> <input type="submit" value="취소" />
 		</p>
-</form>
+		
 </body>
 </html>

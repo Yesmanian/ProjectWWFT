@@ -1,5 +1,6 @@
 package com.wwft.service.profile;
 
+import java.util.List;
 import java.util.Map;
 
 import com.wwft.common.web.Search;
@@ -13,9 +14,9 @@ public interface ProfileService {
 	// SELECT ONE
 	public Profile getProfile(int profileNo) throws Exception ;
 
-//	// SELECT LIST
-//	public Map<String , Object> getProfileList(Search search) throws Exception ;
-//
+	// SELECT LIST
+	public List<Profile> getProfileList() throws Exception ;
+
 	// UPDATE
 	public void updateProfile(Profile profile) throws Exception ;
 

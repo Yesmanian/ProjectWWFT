@@ -2,6 +2,7 @@ package com.wwft.service.post.impl;
 
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
 import com.wwft.service.post.PostDao;
@@ -75,19 +77,21 @@ public class PostServiceImpl implements PostService {
 		}
 	
 	@Override
-	public Map<String, Object> getPostList(int postTreeNo,int postNo) throws Exception {
+	public Map<String, Object> getPostList(Search search ,int postTreeNo,int postNo) throws Exception {
 		System.out.println("getPostList들어왔나");
 		System.out.println(postTreeNo);
 		System.out.println(postNo);
 		
-		List<Post> list = postDao.getPostList(postTreeNo);
+		List<Post> list = postDao.getPostList(search,postTreeNo);
+		List<String> albumList = postDao.getAlbumList(postTreeNo);
 		
 		ImageAndLike fileName = postDao.getImageAndLike(postNo);
 			
-		
+		System.out.println("???????????????"+albumList.size());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("fileName", fileName);
+		map.put("albumList", albumList);
 		
 
 		/*
@@ -132,8 +136,9 @@ public class PostServiceImpl implements PostService {
 		if(files != null){
 			
 			 //파일이 저장될 경로 설정
-			 String path = "C:\\Users\\dkgur\\git\\ProjectWWFT\\Wwft\\WebContent\\resources\\images\\uploadFiles\\";
-			                //C:\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Wwft\
+			//String path ="C:\\uploadFiles\\";
+			 //String path = "C:\\Users\\dkgur\\git\\ProjectWWFT\\Wwft\\WebContent\\resources\\images\\uploadFiles\\";
+			   String path= "C:\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Wwft\\resources\\images\\uploadFiles";
 			// C:\\Users\\dkgur\\git\\ProjectWWFT\\Wwft\\WebContent\\resources\\images\\uploadFiles\\
 			 File dir = new File(path);
 			 if(!dir.isDirectory()){
@@ -146,7 +151,7 @@ public class PostServiceImpl implements PostService {
 			 //넘어온 파일을 리스트로 저장
 				 for(int i = 0; i < files.size() ; i++){
 					 //파일 중복명 처리
-					  
+					  System.out.println("imageAndLike여부확인중"+imageAndLike.getDeleteImageState());
 					 //원래 파일명
 					  originalImageName = files.get(i).getOriginalFilename();
 					 System.out.println("기본 파일명:"+originalImageName);

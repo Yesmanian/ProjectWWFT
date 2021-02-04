@@ -1,20 +1,25 @@
 package com.wwft.service.noticemessage;
 
 import java.util.List;
+import java.util.Map;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
-import com.wwft.service.domain.Tree;
 
 public interface NoticeMessageService {
 	
 	public void sendNoticeMessage(NoticeMessage noticeMessage) throws Exception;
 	
-	public List<NoticeMessage> getTreeNoticeMessageList(int treeNo) throws Exception;
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception;
 	
-	public List<NoticeMessage> getForestNoticeMessageList(int forestNo) throws Exception;
+	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception;
 	
 	public void removeNoticeMessage(int noticeMessageNo) throws Exception;
 	
 	public List<Tree> acceptTreeList(int forestNo) throws Exception;
+	
+	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception;
+	
+	public void updateNoticeMessageState(int treeNo) throws Exception;
 
 }

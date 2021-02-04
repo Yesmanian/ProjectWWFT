@@ -161,6 +161,15 @@ body{
     
 
 }
+#accept {
+    line-height: 20x;
+    float: right;
+}
+.btg{
+    line-height: 20x;
+    float: right;
+
+}
 @media screen and (max-width: 992px) and (min-width: 768px) {
     .cbp_tmtimeline>li .cbp_tmtime {
         padding-right: 60px
