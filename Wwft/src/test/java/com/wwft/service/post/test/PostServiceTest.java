@@ -95,34 +95,34 @@ public class PostServiceTest {
 	 // @Test 
 	public void testupdatePost() throws Exception{
 	  
-	  
-	  Post post = postService.getPost(26); 
-	  
-	  Assert.assertNotNull(post);
-	  Assert.assertEquals("확인중", post.getPostDetail()); 
-	  Assert.assertEquals("1",post.getPostState()); 
-	  Assert.assertEquals("주말", post.getAlbumName());
-	  
-	  
-	  
-	  post.setPostDetail("수정 테스트중"); post.setPostState("1");
-	 post.setAlbumName("수정테스트앨범");
-	  
-	  postService.updatePost(post);
-	  
-	  
-	  
-	  post = postService.getPost(26);
-	  
-	  
-	  Assert.assertNotNull(post);
-	  
-	  
-	  
-	  Assert.assertEquals("수정 테스트중", post.getPostDetail());
-	  Assert.assertEquals("1", post.getPostState()); Assert.assertEquals("수정테스트앨범",
-	  post.getAlbumName()); }
-	  
+	/*
+	 * Post post = postService.getPost(26);
+	 * 
+	 * Assert.assertNotNull(post); Assert.assertEquals("확인중", post.getPostDetail());
+	 * Assert.assertEquals("1",post.getPostState()); Assert.assertEquals("주말",
+	 * post.getAlbumName());
+	 * 
+	 * 
+	 * 
+	 * post.setPostDetail("수정 테스트중"); post.setPostState("1");
+	 * post.setAlbumName("수정테스트앨범");
+	 * 
+	 * postService.updatePost(post);
+	 * 
+	 * 
+	 * 
+	 * post = postService.getPost(26);
+	 * 
+	 * 
+	 * Assert.assertNotNull(post);
+	 * 
+	 * 
+	 * 
+	 * Assert.assertEquals("수정 테스트중", post.getPostDetail());
+	 * Assert.assertEquals("1", post.getPostState()); Assert.assertEquals("수정테스트앨범",
+	 * post.getAlbumName()); 
+	 */
+	}
 	 // @Test
 	public void testGetPostListAll() throws Exception{
 	  

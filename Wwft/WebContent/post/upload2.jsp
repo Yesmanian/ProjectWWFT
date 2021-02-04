@@ -1,379 +1,405 @@
-<%@ page contentType="text/html; charset=EUC-KR" %>
+ <%@ page contentType="text/html; charset=EUC-KR" %>
 <%@ page pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <!DOCTYPE html>
-
-
-
- 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>getPost화면</title>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-    
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+ <html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>getPostList</title>
 <style type="text/css">
-	
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-  position: center;
+		
+		body{margin-top:20px;}
+.filtering {
+    margin-bottom: 40px;
 }
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+.filtering span {
+    border-bottom: 2px solid transparent;
+    color: #282b2d;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-right: 20px;
+    display: inline-block;
+    margin-bottom: 5px;
 }
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+.filtering span:last-child {
+    margin: 0;
 }
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.filtering .active {
+    border-color: #ccde02;
+    color: #ccde02;
 }
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+.portfolio-wrapper {
+    position: relative;
+    overflow: hidden;
 }
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+.portfolio-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 500ms ease;
 }
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+.portfolio-wrapper .portfolio-image img {
+    transform: scale(1.2);
+    will-change: transform;
+    transition: all 0.5s ease;
+    width: 100%;
 }
-
-.active, .dot:hover {
-  background-color: #717171;
+.portfolio-wrapper:hover .portfolio-image img {
+    transform: none;
 }
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+.portfolio-overlay:before {
+    position: absolute;
+    display: inline-block;
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.36);
+    content: "";
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: scale(0.85);
 }
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+.portfolio-overlay .portfolio-content {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    padding: 0 35px;
 }
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+.portfolio-content h4 {
+    color: #000;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
 }
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
+.portfolio-content p {
+    color: #000;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+.portfolio-content > a {
+    line-height: 42px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #000;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+.portfolio-wrapper:hover .portfolio-overlay {
+    background-color: rgba(204, 222, 2, 0.85);
+}
+.portfolio-wrapper:hover .portfolio-overlay:before {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+.portfolio-wrapper:hover .portfolio-overlay .portfolio-content {
+    transform: translateY(50%);
+    transition: transform 0.5s ease;
+    opacity: 1;
+}
+@media screen and (max-width: 1199px) {
+    .portfolio-content h4 {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 991px) {
+    .portfolio-content h4 {
+        margin-bottom: 10px;
+    }
+    .portfolio-content p {
+        font-size: 15px;
+    }
+    .portfolio-content > a {
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .portfolio-content h4 {
+        font-size: 17px;
+    }
+    .portfolio-content p {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .portfolio-content h4 {
+        font-size: 16px;
+    }
+}
+.grid .grid-item {
+    position: relative;
+    overflow: hidden;
+}
+.grid .grid-item .portfolio-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.grid .grid-item .portfolio-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 500ms ease;
+}
+.grid .grid-item .portfolio-wrapper .portfolio-image img {
+    transform: none;
+    will-change: transform;
+    transition: none;
+    width: 100%;
+}
+.grid .grid-item .portfolio-wrapper:hover .portfolio-image img {
+    transform: none;
+}
+.grid .grid-item .portfolio-overlay:before {
+    position: absolute;
+    display: inline-block;
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.36);
+    content: "";
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: scale(0.85);
+}
+.grid .grid-item .portfolio-overlay .portfolio-content {
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+}
+.grid .grid-item .portfolio-content h4 {
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.grid .grid-item .portfolio-content p {
+    color: #000;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+.grid .grid-item .portfolio-content a {
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #000;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+.grid .grid-item .portfolio-wrapper:hover .portfolio-overlay {
+    background-color: rgba(204, 222, 2, 0.85);
+}
+.grid .grid-item .portfolio-wrapper:hover .portfolio-overlay:before {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+.grid .grid-item .portfolio-wrapper:hover .portfolio-overlay .portfolio-content {
+    transform: translateY(50%);
+    transition: transform 0.5s ease;
+    opacity: 1;
+}
+@media screen and (max-width: 1199px) {
+    .grid .grid-item .portfolio-content h4 {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 991px) {
+    .grid .grid-item .portfolio-content h4 {
+        margin-bottom: 10px;
+    }
+    .grid .grid-item .portfolio-content p {
+        font-size: 15px;
+    }
+    .grid .grid-item .portfolio-content a {
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .grid .grid-item .portfolio-content h4 {
+        font-size: 17px;
+    }
+    .grid .grid-item .portfolio-content p {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .grid .grid-item .portfolio-content h4 {
+        font-size: 16px;
+    }
+    .grid .grid-item .portfolio-overlay:before {
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+    }
 }
 
 </style>
-
 </head>
-<body>
-<form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="postNo" value="${post.postNo }">
-	<input type="hidden"  name="menu" value=${menu} />
-
-
-<div class="slideshow-container shadow-lg bg-white">
-<%-- <c:set var ="i" value="0"/>
-<c:forEach var="file" items="${fileList}">
-	<c:set var ="i" value="${i+1 }"/>
-		<div class="mySlides fade">
-		  <div class="numbertext">${i} / 3</div>
-		  <img src = "/resources/images/uploadFiles/${file}" style=" width:50%; display: block; margin: 0px auto;">
-	</div>
-</c:forEach> --%>
-
-
-
-
-
-
-
- <div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_11.jfif" style=" width:50%; display: block; margin: 0px auto;">
-</div>
-
-<div class="mySlides fade" style="align-content: center;">
-  <div class="numbertext">2 / 3</div>
-  <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_13.jfif" style=" width:50%; display: block; margin: 0px auto;">
-</div>
-
-<div class="mySlides fade" style="align-content: center;">
-  <div class="numbertext" >3 / 3</div>
-  <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_14.jfif" style=" width:50%; display: block; margin: 0px auto;">
-</div> -->
-
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-
- </div> 
-<br>
-
-<div style="text-align:center">
-  <span class="dot"  onclick="currentSlide(1)"></span> 
-  <span class="dot"  onclick="currentSlide(2)"></span> 
-  <span class="dot"  onclick="currentSlide(3)"></span> 
-  
-  <p style="display: block; margin: 0px auto;"><h4>2020-02-02</h4> </p>
-  <button type="button" class="btn btn-danger" style="">신고</button>
-</div>
-
-<div style="text-align:center;">
-<p style="width:500px; display: block; margin: 0px auto;">
-게시글입니다
-두번째 게시글입니다
-세번째 게시글 입니다
-네버째 게시글 입니다
-다섯번째 게시글 입니다
-게시글입니다
-두번째 게시글입니다
-세번째 게시글 입니다
-네버째 게시글 입니다
-다섯번째 게시글 입니다
-</p>
-</div>
-
-
-<div class="container">
-
-	<div class="shadow-lg p-4 mb-2 bg-white author" style=" width:50%; display: block; margin: 0px auto;">
-		  <span><strong>Comment</strong></span>  <span id="cCnt"></span>	    
-       <textarea style="width: 500px" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
-                <!-- <div> -->
-            <a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
-               <!--  </div> -->
-       
-        <input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />   
-        <input type="hidden" name="commentWriter" value="초초"> 
-    </form>
-			 
-			</div>
-		   </div><!--/ col-lg-3 -->
-		   <div class="container">
-    <form id="commentListForm" name="commentListForm" method="post">
-        <div id="commentList">
+ <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+ <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+<section>
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="filtering col-sm-12 text-center">
+                <span data-filter="*" class="active">All</span>
+                <span data-filter=".architecture" class="">Architecture</span>
+                <span data-filter=".decor" class="">Decor</span>
+                <span data-filter=".interior" class="">Interior</span>
+            </div>
+            <div class="col-12 text-center w-100">
+                <div class="form-row gallery">
+                    <div class="col-sm-6 col-lg-4 mb-2 interior">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/FFB6C1/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Stylish Family Appartment</h4>
+                                    <p>[Interior]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-2 decor interior">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/87CEFA/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Minimal Guests House</h4>
+                                    <p>[Decor, Interior]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-2 architecture">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/C71585/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Kitchen for Small family</h4>
+                                    <p>[Architecture]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-2 mb-lg-0 interior">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/20B2AA/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Interior Design for Bathroom</h4>
+                                    <p>[Interior]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-2 mb-sm-0 architecture">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/FFA07A/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Art Family Residence</h4>
+                                    <p>[Architecture]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 decor">
+                        <div class="portfolio-wrapper">
+                            <div class="portfolio-image">
+                                <img src="https://via.placeholder.com/350x350/9932CC/000000" alt="..." />
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <a class="popimg ml-0" href="#">
+                                        <i class="ti-zoom-in display-24 display-md-23 display-lg-22 display-xl-20"></i>
+                                    </a>
+                                    <h4>Luxury Bathroom Interior</h4>
+                                    <p>[Decor]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-</div>
-</div>
-	</form>
-	
- <script type="text/javascript">
- var slideIndex = 1;
- showSlides(slideIndex);
+    </div>
+</section>
+<script type="text/javascript">
 
- function plusSlides(n) {
-   showSlides(slideIndex += n);
- }
-
- function currentSlide(n) {
-   showSlides(slideIndex = n);
- }
-
- function showSlides(n) {
-   var i;
-   var slides = document.getElementsByClassName("mySlides");
-   var dots = document.getElementsByClassName("dot");
-   if (n > slides.length) {slideIndex = 1}    
-   if (n < 1) {slideIndex = slides.length}
-   for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
-   }
-   for (i = 0; i < dots.length; i++) {
-       dots[i].className = dots[i].className.replace(" active", "");
-   }
-   slides[slideIndex-1].style.display = "block";  
-   dots[slideIndex-1].className += " active";
- }
- 
- function fn_comment(){
-		//alert(JSON.stringify($("#commentForm").serializeObject()));
-		
-		/* $('#commentDetail').val(''); */
-		//e.prventDefault();
-	    $.ajax({
-	       
-	        url : "/comment/json/addComment",
-	        method :'POST',
-	        data : JSON.stringify($("#commentForm").serializeObject()),
-	        dateType : "json",
-	        headers : {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json"
-			},
-			
-	        success : function(res,status){
-	        	//alert(status);
-	            if(status=="success")
-	            {
-	            	 /* $('#commentDetail').val(''); */
-	                getCommentList();
-	                $("#commentDetail").val("");
-	                $('input[name=commentPostNo]').val();
-	            }
-	        },
-	        error:function(request,status,error){
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	       }
-	        
-	    });
-	}
-
-	/* 댓글 삭제하기(Ajax) */
-	function remove_comment(){
-		
-		var commentNo = $('input[name=commentNo]').val();
-		var postNo = $('input[name=commentPostNo]').val();
-		//alert(commentNo);
-	    $.ajax({
-	       
-	        url : "/comment/json/removeComment/"+commentNo,
-	        method :'POST',
-	       // data : JSON.stringify({commentNo : commentNo}) ,
-	        //data : JSON.stringify({commentNo : commentNo, postNo : postNo }) ,
-	        dateType : "json",
-	        headers : {
-				"Accept" : "application/json",
-				"Content-Type" : "application/json"
-			},
-			
-	        success : function(res,status){
-	        //	alert(status);
-	            if(status=="success")
-	            {
-	                getCommentList();
-	               // $("#commentDetail").val("");
-	                $('input[name=commentPostNo]').val();
-	            }
-	        },
-	        error:function(request,status,error){
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	       }
-	        
-	    });
-	}
-	 
-	/**
-	 * 초기 페이지 로딩시 댓글 불러오기
-	 */
-	$(function(){
-	    
-	    getCommentList();
-	    
-	});
-
-
-	/**
-	 * 댓글 불러오기(Ajax)
-	 */
-	function getCommentList(){
-		 
-		var postNo = $('input[name=commentPostNo]').val();
-
-		
-		
-		//alert("넘어오는지 확인중");
-	    $.ajax({
-	        
-	        url : "/comment/json/getCommentList/"+postNo,
-	        method:'GET',
-	        dateType :"json",
-	     
-	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-	        success : function(res,status){
-	        	//alert(res[0].commentRegDate);
-	            
-	        	var html = "";
-	        	var cCnt = res.length;
-	        	
-	           // alert(res.length);
-	            if(res.length > 0){
-	                
-	                for(i=0; i<res.length; i++){
-	                    html += "<div>";
-	                    html += res[i].commentRegDate + "<tr><td></td></tr>";
-	                    html +=" <div><table class='table'><h6><strong>"+res[i].commentWriter+"</strong></h6>";
-	                    html += res[i].commentDetail + "<tr><td></td></tr>&emsp; <a href='#' onClick=\'remove_comment("+res[i].commentNo+")\; return false;' class='btn pull-right btn-success'>삭제</a><input type='hidden' name='commentNo' value='"+res[i].commentNo+"'>";
-	                    html += "</table></div>";							
-	                   // html += "</div><input type= 'button' value='삭제'><input type='hidden' name='commentNo' value='${res[i].commentNo }'>";
-	                   
-	                }
-	                
-	            } else {
-	                
-	                html += "<div>";
-	                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-	                html += "</table></div>";
-	                html += "</div>";
-	                
-	            }
-	            
-	            $("#cCnt").html(cCnt);
-	            $("#commentListForm").html(html);
-	           
-	            
-	        },
-	        error:function(request,status,error){
-	            
-	       }
-	        
-	    });
-	}
-
+$(function(){
+    $(".filtering").on("click", "span", function () {
+        var a = $(".gallery").isotope({});
+        var e = $(this).attr("data-filter");
+        a.isotope({ filter: e });
+    });
+    $(".filtering").on("click", "span", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+}) 
 </script> 
 </body>
 
