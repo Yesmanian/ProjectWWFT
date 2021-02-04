@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wwft.service.domain.NoticeMessage;
+import com.wwft.service.domain.Tree;
 import com.wwft.service.noticemessage.NoticeMessageDao;
 
 @Repository("noticeMessageDaoImpl")
@@ -43,6 +44,12 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 		
 		sqlSession.delete("NoticeMessageMapper.removeNoticeMessage", noticeMessageNo);
 		
+	}
+
+	@Override
+	public List<Tree> acceptTreeList(int forestNo) throws Exception {
+		
+		return sqlSession.selectList("NoticeMessageMapper.acceptTreeList", forestNo);
 	}
 
 }

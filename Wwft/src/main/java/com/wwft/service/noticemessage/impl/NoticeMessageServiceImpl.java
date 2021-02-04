@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wwft.service.domain.NoticeMessage;
+import com.wwft.service.domain.Tree;
 import com.wwft.service.noticemessage.NoticeMessageDao;
 import com.wwft.service.noticemessage.NoticeMessageService;
 @Service("noticeMessageServiceImpl")
@@ -40,6 +41,12 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 	@Override
 	public void removeNoticeMessage(int noticeMessageNo) throws Exception {
 		noticeMessageDao.removeNoticeMessage(noticeMessageNo);		
+	}
+
+	@Override
+	public List<Tree> acceptTreeList(int forestNo) throws Exception {
+		
+		return noticeMessageDao.acceptTreeList(forestNo);
 	}
 
 }

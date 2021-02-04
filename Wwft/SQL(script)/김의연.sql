@@ -47,3 +47,11 @@ where tree.tree_no = treef.tree_no;
 	
 	</select> 
  	
+	
+select * from notice_message where notice_messagebox_state = '3' and forest_no = 21;
+
+INSERT INTO NOTICE_MESSAGE values(SEQ_NOTICE_MESSAGE_NO.nextval,'진우','초아',SYSDATE,'1','1','초아누나가괴롭힌다.','나무','3',null,21,7);
+
+select tree.tree_name
+    from tree , (select * from notice_message where notice_messagebox_state = '3' and forest_no = 21) nm
+    where tree.tree_no = nm.tree_no

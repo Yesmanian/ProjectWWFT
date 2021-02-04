@@ -13,6 +13,10 @@
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400&display=swap');
+	
+	
+
+	
 	#infinite-list {
   /* We need to limit the height and show a scrollbar */
   width: 200px;
@@ -22,7 +26,7 @@
   /* Optional, only to check that it works with margin/padding */
    margin: 30px;
   padding: 20px;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 	#inviteTree-list {
   /* We need to limit the height and show a scrollbar */
@@ -33,7 +37,7 @@
   /* Optional, only to check that it works with margin/padding */
    margin: 30px;
   padding: 20px;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 
 /* Optional eye candy below: */
@@ -56,7 +60,20 @@ li:hover {
                 margin-bottom: 2.77rem;
             }
         }
-
+.col-md-6{
+	height: 500px;
+	overflow: auto;
+	
+}
+/* .col-md-6::-webkit-scrollbar {
+    width: 10px;
+  }
+  .col-md-6::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+  }
+  .col-md-6::-webkit-scrollbar-track {
+    background-color: grey;
+  } */
 </style>
 <script type="text/javascript">
  	
@@ -193,8 +210,41 @@ li:hover {
 </script>
 </head>
 <body>
+<!--navbar  -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">WWFT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+			<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+		</a>
+      </li> 
+      <li>
+      </li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Tree</a>
+          <a class="dropdown-item" href="#">Search</a>
+          <a class="dropdown-item" href="#">Change Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+<!--navbar end  -->
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
@@ -244,6 +294,7 @@ li:hover {
             <div class="col-md-6 gedf-main">
 
                 <!--- \\\\\\\Post-->
+                
                 <div class="card gedf-card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -558,6 +609,41 @@ var inviteTreeLoad = function(list){
 
 window.onload = function(){
 	
+	var postPageNumber = 1;
+	var postParams = {
+			forestNo   : ${param.forestNo},
+			pageNumber : postPageNumber
+	}
+	var postJsonString = JSON.stringify(postParams)
+	//alert(postJsonString)
+	
+	$.ajax({
+		type : "POST",
+		url  : "/forest/json/getPostList",
+		data : postJsonString,
+		headers : {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+         },
+		success : function(res,status){
+			
+			
+			//alert(status)
+			//alert(res.treeList.list[0].treeName)
+			//alert(res.treeList.list[2].treeName)
+			var list = res.postList.list;
+			alert(list[0].postNo)
+			//restLoadMore(list);
+			
+			
+		},
+		error :  function(XMLHttpRequest, textStatus,errorThrown){
+			alert("통신 실패")
+		}
+	})
+	
+	
+	
 	var pageNumber = 1;
 	var params = {
 			forestNo   : ${param.forestNo},
@@ -590,6 +676,10 @@ window.onload = function(){
 			alert("통신 실패")
 		}
 	})
+	
+	
+	
+	
 	
 	
 	
@@ -759,6 +849,19 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 	 </script>
  </div><br/>
  
+ <div>
+ 	post
+ 	<script type="text/javascript">
+ 		//RestPost
+ 		
+ 	</script>
+ 	
+ 
+ </div>
+ 
+ <div>
+ 	${acceptTreeList }
+ </div>
  
  
 </body>

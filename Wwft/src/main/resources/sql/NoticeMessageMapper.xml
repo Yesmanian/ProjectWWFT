@@ -20,14 +20,23 @@
 		<result property="noticeMessageDate" 	column="notice_reg_date" jdbcType="DATE" />
 	</resultMap>
  	
+ 	<resultMap id="treeSelectMap" type="tree">
+		<result property="treeNo" 			column="tree_no" 			jdbcType="NUMERIC"/>
+		<result property="userId"	column="user_id" 		jdbcType="VARCHAR" />
+		<result property="treeName" 	column="tree_name" 		jdbcType="VARCHAR" />
+		<result property="seedNo" 				column="seed_no" 					jdbcType="VARCHAR" />
+		<result property="treeImageName" 				column="tree_image_name" 					jdbcType="VARCHAR" />
+		<result property="countryId" 			column="country_id" 		jdbcType="CHAR" />
+		<result property="familyMotto" 				column="family_motto" 					jdbcType="VARCHAR" />
+		<result property="activityTotalPoint" 				column="activity_total_point" 					jdbcType="NUMERIC" />	
+	</resultMap>
  	
  	
  	
  	
  	
+ 	<!--의연파트 시작SQL : INSERT  state 1 =  초대중-->
  	
- 	<!-- SQL : INSERT  state 1 =  초대중-->
- 	<!--
 	<insert 	id="inviteTree"		parameterType="java.util.HashMap" >
 	 	INSERT
 		INTO NOTICE_MESSAGE(NOTICE_MESSAGE_NO, SENDER,FOREST_NO,NOTICE_REG_DATE,NOTICE_MESSAGE_STATE,
@@ -36,8 +45,13 @@
 			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'1','1','숲에서 초대중','POSTIMAGENAME','1',null,
 			#{profileNo},#{profileNo})
 	 </insert>
-	 -->
 	 
+	 <select id="acceptTreeList" parameterType="int" resultMap="treeSelectMap">
+	 	select tree.tree_name
+    		from tree , (select * from notice_message where notice_messagebox_state = '3' and forest_no = #{value}) nm
+    		where tree.tree_no = nm.tree_no
+	 </select>
+	 <!-- 의연파트 끝 -->
 	 <insert id="sendNoticeMessage" parameterType="noticeMessage">
 	 	INSERT 
 	 	INTO notice_message(notice_message_no, sender, receiver, 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Post;
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.Tree;
 import com.wwft.service.forest.ForestDao;
@@ -138,6 +139,22 @@ public class ForestDaoImpl implements ForestDao {
 		
 		
 		
+	}
+
+
+	@Override
+	public List<Post> getPostRestList(int forestNo, int pageNumber) throws Exception {
+		System.out.println("ForestDao getPostRestList");
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("forestNo", forestNo);
+		map.put("pageNumber", pageNumber);
+		System.out.println(map.get("forestNo"));
+		System.out.println(map.get("pageNumber"));
+		System.out.println(forestNo);
+		System.out.println(pageNumber);
+		List<Post> list = sqlSession.selectList("ForestMapper.getPostRestList", map);
+		
+		return sqlSession.selectList("ForestMapper.getPostRestList", map );
 	}
 
 }

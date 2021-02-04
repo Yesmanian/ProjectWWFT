@@ -84,6 +84,27 @@ public class ForestRestController {
 		
 	}
 	
+	@RequestMapping(value = "json/getPostList", method = RequestMethod.POST)
+	public Map<String ,Object> getPostList(@RequestBody HashMap<String, Object> restMap) throws Exception {
+		
+		System.out.println("/forest/json/getPostList start..");
+		
+		System.out.println(restMap.get("forestNo"));
+		System.out.println(restMap.get("pageNumber"));
+		
+		//Business Logic
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("postList", forestService.getPostRestList(
+				(Integer)restMap.get("forestNo"),(Integer)restMap.get("pageNumber")));
+		System.out.println(map);
+		
+		
+		
+		System.out.println("/forest/json/getPostList End..");
+		return map;
+		
+	}
+	
 	@RequestMapping(value = "json/getInviteTreeList", method = RequestMethod.POST)
 	public Map<String ,Object> getInviteTreeList(@RequestBody HashMap<String, Object> restMap) throws Exception {
 		
