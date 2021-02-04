@@ -1,4 +1,4 @@
-package com.wwft.service.calender.impl;
+package com.wwft.service.calendar.impl;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.wwft.service.calender.EventDao;
-import com.wwft.service.calender.EventService;
+import com.wwft.service.calendar.EventDao;
+import com.wwft.service.calendar.EventService;
 import com.wwft.service.domain.Event;
 
 @Service("eventServiceImpl")

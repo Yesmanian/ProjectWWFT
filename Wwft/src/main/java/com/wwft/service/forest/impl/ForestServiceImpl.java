@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Post;
 import com.wwft.service.domain.Tree;
 import com.wwft.service.forest.ForestDao;
 import com.wwft.service.forest.ForestService;
@@ -101,6 +102,19 @@ public class ForestServiceImpl implements ForestService {
 		
 		forestDao.inviteTree(treeNo,forestNo,profileNo);
 		
+	}
+
+	@Override
+	public Map<String, Object> getPostRestList(int forestNo, int pageNumber) throws Exception {
+		
+		System.out.println("forestServiceImpl getPostRestList");
+		System.out.println(pageNumber);
+		System.out.println(forestNo);
+		
+		List<Post> list = forestDao.getPostRestList(forestNo,pageNumber);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		return map;
 	}
 
 }

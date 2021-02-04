@@ -16,10 +16,14 @@ public interface ForestService {
 	public Map<String, Object> getTreeList(int forestNo) throws Exception;
 	
 	public Map<String, Object> getTreeRestList(int forestNo,int pageNumber) throws Exception;
+
+	public Map<String, Object> getPostRestList(int forestNo,int pageNumber) throws Exception;
 	
 	public Forest updateForestInform(Forest forest) throws Exception;
 	
 	public Map<String, Object> getInviteTreeList(int forestNo,String searchCondition) throws Exception;
 	
 	public void inviteTree(List<Integer> treeNo,int forestNo, int profileNo) throws Exception;
+	
+	
 }

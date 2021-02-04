@@ -47,20 +47,94 @@
 	 	
 	 
 	 </insert>
-	 
+	 <!--  
 	 <select id="getTreeNoticeMessage" parameterType="int" resultMap="noticeMessageSelectMap">
 	 	SELECT notice_message_no, sender, notice_message_state, notice_message_type, notice_message_detail, tree_no, forest_no, notice_reg_date
 	 	FROM notice_message
 	 	WHERE tree_no = #{value}
 	 	AND notice_message_type !=3
 	 	ORDER BY NOTICE_REG_DATE DESC
+	 </select>-->
+	 
+	  <select id="getTreeNoticeMessage" parameterType="HashMap" resultMap="noticeMessageSelectMap">
+	 SELECT *
+	 FROM  ( SELECT ROWNUM AS row_seq, m.*
+			FROM( SELECT m1.*
+			FROM NOTICE_MESSAGE m1
+			WHERE TREE_NO =#{treeNo}
+			AND notice_message_type !=3
+			ORDER BY m1.NOTICE_REG_DATE DESC) m
+		WHERE ROWNUM  &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
 	 </select>
+	 
+	 	  <select id="getForestNoticeMessage" parameterType="HashMap" resultMap="noticeMessageSelectMap">
+	 SELECT *
+	 FROM  ( SELECT ROWNUM AS row_seq, m.*
+			FROM( SELECT m1.*
+			FROM NOTICE_MESSAGE m1
+			WHERE forest_no =#{forestNo}
+			AND notice_message_type =3
+			ORDER BY m1.NOTICE_REG_DATE DESC) m
+		WHERE ROWNUM  &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
+	 </select>
+	 <!-- 
+	 SELECT ROWNUM, m.*
+FROM( SELECT m1.*
+			FROM NOTICE_MESSAGE m1
+			WHERE TREE_NO =1
+			ORDER BY m1.NOTICE_REG_DATE DESC) m
+			 -->
 	 
 	 <delete id="removeNoticeMessage" parameterType="int">
 	 	DELETE 
 		FROM notice_message
 		WHERE notice_message_no = #{value}
 	 </delete>
+	 
+	 <!-- 
+	 <select id="getTreeNoticeMessage" parameterType="int" resultType="int">
+	 	SELECT COUNT(notice_message_no)
+		FROM NOTICE_MESSAGE
+		FROM notice_message
+	 	WHERE tree_no = #{value}
+	 	AND notice_message_type !=3
+	 
+	 </select>
+	  -->
+	 
+	  <select id="getTreeNoticeMessageStateCount" parameterType="int" resultType="int">
+	 	SELECT COUNT(notice_message_state)
+		FROM notice_message
+	 	WHERE tree_no = #{value}
+	 	AND notice_message_type != '3'
+	 	AND NOTICE_MESSAGE_STATE = '0'
+	 </select>
+	 
+	   <select id="getForestNoticeMessageStateCount" parameterType="int" resultType="int">
+	 	SELECT COUNT(notice_message_state)
+		FROM notice_message
+	 	WHERE forest_no = #{value}
+	 	AND notice_message_type = '3'
+	 	AND NOTICE_MESSAGE_STATE = '0'
+	 </select>
+	 
+	 <update id="updateTreeNoticeMessageState" parameterType="int">
+	 	UPDATE notice_message 
+		SET notice_message_state = '1'
+		WHERE tree_no =#{value}
+		AND notice_message_type !='3'
+	 </update>
+	 
+	 	 <update id="updateForestNoticeMessageState" parameterType="int">
+	 	UPDATE notice_message 
+		SET notice_message_state = '1'
+		WHERE forest_no =#{value}
+		AND notice_message_type ='3'
+	 </update>
+	 
+	
  	
 	
 </mapper>

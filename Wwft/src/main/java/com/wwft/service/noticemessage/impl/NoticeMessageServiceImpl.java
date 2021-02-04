@@ -1,11 +1,12 @@
 package com.wwft.service.noticemessage.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
 import com.wwft.service.noticemessage.NoticeMessageDao;
 import com.wwft.service.noticemessage.NoticeMessageService;
@@ -25,21 +26,49 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 		noticeMessageDao.sendNoticeMessage(noticeMessage);		
 	}
 
-	@Override
-	public List<NoticeMessage> getTreeNoticeMessageList(int treeNo) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeMessageDao.getTreeNoticeMessageList(treeNo);
-	}
 
-	@Override
-	public List<NoticeMessage> getForestNoticeMessageList(int forestNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void removeNoticeMessage(int noticeMessageNo) throws Exception {
 		noticeMessageDao.removeNoticeMessage(noticeMessageNo);		
+	}
+
+	@Override
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMessageDao.getTreeNoticeMessageList(treeNo,search);
+	}
+
+	@Override
+	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMessageDao.getForestNoticeMessageList(forestNo, search);
+	}
+
+	@Override
+	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMessageDao.getTreeNoticeMessageStateCount(treeNo);
+	}
+	
+	@Override
+	public int getForestNoticeMessageStateCount(int forestNo) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMessageDao.getForestNoticeMessageStateCount(forestNo);
+	}
+
+	@Override
+	public void updateTreeNoticeMessageState(int treeNo) throws Exception {
+		noticeMessageDao.updateTreeNoticeMessageState(treeNo);		
+	}
+
+
+
+
+	@Override
+	public void updateForestNoticeMessageState(int forest) throws Exception {
+		noticeMessageDao.updateForestNoticeMessageState(forest);
+		
 	}
 
 }

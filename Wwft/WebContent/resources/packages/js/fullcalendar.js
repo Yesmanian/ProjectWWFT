@@ -87,14 +87,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         var today = moment();
-        //  this.start.set({ hours: today.hours(), minute: today.minutes() });
+        let hours = today.hours();
+        let minute = today.minutes();
+        alert(hours)
+        alert(minute)
+       
         // console.log(start.start)
         // console.log(start.end)
         var end = start.end;
         var start = moment(start.start).format('YYYY-MM-DD HH:mm');
-        // alert(start)
+        //  alert(start)
         var end = moment(end).add(-1,'days').format('YYYY-MM-DD HH:mm');
         // alert(end)
+        
         
        addEvent(start, end);//이놈은 addEvent.js함수를 호출한다 .
 
@@ -242,6 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
         
       }
       alert(eventData.allDay)
+
+      if($('#dDay').is(":checked")==true ){
+        eventData.dDay='1'
+      }else{
+        eventData.dDay='0'
+      }
+      alert(eventData.dDay)
       
       
      
@@ -327,9 +339,18 @@ document.addEventListener('DOMContentLoaded', function () {
       if($('#allDay_checkbox').is(":checked")==true ){
         eventData.allDay = true;
         
+      }else{
+        eventData.allDay = false;
+      }
+
+      if($('#dDay').is(":checked")==true ){
+        eventData.dDay='1'
+      }else{
+        eventData.dDay='0'
       }
       // alert($('#eventTitle').val())
       event.setExtendedProp('eventDetail', $('#eventDetail').val())
+      event.setExtendedProp('dDay', eventData.dDay)
       event.setProp('title', $('#eventTitle').val());
       event.setStart($('#eventStart').val());
       event.setEnd($('#eventEnd').val());

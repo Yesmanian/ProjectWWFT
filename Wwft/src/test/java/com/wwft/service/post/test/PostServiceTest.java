@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
 import com.wwft.service.post.PostDao;
@@ -94,58 +95,102 @@ public class PostServiceTest {
 	 // @Test 
 	public void testupdatePost() throws Exception{
 	  
-	  
-	  Post post = postService.getPost(26); 
-	  
-	  Assert.assertNotNull(post);
-	  Assert.assertEquals("확인중", post.getPostDetail()); 
-	  Assert.assertEquals("1",post.getPostState()); 
-	  Assert.assertEquals("주말", post.getAlbumName());
-	  
-	  
-	  
-	  post.setPostDetail("수정 테스트중"); post.setPostState("1");
-	 post.setAlbumName("수정테스트앨범");
-	  
-	  postService.updatePost(post);
-	  
-	  
-	  
-	  post = postService.getPost(26);
-	  
-	  
-	  Assert.assertNotNull(post);
-	  
-	  
-	  
-	  Assert.assertEquals("수정 테스트중", post.getPostDetail());
-	  Assert.assertEquals("1", post.getPostState()); Assert.assertEquals("수정테스트앨범",
-	  post.getAlbumName()); }
-	  
-	  //@Test
+	/*
+	 * Post post = postService.getPost(26);
+	 * 
+	 * Assert.assertNotNull(post); Assert.assertEquals("확인중", post.getPostDetail());
+	 * Assert.assertEquals("1",post.getPostState()); Assert.assertEquals("주말",
+	 * post.getAlbumName());
+	 * 
+	 * 
+	 * 
+	 * post.setPostDetail("수정 테스트중"); post.setPostState("1");
+	 * post.setAlbumName("수정테스트앨범");
+	 * 
+	 * postService.updatePost(post);
+	 * 
+	 * 
+	 * 
+	 * post = postService.getPost(26);
+	 * 
+	 * 
+	 * Assert.assertNotNull(post);
+	 * 
+	 * 
+	 * 
+	 * Assert.assertEquals("수정 테스트중", post.getPostDetail());
+	 * Assert.assertEquals("1", post.getPostState()); Assert.assertEquals("수정테스트앨범",
+	 * post.getAlbumName()); 
+	 */
+	}
+	//  @Test
 	public void testGetPostListAll() throws Exception{
 	  
+		  Search search = new Search();
+		  search.setCurrentPage(1);
+		  search.setPageSize(9);
+		  
+	  
+	  Post post = new Post(); 
+	  post.setPostTreeNo(1);
+	  post.setPostState("0");
+	  
+	  ImageAndLike imageAndLike = new ImageAndLike();
+	  imageAndLike.setPostNo(256);
+	  imageAndLike.setImageAndLikeState("0");
+	  imageAndLike.setDeleteImageState("N");
+	  
+	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo());
+
+
+	  List<Post> dbList = (List<Post>)map.get("list");
+	  
+	  List<String> albumList = (List<String>)map.get("albumList");
+	 
+	  System.out.println("!!!!!!!!!!!!!!!!여기야"+dbList.size());
+	  System.out.println("!!!!!!!!!!!!!!!!여기야!!!!!!!!!!!!!!!!!!11"+albumList.size());
+	  
+	  Assert.assertEquals(9, dbList.size());
+	 // Assert.assertEquals("24067966-7956-4676-8d6d-d0c402c09665_8.jpg", dbfileName.getSaveImageName());
+	  Assert.assertEquals(7, albumList.size());
+	  
+	  
+	  
+	  
+	  
+	  }
+	
+	//  @Test
+	public void testGetPostListByAlbum() throws Exception{
+	  
+		  Search search = new Search();
+		  search.setCurrentPage(1);
+		  search.setPageSize(9);
+		  search.setSearchCondition("1");
+		  search.setSearchKeyword("수정테스트앨범");
 	  
 	  Post post = new Post(); 
 	  post.setPostTreeNo(2);
 	  post.setPostState("0");
 	  
 	  ImageAndLike imageAndLike = new ImageAndLike();
-	  imageAndLike.setPostNo(190);
+	  imageAndLike.setPostNo(256);
 	  imageAndLike.setImageAndLikeState("0");
 	  imageAndLike.setDeleteImageState("N");
 	  
-	  Map<String, Object> map = postService.getPostList(post.getPostTreeNo(),imageAndLike.getPostNo());
+	  Map<String, Object> map = postService.getPostList(search, post.getPostTreeNo());
 
 
 	  List<Post> dbList = (List<Post>)map.get("list");
 	  ImageAndLike dbfileName = (ImageAndLike)map.get("fileName");
+	  List<String> albumList = (List<String>)map.get("albumList");
+	 for(int i =0; i< dbList.size(); i++) {
+		 System.out.println("!!!!!!!!!!!!검색조건으로 들어갔나"+dbList.get(i).getPostNo());
+	 }
 	  
-	 
+	 System.out.println("!!!!!!!!!!!!검색조건으로 들어갔나"+dbList.get(1).getPostNo());
 	  
-	  
-	  Assert.assertEquals(7, dbList.size());
-	  Assert.assertEquals("1361d3f6-ef05-424c-800c-f02fc1d02710_1.jfif", dbfileName.getSaveImageName());
+	 // Assert.assertEquals(3, dbList.size());
 	  
 	  
 	  
@@ -153,6 +198,7 @@ public class PostServiceTest {
 	  
 	  
 	  }
+	 
 	 
 
 }

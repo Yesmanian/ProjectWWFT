@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
 
@@ -18,7 +19,9 @@ public interface PostDao {
 	
 	public int lastPosttNo() throws Exception;
 	
-	public List<Post> getPostList(int postTreeNo) throws Exception;
+	public List<Post> getPostList(Search search,int postTreeNo) throws Exception;
+	
+	public List<String> getAlbumList(int PostTreeNo) throws Exception;
 	
 	public void updatePost(Post post) throws Exception;
 	
@@ -26,10 +29,12 @@ public interface PostDao {
 	
 	public void addImageAndLike(ImageAndLike imageAndLike) throws Exception;
 	
-	public ImageAndLike getImageAndLike(int postNo) throws Exception;
+	/* public ImageAndLike getImageAndLike(int postNo) throws Exception; */
 	
 	public List<String> getImageAndLikeList(int postNo) throws Exception;
 		
 	public int removeImageAndLike(int imageAndLikeNo) throws Exception;
+
+	
 
 }

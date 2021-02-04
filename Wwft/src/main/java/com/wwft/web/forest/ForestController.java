@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wwft.service.domain.Forest;
 import com.wwft.service.forest.ForestService;
+import com.wwft.service.noticemessage.NoticeMessageService;
 
 @Controller
 @RequestMapping("/forest/*")
@@ -26,6 +27,10 @@ public class ForestController {
 	@Autowired
 	@Qualifier("forestServiceImpl")
 	private ForestService forestService;
+	
+	@Autowired
+	@Qualifier("noticeMessageServiceImpl")
+	private NoticeMessageService noticeMessageService;
 	
 	public ForestController() {
 		System.out.println("::"+this.getClass()+"default ForestController Constructor..");
@@ -43,11 +48,14 @@ public class ForestController {
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);
 		
+		map.put("acceptTreeList", noticeMessageService.acceptTreeList(forestNo));
+		
 		
 		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/forest/getForest.jsp");
 		modelAndView.addObject("list", map.get("list"));
+		modelAndView.addObject("acceptTreeList", map.get("acceptTreeList"));
 		modelAndView.addObject("forest", forest);
 		
 		
@@ -116,5 +124,7 @@ public class ForestController {
 		
 		return modelAndView;
 	}
+	
+	
 	
 }

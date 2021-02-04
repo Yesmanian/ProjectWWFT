@@ -45,6 +45,9 @@
             margin-left: 10px;
             margin-right: 10px;
         }
+        
+       
+        
 
     </style>
     
@@ -56,7 +59,7 @@
  <script type="text/javascript">
 //이미지 정보들을 담을 배열
  var sel_files = [];
-
+// var delete_files =[];
 
  $(document).ready(function() {
      $("#input_imgs").on("change", handleImgFileSelect);
@@ -103,20 +106,22 @@
      console.log("index : "+index);
      console.log("sel length : "+sel_files.length);
 
-     sel_files.splice(index, 1);
+    //delete_files = 
+    	sel_files.splice(index, 1);
      console.log( $("#input_imgs").val())
 	 
      var img_id = "#img_id_"+index;
      $(img_id).remove(); 
-     
- 	/* var data = new FormData();
+     alert(sel_files.length);
+     //alert(delete_files[0].value);
+ 	 /* var data = new FormData();
 	 
 	 for(var i =0; i<sel_files.length; i++){
 		 var name = "image_"+i;
 		 data.append(name, sel_files[i]);
 		 
 	 }
-	 alert(data); */
+	 alert(data.length);  */
  }
  
 
@@ -290,7 +295,11 @@
     </div>
                 <tr>
                     <th scope="row">내용</th>
-                    <td><textarea cols="100" rows="20" id="postDetail" name="postDetail" title="내용"></textarea></td>
+                    
+                     
+                    <td><textarea cols="80" rows="20" id="postDetail" name="postDetail" title="내용"></textarea></td>
+                	
+                	
                 </tr>
             </tbody>
         </table>

@@ -15,6 +15,23 @@
 		<result property="postState" 				column="post_state" 					jdbcType="CHAR" />
 		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
 		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
+		<result property="firstImageName"		column="save_image_name" 	jdbcType="VARCHAR"/>
+		
+		
+	</resultMap>
+	
+	
+		<resultMap id="imageAndLikeSelectMap" type="com.wwft.service.domain.ImageAndLike">
+		
+		<result property="imageAndLikeNo" 			column="image_and_like_no" 			jdbcType="NUMERIC"/>
+		<result property="originalImageName" 		column="original_image_name" 			jdbcType="VARCHAR" />
+		<result property="saveImageName" 		column="save_image_name" 			jdbcType="VARCHAR" />
+		<result property="deleteImageState" 		column="delete_image_state" 			jdbcType="CHAR" />
+		<result property="postNo" 				column="post_no" 					jdbcType="NUMERIC" />
+		<result property="likeWriter" 	column="like_writer" 		jdbcType="VARCHAR" />
+		<result property="imageAndLikeState" 				column="image_and_like_state" 					jdbcType="CHAR" />
+		
+	
 		
 		
 		
@@ -56,14 +73,46 @@
 	   	</set>
 	   	WHERE post_no  = #{postNo}
 	 </update>  
-	 
-	 
-	  <select  id="getPostList"  parameterType="int"	resultMap="postSelectMap">
-	  	SELECT post_no , post_reg_date
-	  	FROM post
-	  	WHERE tree_no = #{value}
-	  	ORDER BY post_no
+	
+	 <select  id="getAlbumList"  parameterType="int"	resultType="String">
+	  	SELECT album_name 
+		FROM post 
+		WHERE tree_no = #{postTreeNo} 
+		AND album_name IS NOT NULL
+		GROUP BY album_name
 									
+	 </select>
+	 
+	 
+	  <select  id="getPostList"  parameterType="map"	resultMap="postSelectMap">
+	  	SELECT *
+		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+					FROM		(	SELECT	p.post_no, p.post_reg_date,p.album_name,s.save_image_name
+										FROM post p,(SELECT * FROM MINFILE) s
+										<choose>
+											<when test="search.searchCondition != null and search.searchKeyword !=''">
+												<where>
+												p.tree_no = #{postTreeNo} AND p.album_name LIKE '%'|| #{search.searchKeyword}||'%'
+												
+												</where>
+											</when>
+											<otherwise>
+												WHERE p.tree_no = #{postTreeNo}
+					
+											</otherwise>
+										</choose>
+									<!-- 	<if test="searchCondition != null and searchKeyword !=''">
+											<where>
+												tree_no = #{postTreeNo} AND album_name LIKE '%'|| #{search.searchKeyword}||'%'
+												
+											</where>
+										</if>
+										WHERE tree_no = #{postTreeNo} -->
+										
+										AND p.post_no=s.post_no
+										ORDER BY post_no DESC) inner_table
+					WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}			
 	 </select> 
 	 
 	  <delete id="removePost" parameterType="int">
