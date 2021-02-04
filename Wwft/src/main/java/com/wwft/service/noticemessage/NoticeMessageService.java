@@ -14,10 +14,20 @@ public interface NoticeMessageService {
 	
 	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception;
 	
-	public void removeNoticeMessage(int noticeMessageNo) throws Exception;
 	
 	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception;
 	
-	public void updateNoticeMessageState(int treeNo) throws Exception;
+	public int getForestNoticeMessageStateCount(int forestNo) throws Exception;
+	
+	public void updateTreeNoticeMessageState(int treeNo) throws Exception;
+	
+	public void updateForestNoticeMessageState(int forest) throws Exception;
+	
+	public void removeNoticeMessage(int noticeMessageNo) throws Exception;
+//	public int getTreeNoticeMessageTotalCount(int treeNo) throws Exception;
+	
+//	public int getForestNoticeMessageTotalCount(int forestNo) throws Exception;
+	
+	
 
 }

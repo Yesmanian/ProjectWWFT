@@ -29,7 +29,7 @@ public class NoticeMessageController {
 	private NoticeMessageService noticeMessageService;
 
 	
-	@RequestMapping(value = "getNoticeMessageList", method = RequestMethod.GET)
+	@RequestMapping(value = "getTreeNoticeMessageList", method = RequestMethod.GET)
 	public String getTreeNoticeMessageList(@RequestParam int treeNo, Model model,@ModelAttribute("search") Search search) throws Exception{
 		
 		if(search.getCurrentPage() ==0 ){
@@ -47,6 +47,27 @@ public class NoticeMessageController {
 //		
 		model.addAttribute("noticeMessageList", noticeMessageService.getTreeNoticeMessageList(treeNo, search));
 		model.addAttribute("count", noticeMessageService.getTreeNoticeMessageStateCount(treeNo));
+		return "forward:/noticemessage/getNoticeMessage.jsp";
+	}
+	
+	@RequestMapping(value = "getFoestNoticeMessageList", method = RequestMethod.GET)
+	public String getForestNoticeMessageList(@RequestParam int forestNo, Model model,@ModelAttribute("search") Search search) throws Exception{
+		
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		System.out.println("서치키워드는 ?"+search.getSearchKeyword());
+		System.out.println("엔드:"+search.getEndRowNum()+"ㅅ타트:"+search.getStartRowNum());
+		// Business logic 수행
+//		Map<String , Object> map=productService.getProductList(search);
+//		
+//		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+//		System.out.println(resultPage);
+//		
+//		
+		model.addAttribute("noticeMessageList", noticeMessageService.getForestNoticeMessageList(forestNo, search));
+		model.addAttribute("count", noticeMessageService.getForestNoticeMessageStateCount(forestNo));
 		return "forward:/noticemessage/getNoticeMessage.jsp";
 	}
 	

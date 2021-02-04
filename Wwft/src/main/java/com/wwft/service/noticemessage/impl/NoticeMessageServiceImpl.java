@@ -42,7 +42,7 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 	@Override
 	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return noticeMessageDao.getForestNoticeMessageList(forestNo, search);
 	}
 
 	@Override
@@ -50,10 +50,25 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 		// TODO Auto-generated method stub
 		return noticeMessageDao.getTreeNoticeMessageStateCount(treeNo);
 	}
+	
+	@Override
+	public int getForestNoticeMessageStateCount(int forestNo) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMessageDao.getForestNoticeMessageStateCount(forestNo);
+	}
 
 	@Override
-	public void updateNoticeMessageState(int treeNo) throws Exception {
-		noticeMessageDao.updateNoticeMessageState(treeNo);		
+	public void updateTreeNoticeMessageState(int treeNo) throws Exception {
+		noticeMessageDao.updateTreeNoticeMessageState(treeNo);		
+	}
+
+
+
+
+	@Override
+	public void updateForestNoticeMessageState(int forest) throws Exception {
+		noticeMessageDao.updateForestNoticeMessageState(forest);
+		
 	}
 
 }
