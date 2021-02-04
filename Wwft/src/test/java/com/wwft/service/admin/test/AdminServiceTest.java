@@ -1,6 +1,9 @@
 package com.wwft.service.admin.test;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.wwft.common.web.Search;
 import com.wwft.service.admin.AdminService;
 import com.wwft.service.domain.Report;
 import com.wwft.service.domain.Tree;
@@ -32,21 +36,35 @@ public class AdminServiceTest {
 	
 	
 	
-	@Test
+	//@Test
 	public void addReport() throws Exception{
 		
 		Report report = new Report();
 		
-		report.setReporterTreeNo(21);
-		report.setReportedTreeNo(22);
+		report.setReporterTreeNo(22);
+		report.setReportedTreeNo(23);
 		report.setReportedPostNo(10);
 		report.setReportType('0');
 		report.setReportState('0');
 		
-		
+		adminService.addReport(report);
 		
 	}
 	
+	@Test
+	public void listReport() throws Exception{
+		
+		Search search = new Search();
+		search.setCurrentPage(1);
+		search.setPageSize(10);
+		Map<String, Object> map = adminService.getReportList(search);
+		
+		List<Object> list = (List<Object>)map.get("list");
+		Assert.assertEquals(3, list.size());
+		System.out.println(list);
+		Integer totalCount = (Integer)map.get("totalCount");
+	 	System.out.println(totalCount);
+	}
 	
 	
 	//@Test

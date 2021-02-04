@@ -31,7 +31,7 @@ public class UserServiceTest {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-	@Test
+	//@Test
 	public void testAddUser() throws Exception {
 		
 		User user = new User();
@@ -45,7 +45,7 @@ public class UserServiceTest {
 		user = userService.getUser("testUserId");
 	}
 		
-	@Test
+	//@Test
 	public void testGetUser() throws Exception {
 			
 		User user = new User();
@@ -58,7 +58,7 @@ public class UserServiceTest {
 			
 		
 	 }
-	@Test
+	//@Test
 	 public void testUpdateUser() throws Exception{
 		 
 		 User user = userService.getUser("testUserId5");
@@ -97,33 +97,17 @@ public class UserServiceTest {
 //				
 //	}
 
-//	 //@Test
-//	 public void testGetUserList() throws Exception{
-//		 
-//	 	Map<String,Object> map = userService.getUserList();
-//	 	
-//	 	List<User> list = (List<User>)map.get("list");
-//	 	Assert.assertEquals(3, list.size());
-//	 	
-//		//==> console 확인
-//	 	//System.out.println(list);
-//	 	
-//	 	Integer totalCount = (Integer)map.get("totalCount");
-//	 	System.out.println(totalCount);
-//	 	
-//	 	System.out.println("=======================================");
-//	 	
-//	 	map = userService.getUserList();
-//	 	
-//	 	list = (List<User>)map.get("list");
-//	 	Assert.assertEquals(3, list.size());
-//	 	
-//	 	//==> console 확인
-//	 	//System.out.println(list);
-//	 	
-//	 	totalCount = (Integer)map.get("totalCount");
-//	 	System.out.println(totalCount);
-//	}	 
+	 @Test
+	 public void testGetUserList() throws Exception{
+		 
+	 	List<User> list = userService.getUserList();
+	 	
+	 	System.out.println(list.size());
+	 	
+	 	//==> console 확인
+	 	System.out.println(list);
+	 	
+	}	 
 
 }
 	 

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
 
@@ -22,13 +22,15 @@ public interface PostService {
 	
 	/* public List<Post> getPostList(int postTreeNo) throws Exception; */
 	
-	public Map<String, Object> getPostList(int postTreeNo,int imageAndLikeNo) throws Exception;
+	public Map<String, Object> getPostList(Search search ,int postTreeNo,int imageAndLikeNo) throws Exception;
 	
 	public void updatePost(Post post,ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 
 	public void removePost(int postNo ,int imageAndLikeNo) throws Exception;
 
 	public void uploadFile(ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
+
+	
 	
 	
 	

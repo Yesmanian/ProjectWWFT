@@ -1,5 +1,6 @@
 package com.wwft.service.user;
 
+import java.util.List;
 import java.util.Map;
 
 import com.wwft.common.web.Search;
@@ -14,7 +15,7 @@ public interface UserService {
 		public User getUser(String userId) throws Exception ;
 
 		// SELECT LIST
-		public Map<String , Object> getUserList(String userId) throws Exception ;
+		public List<User> getUserList() throws Exception ;
 
 		// UPDATE
 		public void updateUser(User user) throws Exception ;
@@ -34,8 +35,8 @@ public interface UserService {
 //		public void userActivation(User user) throws Exception ;
 //
 //		// 회원 ID 중복 확인
-//		public boolean checkDuplication(String userId) throws Exception ;
-//		
+		public boolean checkDuplication(String userId) throws Exception ;
+		
 //		// 인증
 //		public String certified(String userId) throws Exception;
 //		

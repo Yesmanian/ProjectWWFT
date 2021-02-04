@@ -7,18 +7,26 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400&display=swap');
+	
+	
+
+	
 	#infinite-list {
   /* We need to limit the height and show a scrollbar */
   width: 200px;
-  height: 100px;
+  height: 200px;
   overflow: auto;
 
   /* Optional, only to check that it works with margin/padding */
    margin: 30px;
   padding: 20px;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 	#inviteTree-list {
   /* We need to limit the height and show a scrollbar */
@@ -29,7 +37,7 @@
   /* Optional, only to check that it works with margin/padding */
    margin: 30px;
   padding: 20px;
-  border: 10px solid black;
+  /* border: 10px solid black; */
 }
 
 /* Optional eye candy below: */
@@ -40,7 +48,32 @@ li {
 li:hover {
   background: #ccc;
 }
-
+.gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+@media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+.col-md-6{
+	height: 500px;
+	overflow: auto;
+	
+}
+/* .col-md-6::-webkit-scrollbar {
+    width: 10px;
+  }
+  .col-md-6::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+  }
+  .col-md-6::-webkit-scrollbar-track {
+    background-color: grey;
+  } */
 </style>
 <script type="text/javascript">
  	
@@ -61,12 +94,12 @@ li:hover {
  	 
  	//forestName function
 	$(function(){
-		$('input[name=changeButton]').on("click",function(){
+		$('button[name=changeButton]').on("click",function(){
 			$('.forestName').hide();
 			$('input[name=changeName]').attr("type","text");
 	
 		})
-		$('input[name=confirmButton]').on("click",function(){
+		$('button[name=confirmButton]').on("click",function(){
 			
 			var params = {
 					forestName : $('input[name=changeName]').val(),
@@ -112,13 +145,13 @@ li:hover {
 		
 		
 		//InformText function
-		 $('input[name=informTextchangeButton]').on("click",function(){
+		 $('button[name=informTextchangeButton]').on("click",function(){
 			$('.forestInformText').hide();
 			$('.forsetInformTextWriter').hide();
 			$('.forestInformTextRegDate').hide();
 			$('input[name=changeInformText]').attr("type","text");
 		}) 
-		$('input[name=informTextconfirmButton]').on("click",function(){
+		$('button[name=informTextconfirmButton]').on("click",function(){
 			
 			var params = {
 					forestNo         : ${forest.forestNo},
@@ -177,6 +210,341 @@ li:hover {
 </script>
 </head>
 <body>
+<!--navbar  -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">WWFT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+			<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+		</a>
+      </li> 
+      <li>
+      </li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Tree</a>
+          <a class="dropdown-item" href="#">Search</a>
+          <a class="dropdown-item" href="#">Change Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+      
+    </ul>
+    
+  </div>
+</nav>
+<!--navbar end  -->
+	<div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="forestName">${forest.forestName }</h2> 
+							 <h2 class="forsetNameTextForm">
+							 	<input type="hidden" name="changeName" value=${forest.forestName} onblur="blurFunction()">
+							 </h2>
+	                        <div class="h7 text-muted">숲 방장 : ${forest.forestCreaterTreeNo }</div>
+							 
+							 <button type="button" class="btn btn-default navbar-btn" name="changeButton" >수정</button>
+							 <button type="button" class="btn btn-default navbar-btn" name="confirmButton" >확인</button>
+							 <!-- <input type="button" name="changeButton" value="수정">
+							 <input type="button" name="confirmButton" value="확인"> -->
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Forest Board</div>
+                        </li>
+                        <h2 class="forestInformText">${forest.forestInformText }</h2>
+	 					<h2 class="forsetInformTextWriter">${forest.forestInformWriter }</h2>
+	 					<h2 class="forestInformTextRegDate">${forest.forestInformRegDate }</h2>
+	 					<h2 class="forestInformTextForm">
+						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText }>
+					 	</h2>
+					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton" >수정</button>
+						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" >확인</button>
+						 <!-- <input type="button" name="informTextchangeButton" value="수정">
+						 <input type="button" name="informTextconfirmButton" value="확인"> -->
+						 
+                        
+                    </ul>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Trees</div>
+                            
+                        </li>
+                        <li class="list-group-item">
+                            <ul id='infinite-list'>
+							</ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 gedf-main">
+
+                <!--- \\\\\\\Post-->
+                
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
+                                    a publication</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Upload image</label>
+                                    </div>
+                                </div>
+                                <div class="py-4"></div>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">share</button>
+                            </div>
+                            <div class="btn-group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fa fa-globe"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post /////-->
+
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@LeeCross</div>
+                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <a class="card-link" href="#">
+                            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                        </a>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                </div>
+                <!-- Post /////-->
+
+
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@LeeCross</div>
+                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div>
+                        <a class="card-link" href="#">
+                            <h5 class="card-title"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit consectetur
+                                deserunt illo esse distinctio.</h5>
+                        </a>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam omnis nihil, aliquam est, voluptates officiis iure soluta
+                            alias vel odit, placeat reiciendis ut libero! Quas aliquid natus cumque quae repellendus. Lorem
+                            ipsum dolor sit amet consectetur adipisicing elit. Ipsa, excepturi. Doloremque, reprehenderit!
+                            Quos in maiores, soluta doloremque molestiae reiciendis libero expedita assumenda fuga quae.
+                            Consectetur id molestias itaque facere? Hic!
+                        </p>
+                        <div>
+                            <span class="badge badge-primary">JavaScript</span>
+                            <span class="badge badge-primary">Android</span>
+                            <span class="badge badge-primary">PHP</span>
+                            <span class="badge badge-primary">Node.js</span>
+                            <span class="badge badge-primary">Ruby</span>
+                            <span class="badge badge-primary">Paython</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                </div>
+                <!-- Post /////-->
+
+
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@LeeCross</div>
+                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
+                        <a class="card-link" href="#">
+                            <h5 class="card-title">Totam non adipisci hic! Possimus ducimus amet, dolores illo ipsum quos
+                                cum.</h5>
+                        </a>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt fugit reprehenderit consectetur exercitationem odio,
+                            quam nobis? Officiis, similique, harum voluptate, facilis voluptas pariatur dolorum tempora sapiente
+                            eius maxime quaerat.
+                            <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU" target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                </div>
+                <!-- Post /////-->
+
+
+
+            </div>
+            <div class="col-md-3">
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Invite Tree</h5>
+                       <!--  <h6 class="card-subtitle mb-2 text-muted">Tree List</h6> -->
+                        <!-- <input type="text" name="searchTree" > -->
+                        <input type="text" class="form-control" placeholder="TreeName" aria-describedby="basic-addon1" name="searchTree">
+						 <form name="inviteTree" action="/forest/inviteTree" method="post">
+						 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
+						 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
+							 <ul id='inviteTree-list'>
+							</ul>
+							<input type="submit" name="inviteButton" value="초대하기">
+							 
+						 </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  Hello GetForest.jsp<br/>
  <div>
 	 ${forest}
@@ -212,9 +580,11 @@ var restLoadMore = function(list){
 	for (var tree in list){
 		 var item = document.createElement('li');
 		 item.innerText = list[tree].treeName;
-		
+		 var forestNo = list[tree].treeNo
 		 //클릭시 수정필요
-		 //item.setAttribute('onclick',"location.href='getForest?forestNo='")
+		 //getTree로 이동!
+		 /* item.setAttribute('onclick',"location.href='getForest?forestNo=21") */
+		 item.setAttribute('onclick',`location.href='/forest/getForest?forestNo=\${forestNo}'`)
 		 listElm.appendChild(item);
 		 	
 	}	
@@ -238,6 +608,41 @@ var inviteTreeLoad = function(list){
 	
 
 window.onload = function(){
+	
+	var postPageNumber = 1;
+	var postParams = {
+			forestNo   : ${param.forestNo},
+			pageNumber : postPageNumber
+	}
+	var postJsonString = JSON.stringify(postParams)
+	//alert(postJsonString)
+	
+	$.ajax({
+		type : "POST",
+		url  : "/forest/json/getPostList",
+		data : postJsonString,
+		headers : {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+         },
+		success : function(res,status){
+			
+			
+			//alert(status)
+			//alert(res.treeList.list[0].treeName)
+			//alert(res.treeList.list[2].treeName)
+			var list = res.postList.list;
+			alert(list[0].postNo)
+			//restLoadMore(list);
+			
+			
+		},
+		error :  function(XMLHttpRequest, textStatus,errorThrown){
+			alert("통신 실패")
+		}
+	})
+	
+	
 	
 	var pageNumber = 1;
 	var params = {
@@ -271,6 +676,10 @@ window.onload = function(){
 			alert("통신 실패")
 		}
 	})
+	
+	
+	
+	
 	
 	
 	
@@ -440,6 +849,19 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 	 </script>
  </div><br/>
  
+ <div>
+ 	post
+ 	<script type="text/javascript">
+ 		//RestPost
+ 		
+ 	</script>
+ 	
+ 
+ </div>
+ 
+ <div>
+ 	<%-- ${acceptTreeList } --%>
+ </div>
  
  
 </body>

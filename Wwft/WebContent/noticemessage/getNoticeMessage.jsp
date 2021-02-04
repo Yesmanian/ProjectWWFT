@@ -17,9 +17,10 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="../resources/javascript/noticemessage/main.js"></script>
-
 </head>
 <body>
+    
+    
     <!-- icon 모음
     <i class="zmdi zmdi-comment-outline"></i>
     <i class="zmdi zmdi-alert-circle"></i>
@@ -28,13 +29,18 @@
     -->
     <script>
 $(document).ready(function () {
-    $(".remove").on("click",function() {
+
+
+    // $(".remove").on("click",function(e) {
+    $(document).on("click","#remove",function(e) {
+        e.preventDefault();
         let removeConfirm = confirm("삭제 하시겠습니까 ?")
         if(removeConfirm==true){
-            let noticeMessageNo = $(this).find('.noticeMessageNo').val()
+            let noticeMessageNo = $(this).closest("li").find('.noticeMessageNo').val();
+            alert(noticeMessageNo);
             let messageObj = $(this);
 
-            alert($(messageObj).closest("li"))
+            // alert($(messageObj).closest("li"))
             
 
             //remove
@@ -63,15 +69,99 @@ $(document).ready(function () {
         //ajax끝
 
         }else{
-            
+            //취소시
         }
         
-    })
+    })//remove끝 
+
+
+    $(document).on("click","#accept",function(e) {
+        e.preventDefault();
+        let removeConfirm = confirm("수락하시겠습니까 ?")
+        if(removeConfirm==true){
+            let noticeMessageNo = $(this).closest("li").find('.noticeMessageNo').val();
+            let noticeMessageState = '4'; //4= 초대수
+            // $(this).attr('class','<button type="button" class="btn btn-success btn-sm" >수락</button>');
+            
+            // alert(noticeMessageNo);
+
+            $(this).closest("li").find('p').text('숲의 일원이 되셨습니다.');
+            $(this).closest("li").find('p').append('<a href="javascript:void(0);">숲 둘러보기</a>');
+            let messageObj = $(this);
+
+            $(this).remove();
+
+            // alert($(messageObj).closest("li"))
+            
+
+            //remove
+        //     $.ajax({
+        //         url: `/noticeMessage/json/removeNoticeMessage`,
+        //         type: 'POST',
+        //         data: JSON.stringify({ noticeMessageNo: noticeMessageNo, noticeMessageState : noticeMessageState   }),
+        //         dataType: 'json',
+        //         headers: {
+        //                      "Accept": "application/json",
+        //                     "Content-Type": "application/json"
+
+        //                      },
+        //     success: function (data, status) {
+        //             // alert('성공')
+        //             // alert(status)
+        //             if(status=="success"){
+        //             $(messageObj).closest("li").remove();
+        //             }
+            
+              
+
+
+        //     }
+        // });
+        //ajax끝
+
+        }else{
+            //수락눌렀다가 취소
+        }
+        
+    })//remove끝 
+
+    let page = 1;
+    let treeNo = 1;
+    $(window).scroll(function () {
+        
+        
+    // End of the document reached?
+    if ($(document).height() - $(this).height() == $(this).scrollTop()) {
+        page++;
+        // alert(page)
+        // alert('Scrolled to Bottom');
+        //treeNo 가져와야하고 , page넘기는데 뭘로 ???? search ? search 생성후 거기에 page set해주는걸로
+        $.ajax( 
+				{
+					url : `/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}` ,
+					method : "GET" ,
+					dataType : "json" ,
+					
+					success : function(JSONData , status) {
+                        createTag(JSONData.list);
+         
+                    }
+                
+                
+                });
+
+        
+
+        
+    }
+}); 
     
 })
 
     </script>
-   
+   <div>
+       <a href="/noticeMessage/getNoticeMessageList?treeNo=1"><input type="button" value="메시지함">${count}</a>
+   </div>
     
     <div class="container">
         <div class="row">
@@ -165,7 +255,7 @@ $(document).ready(function () {
 
 
         let noticeMessage = [];
-    <c:forEach items="${noticeMessageList}" var="list">
+    <c:forEach items="${noticeMessageList.list}" var="list">
           noticeMessage.push({ 
             noticeMessageNo  : "${list.noticeMessageNo}",
             noticeMessageState : "${list.noticeMessageState}",
@@ -180,67 +270,8 @@ $(document).ready(function () {
         });
     </c:forEach>
     
-    //  alert(JSON.stringify(noticeMessage[0]));
-    $.each( noticeMessage,function(index, item){
-        if(item.noticeMessageType=='0'){
-            // alert(item.noticeMessageDate);
-            let date = timeForToday(item.noticeMessageDate);
-            let ampm = formatAMPM(item.noticeMessageDate)
-          
-                    $(".cbp_tmtimeline").append(` <li>
-                        <time class="cbp_tmtime" datetime="\${item.noticeMessageDate}"><span>\${ampm}</span> <span>\${date}</span></time>
-                        <div class="cbp_tmicon bg-info"><i class="zmdi zmdi-comment-outline"></i></div>
-                        <div class="cbp_tmlabel">
-                            <a class="remove" href="#" ><i class="zmdi zmdi-delete"></i><input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="\${item.noticeMessageNo}"> </a>
-                            <h2><a href="javascript:void(0);">\${item.sender}</a></h2>
-                            <p>\${item.noticeMessageDetail}</p>
-                        </div>
-                    </li>`);
-        }else if(item.noticeMessageType=='1'){
-            let date = timeForToday(item.noticeMessageDate);
-            let ampm = formatAMPM(item.noticeMessageDate)
-           
-            $(".cbp_tmtimeline").append(`<li>
-                        <time class="cbp_tmtime" datetime="\${item.noticeMessageDate}"><span>\${ampm}</span> <span>\${date}</span></time>
-                        <div class="cbp_tmicon  bg-blush"><i class="zmdi zmdi-alert-circle""></i></div>
-                        <div class="cbp_tmlabel">
-                            <a class="remove" href="#" ><i class="zmdi zmdi-delete"></i><input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="\${item.noticeMessageNo}"> </a>
-                            <h2><a href="javascript:void(0);">\${item.sender}</a></h2>
-                            <p>\${item.noticeMessageDetail}</p>
-                        </div>
-                    </li>`)
-
-        }else if(item.noticeMessageType=='2'){
-            let date = timeForToday(item.noticeMessageDate);
-            let ampm = formatAMPM(item.noticeMessageDate)
-
-            $(".cbp_tmtimeline").append(`<li>
-                        <time class="cbp_tmtime" datetime="\${item.noticeMessageDate}"><span>\${ampm}</span> <span>\${date}</span></time>
-                        <div class="cbp_tmicon bg-orange"><i class="zmdi zmdi-account-add"></i></div>
-                        <div class="cbp_tmlabel">
-                            <a class="remove" href="#" ><i class="zmdi zmdi-delete"></i><input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="\${item.noticeMessageNo}"> </a>
-                            <h2><a href="javascript:void(0);">\${item.sender}</a></h2>
-                            <p>\${item.noticeMessageDetail}</p>
-                        </div>
-                    </li>`)
-
-        }
-        
-
-
-    })
-    // let createTag = function(noticeMessage){
-    
-    // noticeMessage.forEach(function (element) {
-    //     alert(element.sender)
-            
-    //     })
-    
-    // }
-
-    // createTag(noticeMessage);
-
-    // alert(noticeMessage[0]);
+    createTag(noticeMessage);
+   
     </script>
 
 

@@ -1,14 +1,11 @@
 package com.wwft.service.profile.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.wwft.common.web.Search;
 import com.wwft.service.domain.Profile;
 import com.wwft.service.profile.ProfileDao;
 import com.wwft.service.profile.ProfileService;
@@ -56,6 +53,13 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void removeProfile(Profile profile) throws Exception {
 		 profileDao.removeProfile(profile);
+	}
+
+	@Override
+	public List<Profile> getProfileList() throws Exception {
+		List<Profile> list = profileDao.getProfileList();
+		
+		return list;
 	}
 
 }
