@@ -13,12 +13,21 @@ public class Post {
 	private int postTreeNo;				//게시글이 작성된 나부번호
 	private String checkboxState;		//게시글 체크박스 선택여부(이동,삭제등)
 	private String albumName;			//앨범이름
+	private String firstImageName;		//첫번쨰  이미지 이름
 	
 	public Post() {
 		}
 
 	public int getPostNo() {
 		return postNo;
+	}
+
+	public String getFirstImageName() {
+		return firstImageName;
+	}
+
+	public void setFirstImageName(String firstImageName) {
+		this.firstImageName = firstImageName;
 	}
 
 	public void setPostNo(int postNo) {
@@ -102,8 +111,12 @@ public class Post {
 		builder.append(checkboxState);
 		builder.append(", albumName=");
 		builder.append(albumName);
+		builder.append(", firstImageName=");
+		builder.append(firstImageName);
 		builder.append("]");
 		return builder.toString();
 	}
+
+	
 
 }
