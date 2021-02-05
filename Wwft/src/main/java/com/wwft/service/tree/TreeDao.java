@@ -13,7 +13,7 @@ import com.wwft.service.domain.TreeForest;
 
 public interface TreeDao {
 	
-	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception;
+	public Tree getUserTree(int treeNo) throws Exception;
 	
 	public void addTree(Tree tree) throws Exception;
 	
