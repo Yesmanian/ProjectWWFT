@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="refresh" content="0;URL=getFamilyMotto.jsp">
 <meta charset="EUC-KR">
 <title>나무 보기</title>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

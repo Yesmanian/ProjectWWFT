@@ -282,7 +282,7 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="filtering col-sm-12 text-center">
-                <!-- <span data-filter="*" class="active">All</span> -->
+                <span data-filter="*" class="active">All</span> 
                 <span data-filter=".architecture" class="">Architecture</span>
                 <span data-filter=".decor" class="">Decor</span>
                 <span data-filter=".interior" class="">Interior</span>
