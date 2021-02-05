@@ -33,7 +33,7 @@ function formatAMPM(value) {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
-}
+
 
 function createTag(value) {
 
@@ -53,6 +53,14 @@ function createTag(value) {
                             </div>
                             <h2><a href="javascript:void(0);">${item.sender}</a></h2>
                             <p>${item.noticeMessageDetail}</p>
+                            <div class="row clearfix">
+                            <div class="col-lg-12">
+                                <div class="map m-t-10">
+                                    <iframe src="/post/getPost?postNo=${item.postNo}" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=yes vspace=0
+                                     style="border:0; width: 100%; overflow-x:hidden;  overflow-y:scroll;" ></iframe>
+                                </div>
+                            </div>
+                        </div> 
                         </div>
                     </li>`);
         } else if (item.noticeMessageType == '1') {
