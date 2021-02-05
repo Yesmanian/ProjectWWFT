@@ -55,7 +55,7 @@ $('#real-input').on('change',readInputFile);
 
 <body>	
         <!-- 미리보기 공간 -->
-	<h3>프로필 목록</h3>
+	<h3>프로필 관리</h3>
 	<ul>
 		<c:forEach items="${getProfileList}" var="list" >
 			<tr align="center" style="padding: 2 0 2 0">
@@ -71,7 +71,7 @@ $('#real-input').on('change',readInputFile);
 		
       <div class="product-item">
         <div class="image">
-          <a href="/tree/getUserTree?treeNo=${user.treeNo}&userId=${user.userId}"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
+          <a href="/profile/getProfile.jsp"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
         </div>
           <div class="name text-center">
             <label for="profileNmae"></label>
@@ -79,18 +79,8 @@ $('#real-input').on('change',readInputFile);
         </div>
     <!--/ Product Item -->
 
-          <div class="product-item">
-        </div>
-        <div class="image">
-          <a href="/profile/addProfile"><img src="/resources/images/profile/412rXWdCJ7L.png" alt="Product 4"></a>
-        </div>
-          <div class="name text-center">
-            <label for="profileNmae">프로필 생성</label>
-          </div>
- 
-          <input type="button" value="프로필 관리" onclick="location='/profile/updateProfileList'"/>
+ 		<p align="center">
           <input type="button" value="뒤로가기" onclick="goBack();"/>
-		  <button class="cencle btn btn-danger" type="button">취소</button>
-      
+      	</p>
 </body>
 </html>

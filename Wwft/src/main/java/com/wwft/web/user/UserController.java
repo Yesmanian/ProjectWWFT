@@ -62,8 +62,6 @@ public class UserController {
 		return "redirect:/user/login.jsp";
 	}
 	
-
-	
 	
 	@RequestMapping( value="getUser", method=RequestMethod.GET  )
 	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {

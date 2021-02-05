@@ -8,23 +8,6 @@
 <title>내정보보기</title>
 	<script type="text/javascript">
 		
-		//==>"수정" "확인"  Event 연결 및 처리
-		 $(function() {
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
-			 $( "td.ct_btn01:contains('확인')" ).on("click" , function() {
-				Debug..
-				alert(  $( "td.ct_btn01:contains('확인')" ).html() );
-				history.go(-1);
-			});
-			
-			 $( "td.ct_btn01:contains('수정')" ).on("click" , function() {
-					Debug..
-					alert(  $( "td.ct_btn01:contains('수정')" ).html() );
-					self.location = "/user/updateUser?userId=${user.userId}"
-				});
-		});
-		
 	</script>
 
 </head>
@@ -43,10 +26,10 @@
 			<label for="email">이메일: ${user.email}</label> 
 		</p>
 		 <p>
-			<label for="treeName">나무 닉네임</label>
+			<label for="treeName">나무 닉네임 : ${tree.treeName}</label>
 		</p>
 		<p>
-			<label for="treeAddress">나무 주소 </label>
+			<label for="treeAddress">나무 주소  : ${tree.countryId}</label>
 		</p>
 		  <p>
 			<label>둥근씨앗</label> 

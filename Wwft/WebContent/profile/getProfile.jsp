@@ -36,8 +36,9 @@
 			<label for="address">주소: ${profile.address}</label>
 		</p>
 		<p>
-		<input type="submit" value="확인" /> <input type="submit" value="되돌아가기" />
+		<input type="submit" value="수정" /> <input type="submit" value="되돌아가기" />
 		</p>
+		
 </form>
 </body>
 </html>
