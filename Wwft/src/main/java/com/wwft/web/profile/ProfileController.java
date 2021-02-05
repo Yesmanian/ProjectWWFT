@@ -1,6 +1,5 @@
 package com.wwft.web.profile;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.User;
@@ -25,7 +23,6 @@ public class ProfileController {
 	@Autowired
 	@Qualifier("profileServiceImpl")
 	private ProfileService profileService;
-	
 	
 	
 	public ProfileController() {
@@ -43,28 +40,31 @@ public class ProfileController {
 	}
 	
 	@RequestMapping( value = "addProfile", method = RequestMethod.POST)
-	public String addProfile(@ModelAttribute() Profile profile) throws Exception{
+	public String addProfile(@ModelAttribute() Profile profile ,HttpSession session ,Model model  ) throws Exception{
 		System.out.println("addProfile: POST");
 		System.out.println(profile);
 		
-		profileService.addProfile(profile);
+		User user = (User)session.getAttribute("user");
 		
-		return "redirect:/profile/getProfile";
+		profileService.addProfile(profile);
+		model.addAttribute("getProfileList", profileService.getProfileList(user.getTreeNo()));
+		return "redirect:/profile/getProfileList";
 	}
 	
 	@RequestMapping( value="getProfile", method=RequestMethod.GET )
 	public String login(@ModelAttribute("profile") Profile profile , HttpSession session, HttpServletResponse response) throws Exception{
 		System.out.println("/profile/getProfile : GET");
 		//Business Logic
+		
 		Profile dbprofile = profileService.getProfile(profile.getProfileNo());
+		System.out.println(dbprofile.getTreeNo());
+		System.out.println(profile.getTreeNo());
 		// Model °ú View ¿¬°á
 		if( profile.getTreeNo()==(dbprofile.getTreeNo())){
 			session.setAttribute("profile", dbprofile);
 		}
 
-
-		
-		return "redirect:/profile/getProfile.jsp";
+		return "forward:/profile/getProfile.jsp";
 	}
 
 	@RequestMapping(value = "getProfileList", method = RequestMethod.GET)

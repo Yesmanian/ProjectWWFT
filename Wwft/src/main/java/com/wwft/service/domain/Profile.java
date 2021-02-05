@@ -11,7 +11,7 @@ public class Profile {
 	private String phone;
 	private String familyRelations;	
 	private String profileImage;	
-	private Date birthday;
+	private String birthday;
 	private String address;
 
 	public Profile() {
@@ -103,13 +103,13 @@ public class Profile {
 
 
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
 
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
