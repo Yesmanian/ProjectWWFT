@@ -86,11 +86,15 @@ $(document).ready(function () {
             
             // alert(noticeMessageNo);
 
-            if(url.indexOf('getTree')==36){
-            alert('나무의메시지함')
+            if(url.indexOf('getTree')!=-1){
+            // alert('나무의메시지함')
             url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
+            $(this).closest("li").find('p').text('회원님의 나무가 숲에 속');
+            $(this).closest("li").find('p').append('<a href="javascript:void(0);">숲 둘러보기</a>');
+            let messageObj = $(this);
+
         }else{
-            alert('숲의메시지함')
+            // alert('숲의메시지함')
             $(this).closest("li").remove();
             url=`/noticeMessage/json/forestNoticeMessageList/\${forestNo}/\${page}`;
         }
@@ -105,28 +109,28 @@ $(document).ready(function () {
             
 
             //remove
-        //     $.ajax({
-        //         url: `/noticeMessage/json/removeNoticeMessage`,
-        //         type: 'POST',
-        //         data: JSON.stringify({ noticeMessageNo: noticeMessageNo, noticeMessageState : noticeMessageState   }),
-        //         dataType: 'json',
-        //         headers: {
-        //                      "Accept": "application/json",
-        //                     "Content-Type": "application/json"
+            $.ajax({
+                url: `/noticeMessage/json/removeNoticeMessage`,
+                type: 'POST',
+                data: JSON.stringify({ noticeMessageNo: noticeMessageNo, noticeMessageState : noticeMessageState   }),
+                dataType: 'json',
+                headers: {
+                             "Accept": "application/json",
+                            "Content-Type": "application/json"
 
-        //                      },
-        //     success: function (data, status) {
-        //             // alert('성공')
-        //             // alert(status)
-        //             if(status=="success"){
-        //             $(messageObj).closest("li").remove();
-        //             }
+                             },
+            success: function (data, status) {
+                    // alert('성공')
+                    // alert(status)
+                    if(status=="success"){
+                    $(messageObj).closest("li").remove();
+                    }
             
               
 
 
-        //     }
-        // });
+            }
+        });
         //ajax끝
 
         }else{
@@ -145,16 +149,16 @@ $(document).ready(function () {
     if ($(document).height() - $(this).height() == $(this).scrollTop()) {
         page++;
         let url = window.location.href;
-        alert(window.location.href)
-        alert(url.indexOf('getTree'))
-        if(url.indexOf('getTree')==36){
-            alert('트루')
+        // alert(window.location.href)
+        // alert(url.indexOf('getTree'))
+        if(url.indexOf('getTree')!=-1){
+            // alert('트루')
             url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
         }else{
-            alert('폴스')
+            // alert('폴스')
             url=`/noticeMessage/json/forestNoticeMessageList/\${forestNo}/\${page}`;
         }
-        alert(url)
+        // alert(url)
         // alert(page)
         // alert('Scrolled to Bottom');
         //treeNo 가져와야하고 , page넘기는데 뭘로 ???? search ? search 생성후 거기에 page set해주는걸로

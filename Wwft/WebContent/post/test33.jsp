@@ -1,189 +1,187 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+ <%@ page contentType="text/html; charset=EUC-KR" %>
+<%@ page pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-    
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-    
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
+ <html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>getPostList</title>
 <style type="text/css">
-	
-	.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 0.4fr 2.2fr 0.4fr 1fr;
-  grid-template-rows: 0.6fr 2.1fr 0.7fr 0.6fr 1.6fr 0.4fr;
-  gap: 5px 0px;
-  grid-template-areas:
-    ". . . . ."
-    ". image image image ."
-    ". detail detail detail ."
-    ". comment comment comment ."
-    ". commentList commentList commentList ."
-    ". . . . .";
-}
+/*card-header{
+ background:#eee;
+    margin-top:10px;
 
-.image { grid-area: image; }
+}*/
 
-.detail { grid-area: detail; }
 
-.comment { grid-area: comment; }
 
-.commentList { grid-area: commentList; }
-	
-
+  
 </style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
+ 
 <body>
-<div class="grid-container">
-  <div class="image"></div>
-  <div class="detail"></div>
-  <div class="comment"></div>
-  <div class="commentList"></div>
+
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">제주도</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">가족</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">보라카이</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+  
+  		<div class="card-group">
+  		
+  		<div class="card-deck">
+		  <div class="card border-info mb-3">
+		    <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_2.jfif" class="card-img-top rounded" alt="...">
+		   <!--  <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+		    </div> -->
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_4.jfif" class="card-img-top" alt="...">
+		    <!-- <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+		    </div> -->
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		  <div class="card">
+		    <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_9.jpg" class="card-img-top" alt="...">
+		    <!-- <div class="card-body">
+		      <h5 class="card-title">Card title</h5>
+		      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+		    </div> -->
+		    <div class="card-footer">
+		      <small class="text-muted">Last updated 3 mins ago</small>
+		    </div>
+		  </div>
+		</div>
 </div>
-
-
-
-
-
-
-<div class="container">
-    <form id="commentForm" name="commentForm" method="post">
-    <br><br>
-        <div>
-            <div>
-                <span><strong>Comments</strong></span> <span id="cCnt"></span>
-            </div>
-            <div>
-                <table class="table">                    
-                    <tr>
-                        <td>
-                            <textarea style="width: 1100px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <br>
-                            <div>
-                                <a href='#' onClick="fn_comment('${post.postNo }')" class="btn pull-right btn-success">등록</a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <input type="hidden" id="postNo" name="postNo" value="${post.postNo }" />        
-    </form>
-</div>
-<div class="container">
-    <form id="commentListForm" name="commentListForm" method="post">
-        <div id="commentList">
-        </div>
-    </form>
-</div>
- 
-
-
-
-
-<script type="text/javascript">
-/*
- * 댓글 등록하기(Ajax)
- */
-function fn_comment(commentPostNo){
     
-    $.ajax({
-       
-        url : "/comment/json/addComment/",
-        method :'POST',
-        data : $("#commentForm").serialize(),
-        dateType : "json",
-        headers : {
-			"Accept" : "application/json",
-			"Content-Type" : "application/json"
-		},
-        success : function(data){
-            if(data=="success")
-            {
-                getCommentList();
-                $("#comment").val("");
-            }
-        },
-        error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-        
-    });
-}
+    	<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4" style=" display: inline-block">
+    <div class="card" style="width: 15rem;">
+      <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_2.jfif" class="card-img-top" alt="..." style="width: 80; height: 50">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card" style="width: 15rem;">
+      <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_4.jfif" class="card-img-top" alt="..." >
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card" style="width: 15rem;">
+      <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_9.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card" style="width: 15rem;">
+      <img src="/resources/images/uploadFiles/98c9c7a5-ba24-41e1-9b3a-a92c41da2943_10.jfif" class="card-img-top" alt="...">
+      <div class="card text-right">
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text">2021-02-05</p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
  
-/**
- * 초기 페이지 로딩시 댓글 불러오기
- */
+<%-- <c:forEach var="post" items ="${list}">
+	
+		<div class="card" style="width: 50%;">
+			 <a href="/post/getPost?postNo=${post.postNo}"  class = btn pull-right btn-success style=text-decoration:none> 
+			 <img src="/resources/images/uploadFiles/${post.firstImageName}" class="card-img-top" alt="..." style="width: 300px; height: 300px"></a>
+			  <div class="card-body">
+			    <p class="card-text">${post.postRegDate}</p>
+			  </div>
+		</div>
+
+</c:forEach>  --%>
+
+
+<%-- 
+<div class="card1" style="width: 20rem;">
+			 <a href="/post/getPost?postNo=${post.postNo}"   class = btn pull-right btn-success style=text-decoration:none> 
+			 <img src="/resources/images/uploadFiles/${post.firstImageName}" class="card-img-top" alt="..." style="width: 300px; height: 300px"></a>
+			  <div class="card-body">
+			    <p class="card-text">${post.postRegDate}</p>
+			  </div>
+		</div>
+ --%>
+
+
+
+
+
+
+<!-- <script type="text/javascript">
+/* window.onload = function(){
+
+	var a = document.getElementById( 'hel' );
+
+	a.style.color = "blue"
+
+	} */
 $(function(){
-    
-    getCommentList();
-    
-});
- 
-/**
- * 댓글 불러오기(Ajax)
- */
-function getCommentList(){
-    
-    $.ajax({
-        type:'GET',
-        url : "/comment/json/getCommentList/",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(data){
-            
-            var html = "";
-            var cCnt = data.length;
-            
-            if(data.length > 0){
-                
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
-                    html += "</div>";
-                }
-                
-            } else {
-                
-                html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                html += "</table></div>";
-                html += "</div>";
-                
-            }
-            
-            $("#cCnt").html(cCnt);
-            $("#getcommentList").html(html);
-            
-        },
-        error:function(request,status,error){
-            
-       }
-        
+    $(".filtering").on("click", "span", function () {
+        var a = $(".gallery").isotope({});
+        alert(JSON.stringify($(this)));
+        var e = $(this).attr("data-filter");
+        a.isotope({ filter: e });
     });
-}
- 
-</script>
- 
-</body>
-</html>
+    $(".filtering").on("click", "span", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+}) 
+</script>  -->
+<script type="text/javascript">
 
+
+
+</script>
+</body>
+
+</html>

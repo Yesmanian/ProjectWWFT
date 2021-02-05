@@ -51,15 +51,19 @@ public class TreeController {
 	
 		Tree tree = treeService.getUserTree(treeNo);
 		
+		Profile profile = (Profile)session.getAttribute("profile");
+		
 
+		model.addAttribute("getUserTree", treeService.getUserTree(profile.getTreeNo()));
 		model.addAttribute("tree", tree);
-		
-		
-		
 		
 		return "/tree/getUserTree.jsp";
 	}
 	
+		
+		
+		
+
 
 
 

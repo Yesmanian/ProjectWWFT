@@ -48,7 +48,8 @@ public class ForestController {
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);
 		
-
+		
+		
 		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/forest/getForest.jsp");

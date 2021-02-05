@@ -132,6 +132,7 @@ img {vertical-align: middle;}
 </head>
 <body>
 <form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="treeNo" value="${post.postTreeNo}">
 	<input type="hidden" name="postNo" value="${post.postNo}">
 	<input type="hidden"  name="menu" value="${menu}" />
 
@@ -142,8 +143,9 @@ img {vertical-align: middle;}
 	<c:set var ="i" value="${i+1}"/>
 		<div class="mySlides fade">
 		  <div class="numbertext">1 / 3</div>
-		  <img src = "/resources/images/uploadFiles/${file}" style=" width:50%; display: block; margin: 0px auto;">
+		  <img src = "/resources/images/uploadFiles/${file}" style=" width:50%;  display: block; margin: 0px auto;">
 	</div>
+	
 </c:forEach>
 
   
@@ -176,9 +178,15 @@ img {vertical-align: middle;}
 <br>
 
 <div style="text-align:center">
-  <span class="dot"  onclick="currentSlide(1)"></span> 
+		<c:set var ="i" value="0"/>
+		<c:forEach var="file" items="${fileList}">
+			<c:set var ="i" value="${i+1}"/>
+			<span class="dot"  onclick="currentSlide(${i})"></span> 
+			
+		</c:forEach>
+<!--   <span class="dot"  onclick="currentSlide(1)"></span> 
   <span class="dot"  onclick="currentSlide(2)"></span> 
-  <span class="dot"  onclick="currentSlide(3)"></span> 
+  <span class="dot"  onclick="currentSlide(3)"></span>  -->
   
   <p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p>
   <button type="button" class="btn btn-danger" style="">신고</button>
@@ -270,6 +278,8 @@ ${post.postDetail}
 	            {
 	            	 /* $('#commentDetail').val(''); */
 	                getCommentList();
+	              fn_sendNoticeMessage();
+	            	 
 	                $("#commentDetail").val("");
 	                $('input[name=commentPostNo]').val();
 	            }
@@ -304,6 +314,7 @@ ${post.postDetail}
 	            if(status=="success")
 	            {
 	                getCommentList();
+	               
 	               // $("#commentDetail").val("");
 	                $('input[name=commentPostNo]').val();
 	            }
@@ -355,7 +366,7 @@ ${post.postDetail}
 	                	 
 	                	   html += `<div style= width:50%; display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
 		                	   </strong></h6>\${res[i].commentDetail} 
-		                	   <a href=# onClick=remove_comment(\${res[i].commentNo}) class = btn pull-right btn-success style=text-decoration:none>삭제</a>
+		                	   <a href=# onClick=remove_comment(\${res[i].commentNo})  class = btn pull-right btn-success style=text-decoration:none>삭제</a>
 		                	   <input type=hidden name=commentNo
 		                	   value='\${res[i].commentNo}'<tr><td></td></tr></table></div></div>`;
 	                	/*    html += `<div style= width:50%; display: block; margin: 0px auto;> \${res[i].commentRegDate}<tr><strong>\${res[i].commentWriter}
@@ -392,7 +403,51 @@ ${post.postDetail}
 	       }
 	        
 	    });
+	    
+	    
 	}
+	 
+	 function fn_sendNoticeMessage(){
+			
+		    var noticeMessageType = '0';
+			var noticeMessageDetail ="게시글에 댓글이 달렸어요~";
+			var sender = "진구네나무#노진구";
+			var postNo = $('input[name=commentPostNo]').val();
+			var treeNo = $('input[name=treeNo]').val();
+			
+			alert(postNo);
+			alert(treeNo);
+			
+			/* 
+		    $.ajax({
+		       
+		        url : "/comment/json/addComment",
+		        method :'POST',
+		        data : JSON.stringify({noticeMessageType : noticeMessageType, noticeMessageDetail : noticeMessageDetail
+		        	sender : sender, PostNo: PostNo, treeNo : treeNo }),
+		        dateType : "json",
+		        headers : {
+					"Accept" : "application/json",
+					"Content-Type" : "application/json"
+				},
+				
+		        success : function(res,status){
+		        	//alert(status);
+		            if(status=="success")
+		            {
+		            	  $('#commentDetail').val('');
+		                getCommentList();
+		            	 
+		                $("#commentDetail").val("");
+		                $('input[name=commentPostNo]').val(); 
+		            }
+		        },
+		        error:function(request,status,error){
+		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		        
+		    }); */
+		} 
 
 </script> 
 </body>
