@@ -60,6 +60,23 @@ public class NoticeMessageRestController {
 		
 		return map;
 	}
+	
+	@RequestMapping( value = "json/forestNoticeMessageList/{forestNo}/{page}" , method = RequestMethod.GET)
+	public Map forestNoticeMessageList(@PathVariable("forestNo") int forestNo, @PathVariable("page") int page) throws Exception{
+		
+		BasicConfigurator.configure();
+
+		
+		Search search = new Search();
+		search.setCurrentPage(page);
+		search.setPageSize(pageSize);
+		lOGGER.debug("서치는"+search);
+	
+		Map<String, Object> map = noticeMessageService.getForestNoticeMessageList(forestNo, search);
+		lOGGER.debug("map의 리스트"+map.get("list"));
+		
+		return map;
+	}
 
 
 }

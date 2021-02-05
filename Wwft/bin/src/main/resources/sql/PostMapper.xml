@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PostMapper">
+ 	
+ 	
+	<resultMap id="postSelectMap" type="com.wwft.service.domain.Post">
+		<result property="postNo" 			column="post_no" 			jdbcType="NUMERIC"/>
+		<result property="postRegDate" 		column="post_reg_date" 			jdbcType="DATE" />
+		<result property="postDetail"	column="post_detail" 		jdbcType="VARCHAR" />
+		<result property="postWriter" 	column="post_writer" 		jdbcType="VARCHAR" />
+		<result property="postState" 				column="post_state" 					jdbcType="CHAR" />
+		<result property="postTreeNo" 				column="tree_no" 					jdbcType="NUMERIC" />
+		<result property="albumName" 			column="album_name" 		jdbcType="VARCHAR" />
+		<result property="firstImageName"		column="save_image_name" 	jdbcType="VARCHAR"/>
+		
+		
+	</resultMap>
+	
+	
+		<resultMap id="imageAndLikeSelectMap" type="com.wwft.service.domain.ImageAndLike">
+		
+		<result property="imageAndLikeNo" 			column="image_and_like_no" 			jdbcType="NUMERIC"/>
+		<result property="originalImageName" 		column="original_image_name" 			jdbcType="VARCHAR" />
+		<result property="saveImageName" 		column="save_image_name" 			jdbcType="VARCHAR" />
+		<result property="deleteImageState" 		column="delete_image_state" 			jdbcType="CHAR" />
+		<result property="postNo" 				column="post_no" 					jdbcType="NUMERIC" />
+		<result property="likeWriter" 	column="like_writer" 		jdbcType="VARCHAR" />
+		<result property="imageAndLikeState" 				column="image_and_like_state" 					jdbcType="CHAR" />
+		
+	
+		
+		
+		
+	</resultMap>
+	
+	
+	<insert 	id="addPost"		parameterType="post" >
+		INSERT
+	 	INTO post(post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name)
+	 	VALUES	 (#{postNo} , SYSDATE , #{postDetail:VARCHAR} , #{postWriter} , #{postState} , #{postTreeNo} , #{albumName:VARCHAR}  )
+	 </insert>
+	 
+	 
+	 
+	 
+	 
+	 <select id="getPost" parameterType="string" resultMap="postSelectMap">
+	 	SELECT
+		post_no,post_reg_date,post_detail,post_writer,post_state,tree_no,album_name		
+		FROM post
+		WHERE post_no = #{postNo}
+	 
+	 </select>
+	 
+	 <select id="lastPostNo" resultType="int">
+		SELECT
+		MAX(post_no)+1
+		FROM post
+	</select>
+	 
+	   <update	id="updatePost"	parameterType="com.wwft.service.domain.Post" >
+	   	UPDATE post
+	   	<set>
+	   		post_detail = #{postDetail},
+	   		post_state = #{postState},
+	   		
+	   		post_no = #{postNo}
+			
+	   	</set>
+	   	WHERE post_no  = #{postNo}
+	 </update>  
+	
+	 <select  id="getAlbumList"  parameterType="int"	resultType="String">
+	  	SELECT album_name 
+		FROM post 
+		WHERE tree_no = #{postTreeNo} 
+		AND album_name IS NOT NULL
+		GROUP BY album_name
+									
+	 </select>
+	 
+	 
+	  <select  id="getPostList"  parameterType="map"	resultMap="postSelectMap">
+	  	SELECT *
+		FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+					FROM		(	SELECT	p.post_no, p.post_reg_date,p.album_name,s.save_image_name
+										FROM post p,(SELECT * FROM MINFILE) s
+										<choose>
+											<when test="search.searchCondition != null and search.searchKeyword !=''">
+												<where>
+												p.tree_no = #{postTreeNo} AND p.album_name LIKE '%'|| #{search.searchKeyword}||'%'
+												
+												</where>
+											</when>
+											<otherwise>
+												WHERE p.tree_no = #{postTreeNo}
+					
+											</otherwise>
+										</choose>
+									<!-- 	<if test="searchCondition != null and searchKeyword !=''">
+											<where>
+												tree_no = #{postTreeNo} AND album_name LIKE '%'|| #{search.searchKeyword}||'%'
+												
+											</where>
+										</if>
+										WHERE tree_no = #{postTreeNo} -->
+										
+										AND p.post_no=s.post_no
+										ORDER BY post_no DESC) inner_table
+					WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}			
+	 </select> 
+	 
+	  <delete id="removePost" parameterType="int">
+	 	DELETE
+	 	FROM post
+	 	WHERE post_no =#{postNo}
+	 
+	 </delete>
+	 
+	 
+	 
+</mapper>
