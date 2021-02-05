@@ -49,6 +49,8 @@ public class NoticeMessageServiceTest {
 	@Test
 	public void testSendNoticeMessage() throws Exception {
 		
+		
+		
 		NoticeMessage message = new NoticeMessage();
 		message.setSender("진구네나무#노진구짱");//누가 댓글을 남겼는지
 		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대요청=2 입장요청=3  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  

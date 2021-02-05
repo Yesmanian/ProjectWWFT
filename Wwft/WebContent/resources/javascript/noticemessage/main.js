@@ -33,7 +33,7 @@ function formatAMPM(value) {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
-}
+
 
 function createTag(value) {
 

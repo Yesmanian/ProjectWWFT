@@ -56,7 +56,12 @@ public class TreeDaoImpl implements TreeDao {
 
 	@Override
 	public void addTree(Tree tree) throws Exception {
+		System.out.println("TreeDaoImpl addTree Start");
 		sqlSession.insert("TreeMapper.addTree", tree);
+		int treeNo = sqlSession.selectOne("TreeMapper.getMaxTreeNo");
+		
+		tree.setTreeNo(treeNo);
+		sqlSession.insert("TreeMapper.addTreeForest", treeNo);
 	}
 
 
