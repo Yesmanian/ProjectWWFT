@@ -81,15 +81,25 @@ $(document).ready(function () {
         if(removeConfirm==true){
             let noticeMessageNo = $(this).closest("li").find('.noticeMessageNo').val();
             let noticeMessageState = '4'; //4= 초대수
+            let url = window.location.href;
             // $(this).attr('class','<button type="button" class="btn btn-success btn-sm" >수락</button>');
             
             // alert(noticeMessageNo);
 
-            $(this).closest("li").find('p').text('숲의 일원이 되셨습니다.');
-            $(this).closest("li").find('p').append('<a href="javascript:void(0);">숲 둘러보기</a>');
-            let messageObj = $(this);
+            if(url.indexOf('getTree')==36){
+            alert('나무의메시지함')
+            url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
+        }else{
+            alert('숲의메시지함')
+            $(this).closest("li").remove();
+            url=`/noticeMessage/json/forestNoticeMessageList/\${forestNo}/\${page}`;
+        }
 
-            $(this).remove();
+            // $(this).closest("li").find('p').text('회원님의 나무가 숲에 속');
+            // $(this).closest("li").find('p').append('<a href="javascript:void(0);">숲 둘러보기</a>');
+            // let messageObj = $(this);
+
+            // $(this).remove();
 
             // alert($(messageObj).closest("li"))
             
@@ -127,18 +137,30 @@ $(document).ready(function () {
 
     let page = 1;
     let treeNo = 1;
+    let forestNo =1;
     $(window).scroll(function () {
         
         
     // End of the document reached?
     if ($(document).height() - $(this).height() == $(this).scrollTop()) {
         page++;
+        let url = window.location.href;
+        alert(window.location.href)
+        alert(url.indexOf('getTree'))
+        if(url.indexOf('getTree')==36){
+            alert('트루')
+            url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
+        }else{
+            alert('폴스')
+            url=`/noticeMessage/json/forestNoticeMessageList/\${forestNo}/\${page}`;
+        }
+        alert(url)
         // alert(page)
         // alert('Scrolled to Bottom');
         //treeNo 가져와야하고 , page넘기는데 뭘로 ???? search ? search 생성후 거기에 page set해주는걸로
         $.ajax( 
 				{
-					url : `/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}` ,
+					url : url ,
 					method : "GET" ,
 					dataType : "json" ,
 					

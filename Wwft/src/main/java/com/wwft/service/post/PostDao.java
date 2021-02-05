@@ -29,7 +29,7 @@ public interface PostDao {
 	
 	public void addImageAndLike(ImageAndLike imageAndLike) throws Exception;
 	
-	public ImageAndLike getImageAndLike(int postNo) throws Exception;
+	/* public ImageAndLike getImageAndLike(int postNo) throws Exception; */
 	
 	public List<String> getImageAndLikeList(int postNo) throws Exception;
 		

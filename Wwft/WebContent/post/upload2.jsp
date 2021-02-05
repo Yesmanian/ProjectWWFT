@@ -266,8 +266,7 @@
 }
 
 </style>
-</head>
- <script
+<script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
@@ -276,11 +275,14 @@
  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>  -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+</head>
+ 
+<body>
 <section>
     <div class="container">
         <div class="row no-gutters">
             <div class="filtering col-sm-12 text-center">
-                <span data-filter="*" class="active">All</span>
+                <!-- <span data-filter="*" class="active">All</span> -->
                 <span data-filter=".architecture" class="">Architecture</span>
                 <span data-filter=".decor" class="">Decor</span>
                 <span data-filter=".interior" class="">Interior</span>
@@ -290,7 +292,7 @@
                     <div class="col-sm-6 col-lg-4 mb-2 interior">
                         <div class="portfolio-wrapper">
                             <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/350x350/FFB6C1/000000" alt="..." />
+                                <img src="/resources/images/uploadFiles/1361d3f6-ef05-424c-800c-f02fc1d02710_2.jfif" alt="..." />
                             </div>
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
@@ -306,7 +308,7 @@
                     <div class="col-sm-6 col-lg-4 mb-2 decor interior">
                         <div class="portfolio-wrapper">
                             <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/350x350/87CEFA/000000" alt="..." />
+                                <img src="/resources/images/uploadFiles/7c5f2ecb-6067-4f90-a8de-7233b83aa53c_14.jfif" alt="..." />
                             </div>
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
@@ -322,7 +324,7 @@
                     <div class="col-sm-6 col-lg-4 mb-2 architecture">
                         <div class="portfolio-wrapper">
                             <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/350x350/C71585/000000" alt="..." />
+                                <img src="/resources/images/uploadFiles/7ee2be2e-3d2d-40ee-8446-4bb54ad53d4a_t12.jfif" alt="..." />
                             </div>
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
@@ -338,7 +340,7 @@
                     <div class="col-sm-6 col-lg-4 mb-2 mb-lg-0 interior">
                         <div class="portfolio-wrapper">
                             <div class="portfolio-image">
-                                <img src="https://via.placeholder.com/350x350/20B2AA/000000" alt="..." />
+                                <img src="/resources/images/uploadFiles/7e8d890c-a1b6-4850-90d4-5dbdff7b8667_10.jfif" alt="..." />
                             </div>
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
@@ -389,10 +391,17 @@
     </div>
 </section>
 <script type="text/javascript">
+/* window.onload = function(){
 
+	var a = document.getElementById( 'hel' );
+
+	a.style.color = "blue"
+
+	} */
 $(function(){
     $(".filtering").on("click", "span", function () {
         var a = $(".gallery").isotope({});
+        alert(JSON.stringify($(this)));
         var e = $(this).attr("data-filter");
         a.isotope({ filter: e });
     });

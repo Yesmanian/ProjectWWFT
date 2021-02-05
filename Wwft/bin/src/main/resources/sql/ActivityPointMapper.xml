@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="activityPointMapper">
+ 	
+ 	<resultMap type="activityPoint" id="activityPoint">
+ 		<result property="activityPointNo" column="activity_pointNo" jdbcType="NUMERIC" />
+		<result property="treeNo" column="tree_no" jdbcType="NUMERIC"/>
+		<result property="point" column="point" jdbcType="NUMERIC" />
+		<result property="activityDate" column="activity_date" jdbcType="DATE" />
+		<result property="activityType" column="activity_type" jdbcType="CHAR"/>
+		<result property="targetNo" column="target_no" jdbcType="NUMERIC" />
+ 	</resultMap>
+	
+	
+	<!-- SQL : INSERT -->
+	
+	<insert id="addActivityPoint" parameterType="activityPoint">
+		INSERT
+		INTO activity_point(ACTIVITY_POINT_NO, TREE_NO, POINT, ACTIVITY_DATE, ACTIVITY_TYPE, TARGET_NO)
+		VALUES (seq_activity_point_no.nextval, #{treeNo}, #{point}, SYSDATE, #{activityType}, #{targetNo})
+	
+	</insert>
+	
+	<!--활동횟수 조회   -->
+	<select id="getActivityCount" parameterType="activityPoint" resultType="int">
+		SELECT COUNT(activity_type)
+		FROM activity_point
+		WHERE tree_no = #{treeNo}
+		AND activity_type = #{activityType}
+		AND TO_CHAR(activity_date, 'YYYY-MM-DD')  = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	<select id="getActivityTotalPoint" parameterType="int" resultType="int">
+		SELECT SUM(point)
+		FROM activity_point
+		WHERE tree_no = #{value}
+	</select>
+	<!-- 
+	<insert 	id="addEvent"		parameterType="event" >
+	 	INSERT
+		INTO calender(event_no, tree_no,event_title, event_start_date, event_end_date, d_day_state,event_detail,freq, by_day,  dow, dom,all_day)
+		VALUES	 (seq_event_no.nextval,	#{treeNo}, #{title:VARCHAR}, to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss') 
+										,to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'), #{dDay:CHAR}, #{eventDetail:VARCHAR},#{freq:VARCHAR},#{byDay:VARCHAR},  #{dow:VARCHAR}, #{dom:VARCHAR},#{allDay} )
+	 </insert>
+	 
+	 <select id="getEventList" resultMap="eventSelectMap">
+	 	SELECT * FROM calender
+	 
+	 </select>
+	 
+	 <select id="findEvent" parameterType="int" resultMap="eventSelectMap" >
+	 SELECT * FROM calender 
+	 WHERE event_no = #{value}
+	 
+	 </select>
+	 
+	 <delete id="removeEvent" parameterType="int">
+	 DELETE FROM calender WHERE event_no = #{value}
+	 
+	 </delete>
+	 
+	 <update id="updateEvent" parameterType="event">
+	  UPDATE calender 
+	  <set>
+	  	<if test="title !=null">
+	  		event_title = #{title:VARCHAR}, 
+	  	</if>
+	  	<if test="start != null">
+	  		event_start_date = to_date(#{start}, 'YYYY-MM-DD hh24:mi:ss'),
+	  	</if>
+	  	<if test="end != null">
+	  	  	event_end_date = to_date(#{end}, 'YYYY-MM-DD hh24:mi:ss'),
+	  	</if>
+	  	<if test="dDay !=null">
+	  		d_day_state = #{dDay:CHAR},
+	  	</if>
+	  		event_detail = #{eventDetail:VARCHAR},
+	  	<if test="freq !=null">
+	  		freq = #{freq:VARCHAR},
+	  	</if>
+	  	<if test="byDay !=null">
+	  		by_day =#{byDay:VARCHAR},
+	  	</if>
+	  	<if test="dow !=null">
+	  		dow = #{dow:VARCHAR},
+	  	</if>
+	  	<if test="dom !=null">
+	  		dom = #{dom:VARCHAR},
+	  	</if>
+	  	<if test="allDay !=null">
+	  		all_day = #{allDay,typeHandler=com.wwft.common.mybatis.typehandler.StringValueBooleanTypeHandler}
+	  	</if>
+	  	</set>
+	  	WHERE event_no = #{id}
+	 </update>
+	 -->
+	 <!-- <select id="findProduct"
+  			parameterType="int"
+  			resultMap="productSelectMap"
+  			>
+  			SELECT *
+  			FROM product p, transaction t
+  			WHERE p.prod_no=t.prod_no (+)
+  			AND p.prod_no=#{prodNo}
+  			</select>
+  			
+  	<select id="getProductList"
+  				parameterType="search"
+  				resultMap="productSelectMap">
+  		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM ( SELECT   t.tran_status_code, p.*
+  								FROM product p, transaction t 
+  								WHERE p.prod_no=t.prod_no (+)
+  								<if test="searchCondition==null and searchKeyword ==null ">
+													ORDER BY p.reg_date DESC )
+													</if>
+								<if test="searchCondition != null">
+													<if test="searchCondition == 0 and searchKeyword !='' ">  			
+  	 													 AND p.prod_no LIKE '%${searchKeyword}%' ORDER BY p.reg_date DESC)
+  	 												</if>
+  	 												<if test="searchCondition == 0 and searchKeyword =='' ">  			
+  	 													  ORDER BY p.reg_date DESC)
+  	 												</if>
+  	 												<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				AND p.prod_name LIKE '%${searchKeyword}%' ORDER BY p.reg_date DESC )
+													</if>
+													<if test="searchCondition == 1 and searchKeyword =='' ">
+										 				ORDER BY p.reg_date DESC)
+													</if>
+													<if test="searchCondition == 2  ">
+										 				ORDER BY p.price ASC)
+													</if>
+													<if test="searchCondition == 3  ">
+										 				ORDER BY p.price DESC)
+													</if>
+													</if>
+													
+													
+																	 inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+ 		
+ 		
+  	</select>
+  	
+  	<update id="updateProduct" parameterType="product">
+  		UPDATE product
+  			<set>
+  			<if test="prodName!=null">
+  				prod_name = #{prodName},
+  			</if>
+  			<if test="prodDetail!=null">
+  				prod_detail = #{prodDetail},
+  			</if>
+  			<if test="fileName!=null">
+  				image_file = #{fileName},
+  			</if>
+  			<if test="price!=0">
+  				price = #{price},
+  			</if>
+  			<if test="manuDate!=null">
+  				manufacture_day = #{manuDate}
+  			</if>
+  			</set>
+  			WHERE prod_no=#{prodNo}
+  	
+  	
+  	</update>
+  	
+  	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  	SELECT COUNT(*)
+	  	FROM(	SELECT   t.tran_status_code, p.*
+  								FROM product p, transaction t 
+  								WHERE p.prod_no=t.prod_no (+)
+  								<if test="searchCondition==null ">
+													ORDER BY p.prod_no 
+													</if>
+								<if test="searchCondition != null">
+													<if test="searchCondition == 0 and searchKeyword !='' ">  			
+  	 													 AND p.prod_no = #{searchKeyword} ORDER BY p.prod_no 
+  	 												</if>
+  	 												<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				AND p.prod_name = #{searchKeyword} ORDER BY p.prod_no 
+													</if>
+													<if test="searchCondition == 2  ">
+										 				ORDER BY p.price ASC
+													</if>
+													<if test="searchCondition == 3  ">
+										 				ORDER BY p.price DESC
+													</if>
+													</if>
+														  	) countTable						
+	 </select>
+	 -->
+	 
+</mapper>

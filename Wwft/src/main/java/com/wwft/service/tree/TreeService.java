@@ -12,7 +12,7 @@ import com.wwft.service.domain.TreeForest;
 
 public interface TreeService {
 	
-	public Tree getTree(int treeNo) throws Exception;
+	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception;
 	
 	public void addTree(Tree tree) throws Exception;
 	
@@ -30,15 +30,16 @@ public interface TreeService {
 	
 	public void addBucketList(BucketList bucketList) throws Exception;
 
-	public void updateBucketList(BucketList bucketList) throws Exception;
+	public void updateBucketList(int bucketListNo) throws Exception;
 	
-	public void removeBucketList(BucketList bucketList) throws Exception;
+	public void removeBucketList(int bucketListNo) throws Exception;
 	
-	public void addFamilyMotto(Tree tree) throws Exception;
-	
+	public Tree getFamilyMotto(int treeNo) throws Exception;
+		
 	public void updateFamilyMotto(Tree tree) throws Exception;
+
+
 	
-	public void removeFamilyMotto(Tree tree) throws Exception;
 	
 
 }

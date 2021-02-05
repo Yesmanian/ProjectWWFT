@@ -60,8 +60,10 @@ public class PostDaoImpl implements PostDao {
 		map.put("postTreeNo", postTreeNo);
 		
 		List<Post> list = sqlSession.selectList("PostMapper.getPostList", map);
-		
-		System.out.println(list.size());
+		for(int i =0; i < list.size(); i++) {
+			System.out.println(list.get(i).getFirstImageName());
+		}
+		System.out.println(list);
 		
 		System.out.println("PostDaoImpl getPostList Mapper°¬´Ù¿È");
 		
@@ -95,14 +97,14 @@ public class PostDaoImpl implements PostDao {
 	
 
 
-	@Override
-	public ImageAndLike getImageAndLike(int postNo) throws Exception {
-			
-		//sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", postNo);
-		int minPostNo = sqlSession.selectOne("ImageAndLikeMapper.getMinImageAndLike", postNo);
-			System.out.println("minPostNo"+minPostNo);
-		return sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", minPostNo);
-	}
+	/*
+	 * @Override public ImageAndLike getImageAndLike(int postNo) throws Exception {
+	 * 
+	 * //sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", postNo); int
+	 * minPostNo = sqlSession.selectOne("ImageAndLikeMapper.getMinImageAndLike",
+	 * postNo); System.out.println("minPostNo"+minPostNo); return
+	 * sqlSession.selectOne("ImageAndLikeMapper.getImageAndLike", minPostNo); }
+	 */
 	
 	
 	

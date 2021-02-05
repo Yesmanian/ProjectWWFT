@@ -1,5 +1,6 @@
 package com.wwft.service.tree.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,13 +41,26 @@ public class TreeDaoImpl implements TreeDao {
 	}
 	
 	
-
 	@Override
-	public Tree getTree(int treeNo) throws Exception {
+	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception {
 		
-		return sqlSession.selectOne("TreeMapper.getTree", treeNo);
+		System.out.println("treeDaoImpl getUserTree Start");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", treeNo);
+		map.put("userId", userId);
+		Tree tree = new Tree();
+		tree = sqlSession.selectOne("TreeMapper.getUserTree", map);
+		
+		map.put("tree",tree);
+		
+		
+		
+		return map;
+		
+		
+		
 	}
-
 
 	@Override
 	public void addTree(Tree tree) throws Exception {
@@ -119,16 +133,16 @@ public class TreeDaoImpl implements TreeDao {
 
 
 	@Override
-	public void updateBucketList(BucketList bucketList) throws Exception {
-		sqlSession.update("TreeMapper.updateBucketList", bucketList);
+	public void updateBucketList(int bucketListNo) throws Exception {
+		sqlSession.update("TreeMapper.updateBucketList", bucketListNo);
 		
 		
 	}
 
 
 	@Override
-	public void removeBucketList(BucketList bucketList) throws Exception {
-		sqlSession.delete("TreeMapper.removeBucketList", bucketList);
+	public void removeBucketList(int bucketListNo) throws Exception {
+		sqlSession.delete("TreeMapper.removeBucketList", bucketListNo);
 		
 	}
 
@@ -156,13 +170,6 @@ public class TreeDaoImpl implements TreeDao {
 
 
 	@Override
-	public void addFamilyMotto(Tree tree) throws Exception {
-		sqlSession.insert("TreeMapper.addFamilyMotto", tree);
-		
-	}
-
-
-	@Override
 	public void updateFamilyMotto(Tree tree) throws Exception {
 		sqlSession.update("TreeMapper.updateFamilyMotto", tree);
 		
@@ -170,10 +177,9 @@ public class TreeDaoImpl implements TreeDao {
 
 
 	@Override
-	public void removeFamilyMotto(Tree tree) throws Exception {
-		sqlSession.update("TreeMapper.removeFamilyMotto", tree);
+	public Tree getFamilyMotto(int treeNo) throws Exception {
+		return sqlSession.selectOne("TreeMapper.getFamilyMotto", treeNo);
 	}
-
 
 
 

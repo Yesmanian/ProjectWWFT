@@ -46,42 +46,43 @@ public class NoticeMessageServiceTest {
 	
 	
 	
-//	@Test
+	@Test
 	public void testSendNoticeMessage() throws Exception {
 		
 		NoticeMessage message = new NoticeMessage();
-		message.setSender("진구네나무#노진구");//누가 댓글을 남겼는지
+		message.setSender("진구네나무#노진구짱");//누가 댓글을 남겼는지
 		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
 		message.setTreeNo(1); //1번나무에게
+		message.setPostNo(5);
 		message.setNoticeMessageDetail("게시글에 댓글이 달렸어요~");
 		
 		noticeMessageService.sendNoticeMessage(message);
 		
-		message.setSender("가을하늘공활한데숲");//숲아이디 
-		message.setNoticeMessageType('2'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-		message.setTreeNo(1); //1번나무에게
-		message.setForestNo(1); // 숲번호
-		message.setNoticeMessageDetail("초대 했습니다.");
-		
-		noticeMessageService.sendNoticeMessage(message);
-		
-		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
-		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-		message.setTreeNo(1); //1번나무가
-		message.setForestNo(1); // 1번 숲에게
-		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
-		
-		noticeMessageService.sendNoticeMessage(message);
-		
-//		NoticeMessage message = new NoticeMessage();
-		message.setSender("관리자");//누가 댓글을 남겼는지
-		message.setNoticeMessageType('1'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-		message.setTreeNo(1); //1번나무에게
-		message.setNoticeMessageDetail("게시글#12345번이 사이트정책(음란물)에 의해 삭제 되었습니다.현재 회원님의 누적된 위반행위 횟수는 (1)회 이며 누적위반행위 횟수가 5회일 시 계정이 정지 되오니 주의 바랍니다.");
-		
-		
-		noticeMessageService.sendNoticeMessage(message);
-		
+//		message.setSender("가을하늘공활한데숲");//숲아이디 
+//		message.setNoticeMessageType('2'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+//		message.setTreeNo(1); //1번나무에게
+//		message.setForestNo(1); // 숲번호
+//		message.setNoticeMessageDetail("초대 했습니다.");
+//		
+//		noticeMessageService.sendNoticeMessage(message);
+//		
+//		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
+//		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+//		message.setTreeNo(1); //1번나무가
+//		message.setForestNo(1); // 1번 숲에게
+//		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
+//		
+//		noticeMessageService.sendNoticeMessage(message);
+//		
+////		NoticeMessage message = new NoticeMessage();
+//		message.setSender("관리자");//누가 댓글을 남겼는지
+//		message.setNoticeMessageType('1'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+//		message.setTreeNo(1); //1번나무에게
+//		message.setNoticeMessageDetail("게시글#12345번이 사이트정책(음란물)에 의해 삭제 되었습니다.현재 회원님의 누적된 위반행위 횟수는 (1)회 이며 누적위반행위 횟수가 5회일 시 계정이 정지 되오니 주의 바랍니다.");
+//		
+//		
+//		noticeMessageService.sendNoticeMessage(message);
+//		
 		
 	}
 	//@Test
@@ -145,7 +146,7 @@ public class NoticeMessageServiceTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testGetForstNoticeMessageStateCount() throws Exception{
 		
 		
