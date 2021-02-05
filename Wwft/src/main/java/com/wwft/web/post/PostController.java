@@ -1,6 +1,7 @@
 package com.wwft.web.post;
 
 import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -20,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-
+import com.wwft.common.web.Page;
+import com.wwft.common.web.Search;
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
+
 
 import com.wwft.service.post.PostService;
 
@@ -145,6 +148,32 @@ public class PostController {
 		return "forward:/post/getPost.jsp";
 	}
 	
+	
+	@RequestMapping(value="getPostList", method = RequestMethod.GET)
+	public String getPostList( @ModelAttribute("search") Search search, int postTreeNo, Model model) throws Exception{
+		
+		System.out.println("/post/getPostlist : GET / POST");
+		/*
+		 * if(search.getCurrentPage() == 0 ){ search.setCurrentPage(1); }
+		 * search.setPageSize(pageSize);
+		 */
+		search.setCurrentPage(1);
+		search.setPageSize(9);
+		
+		// Business logic 수행
+		Map<String , Object> map = postService.getPostList(search, postTreeNo);
+		
+	//	Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		//System.out.println(resultPage);
+		
+		// Model 과 View 연결
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("albumList", map.get("albumList"));
+	//	model.addAttribute("resultPage", resultPage);
+		//model.addAttribute("search", search);
+		
+		return "forward:/post/getPostList.jsp";
+	}
 	
 	
 	

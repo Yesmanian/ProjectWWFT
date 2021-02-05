@@ -55,14 +55,10 @@
 	 </delete>
 		 
 	<!-- SQL : SELECT LIST  -->
-	<select  id="getProfileList"  	resultMap="profileSelectMap">
-	  	SELECT 
-			profile_image AS profileImage,
-	  		profile_name AS profileName,
-			tree_no AS treeNo
-		FROM profiles
-		ORDER BY profileName
-			
+	<select  id="getProfileList"  parameterType="int"	resultMap="profileSelectMap">
+	  	SELECT *  FROM profiles
+		WHERE tree_no = #{value}
+		 
 	 </select>  
 	 
 </mapper>

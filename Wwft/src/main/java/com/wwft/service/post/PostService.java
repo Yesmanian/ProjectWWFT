@@ -1,6 +1,7 @@
 package com.wwft.service.post;
 
-import java.util.List;
+import java.util.List
+;
 
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public interface PostService {
 	
 	/* public List<Post> getPostList(int postTreeNo) throws Exception; */
 	
-	public Map<String, Object> getPostList(Search search ,int postTreeNo,int imageAndLikeNo) throws Exception;
+	public Map<String, Object> getPostList(Search search ,int postTreeNo) throws Exception;
 	
 	public void updatePost(Post post,ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 

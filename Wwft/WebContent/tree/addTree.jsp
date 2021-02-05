@@ -19,7 +19,6 @@
 <div>
 	 唱公 积己
 	</div>
-	</br></br>
 
 
 	<form name="addTree" action="/tree/addTree" method="post">
@@ -40,7 +39,6 @@
 		<p>
 			<label for="countryId">惫啊:</label>
 			 <input type="text" name="countryId">
-			 
 		</p>
 		<p>
 		<input type="submit"  value="唱公 积己 肯丰" /> <input type="submit" value="秒家" />

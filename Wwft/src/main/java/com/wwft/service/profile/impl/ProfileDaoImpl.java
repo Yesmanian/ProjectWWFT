@@ -39,8 +39,8 @@ public class ProfileDaoImpl implements ProfileDao {
 	}
 	
 	@Override
-	public List<Profile> getProfileList() throws Exception {
-		return sqlSession.selectList("ProfileMapper.getProfileList");
+	public List<Profile> getProfileList(int treeNo) throws Exception {
+		return sqlSession.selectList("ProfileMapper.getProfileList",treeNo);
 	}
 	
 	@Override

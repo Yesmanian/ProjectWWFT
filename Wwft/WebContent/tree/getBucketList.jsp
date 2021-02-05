@@ -13,16 +13,17 @@
 
 
 	
+
 	$(document).ready(function () {
 		$("#btn1").click( function () {
 			var bucketListWriter = $("input[name=bucketListWriter]").val();
 			var bucketListDetail = $("input[name=bucketListDetail]").val();
 			var treeNo = ${param.treeNo}
-			
+	
+
 			$.ajax({
 				url : "/tree/json/addBucketList/",
 				method : "POST",
-				cache: false,
 				data : JSON.stringify({bucketListDetail : bucketListDetail, bucketListWriter : bucketListWriter, treeNo : treeNo }),
 				dataType : "text",
 				headers : {
@@ -30,136 +31,87 @@
 							"Content-Type" : "application/json"
 						},
 				success : function(data){
-					alert("확인:"+data);
-					if(data =="success"){
-						
-						getBucketList();
-						$("#bucketListWriter").val();
-						$("#bucketListDetail").val();
-
-					}
+							alert("확인요:"+data);
+							location.reload();
+				
 							
 				},
+			
 				error : function (status) {
 				}
-			})	
 			
+			})	
+				
 		})	
 	
 	})	
-		
-		
-	$(function () {
-		getBucketList();
-	})
-	
-	
-	function getBucketList() {
-		
-		$.ajax({
-			type: 'GET',
-			url: "<c:url value='/tree/getBucketList'/>",
-			dataType: "json",
-			data:$("bucketListFrom").serialize(),
-	        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-	        success: function (data) {
-	        	
-	        	var hrml = "";
-	        	var bll = data.length;
-				
-	        	if(data.length>0){
-	        		
-	        		for(i=0; i<data.length; i++){
-	        			
-	        			html += "<div>";
-	        			html += "<div><table class='table'><h6><strong>"+data[i].bucketListWriter+"</strong></h6>";
-	        			html += data[i].bucketList.bucketListDetail+"<br/></div>";
-	        			html += data[i].bucketList.bucketListRegdate+"<br/></div>";
-	        			html += data[i].bucketList.stampState+"<br/></div>";
-	        			
-	        		}
-	        		
-	        		
-	        	}else{
-	        		
-	                html += "<div>";
-	                html += "<div><table class='table'><h6><strong>버킷리스트가 없습니다.</strong></h6>";
-	                html += "</table></div>";
-	                html += "</div>";
-	        		
-	        		
-	        		
-	        	}
-	        	$("#bll").html(bll);
-	        	$("getBucketList"),html(html);
-	        	
-			},
-			  error:function(request,status,error){
-		            
-			  }
 
+	
+		$(document).ready(function () {
+			$("#delete_bucketList").click(function () {
+				var result = confirm("버킷리스트를 삭제하시겠습니까?");
+				
+			})
 			
-			
-		})	
-		
-	}
-		
-		
+		})
+
+	
 		
 </script>
  </head>
 	<body>	
-<div class="container">
-	<form id="bucketListForm"	name="bucketListForm" method="post"> 
-	<br><br>
-		<div>
-		<div>
-		 <span><strong>버킷리스트 목록</strong></span> <span id="bll"></span>
-		</div>
-		<div>
-		<table class="table">
-		<tr>
-		<td>
-		
-		
-		
-		<input type = "hidden" id="treeNo"  value=${tree.treeNo }><br>
-		 <input type = "text" name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/><br>
-		 <input type = "text" name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
-		<button id="btn1" class="btn btn-primary" type="button" >등록</button>
-		
-		<div id="result"></div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
 
+	
+		<div id="root">
+			<header>
+				<h1>버킷리스트 목록</h1>
+			</header>
+		
+			 
+			
+			
+			
+			<section id="container">
+				<form name="readForm" role="form" method="post">
+				</form>
+
+		
+		 <input type = "text" 	name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/><br>
+		 <input type = "text" 	name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
+		<input id="btn1"  type="button" value="등록" >
+		
+		   <input type="button" value="수정하기" onclick='location.href="/tree/updateBucketListView?treeNo=${param.treeNo}"'>
+		<input type="button" value="뒤로가기" onclick="history.back(-1);">
+		
+
+
+	 
 
 
 	 
 	 
-	 <div id="list">
+	 
 	 
 	 <c:set var="i" value="0" />
 		<c:forEach var="bucketList" items="${list}">
 			<c:set var="i" value="${ i+1 }" />
 
 		
-			<div class="wrap">
+			<form>
 			<div>버킷리스트 번호: ${bucketList.bucketListNo}<br/></div>
 			<div>작성자 : ${bucketList.bucketListWriter}<br/></div>
-			<div>작성 내용 : ${bucketList.bucketListDetail}<br/></div>
+			<div >작성 내용 : ${bucketList.bucketListDetail}<br/></div>
 			<div>작성 일자 : ${bucketList.bucketListRegDate}<br/></div>
-			<div>도장		: ${bucketList.stampState}<br/></div>
+			<div >도장		: ${bucketList.stampState}<br/></div>
 		
-		
-		
-		 <input type="button" name="informTextconfirmButton" value="수정">
-		 <input type="button" name="informTextconfirmButton" value="삭제"><br/>
-		</div>
+          <input type="button" id="delete_bucketList" value="삭제" onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'>
+		</form>
 		</c:forEach>
-	</div>
+	
+	
+	
+	
+	
+	
 </body>
 </html>

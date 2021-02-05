@@ -94,12 +94,13 @@
 	
 	
 		  
-	 <select 	id="getTree"	parameterType="int"	resultMap="treeSelectMap">
+	 <select 	id="getUserTree"	parameterType="hashmap"	resultMap="treeSelectMap">
 		SELECT
 		tree_no, user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
 		FROM 
 		tree 
-		WHERE tree_no = #{value}
+		WHERE tree_no = #{treeNo}
+		AND user_id = #{userId}
 	 </select>
 	 
 	 <!-- SQL : PROFILE SELECT LIST -->
@@ -138,18 +139,14 @@
 	</select>
 		 
 		
-	
-	
-	
-	
-	<!-- SQL :  FAMILYMOTTO INSERT -->
-	<insert 	id="addFamilyMotto"		parameterType="tree" >
-	 INSERT
-		INTO tree( tree_no , user_id , tree_name , seed_no , tree_image_name, country_id, family_motto, activity_total_point) 
-		VALUES	 (seq_tree_no.nextval, #{userId:VARCHAR} , #{treeName:VARCHAR} , #{seedNo:VARCHAR} , #{treeImageName:VARCHAR} , 
-							#{countryId:CHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
-	 </insert>
-	 
+	<select id="getFamilyMotto" parameterType="int"  resultMap="treeSelectMap"  >
+	SELECT
+	family_motto
+	FROM tree
+	WHERE tree_no = #{treeNo}
+	</select>
+		 
+
 	 
 	 <!-- SQL : FAMILYMOTTO UPDATE -->
 	 <update	id="updateFamilyMotto"	 parameterType="tree" >
@@ -160,16 +157,7 @@
 	   	WHERE tree_no = #{treeNo	}
 	 </update>
 	 
-	 
-	 <!-- SQL : FAMILYMOTTO UPDATE -->
-	 <update id="removeFamilyMotto" parameterType="tree">
-	  	UPDATE tree 
-	  	<set>
-	  	family_motto = #{familyMotto, jdbcType=VARCHAR}
-	  	</set>
-	  	WHERE tree_no = #{treeNo}
-	 </update>
-	 
+	
 	 
 	 <!-- SQL : BUCKETLIST SELECT LIST -->
 	 <select id="getBucketList"   parameterType="int"  resultMap="bucketListSelectMap"> 
@@ -190,18 +178,17 @@
 	   </insert>			
 	 
 	 <!-- SQL : BUCKETLIST UPDATE -->
-	 <update id="updateBucketList"  parameterType="bucketList">
+	 <update id="updateBucketList"  parameterType="int">
 	 UPDATE bucketList
 	 <set>
-	 	bucketlist_no = #{bucketListNo},
-	 	bucketlist_detail = #{bucketListDetail},
+	 	bucketlist_detail = #{bucketListDetail:VARCHAR},
 	 	stamp_state = #{stampState:CHAR}
 	 </set>
-	   WHERE bucketlist_no =#{bucketListNo}
+	   WHERE bucketList_no =#{bucketListNo}
 	 </update>
 	 
 	 <!-- SQL : BUCKETLIST DELETE -->
-	 <delete id="removeBucketList"  parameterType="bucketList">
+	 <delete id="removeBucketList"  parameterType="int">
 	 DELETE 
 	  	FROM bucketList 
 	  	WHERE bucketlist_no = #{bucketListNo}

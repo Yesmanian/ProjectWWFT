@@ -129,15 +129,15 @@ public class TreeServiceTest {
 	}
 	
 	//@Test
-	public void testGetBucketList() throws Exception{
-		
-		
-		List<BucketList> bucketList = treeService.getBucketList(3);
-		System.out.println("확인:"+bucketList);
-		
-		
-		Assert.assertEquals(3, bucketList.size());
-	}
+//	public void testGetBucketList() throws Exception{
+//		
+//		
+//		List<BucketList> bucketList = treeService.getBucketList(3);
+//		System.out.println("확인:"+bucketList);
+//		
+//		
+//		Assert.assertEquals(3, bucketList.size());
+//	}
 	
 	
 	//@Test
@@ -178,7 +178,7 @@ public class TreeServiceTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testAddTreeForest() throws Exception{
 		
 		TreeForest tf = new TreeForest();
@@ -217,38 +217,37 @@ public class TreeServiceTest {
 
 	}
 	
-	//@Test
-	public void testUpdateBucketList() throws Exception{
-		
-		List<BucketList> list = treeService.getBucketList(5);
-		System.out.println("확인1:"+list);
-		
-		
-		BucketList bucketList = new BucketList();
-		
-		bucketList.setBucketListNo(39);
-		bucketList.setBucketListDetail("잘먹고 잘살자");
-		bucketList.setStampState('0');
-	
-
-		
-		treeService.updateBucketList(bucketList);
-	
-		Assert.assertEquals(39, bucketList.getBucketListNo());
-		Assert.assertEquals("잘먹고 잘살자", bucketList.getBucketListDetail());
-		Assert.assertEquals('0', bucketList.getStampState());
-	}
-		
+//	@Test
+//	public void testUpdateBucketList() throws Exception{
+//		
+//	
+//		Map<String, Object> map = treeService.getBucketList(23);
+//		
+//		
+//		
+//		
+//		bucketList.setBucketListDetail("집가자");
+//		bucketList.setStampState('1');
+//	
+//	
+//		
+//		treeService.updateBucketList(bucketList);
+//	
+//		Assert.assertEquals(23, bucketList.getBucketListNo());
+//		Assert.assertEquals("집가자", bucketList.getBucketListDetail());
+//		Assert.assertEquals('1', bucketList.getStampState());
+//	}
+//		
 	//@Test
 	public void testRemoveBucketList() throws Exception{
 			
-		BucketList bucketList = new BucketList();
+		//BucketList bucketList = new BucketList();
 		
-		bucketList.setBucketListNo(7);
+		//bucketList.setBucketListNo(167);
 		
-		List<BucketList> list = treeService.getBucketList(5);
+		treeService.removeBucketList(167);
 		
-		treeService.removeBucketList(bucketList);
+		
 	}
 	
 	//@Test
@@ -270,7 +269,7 @@ public class TreeServiceTest {
 		
 		Assert.assertEquals(1, forest.size());
 	}
-	
+
 	//@Test
 	//public void testGetTreeRanking() throws Exception{
 		
@@ -330,4 +329,3 @@ public class TreeServiceTest {
 	
 
 
->>>>>>> refs/heads/cho

@@ -56,10 +56,11 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public List<Profile> getProfileList() throws Exception {
-		List<Profile> list = profileDao.getProfileList();
+	public List<Profile> getProfileList(int treeNo) throws Exception {
+		List<Profile> list = profileDao.getProfileList(treeNo);
 		
 		return list;
 	}
+
 
 }

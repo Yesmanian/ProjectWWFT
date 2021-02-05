@@ -105,9 +105,10 @@ public class ProfileServiceTest {
 	}
 	 @Test
 	 public void testGetProfileList() throws Exception{
-		 System.out.println("profileList =================");
-		 
-	 	List<Profile> list = profileService.getProfileList();
+		System.out.println("profileList =================");
+		int treeNo = 1;
+				
+	 	List<Profile> list = profileService.getProfileList(treeNo);
 	 	
 	 	System.out.println(list.size());
 	 	
