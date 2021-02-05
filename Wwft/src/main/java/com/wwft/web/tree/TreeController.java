@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wwft.service.domain.BucketList;
+import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.Tree;
+import com.wwft.service.domain.User;
+import com.wwft.service.profile.ProfileService;
 import com.wwft.service.tree.TreeService;
 
 
 @Controller
 @RequestMapping("/tree/*")
 public class TreeController {
+	
 	
 	@Autowired
 	@Qualifier("treeServiceImpl")
@@ -39,38 +45,25 @@ public class TreeController {
 	
 	
 	@RequestMapping(value = "getUserTree", method = RequestMethod.GET)
-	public String getUserTree(@RequestParam("treeNo")int treeNo, @RequestParam("userId")String userId,  Model model, HttpServletRequest req) throws Exception{
+	public String getUserTree(@RequestParam("treeNo")int treeNo, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("/tree/getUserTree : GET");
 	
-		System.out.println("확인:"+treeNo);
-		System.out.println("확인1:"+userId);
-	
+		Tree tree = treeService.getUserTree(treeNo);
 		
-		Map<String, Object> map = treeService.getUserTree(treeNo, userId);
-		System.out.println("확인2:"+map);
 
+		model.addAttribute("tree", tree);
 		
-		model.addAttribute("map", map);
-	
+		
+		
 		
 		return "/tree/getUserTree.jsp";
 	}
-
-		
-
 	
 
-	@RequestMapping(value = "removeTree", method = RequestMethod.GET )
-	public String removeTree(@RequestParam("treeNo") int treeNo) throws Exception{
-		System.out.println("removeTree : GET");
-		System.out.println("removeTree 확인:"+treeNo);
 
-		treeService.removeTree(treeNo);
+
 		
-		return "redirect:/tree/getTree.jsp";
-	}
-	
 	@RequestMapping(value = "getBucketList", method = RequestMethod.GET)
 	public String getBucketList(@RequestParam("treeNo")  int treeNo, Model model) throws Exception{
 		

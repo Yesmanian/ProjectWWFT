@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProfileMapper">
+ 	
+ 	
+	<resultMap id="profileSelectMap" type="profile">
+		<result property="profileNo" 			column="profile_no" 				jdbcType="NUMERIC"/>
+		<result property="treeNo"				column="tree_no" 				jdbcType="NUMERIC" />
+		<result property="profileName" 			column="profile_name" 			jdbcType="VARCHAR" />
+		<result property="birthday" 			column="birthday" 				jdbcType="VARCHAR"  />
+		<result property="familyRelations" 		column="family_relations" 		jdbcType="VARCHAR" />
+		<result property="address" 				column="address" 				jdbcType="VARCHAR" />
+		<result property="phone" 				column="phone" 					jdbcType="VARCHAR" />
+		<result property="profileImage" 			column="profile_image" 			jdbcType="VARCHAR" />
+		<result property="profileState" 			column="profile_state" 			jdbcType="CHAR" />
+	</resultMap>
+	
+	<!-- SQL : INSERT -->
+	<insert 	id="addProfile"		parameterType="profile" >
+	 	INSERT
+		INTO profiles ( profile_no , tree_no , profile_name , birthday , family_relations, address, phone, profile_image , profile_state) 
+		VALUES	 (	seq_profile_no.nextval ,  #{treeNo}  , #{profileName:VARCHAR},  #{birthday:VARCHAR} , #{familyRelations:VARCHAR},
+						 #{address:VARCHAR} ,#{phone:VARCHAR} ,#{profileImage:VARCHAR} ,'1' )
+	 </insert>
+	 
+	 <!-- SQL : SELECT ONE -->
+	 <select 	id="getProfile"	parameterType="int"	resultMap="profileSelectMap">
+		SELECT
+		profile_no , tree_no , profile_name , birthday ,  family_relations ,  address , phone , profile_image , profile_state
+		FROM profiles
+		WHERE profile_no = #{value}
+	 </select>  
+	 
+	 
+	<!--  SQL : UPDATE -->
+	 <update	id="updateProfile"	parameterType="profile" >
+	   	UPDATE profiles
+	   	<set>
+	   		profile_name 		= #{profileName:VARCHAR} ,
+			family_relations	= #{familyRelations:VARCHAR},
+			address             = #{address:VARCHAR} ,
+			phone				= #{phone:VARCHAR}, 
+			profile_image 		= #{profileImage:VARCHAR} 
+	   	</set>
+	   WHERE profile_no = #{profileNo}
+	 </update>
+	 
+	 <delete	id="removeProfile"	parameterType="profile" >
+	   	DELETE FROM profiles
+	   	WHERE profile_no = #{profileNo:NUMERIC}
+	 </delete>
+		 
+	<!-- SQL : SELECT LIST  -->
+	<select  id="getProfileList"  parameterType="int"	resultMap="profileSelectMap">
+	  	SELECT *  FROM profiles
+		WHERE tree_no = #{value}
+		 
+	 </select>  
+	 
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ImageAndLikeMapper">
+ 	
+ 	
+	<resultMap id="imageAndLikeSelectMap" type="com.wwft.service.domain.ImageAndLike">
+		
+		<result property="imageAndLikeNo" 			column="image_and_like_no" 			jdbcType="NUMERIC"/>
+		<result property="originalImageName" 		column="original_image_name" 			jdbcType="VARCHAR" />
+		<result property="saveImageName" 		column="save_image_name" 			jdbcType="VARCHAR" />
+		<result property="deleteImageState" 		column="delete_image_state" 			jdbcType="CHAR" />
+		<result property="postNo" 				column="post_no" 					jdbcType="NUMERIC" />
+		<result property="likeWriter" 	column="like_writer" 		jdbcType="VARCHAR" />
+		<result property="imageAndLikeState" 				column="image_and_like_state" 					jdbcType="CHAR" />
+		
+	
+		
+		
+		
+	</resultMap>
+	
+	 <insert 	id="addImageAndLike"		parameterType="imageAndLike" >
+		INSERT
+		INTO image_and_like
+		( image_and_like_no,original_image_name,save_image_name,delete_image_state,post_no,like_writer, image_and_like_state)
+	 	VALUES
+	 	(SEQ_IMAGE_AND_LIKE_NO.NEXTVAL , #{originalImageName:VARCHAR} ,#{saveImageName:VARCHAR} ,#{deleteImageState:CHAR} , #{postNo} , #{likeWriter:VARCHAR} , #{imageAndLikeState} )
+		
+	 </insert> 
+	
+	<!--  <insert 	id="addImageAndLike"		parameterType="java.util.List" >
+		INSERT INTO image_and_like
+		( image_and_like_no
+		,original_image_name
+		,save_image_name
+		,delete_image_state
+		,post_no
+		,like_writer
+		,image_and_like_state)
+	 	VALUES
+	 	<foreach collection="list" item ="imageAndLike" separator=",">	 
+	 		(SEQ_IMAGE_AND_LIKE_NO.NEXTVAL 
+	 		, #{imageAndLike.originalImageName:VARCHAR} 
+	 		,#{imageAndLike.saveImageName:VARCHAR} 
+	 		,#{imageAndLike.deleteImageState:CHAR} 
+	 		, #{imageAndLike.postNo} 
+	 		, #{imageAndLike.likeWriter:VARCHAR} 
+	 		, #{imageAndLike.imageAndLikeState} 
+	 		,#{imageAndLike.likeState:CHAR})
+		</foreach>	 
+	 </insert> -->
+	 
+	 <select id="getMinImageAndLike" parameterType="int" resultType="int">
+		 SELECT
+ 	  	 min(image_and_like_no)
+  		 FROM image_and_like
+  		 WHERE post_no= #{value}
+ 	 	 AND image_and_like_state = '0'
+ 		 AND delete_image_state ='N'
+	 
+	 </select>
+	 
+	 <select id="getImageAndLike" parameterType="int" resultMap="imageAndLikeSelectMap">
+	 	SELECT
+		image_and_like_no,save_image_name	
+		FROM image_and_like
+		WHERE image_and_like_no= #{imageAndLikeNo} AND image_and_like_state = '0' AND delete_image_state ='N'
+	 </select>
+	 
+	 <select  id="getImageAndLikeList"  parameterType="int"	resultType="String">
+	  	SELECT save_image_name
+		FROM image_and_like
+		WHERE post_no= #{postNo} AND image_and_like_state = '0' AND delete_image_state = 'N'
+									
+	 </select> 
+	 
+	<select id="getLikeTotalCount" parameterType="int" resultMap="imageAndLikeSelectMap">
+		SELECT COUNT(*)
+		FROM image_and_like
+		WHERE image_and_like_state ='1' AND post_No =#{postNo}
+	
+	</select>
+	
+	<update id="removeImageAndLike" parameterType="java.util.List">
+		<foreach collection="list" item="imageAndLike" separator=";">
+			UPDATE  image_and_like
+			
+			<set>
+	 		delete_image_state =#{imageAndLike.deleteImageState}
+	 	
+	 	</set>
+	 	WHERE image_And_Like_no =#{imageAndLike.imageAndLikeNo} AND image_and_like_state = #{imageAndLike.image_and_like_state}
+		</foreach>
+	
+	</update>
+	 
+	  
+	 
+	 
+</mapper>
