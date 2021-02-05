@@ -278,6 +278,7 @@ ${post.postDetail}
 	            {
 	            	 /* $('#commentDetail').val(''); */
 	                getCommentList();
+	              fn_sendNoticeMessage();
 	            	 
 	                $("#commentDetail").val("");
 	                $('input[name=commentPostNo]').val();
@@ -313,7 +314,7 @@ ${post.postDetail}
 	            if(status=="success")
 	            {
 	                getCommentList();
-	               // fn_addNoticeMessage();
+	               
 	               // $("#commentDetail").val("");
 	                $('input[name=commentPostNo]').val();
 	            }
@@ -365,7 +366,7 @@ ${post.postDetail}
 	                	 
 	                	   html += `<div style= width:50%; display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
 		                	   </strong></h6>\${res[i].commentDetail} 
-		                	   <a href=# onClick=remove_comment(\${res[i].commentNo}) class = btn pull-right btn-success style=text-decoration:none>삭제</a>
+		                	   <a href=# onClick=remove_comment(\${res[i].commentNo})  class = btn pull-right btn-success style=text-decoration:none>삭제</a>
 		                	   <input type=hidden name=commentNo
 		                	   value='\${res[i].commentNo}'<tr><td></td></tr></table></div></div>`;
 	                	/*    html += `<div style= width:50%; display: block; margin: 0px auto;> \${res[i].commentRegDate}<tr><strong>\${res[i].commentWriter}
@@ -405,17 +406,19 @@ ${post.postDetail}
 	    
 	    
 	}
-	/* 
-	 function fn_addNoticeMessage(){
+	 
+	 function fn_sendNoticeMessage(){
 			
 		    var noticeMessageType = '0';
 			var noticeMessageDetail ="게시글에 댓글이 달렸어요~";
 			var sender = "진구네나무#노진구";
-			var PostNo = $('input[name=commentPostNo]').val();
-			var treeNo = $('input[name=postTreeNo]').val();
+			var postNo = $('input[name=commentPostNo]').val();
+			var treeNo = $('input[name=treeNo]').val();
 			
+			alert(postNo);
+			alert(treeNo);
 			
-			
+			/* 
 		    $.ajax({
 		       
 		        url : "/comment/json/addComment",
@@ -432,7 +435,7 @@ ${post.postDetail}
 		        	//alert(status);
 		            if(status=="success")
 		            {
-		            	/*  $('#commentDetail').val('');
+		            	  $('#commentDetail').val('');
 		                getCommentList();
 		            	 
 		                $("#commentDetail").val("");
@@ -443,8 +446,8 @@ ${post.postDetail}
 		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		       }
 		        
-		    });
-		} */
+		    }); */
+		} 
 
 </script> 
 </body>

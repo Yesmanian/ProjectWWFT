@@ -383,7 +383,7 @@ img {
  
 <c:forEach var="post" items ="${list}">
 	
-		<div class="card" style="width: 50%;">
+		<div class="card" style="width: 30%;">
 			 <a href="/post/getPost?postNo=${post.postNo}"  class = btn pull-right btn-success style=text-decoration:none> 
 			 <img src="/resources/images/uploadFiles/${post.firstImageName}" class="card-img-top" alt="..." style="width: 300px; height: 300px"></a>
 			  <div class="card-body">
