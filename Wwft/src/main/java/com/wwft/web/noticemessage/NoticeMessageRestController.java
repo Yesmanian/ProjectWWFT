@@ -34,6 +34,17 @@ public class NoticeMessageRestController {
 	@Value("#{commonProperties['pageSize']}")
 	int pageSize;
 	
+	@RequestMapping(value = "json/sendNoticeMessage",method = RequestMethod.POST)
+	public Map sendNoticeMessage(@RequestBody NoticeMessage message) throws Exception{
+		
+		noticeMessageService.sendNoticeMessage(message);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("abc", "리턴확인");
+		
+		return map;
+	}
+	
 	@RequestMapping( value = "json/removeNoticeMessage" , method = RequestMethod.POST)
 	public Map removeNoticeMessage(@RequestBody NoticeMessage message) throws Exception{
 		
