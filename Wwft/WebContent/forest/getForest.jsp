@@ -244,6 +244,7 @@ li:hover {
     
   </div>
 </nav>
+${forest}
 <!--navbar end  -->
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
