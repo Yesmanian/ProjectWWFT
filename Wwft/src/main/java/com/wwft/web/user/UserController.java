@@ -144,12 +144,11 @@ public class UserController {
 		System.out.println("/user/login : POST");
 		//Business Logic
 		User dbUser=userService.getUser(user.getUserId());
-		dbUser.setTreeNo(1);
 		if( user.getPassword().equals(dbUser.getPassword())){
 			session.setAttribute("user", dbUser);
 		}
 		
-		return "redirect:/profile/getProfileList";
+		return "redirect:/profile/getProfileList.jsp";
 	}
 	
 	

@@ -9,9 +9,6 @@
 <title>회원가입</title>
 <script>
 
-		
-		
-
         function check_pw(){
  			
         	 
@@ -19,9 +16,6 @@
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check_SC = 0;
-            
-           
-            
         
             if(userId.value == ""){
               	 
@@ -31,13 +25,13 @@
             	 
             	 }
             
-            if(userId.length <6 ||userId.length>16){
+            if(userId.length<6 ||userId.length>16){
                 window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
                 document.getElementById('userId').value='';
             }
            
             
-            if(pw.length   <6 ||pw.length>16){
+            if(pw.length<6 ||pw.length>16){
                 window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
                 document.getElementById('pw').value='';
             }
