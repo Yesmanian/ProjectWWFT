@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wwft.service.calendar.EventService;
 import com.wwft.service.domain.Event;
@@ -25,6 +26,16 @@ public class CalendarController {
 		
 		System.out.println("캘린더 컨트롤"+this.getClass());
 	}
+//	
+//	@RequestMapping( value = "getCalendar", method = RequestMethod.POST)
+//	public String getCalendar(@RequestParam int treeNo) throws Exception{
+//		System.out.println("getEvent: POST");
+//		System.out.println(event);
+//		
+//		eventService.addEvent(event);
+//		
+//		return "forward:/calendar/Calendar.jsp";
+//	}
 
 
 
