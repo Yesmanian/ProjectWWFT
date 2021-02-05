@@ -48,10 +48,7 @@ public class ForestController {
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);
 		
-//		map.put("acceptTreeList", noticeMessageService.acceptTreeList(forestNo));
-		//map.put("acceptTreeList", noticeMessageService.acceptTreeList(forestNo));
-		
-		
+
 		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/forest/getForest.jsp");

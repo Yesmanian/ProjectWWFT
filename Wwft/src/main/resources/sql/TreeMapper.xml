@@ -94,13 +94,12 @@
 	
 	
 		  
-	 <select 	id="getUserTree"	parameterType="hashmap"	resultMap="treeSelectMap">
+	 <select 	id="getUserTree"	parameterType="int"	resultMap="treeSelectMap">
 		SELECT
 		tree_no, user_id , tree_name , seed_no ,  tree_image_name ,  country_id , family_motto , activity_total_point 		
 		FROM 
 		tree 
 		WHERE tree_no = #{treeNo}
-		AND user_id = #{userId}
 	 </select>
 	 
 	 <!-- SQL : PROFILE SELECT LIST -->

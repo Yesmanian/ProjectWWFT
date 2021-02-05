@@ -46,19 +46,11 @@ public class ProfileServiceTest {
 			
 		profile = profileService.getProfile(46);
 	}
-	//@Test
+	@Test
 	public void testGetProfile() throws Exception {
 				
 		Profile profile = new Profile();
-		profile.setTreeNo(1);
-		profile.setProfileName("누나프로필");
-		profile.setFamilyRelations("누나");
-		profile.setAddress("서울시강남구논현동");
-		profile.setPhone("01098765421");
-		profile.setProfileImage("Image");
-		profile.setProfileState("1");
-			
-		profile = profileService.getProfile(46);
+		profile = profileService.getProfile(6);
 				
 	}
 	
@@ -103,7 +95,7 @@ public class ProfileServiceTest {
 		//==> console 확인
 		System.out.println(profile);
 	}
-	 @Test
+	// @Test
 	 public void testGetProfileList() throws Exception{
 		System.out.println("profileList =================");
 		int treeNo = 1;

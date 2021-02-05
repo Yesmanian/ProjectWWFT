@@ -42,21 +42,13 @@ public class TreeDaoImpl implements TreeDao {
 	
 	
 	@Override
-	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception {
+	public Tree getUserTree(int treeNo) throws Exception {
 		
 		System.out.println("treeDaoImpl getUserTree Start");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("treeNo", treeNo);
-		map.put("userId", userId);
-		Tree tree = new Tree();
-		tree = sqlSession.selectOne("TreeMapper.getUserTree", map);
-		
-		map.put("tree",tree);
+		return sqlSession.selectOne("TreeMapper.getUserTree", treeNo);
+
 		
 		
-		
-		return map;
 		
 		
 		
