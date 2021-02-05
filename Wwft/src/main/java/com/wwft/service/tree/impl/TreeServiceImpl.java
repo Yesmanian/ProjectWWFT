@@ -40,8 +40,8 @@ public class TreeServiceImpl implements TreeService {
 
 
 	@Override
-	public Map<String, Object> getUserTree(int treeNo, String userId) throws Exception {
-		return treeDao.getUserTree(treeNo, userId);
+	public Tree getUserTree(int treeNo) throws Exception {
+		return treeDao.getUserTree(treeNo);
 	
 	}
 

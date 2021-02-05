@@ -14,18 +14,18 @@
 	$(function(){
 		$('#btn-remove').click(function(){
 			if(confirm("나무를 삭제하시겠습니까?")){
-				self.location.href = "/tree/removeTree?treeNo="+${map.tree.treeNo};
+				self.location.href = "/tree/removeTree?treeNo="+${tree.treeNo};
 			}
 		});
 	});
 
 	function goGetBucketList() {
-		window.location.href="getBucketList?treeNo="+${map.tree.treeNo};
+		window.location.href="getBucketList?treeNo="+${tree.treeNo};
 		
 	}
 	
 	function goGetFamilyMotto(){
-		window.location.href="getFamilyMotto?treeNo="+${map.tree.treeNo};
+		window.location.href="getFamilyMotto?treeNo="+${tree.treeNo};
 		
 	}
 	
@@ -43,13 +43,13 @@
 	</br></br>
 
 	
-		나무번호: ${map.tree.treeNo}</br>
-		유저 아이디 : ${map.tree.userId}</br>
-		나무 닉네임 : ${map.tree.treeName}</br>
-		씨앗번호 : ${map.tree.seedNo}</br>
-		국가		: ${map.tree.countryId}</br>
-		가훈 : ${map.tree.familyMotto}</br>
-		총 활동지수 : ${map.tree.activityTotalPoint}</br>
+		나무번호: ${tree.treeNo}</br>
+		유저 아이디 : ${tree.userId}</br>
+		나무 닉네임 : ${tree.treeName}</br>
+		씨앗번호 : ${tree.seedNo}</br>
+		국가		: ${tree.countryId}</br>
+		가훈 : ${tree.familyMotto}</br>
+		총 활동지수 : ${tree.activityTotalPoint}</br>
 		
 
 	<td><input type=button 	name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>

@@ -55,7 +55,7 @@ public class NoticeMessageServiceTest {
 		message.setSender("진구네나무#노진구짱");//누가 댓글을 남겼는지
 		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대=2 입장=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
 		message.setTreeNo(1); //1번나무에게
-		message.setPostNo(5);
+		message.setPostNo(14);
 		message.setNoticeMessageDetail("게시글에 댓글이 달렸어요~");
 		
 		noticeMessageService.sendNoticeMessage(message);
@@ -68,13 +68,16 @@ public class NoticeMessageServiceTest {
 //		
 //		noticeMessageService.sendNoticeMessage(message);
 //		
-//		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
-//		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
-//		message.setTreeNo(1); //1번나무가
-//		message.setForestNo(1); // 1번 숲에게
-//		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
-//		
-//		noticeMessageService.sendNoticeMessage(message);
+		message.setSender("진구네나무@userId");//나무 닉네임@나무아이디 
+		message.setNoticeMessageType('3'); // 종류는 댓글=0 신고=1 초대=2 입장요청=3 4=수락함  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
+		message.setTreeNo(1); //1번나무가
+		message.setForestNo(1); // 1번 숲에게
+		message.setNoticeMessageDetail("우리숲에 입장을 요청 했습니다.");
+		
+		noticeMessageService.sendNoticeMessage(message);
+		
+		
+		
 //		
 ////		NoticeMessage message = new NoticeMessage();
 //		message.setSender("관리자");//누가 댓글을 남겼는지
