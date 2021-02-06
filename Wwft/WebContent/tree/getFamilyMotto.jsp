@@ -36,15 +36,7 @@ $("#btnFamilyMotto").click(function () {
 	})
 })
 
-$(document).ready(function () {
-	$("#btn1FamilyMotto").click(function () {
-		
 
-	
-	
-	opener.location.reload();
-	}
-}
 </script>
 </head>
 <body>
