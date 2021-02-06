@@ -81,7 +81,7 @@ public class ProfileController {
 		model.addAttribute("getProfileList", profileService.getProfileList(user.getTreeNo()));
 
 		// 4. 페이지이동
-		return "forward:/profile/getProfileList.jsp";
+		return "forward:/tree/getUserTree";
 	}	
 	
 }

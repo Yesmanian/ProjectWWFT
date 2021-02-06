@@ -12,23 +12,10 @@
         function check_pw(){
  			
         	 
-            var userId = document.getElementById('userId').value;
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check_SC = 0;
         
-            if(userId.value == ""){
-              	 
-            	  alert("id를 입력해주세요.");
-            	 
-            	  return false;
-            	 
-            	 }
-            
-            if(userId.length<6 ||userId.length>16){
-                window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-                document.getElementById('userId').value='';
-            }
            
             
             if(pw.length<6 ||pw.length>16){
@@ -66,7 +53,7 @@
 			<tr>
 				<td width="5%" align="center">*</td>
 				<td width="20%">아이디</td>
-				<td><input type="text" name="userId" id="userId" onchange="check_pw()"></td>
+				<td><input type="text" name="userId" id="userId" ></td>
 			</tr> 
 			<tr>
 			<tr>
