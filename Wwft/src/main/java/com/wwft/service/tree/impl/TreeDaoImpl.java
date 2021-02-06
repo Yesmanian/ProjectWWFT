@@ -61,7 +61,7 @@ public class TreeDaoImpl implements TreeDao {
 		int treeNo = sqlSession.selectOne("TreeMapper.getMaxTreeNo");
 		
 		tree.setTreeNo(treeNo);
-		sqlSession.insert("TreeMapper.addTreeForest", tree);
+		sqlSession.insert("TreeMapper.addTreeForest", treeNo);
 	}
 
 
