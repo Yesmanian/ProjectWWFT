@@ -71,7 +71,7 @@ $('#real-input').on('change',readInputFile);
 		
       <div class="product-item">
         <div class="image">
-          <a href="/tree/getUserTree?treeNo=${user.treeNo}"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
+          <a href="/profile/getProfile?profileNo=1&treeNo=3"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
         </div>
           <div class="name text-center">
             <label for="profileNmae"></label>

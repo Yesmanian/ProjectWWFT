@@ -4,32 +4,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0;URL=getFamilyMotto.jsp">
+
 <meta charset="EUC-KR">
 <title>나무 보기</title>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
 
 
-	
+
 	$(function(){
 		$('#btn-remove').click(function(){
 			if(confirm("나무를 삭제하시겠습니까?")){
-				self.location.href = "/tree/removeTree?treeNo="+${tree.treeNo};
+				var treeNo = $("#treeNo").val();
+				self.location.href = "/tree/removeTree?treeNo=${tree.treeNo}"
+				
 			}
 		});
 	});
 
 	function goGetBucketList() {
-		window.location.href="getBucketList?treeNo="+${tree.treeNo};
+		var treeNo = $("#treeNo").val();
+		window.location.href="/tree/getBucketList?treeNo=${tree.treeNo}"
 		
 	}
 	
 	function goGetFamilyMotto(){
-		window.location.href="getFamilyMotto?treeNo="+${tree.treeNo};
-		
+		var treeNo = $("#treeNo").val();
+		window.location.href="/tree/getFamilyMotto?treeNo=${tree.treeNo}"
 	}
-	
+
 
 </script>
 
@@ -53,8 +56,10 @@
 		총 활동지수 : ${tree.activityTotalPoint}</br>
 		
 
-	<td><input type=button 	name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
-	 <input type="button" 	name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
+	<td><input type=button 		name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
+	 	 <input type="hidden"  	id="treeNo"		name="treeNo"  	value="${tree.treeNo }">
+	 
 	<div>
 	
 	<button id="btn-remove" >나무 삭제</button>  

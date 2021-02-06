@@ -64,7 +64,7 @@ public class ProfileController {
 			session.setAttribute("profile", dbprofile);
 		}
 
-		return "forward:/profile/updateProfile.jsp";
+		return "/tree/getUserTree";
 	}
 
 	@RequestMapping(value = "getProfileList", method = RequestMethod.GET)
