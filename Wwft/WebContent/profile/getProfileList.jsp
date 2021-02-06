@@ -71,7 +71,7 @@ $('#real-input').on('change',readInputFile);
 		
       <div class="product-item">
         <div class="image">
-          <a href="/tree/getUserTree?treeNo=${user.treeNo}&userId=${user.userId}"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
+          <a href="/tree/getUserTree?treeNo=${user.treeNo}"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
         </div>
           <div class="name text-center">
             <label for="profileNmae"></label>
@@ -88,9 +88,8 @@ $('#real-input').on('change',readInputFile);
             <label for="profileNmae">프로필 생성</label>
           </div>
  
-          <input type="button" value="프로필 관리" onclick="location='/profile/updateProfileList'"/>
+          <input type="button" value="프로필 관리" onclick="location='/profile/updateProfileList.jsp'"/>
           <input type="button" value="뒤로가기" onclick="goBack();"/>
-		  <button class="cencle btn btn-danger" type="button">취소</button>
       
 </body>
 </html>
