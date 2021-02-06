@@ -633,7 +633,7 @@ window.onload = function(){
 			//alert(res.treeList.list[0].treeName)
 			//alert(res.treeList.list[2].treeName)
 			var list = res.postList.list;
-			alert(list[0].postNo)
+			//alert(list[0].postNo)
 			//restLoadMore(list);
 			
 			
