@@ -36,9 +36,15 @@ $("#btnFamilyMotto").click(function () {
 	})
 })
 
+$(document).ready(function () {
+	$("#btn1FamilyMotto").click(function () {
+		
 
-
-
+	
+	
+	opener.location.reload();
+	}
+}
 </script>
 </head>
 <body>
@@ -51,7 +57,7 @@ $("#btnFamilyMotto").click(function () {
          
        <input type="button"	id="btnFamilyMotto" 	value="등록" />
        
- 	   <input type="button" value="뒤로가기" onclick="history.go(-1)"/>
+ 	   <input type="button" 	id="btn1FamilyMotto"		value="뒤로가기" />
  		
  		<h2>등록된 가훈</h2>
  	

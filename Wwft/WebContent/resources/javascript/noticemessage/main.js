@@ -35,6 +35,7 @@ function formatAMPM(value) {
     return strTime;
 }
 
+
 function createTag(value) {
 
     $.each(value, function (index, item) {
