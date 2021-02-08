@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
     <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 <meta charset="EUC-KR">
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
+
 function goBack(){
 		window.history.back();
 		}
@@ -47,10 +49,8 @@ function readInputFile(e){
 }
 
 $('#real-input').on('change',readInputFile);
+
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 </head>
 
 <body>	
@@ -58,27 +58,19 @@ $('#real-input').on('change',readInputFile);
 	<h3>프로필 목록</h3>
 	<ul>
 		<c:forEach items="${getProfileList}" var="list" >
-			<tr align="center" style="padding: 2 0 2 0">
-					<td>${list.profileName}&nbsp;</td>
-					<td>${list.profileImage}&nbsp;</td>
-					<td><a href="getUserTree"></a></td>
-				</tr>
-		</c:forEach>
-	</ul>
-		<p>${user.userId}님로그인을 유지중</p>
-		<p align="center">
-		
-		
       <div class="product-item">
         <div class="image">
-          <a href="/profile/getProfile?profileNo=1&treeNo=3"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
+          <a href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img src="/resources/images/profile/fa.png" alt="Product 1"></a>
         </div>
           <div class="name text-center">
-            <label for="profileNmae"></label>
+          	${list.profileName}
           </div>
         </div>
+		</c:forEach>
+	</ul>
+		
+		
     <!--/ Product Item -->
-
           <div class="product-item">
         </div>
         <div class="image">
@@ -90,6 +82,11 @@ $('#real-input').on('change',readInputFile);
  
           <input type="button" value="프로필 관리" onclick="location='/profile/updateProfileList.jsp'"/>
           <input type="button" value="뒤로가기" onclick="goBack();"/>
-      
+  	
+  	<p>
+
+
+
+
 </body>
 </html>

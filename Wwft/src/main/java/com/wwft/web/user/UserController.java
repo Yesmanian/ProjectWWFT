@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.wwft.service.domain.Tree;
 import com.wwft.service.domain.User;
 import com.wwft.service.tree.TreeService;
+import com.wwft.service.user.UserDao;
 import com.wwft.service.user.UserService;
+import com.wwft.service.user.impl.UserDaoImpl;
 
 @Controller
 @RequestMapping("/user/*")
@@ -146,7 +149,7 @@ public class UserController {
 			session.setAttribute("user", dbUser);
 		}
 		
-		return "redirect:/profile/getProfileList.jsp";
+		return "redirect:/profile/getProfileList";
 	}
 	
 	
@@ -204,5 +207,33 @@ public class UserController {
 			returnValue = "success";
 		}
 		return returnValue;
+		
 	}
+//	@ResponseBody
+//	@RequestMapping(value = "/ID_Check", produces="text/plane")
+//	public String ID_Check(@RequestBody String paramData,String userId) throws ParseException {
+//		//클라이언트가 보낸 ID값
+//		System.out.println(userId);
+//		UserDao dao = sqlSession.getMapper(UserDao.class);
+//		User daoIm = dao.Id_Check(userId);
+//		
+//		if(dao != null) {//결과 값이 있으면 아이디 존재	
+//			return "-1";
+//		} else {		//없으면 아이디 존재 X
+//			System.out.println("null");
+//			return "0";
+//		}
+	@RequestMapping( value="checkDuplication", method=RequestMethod.POST )
+	public String checkDuplication( @RequestParam("userId") String userId , Model model ) throws Exception{
+		
+		System.out.println("/user/checkDuplication : POST");
+		//Business Logic
+		boolean result=userService.checkDuplication(userId);
+		// Model 과 View 연결
+		model.addAttribute("result", new Boolean(result));
+		model.addAttribute("userId", userId);
+
+		return "forward:/user/checkDuplication.jsp";
+	}
+	
 }
