@@ -2,7 +2,6 @@ package com.wwft.web.post;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wwft.service.domain.ImageAndLike;
 import com.wwft.service.domain.Post;
+import com.wwft.service.domain.Report;
 import com.wwft.service.post.PostService;
 
 @RestController
@@ -27,26 +27,20 @@ public class PostRestController {
 	@Qualifier("postServiceImpl")
 	private PostService postService;
 
-
-
 	public PostRestController() {
 		System.out.println(this.getClass() + "Restcontroller");
 	}
 
-
-
 	@RequestMapping(value = "json/addPost", method = RequestMethod.POST)
-	public int addPost(@RequestBody(required = false ) Post post	) throws Exception {
-		System.out.println("post:"+post.getPostDetail());
+	public int addPost(@RequestBody(required = false) Post post) throws Exception {
+		System.out.println("post:" + post.getPostDetail());
 		System.out.println("/post/addPost : POST");
 		post.setPostTreeNo(1);
 		post.setPostWriter("√ √ ");
-		
-		
+
 		Post rePost = new Post();
-		rePost = postService.addPost(post);	
-		
-		
+		rePost = postService.addPost(post);
+
 		/*
 		 * List<MultipartFile> files = request.getFiles("input_imgs"); for(int i=0;
 		 * i<files.size(); i++) { System.out.println(files.get(i)); }
@@ -56,8 +50,7 @@ public class PostRestController {
 		 * @ModelAttribute("post") Post post, Model model, MultipartHttpServletRequest
 		 * request, ImageAndLike imageAndLike
 		 */
-		
-		
+
 		/*
 		 * postService.addPost(post);
 		 * imageAndLikeService.addImageAndLikeList(imageAndLike, request);
@@ -73,5 +66,43 @@ public class PostRestController {
 
 		return rePost.getPostNo();
 	}
+
+	/*
+	 * @RequestMapping(value = "json/addReport", method = RequestMethod.POST) public
+	 * String addReport(@RequestBody(required = false ) Report report) throws
+	 * Exception { System.out.println(report.getReportedPostNo());
+	 * System.out.println(report.getReportedTreeNo());
+	 * System.out.println(report.getReporterTreeNo());
+	 * System.out.println(report.getReportType());
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * List<MultipartFile> files = request.getFiles("input_imgs"); for(int i=0;
+	 * i<files.size(); i++) { System.out.println(files.get(i)); }
+	 * 
+	 * 
+	 * 
+	 * @ModelAttribute("post") Post post, Model model, MultipartHttpServletRequest
+	 * request, ImageAndLike imageAndLike
+	 * 
+	 * 
+	 * 
+	 * 
+	 * postService.addPost(post);
+	 * imageAndLikeService.addImageAndLikeList(imageAndLike, request);
+	 * 
+	 * 
+	 * List<String> fileList = imageAndLikeService.uploadFile(imageAndLike,
+	 * request);
+	 * 
+	 * 
+	 * 
+	 * model.addAttribute("fileList", fileList);
+	 * 
+	 * 
+	 * return null; }
+	 */
 
 }
