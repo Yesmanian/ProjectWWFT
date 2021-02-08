@@ -4,32 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0;URL=getFamilyMotto.jsp">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css"/>
 <meta charset="EUC-KR">
 <title>나무 보기</title>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
 
 
-	
+
 	$(function(){
 		$('#btn-remove').click(function(){
 			if(confirm("나무를 삭제하시겠습니까?")){
-				self.location.href = "/tree/removeTree?treeNo="+${tree.treeNo};
+				var treeNo = $("#treeNo").val();
+				self.location.href = "/tree/removeTree?treeNo=${tree.treeNo}"
+				
 			}
 		});
 	});
 
 	function goGetBucketList() {
-		window.location.href="getBucketList?treeNo="+${tree.treeNo};
+		var treeNo = $("#treeNo").val();
+		window.location.href="/tree/getBucketList?treeNo=${tree.treeNo}"
 		
 	}
 	
 	function goGetFamilyMotto(){
-		window.location.href="getFamilyMotto?treeNo="+${tree.treeNo};
-		
+		var treeNo = $("#treeNo").val();
+		window.location.href="/tree/getFamilyMotto?treeNo=${tree.treeNo}"
 	}
-	
+
 
 </script>
 
@@ -53,8 +57,16 @@
 		총 활동지수 : ${tree.activityTotalPoint}</br>
 		
 
-	<td><input type=button 	name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
-	 <input type="button" 	name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
+	<td><input type=button 		name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="내 숲 보기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="알림메시지 보기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="달력보기">
+	 
+	 
+	 
+	 	 <input type="hidden"  	id="treeNo"		name="treeNo"  	value="${tree.treeNo }">
+	 
 	<div>
 	
 	<button id="btn-remove" >나무 삭제</button>  

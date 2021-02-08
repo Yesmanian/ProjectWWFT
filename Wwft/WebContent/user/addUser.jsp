@@ -4,31 +4,21 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>회원가입</title>
 <script>
+<script>
 
+	
         function check_pw(){
  			
         	 
-            var userId = document.getElementById('userId').value;
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check_SC = 0;
         
-            if(userId.value == ""){
-              	 
-            	  alert("id를 입력해주세요.");
-            	 
-            	  return false;
-            	 
-            	 }
-            
-            if(userId.length<6 ||userId.length>16){
-                window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-                document.getElementById('userId').value='';
-            }
            
             
             if(pw.length<6 ||pw.length>16){
@@ -64,9 +54,18 @@
 	<form action="/user/addUser" method="post">
 		<table>
 			<tr>
+				<td colspan="1" height="100" align="center">ID</td>
+				<td colspan="2" height="100" align="center">
+				<input type="text" name="user_id" id="user_id">
+				</td>
+				<td align="center">
+				<button id="duplicate_check" type="button" onclick="check();">중복체크</button>
+				</td>
+			</tr>
+			<tr>
 				<td width="5%" align="center">*</td>
 				<td width="20%">아이디</td>
-				<td><input type="text" name="userId" id="userId" onchange="check_pw()"></td>
+				<td><input type="text" name="userId" id="userId" ></td>
 			</tr> 
 			<tr>
 			<tr>
@@ -110,4 +109,32 @@
 		</p>
 	</form>
 </body>
+<script>
+function check(){
+	id = $("#user_id").val();
+	
+	$.ajax({
+	    url: 'ID_Check',
+	    type: 'POST',
+	    dataType: 'text', //서버로부터 내가 받는 데이터의 타입
+	    contentType : 'text/plain; charset=utf-8;',//내가 서버로 보내는 데이터의 타입
+	    data: id ,
+
+	    success: function(data){
+	         if(data == 0){
+	         console.log("아이디 없음");
+	         alert("사용하실 수 있는 아이디입니다.");
+	         }else{
+	         	console.log("아이디 있음");
+	         	alert("중복된 아이디가 존재합니다.");
+	         }
+	    },
+	    error: function (){        
+	                      
+	    }
+	  });
+
+
+}
+</script>
 </html>

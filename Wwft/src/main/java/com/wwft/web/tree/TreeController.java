@@ -45,17 +45,17 @@ public class TreeController {
 	
 	
 	@RequestMapping(value = "getUserTree", method = RequestMethod.GET)
-	public String getUserTree(@RequestParam("treeNo")int treeNo, Model model, HttpSession session) throws Exception{
+	public String getUserTree(Model model, HttpSession session) throws Exception{
 		
 		System.out.println("/tree/getUserTree : GET");
 	
-		Tree tree = treeService.getUserTree(treeNo);
+
 		
 		Profile profile = (Profile)session.getAttribute("profile");
-		
+		System.out.println("»Æ¿Œ:"+profile);
 
-		model.addAttribute("getUserTree", treeService.getUserTree(profile.getTreeNo()));
-		model.addAttribute("tree", tree);
+		session.setAttribute("tree", treeService.getUserTree(profile.getTreeNo()));
+
 		
 		return "/tree/getUserTree.jsp";
 	}

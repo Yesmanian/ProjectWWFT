@@ -3,6 +3,8 @@ package com.wwft.web.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,34 +16,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wwft.service.domain.User;
 import com.wwft.service.user.UserService;
 
-//
-//
-//
-//	@RestController
-//	public class UserRestController {
-//	    @Autowired
-//	    private UserService memberService;
-//	    @Autowired
-//	    private MailSendService mss;
-//
-//
-//	    @RequestMapping("/user/addUser")
-//	     public void signUp(@ModelAttribute User user){
-//	        // DB에 기본정보 insert
-//	        memberService.addUser(user);
-//
-//	        //임의의 authKey 생성 & 이메일 발송
-//	        String authKey = mss.sendAuthMail(user.getEmail());
-//	        user.setAuthKey(authKey);
-//
-//	        Map<String, String> map = new HashMap<String, String>();
-//	        map.put("email", user.getEmail());
-//	        map.put("authKey", user.getAuthKey());
-//	        System.out.println(map);
-//
-//	      //DB에 authKey 업데이트
-//	      memberService.updateAuthKey(map);
-//
-//	  	}
-//	
-//	}
+
+
+
+@RestController
+@RequestMapping("/user/*")
+public class UserRestController {
+	
+	///Field
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	//setter Method 구현 않음
+		
+	public UserRestController(){
+		System.out.println(this.getClass());
+	}
+
+
+	  	
+	    @RequestMapping( value="json/login", method=RequestMethod.POST )
+		public User login(	@RequestBody User user,
+										HttpSession session ) throws Exception{
+		
+			System.out.println("/user/json/login : POST");
+			//Business Logic
+			System.out.println("::"+user);
+			User dbUser=userService.getUser(user.getUserId());
+			
+			if( user.getPassword().equals(dbUser.getPassword())){
+				session.setAttribute("user", dbUser);
+			}
+			
+			return dbUser;
+		}
+	
+	}

@@ -92,7 +92,7 @@
 	WHERE tree_no = #{value}
 	</delete>
 	
-	<insert id="addTreeForest">
+	<insert id="addTreeForest" parameterType="int">
 	 INSERT
 		INTO tree_forest( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
 		VALUES	(seq_tree_and_forest_no.nextval, null , #{treeNo} , SYSDATE)
