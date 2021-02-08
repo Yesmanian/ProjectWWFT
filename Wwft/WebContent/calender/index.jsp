@@ -287,7 +287,7 @@
 
                 </select>
               </div>
-  
+  			
 
 
 
@@ -315,7 +315,7 @@
             </div> <!-- modal-content -->
           </div><!-- modal-dialog -->
         </form>
-      </div><!-- modal -->
+      </div><!-- modal -->	
 
 
 
