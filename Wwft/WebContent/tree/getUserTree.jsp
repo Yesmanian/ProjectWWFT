@@ -47,6 +47,17 @@
 </head>
 <body>
 
+     <span>
+      <header id="wrap"> 
+        
+          
+        <jsp:include page="../resources//weather/index.jsp"/>
+      
+
+      </header>
+     
+    </span>
+     
 
 	<div>
 	 나무보기
