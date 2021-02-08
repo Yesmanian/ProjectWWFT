@@ -1,5 +1,9 @@
 package com.wwft.web.calendar;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Conditional;
@@ -16,6 +20,8 @@ import com.wwft.service.domain.Event;
 @RequestMapping("/event/*")
 public class CalendarController {
 	
+	private static final Logger lOGGER = Logger.getLogger(CalendarController.class);
+	
 	@Autowired
 	@Qualifier("eventServiceImpl")
 	private EventService eventService;
@@ -26,16 +32,19 @@ public class CalendarController {
 		
 		System.out.println("캘린더 컨트롤"+this.getClass());
 	}
-//	
-//	@RequestMapping( value = "getCalendar", method = RequestMethod.POST)
-//	public String getCalendar(@RequestParam int treeNo) throws Exception{
-//		System.out.println("getEvent: POST");
-//		System.out.println(event);
-//		
-//		eventService.addEvent(event);
-//		
-//		return "forward:/calendar/Calendar.jsp";
-//	}
+	
+	@RequestMapping( value = "getCalendar", method = RequestMethod.GET)
+	public String getCalendar(@RequestParam int treeNo, HttpServletResponse response) throws Exception{
+		
+		BasicConfigurator.configure();
+		lOGGER.debug("getCalendar: GET");
+
+
+
+
+		
+		return "forward:/calendar/getCalendar.jsp";
+	}
 
 
 

@@ -4,31 +4,19 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>회원가입</title>
 <script>
-
+		
+	
         function check_pw(){
- 			
-        	 
-            var userId = document.getElementById('userId').value;
+ 				
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check_SC = 0;
         
-            if(userId.value == ""){
-              	 
-            	  alert("id를 입력해주세요.");
-            	 
-            	  return false;
-            	 
-            	 }
-            
-            if(userId.length<6 ||userId.length>16){
-                window.alert('아이디는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-                document.getElementById('userId').value='';
-            }
            
             
             if(pw.length<6 ||pw.length>16){
@@ -62,11 +50,12 @@
 	<h3>회원가입</h3>
 	<!--  -->
 	<form action="/user/addUser" method="post">
+	
 		<table>
 			<tr>
 				<td width="5%" align="center">*</td>
 				<td width="20%">아이디</td>
-				<td><input type="text" name="userId" id="userId" onchange="check_pw()"></td>
+				<td><input type="text" name="userId" id="userId" onsubmit="check_pw();"></td>
 			</tr> 
 			<tr>
 			<tr>

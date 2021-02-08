@@ -1,6 +1,7 @@
 package com.wwft.service.user;
 
 import java.util.List;
+import java.util.Map;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.User;
@@ -26,7 +27,7 @@ public interface UserDao {
 
 		// 비밀번호  찾기
 		public void findPassword(User user) throws Exception ;
-
+		
 //		public void Certified(String user) throws Exception;
 //
 //		public void Authentication(String user) throws Exception;

@@ -7,9 +7,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wwft.service.calendar.EventService;
 import com.wwft.service.domain.Event;
+import com.wwft.web.noticemessage.NoticeMessageRestController;
 
 @RestController
 @RequestMapping("/event/*")
 public class CalendarRestController {
 	
+	private static final Logger lOGGER = Logger.getLogger(CalendarRestController.class);
 	
 	@Autowired
 	@Qualifier("eventServiceImpl")
@@ -31,12 +35,12 @@ public class CalendarRestController {
 		System.out.println(this.getClass());
 	}
 	
-	@RequestMapping(value = "json/getEventList")
-	public Map getEventList() throws Exception {
+	@RequestMapping(value = "json/getEventList/{treeNo}")
+	public Map getEventList(@PathVariable("treeNo") int treeNo) throws Exception {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println("들어왔나 ?");
-		List<Event> event = eventService.getEventList();
+		List<Event> event = eventService.getEventList(treeNo);
 		map.put("event", event);
 		System.out.println(map.get("event"));
 		
@@ -56,7 +60,7 @@ public class CalendarRestController {
 		eventService.addEvent(event);
 		
 		List<Event> EventList = new ArrayList<Event>();
-		EventList=eventService.getEventList();
+		EventList=eventService.getEventList(event.getTreeNo());
 		
 		for(Event e : EventList) {
 			System.out.println(e);

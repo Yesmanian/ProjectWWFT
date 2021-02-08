@@ -36,28 +36,20 @@ $("#btnFamilyMotto").click(function () {
 	})
 })
 
-$(document).ready(function () {
-	$("#btn1FamilyMotto").click(function () {
-		
 
-	
-	
-	opener.location.reload();
-	}
-}
+
 </script>
 </head>
 <body>
-	<h1>가훈</h1> 
+	<h1>가훈12</h1> 
 	
 	
 
-			
 		<input type="text" 	name="familyMotto"	 placeholder="가훈을 입력하세요."	 size=50 maxlength=20>
          
        <input type="button"	id="btnFamilyMotto" 	value="등록" />
        
- 	   <input type="button" 	id="btn1FamilyMotto"		value="뒤로가기" />
+ 	   <input type="button" 	id="btn1FamilyMotto" onclick="location.href='/tree/getUserTree?${param.treeNo}'"	value="뒤로가기" />
  		
  		<h2>등록된 가훈</h2>
  	

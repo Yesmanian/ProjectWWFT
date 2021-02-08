@@ -40,7 +40,9 @@
 	   	UPDATE users
 	   	<set>
 			password = #{password}
+
 	   	</set>
+	   	
 	   	WHERE user_id = #{userId}
 	 </update>
 		 
@@ -60,7 +62,9 @@
 			DELETE users
 			WHERE user_id=#{userId} and password=#{password}
 	</delete>
-
+	<select parameterType="String" id="Id_Check" resultMap="userSelectMap">
+		SELECT user_id FROM user where user_id = #{userId}
+	</select>
 	 	<!--  위 두번째 subQuery 의  
 	 			WHERE ROWNUM &lt;= #{endRowNum} ) 는
 	 			WHERE ROWNUM <= #{endRowNum} ) 의미이며..
@@ -71,7 +75,14 @@
 
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
 		-->
-		
+	<select	id="getTreeNo"	parameterType="int" >
+	   	SELECT users
+	   <set>
+			tree_no = #{treeNo}
+	   	</set>
+	   	
+	   	WHERE user_id = #{userId}
+	 </select>
 	
 	
 	 

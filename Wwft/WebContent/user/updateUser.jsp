@@ -23,10 +23,10 @@
 			<label for="email">이메일: ${user.email}</label> 
 		</p>
 		 <p>
-			<label for="treeName">나무 닉네임</label>
+			<label for="treeName">나무닉네임 :${user.treeName}</label>
 		</p>
 		<p>
-			<label for="treeAddress">나무 주소 </label>
+			<label for="treeAddress">나무 주소 : ${user.treeName} </label>
 		</p>
 		  <p>
 			<label>둥근씨앗</label> 

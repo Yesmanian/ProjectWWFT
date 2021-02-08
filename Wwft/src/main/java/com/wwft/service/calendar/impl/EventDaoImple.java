@@ -26,9 +26,9 @@ public class EventDaoImple implements EventDao {
 	 * System.out.println("::"+getClass()+"setSql()"); this.sqlSession=sqlSession; }
 	 */
 	@Override
-	public List<Event> getEventList() throws Exception {
+	public List<Event> getEventList(int treeNo) throws Exception {
 		
-		return sqlSession.selectList("eventMapper.getEventList");
+		return sqlSession.selectList("eventMapper.getEventList",treeNo);
 	}
 
 	@Override

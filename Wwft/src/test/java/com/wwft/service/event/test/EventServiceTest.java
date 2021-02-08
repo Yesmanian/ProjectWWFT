@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ import com.wwft.service.domain.Event;
 //@ContextConfiguration(locations = { "classpath:config/context-common.xml" })
 public class EventServiceTest {
 
+	private static final Logger LOGGER = Logger.getLogger(EventServiceTest.class);
+	
+	
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
 	@Qualifier("eventServiceImpl")
@@ -67,15 +72,18 @@ public class EventServiceTest {
 		
 	}
 	
-	//@Test
+	@Test
 		public void testfindEvent() throws Exception {
-			
+		
+		BasicConfigurator.configure();
+		
 		List<Event> eventList = new ArrayList<Event>();	
 			
-		 eventList = eventService.getEventList();
+		int treeNo=1;
+		 eventList = eventService.getEventList(treeNo);
 		 
 		 for(Event e : eventList) {
-			 System.out.println(e.toString());
+			 LOGGER.debug(e.toString());
 		 }
 			
 		}
@@ -87,9 +95,11 @@ public class EventServiceTest {
 			/*
 			 * title: 'Conference', start: '2020-02-18', end: '2020-02-20'
 			 */
+			
+			int treeNo=1;
 			Map<String, Object> map = new HashMap<String, Object>();
 			System.out.println("들어왔나 ?");
-			List<Event> event = eventService.getEventList();
+			List<Event> event = eventService.getEventList(treeNo);
 			map.put("events", event);
 			System.out.println(map.get("events"));
 			 
@@ -103,7 +113,7 @@ public class EventServiceTest {
 				
 			}
 		
-		@Test
+//		@Test
 		public void testUpdateEvent() throws Exception {
 			
 			//Event event = new Event();

@@ -86,13 +86,20 @@
 	</select>
 	
 	
+	<select id="getTreeNo" resultType="int">
+	SELECT
+	tree_no 
+	FROM tree
+	WHERE user_id = #{value}
+	</select>
+	
 	<delete id="removeTree" parameterType="int">
 	DELETE 
 	FROM tree
 	WHERE tree_no = #{value}
 	</delete>
 	
-	<insert id="addTreeForest">
+	<insert id="addTreeForest" parameterType="int">
 	 INSERT
 		INTO tree_forest( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
 		VALUES	(seq_tree_and_forest_no.nextval, null , #{treeNo} , SYSDATE)

@@ -6,7 +6,7 @@ import com.wwft.service.domain.Event;
 
 public interface EventDao {
 	
-	public List<Event> getEventList() throws Exception;
+	public List<Event> getEventList(int treeNo) throws Exception;
 	
 	public void addEvent(Event event) throws Exception;
 	

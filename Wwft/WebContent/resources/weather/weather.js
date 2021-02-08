@@ -75,10 +75,10 @@ $(document).ready(function(){
 
 			    var todayLabel = week[yoil];
 
-			    
+			    console.log(JSON.stringify(city.list[key]))
 
 			    // 최고온도 절대 온도로 받아 옴으로
-
+				//일일 최저온도와 최고온도를 구해보자 .. 
 			    var max=(Math.round(city.list[key].main.temp_max) )+"˚C";
 
 				
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
 			    var weath = city.list[key].weather[0].description;
 
-			    console.log('description ;'+weath)
+			    // console.log('description ;'+weath)
 
 			    if(date === today) {
 

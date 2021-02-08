@@ -32,12 +32,17 @@
       <link href='/resources/packages/daygrid/main.css' rel='stylesheet' />
       <link href='/resources/packages/timegrid/main.css' rel='stylesheet' />
       <link href='/resources/packages/list/main.css' rel='stylesheet' />
-
-
+     
 
 
 
       <script>
+        // document.cookie = "crossCookie=bar; SameSite=None; Secure";
+        // alert( document.cookie)
+
+
+
+
         $(document).ready(function () {
           setDateBox();
 
@@ -129,13 +134,21 @@
           max-width: 1000px;
           margin: 0 auto;
         }
-        header {
+        .widget-left {
+          margin-left: auto; 
+          margin-right: auto;
+           display: block; 
+
+        }
+        /* header {
 	width:100%;
 	height:100px;
 	display: flex;
 	align-items: center;
   justify-content: center;
-}
+  padding: 35px;
+  border: 1px solid red;
+} */
 
 
 
@@ -143,17 +156,76 @@
     </head>
 
     <body>
-      <span>
-      <header id="wrap"> 
+      <!-- <header id="wrap"> 
         
           
-        <jsp:include page="../resources//weather/index.jsp"/>
-      
+        <div class="container">
+        
+      </div> -->
+      <script>
+        let latitude;
+let longitude;
+const KEY = `AIzaSyAJ90m5DaS-QP5YOUT_p4A1sKLSsrhPSRo`;
+let cyit_name;
+function getLocation() {
+	if (navigator.geolocation) { // GPS를 지원하면
+	  navigator.geolocation.getCurrentPosition(function(position) {
+		latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=\${latitude},\${longitude}&key=\${KEY}&language=en`
+        alert(url)
+  fetch(url)
+  .then(Response=>Response.json())
+  .then(data=>{
+      console.log(data.results[3].address_components[2].long_name)
+      cyit_name = data.results[3].address_components[2].long_name;
+      createCityName(cyit_name );
+  })
+.catch(Error=>console.warn(Error.message));
 
-      </header>
+
+        alert(latitude);
+  alert(longitude);
+		// alert(latitude + ' ' + longitude);
+	  }, function(error) {
+		console.error(error);
+	  }, {
+		enableHighAccuracy: false,
+		maximumAge: 0,
+		timeout: Infinity
+	  });
+	} else {
+	  alert('GPS를 지원하지 않습니다');
+    }
+    
+  }
+  getLocation();
+  
+ 
+    </script>
+<div id="openweathermap-widget-11" ></div>
+<script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+<script>
+    function createCityName(city){
+     let cityName=city;
+      alert(cityName)
+
+      window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11, city_name : cityName,appid: '9757e2feaa36992cfefe1fef3b91199d',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "/resources/weather/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+      
+  }
+
+
+
+
+</script>
+
+      <!-- </header> -->
      
-    </span>
-      <div id='calendar'></div>
+    <div id="openweathermap-widget-11" ></div>
+      <div id='calendar'>
+        
+      </div>
+    
 
 
       <!-- 일정 추가  Modal-->
@@ -161,7 +233,7 @@
         aria-hidden="true">
 
         <form id="event">
-          <input type="hidden" name="treeNo" value="1" />
+          <input type="hidden" name="treeNo" id="treeNo" value="${user.treeNo}" />
           <div class="modal-dialog" role="document" clas>
             <div class="modal-content">
               <div class="modal-header">
