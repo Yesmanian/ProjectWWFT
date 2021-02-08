@@ -29,7 +29,7 @@
 			<label for="treeName">나무 닉네임 : ${tree.treeName}</label>
 		</p>
 		<p>
-			<label for="treeAddress">나무 주소  : ${tree.countryId}</label>
+			<label for="countryId">나무 주소  : ${tree.countryId}</label>
 		</p>
 		  <p>
 			<label>둥근씨앗</label> 
@@ -41,9 +41,6 @@
 		<p>
 		<input type="submit" value="수정" /> <input type="submit" value="취소" /> <input type="submit" value="회원탈퇴" />
 		</p>
-	<a href="/user/updateUser">수정</a>
-	<a href="/uesr/loginOk">취소</a>
-	<a href="/user/removeUser">회원탈퇴</a>
 
 </form>
 </body>
