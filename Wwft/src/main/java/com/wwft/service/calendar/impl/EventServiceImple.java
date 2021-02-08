@@ -27,9 +27,9 @@ public class EventServiceImple implements EventService {
 	 */
 
 	@Override
-	public List<Event> getEventList() throws Exception {
+	public List<Event> getEventList(int treeNo) throws Exception {
 		// TODO Auto-generated method stub
-		return eventDao.getEventList();
+		return eventDao.getEventList(treeNo);
 	}
 
 	@Override

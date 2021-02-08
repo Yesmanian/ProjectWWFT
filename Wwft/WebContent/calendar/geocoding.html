@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geocode</title>
+</head>
+<body>
+    <!-- https://maps.googleapis.com/maps/api/geocode/json?latlng=36.56685665630845, 128.72296674269273&key=AIzaSyAJ90m5DaS-QP5YOUT_p4A1sKLSsrhPSRo -->
+    <script>
+        let latitude;
+let longitude;
+const KEY = `AIzaSyAJ90m5DaS-QP5YOUT_p4A1sKLSsrhPSRo`;
+let cyit_name;
+function getLocation() {
+	if (navigator.geolocation) { // GPS를 지원하면
+	  navigator.geolocation.getCurrentPosition(function(position) {
+		latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${KEY}&language=en`
+         
+        alert(url)
+  fetch(url)
+  .then(Response=>Response.json())
+  .then(data=>{
+      console.log(data.results[3].address_components[2].long_name)
+      cyit_name = data.results[3].address_components[2].long_name;
+      createCityName(cyit_name );
+  })
+.catch(Error=>console.warn(Error.message));
+
+
+        alert(latitude);
+  alert(longitude);
+		// alert(latitude + ' ' + longitude);
+	  }, function(error) {
+		console.error(error);
+	  }, {
+		enableHighAccuracy: false,
+		maximumAge: 0,
+		timeout: Infinity
+	  });
+	} else {
+	  alert('GPS를 지원하지 않습니다');
+    }
+    
+  }
+  getLocation();
+  
+ 
+    </script>
+
+<div id="openweathermap-widget-11"></div>
+<script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+<script>
+    function createCityName(city){
+     let cityName=city;
+      alert(cityName)
+
+      window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11, city_name : cityName,appid: '9757e2feaa36992cfefe1fef3b91199d',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+      
+       
+  }
+
+
+
+
+</script>
+    
+</body>
+</html>
