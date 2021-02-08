@@ -86,6 +86,13 @@
 	</select>
 	
 	
+	<select id="getTreeNo" resultType="int">
+	SELECT
+	tree_no 
+	FROM tree
+	WHERE user_id = #{value}
+	</select>
+	
 	<delete id="removeTree" parameterType="int">
 	DELETE 
 	FROM tree

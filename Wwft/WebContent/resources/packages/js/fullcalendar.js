@@ -128,8 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
       eventSources: [{
         events: function (info, successCallback, failureCallback) {
 
+          let treeNo = $('#treeNo').val();
+
           $.ajax({
-            url: '/event/json/getEventList',
+            url: `/event/json/getEventList/${treeNo}`,
             type: 'GET',
             dataType: 'json',
 
