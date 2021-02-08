@@ -53,9 +53,12 @@ public class TreeController {
 		
 		Profile profile = (Profile)session.getAttribute("profile");
 		System.out.println("»Æ¿Œ:"+profile);
+		
+	
 
 		session.setAttribute("tree", treeService.getUserTree(profile.getTreeNo()));
-
+		
+		
 		
 		return "/tree/getUserTree.jsp";
 	}

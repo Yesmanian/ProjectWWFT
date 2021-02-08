@@ -61,6 +61,7 @@ public class TreeDaoImpl implements TreeDao {
 		int treeNo = sqlSession.selectOne("TreeMapper.getMaxTreeNo");
 		
 		tree.setTreeNo(treeNo);
+		
 		sqlSession.insert("TreeMapper.addTreeForest", treeNo);
 	}
 
@@ -177,6 +178,15 @@ public class TreeDaoImpl implements TreeDao {
 	public Tree getFamilyMotto(int treeNo) throws Exception {
 		return sqlSession.selectOne("TreeMapper.getFamilyMotto", treeNo);
 	}
+
+
+	@Override
+	public int getTreeNo(String userId) throws Exception {
+		System.out.println("»Æ¿Œ:"+userId);
+
+		return sqlSession.selectOne("TreeMapper.getTreeNo", userId);
+	}
+
 
 
 
