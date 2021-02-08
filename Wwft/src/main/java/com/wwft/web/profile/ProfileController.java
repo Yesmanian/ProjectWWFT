@@ -72,17 +72,31 @@ public class ProfileController {
 	
 		System.out.println("/profile/getProfileList start..");
 		// 1. 관리자 세션 제어
-			
 		System.out.println("/profile/getProfileList end..");
 		// 2. 서비스 - 회원 목록 가져오는 동작
 		//List<MemberVO> memberList = service.getMemberList();
 		User user =(User)session.getAttribute("user");
 		// 3. 정보 저장 -> 뷰(/member/memberlist.jsp) -> (Model 객체 )
 		model.addAttribute("getProfileList", profileService.getProfileList(user.getTreeNo()));
-
 		// 4. 페이지이동
-		return "forward:/tree/getUserTree";
+		return "forward:/profile/getProfileList.jsp";
+
 	}	
+	@RequestMapping(value = "updateProfileList", method = RequestMethod.GET)
+	public String updatePorfileList(HttpSession session, Model model) throws Exception{
 	
+		System.out.println("/profile/getProfileList start..");
+		// 1. 관리자 세션 제어
+		System.out.println("/profile/getProfileList end..");
+		// 2. 서비스 - 회원 목록 가져오는 동작
+		//List<MemberVO> memberList = service.getMemberList();
+		User user =(User)session.getAttribute("user");
+		// 3. 정보 저장 -> 뷰(/member/memberlist.jsp) -> (Model 객체 )
+		model.addAttribute("updateProfileList", profileService.getProfileList(user.getTreeNo()));
+		// 4. 페이지이동
+		return "forward:/profile/updateProfileList.jsp";
+
+	}	
+
 }
 

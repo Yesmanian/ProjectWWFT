@@ -56,9 +56,13 @@
 		 
 	<!-- SQL : SELECT LIST  -->
 	<select  id="getProfileList"  parameterType="int"	resultMap="profileSelectMap">
-	  	SELECT *  FROM profiles
+	  	SELECT * FROM profiles
 		WHERE tree_no = #{value}
-			  and user_id = #{value}
+		 
+	 </select>  
+	 <select  id="updateProfileList"  parameterType="int"	resultMap="profileSelectMap">
+	  	SELECT * FROM profiles
+		WHERE tree_no = #{value}
 		 
 	 </select>  
 	 
