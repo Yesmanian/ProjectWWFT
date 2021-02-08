@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css"/>
 <meta charset="EUC-KR">
 <title>나무 보기</title>
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -58,6 +59,12 @@
 
 	<td><input type=button 		name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
 	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="내 숲 보기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="알림메시지 보기">
+	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="달력보기">
+	 
+	 
+	 
 	 	 <input type="hidden"  	id="treeNo"		name="treeNo"  	value="${tree.treeNo }">
 	 
 	<div>
