@@ -26,17 +26,17 @@
  	
  	
  	
- 	<!-- SQL : INSERT  state 1 =  초대중-->
- 	<!--
+ 	<!-- SQL : INSERT sender이름으로 state 2 =  초대중-->
+ 	
 	<insert 	id="inviteTree"		parameterType="java.util.HashMap" >
 	 	INSERT
 		INTO NOTICE_MESSAGE(NOTICE_MESSAGE_NO, SENDER,FOREST_NO,NOTICE_REG_DATE,NOTICE_MESSAGE_STATE,
-					NOTICE_MESSAGE_TYPE,NOTICE_MESSAGE_DETAIL,POST_IMAGE_NAME,NOTICE_MESSAGEBOX_STATE,POST_NO,RECEIVER,TREE_NO) 
+					NOTICE_MESSAGE_TYPE,NOTICE_MESSAGE_DETAIL,POST_NO,RECEIVER,TREE_NO) 
 		VALUES (
-			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'1','1','숲에서 초대중','POSTIMAGENAME','1',null,
-			#{profileNo},#{profileNo})
+			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'2','0','숲에서 초대합니다',null,
+			#{treeNo},#{treeNo})
 	 </insert>
-	 -->
+	 
 	 
 	 <insert id="sendNoticeMessage" parameterType="noticeMessage">
 	 	INSERT 

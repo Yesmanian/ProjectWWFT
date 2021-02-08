@@ -49,17 +49,12 @@
 					<button type="submit">login</button>
 					</div>
 				
-				<div class="btn-area1">
-					<input type="checkbox" id="chk1"> <label for="chk1">아이디 저장</label>
-				</div>
 			<div class="caption">
-				<a href="/user/findId">아이디 찾기</a>
-				<a href="/user/findPassword">비밀번호 찾기</a>
 				<a href="/user/addUser">회원가입</a>
 			</div>
 			
 	</form>
-		</section>
+</section>
 	
 		
 </body>

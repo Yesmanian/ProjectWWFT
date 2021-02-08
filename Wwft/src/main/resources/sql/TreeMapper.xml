@@ -78,18 +78,27 @@
 							#{countryId:CHAR} , #{familyMotto:VARCHAR} , #{activityTotalPoint:NUMERIC})			
 	</select>
 	
+	<select id="getMaxTreeNo" resultType="int">
+	SELECT 
+	MAX(tree_no)
+	FROM tree
+	
+	</select>
+	
+	
 	<delete id="removeTree" parameterType="int">
 	DELETE 
 	FROM tree
 	WHERE tree_no = #{value}
 	</delete>
 	
-	<insert id="addTreeForest">
+	<insert id="addTreeForest" parameterType="int">
 	 INSERT
-		INTO tree( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
-		VALUES	(seq_tree_and_forest_no.nextval, #{forestNo} , #{treeNo} , SYSDATE)
+		INTO tree_forest( tree_and_forest_no , forest_no , tree_no , forest_enter_reg_date) 
+		VALUES	(seq_tree_and_forest_no.nextval, null , #{treeNo} , SYSDATE)
 								
 	</insert>
+	
 	
 	
 	

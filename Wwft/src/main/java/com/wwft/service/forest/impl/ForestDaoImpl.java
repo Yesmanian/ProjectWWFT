@@ -128,7 +128,7 @@ public class ForestDaoImpl implements ForestDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("treeNo", treeNo);
 		map.put("forestNo", forestNo);
-		
+		System.out.println(map.toString());
 		for (int i = 0; i < treeNo.size(); i++) {
 			map.put("profileNo", treeNo.get(i));
 			sqlSession.insert("NoticeMessageMapper.inviteTree", map);
