@@ -295,7 +295,7 @@ ${forest}
             <div class="col-md-6 gedf-main">
 
                 <!--- \\\\\\\Post-->
-                <iframe src="/post/getPost?postNo=1"></iframe>
+                <iframe src="/post/getPost?postNo=1" width="390px" height="100%"  scrolling="auto" frameborder="0" align="middle" marginwidth="100px"></iframe>
                 <div class="card gedf-card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
