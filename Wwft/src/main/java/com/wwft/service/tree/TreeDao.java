@@ -50,6 +50,11 @@ public interface TreeDao {
 	public Tree getFamilyMotto(int treeNo) throws Exception;
 		
 	public void updateFamilyMotto(Tree tree) throws Exception;
+	
+	public int getTreeNo(String userId) throws Exception;
+
+	
+
 
 	
 

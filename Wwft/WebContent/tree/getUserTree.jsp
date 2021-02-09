@@ -4,20 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
 <meta charset="EUC-KR">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<title>나무 보기</title>
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript"></script>
-
-<script>
+<title>내 나무보기</title>
+<script type="text/javascript">
 
 	$(function(){
 		$('#btn-remove').click(function(){
@@ -47,39 +38,61 @@
 </head>
 <body>
 
+  <header id="wrap"> 
+        
+          
+        <jsp:include page="../common/navBar.jsp"/>
+      
 
-	<div>
-	 나무보기
-	</div>
-	</br></br>
+      </header>
+       
 
-	
-		나무번호: ${tree.treeNo}</br>
-		유저 아이디 : ${tree.userId}</br>
-		나무 닉네임 : ${tree.treeName}</br>
-		씨앗번호 : ${tree.seedNo}</br>
-		국가		: ${tree.countryId}</br>
-		가훈 : ${tree.familyMotto}</br>
-		총 활동지수 : ${tree.activityTotalPoint}</br>
-		
+  <div class="bs-callout bs-callout-danger" id="callout-tables-striped-ie8">
+  </div>
+  <div class="bs-example" data-example-id="striped-table">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th><i class="fas fa-tree fa-2x"></i>나무이름</th>
+          <th><i class="fa fa-user-circle" aria-hidden="true">유저 아이디</i></th>
+          <th><i class="fa fa-globe" aria-hidden="true">국가명</i></th>
+          <th>가훈</th>
+           <th>총활동지수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"></th>
+          <td> ${tree.treeName}</td>
+          <td> ${tree.userId}</td>
+          <td> ${tree.countryId}</td>
+          <td> ${tree.familyMotto}</td>
+          <td> ${tree.activityTotalPoint }</td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+  
+  
+  
+  
+  
+
 
 	<td><input type=button 		name="btn-bucketList-list" onclick="goGetBucketList()"  value="버킷리스트 목록"></td>
 	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="가훈 입력하기">
 	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="내 숲 보기">
 	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="알림메시지 보기">
 	 <input type="button"  			name="btn-family-motto"  	onclick="goGetFamilyMotto()"	value="달력보기">
-	 <div class="btn-group btn-group-lg" role="group" aria-label="...">...</div>
-	<div class="btn-group" role="group" aria-label="...">...</div>
-	 <button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-</button>
-	 
+	
 	 
 	 	 <input type="hidden"  	id="treeNo"		name="treeNo"  	value="${tree.treeNo }">
 	 
 	<div>
 	
-	<button id="btn-remove" >나무 삭제</button>  
+	<button id="btn-remove" >나무삭제</button>  
 	</div>
 	
 </body>

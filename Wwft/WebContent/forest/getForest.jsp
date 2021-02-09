@@ -284,7 +284,7 @@ ${forest}
                             <div class="h6 text-muted">Trees</div>
                             
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item">	
                             <ul id='infinite-list'>
 							</ul>
                         </li>
@@ -295,7 +295,7 @@ ${forest}
             <div class="col-md-6 gedf-main">
 
                 <!--- \\\\\\\Post-->
-                
+                <iframe src="/post/getPost?postNo=1"></iframe>
                 <div class="card gedf-card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -527,6 +527,12 @@ ${forest}
 							 
 						 </form>
                     </div>
+                    
+                    <div class="card-body">
+                    	<h5 class="card-title">초대요청 나무</h5>
+                    </div>
+                    
+                    
                 </div>
                 
             </div>
@@ -590,6 +596,18 @@ var restLoadMore = function(list){
 		 	
 	}	
 }
+
+var restLoadPostMore = function(list){
+	
+	for (var post in list){
+		var item = document.createElement('li');
+		item.innerText = list[post].postNo;
+		var postNo = list
+	}
+	
+	
+}
+
 var inviteTreeLoad = function(list){
 	
 	//alert(list)
@@ -633,8 +651,8 @@ window.onload = function(){
 			//alert(res.treeList.list[0].treeName)
 			//alert(res.treeList.list[2].treeName)
 			var list = res.postList.list;
-			//alert(list[0].postNo)
-			//restLoadMore(list);
+			alert(list[0].postNo)
+			restLoadPostMore(list);
 			
 			
 		},

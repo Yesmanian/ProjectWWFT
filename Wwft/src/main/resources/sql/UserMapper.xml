@@ -40,7 +40,9 @@
 	   	UPDATE users
 	   	<set>
 			password = #{password}
+
 	   	</set>
+	   	
 	   	WHERE user_id = #{userId}
 	 </update>
 		 
@@ -73,7 +75,14 @@
 
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
 		-->
-		
+	<select	id="getTreeNo"	parameterType="int" >
+	   	SELECT users
+	   <set>
+			tree_no = #{treeNo}
+	   	</set>
+	   	
+	   	WHERE user_id = #{userId}
+	 </select>
 	
 	
 	 

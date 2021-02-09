@@ -57,7 +57,6 @@ public class UserController {
 		treeService.addTree(tree);
 		userService.updateUser(user);
 		
-		
 		return "redirect:/user/login.jsp";
 	}
 	
