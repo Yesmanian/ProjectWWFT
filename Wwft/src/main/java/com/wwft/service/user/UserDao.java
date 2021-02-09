@@ -27,7 +27,7 @@ public interface UserDao {
 
 		// 비밀번호  찾기
 		public void findPassword(User user) throws Exception ;
-			
+		
 //		public void Certified(String user) throws Exception;
 //
 //		public void Authentication(String user) throws Exception;

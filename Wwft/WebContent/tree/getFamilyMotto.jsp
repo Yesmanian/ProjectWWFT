@@ -41,11 +41,10 @@ $("#btnFamilyMotto").click(function () {
 </script>
 </head>
 <body>
-	<h1>°¡ÈÆ</h1> 
+	<h1>°¡ÈÆ12</h1> 
 	
 	
 
-			
 		<input type="text" 	name="familyMotto"	 placeholder="°¡ÈÆÀ» ÀÔ·ÂÇÏ¼¼¿ä."	 size=50 maxlength=20>
          
        <input type="button"	id="btnFamilyMotto" 	value="µî·Ï" />

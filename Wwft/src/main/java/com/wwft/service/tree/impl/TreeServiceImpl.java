@@ -61,6 +61,7 @@ public class TreeServiceImpl implements TreeService {
 
 	@Override
 	public void addTreeForest(TreeForest treeForest) throws Exception {
+		
 		treeDao.addTreeForest(treeForest);
 	}
 
@@ -125,6 +126,15 @@ public class TreeServiceImpl implements TreeService {
 	public Tree getFamilyMotto(int treeNo) throws Exception {
 		return treeDao.getFamilyMotto(treeNo);
 	}
+
+
+	@Override
+	public int getTreeNo(String userId) throws Exception {
+		System.out.println("»Æ¿Œ:"+userId);
+
+		return treeDao.getTreeNo(userId);
+	}
+
 
 
 
