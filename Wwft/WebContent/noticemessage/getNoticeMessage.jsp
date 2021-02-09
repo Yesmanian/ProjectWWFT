@@ -35,7 +35,6 @@
     <i class="zmdi zmdi-account-add"></i>
 
     -->
-    <iframe src="/calendar/geocoding.html" ></iframe>
     <script>
 $(document).ready(function () {
 
