@@ -84,18 +84,23 @@ public class PostServiceImpl implements PostService {
 		
 		List<Post> list = postDao.getPostList(search,postTreeNo);
 		List<String> albumList = postDao.getAlbumList(postTreeNo);
+		int totalCount = postDao.getTotalCount(search,postTreeNo);
+		System.out.println("토탈카운트다!!!!!!!!!!!!!!1"+totalCount);
 		
 		/*
 		 * ImageAndLike fileName = postDao.getImageAndLike(postNo);
 		 * System.out.println("getPostList에서 filName"+fileName);
 		 */
+		for(int i =0; i< albumList.size(); i++) {
+			System.out.println("여기는!!!!!!!!!!!!!!!!!!!"+albumList.get(i));
+		}
 		System.out.println("list !!!!!!!111?????? : "+list.get(0).getPostNo());
 		System.out.println("???????????????"+albumList.size());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		/* map.put("fileName", fileName); */
 		map.put("albumList", albumList);
-		
+		map.put("totalCount", new Integer(totalCount));
 
 		/*
 		 * Map<String, Object> map = new HashMap<String,Object>(); map.put("list",

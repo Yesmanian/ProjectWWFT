@@ -90,7 +90,7 @@
 					FROM		(	SELECT	p.post_no, p.post_reg_date,p.album_name,s.save_image_name
 										FROM post p,(SELECT * FROM MINFILE) s
 										<choose>
-											<when test="search.searchCondition != null and search.searchKeyword !=''">
+											<when test="search.searchKeyword !='' and search.searchKeyword != NULL">
 												<where>
 												p.tree_no = #{postTreeNo} AND p.album_name LIKE '%'|| #{search.searchKeyword}||'%'
 												
@@ -114,6 +114,27 @@
 					WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}			
 	 </select> 
+	 
+	 <select  id="getTotalCount"  parameterType="map"	 resultType="int">
+	  	SELECT COUNT(*)
+					FROM(	SELECT	p.post_no, p.post_reg_date,p.album_name,s.save_image_name
+										FROM post p,(SELECT * FROM MINFILE) s
+										<choose>
+											<when test="search.searchKeyword !='' and search.searchKeyword != NULL">
+												<where>
+												p.tree_no = #{postTreeNo} AND p.album_name LIKE '%'|| #{search.searchKeyword}||'%'
+												
+												</where>
+											</when>
+											<otherwise>
+												WHERE p.tree_no = #{postTreeNo}
+					
+											</otherwise>
+										</choose> 
+										AND p.post_no=s.post_no
+										ORDER BY post_no DESC) countTable						
+	 </select> 
+	 
 	 
 	  <delete id="removePost" parameterType="int">
 	 	DELETE

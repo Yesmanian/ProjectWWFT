@@ -90,7 +90,7 @@
 
          var reader = new FileReader();
          reader.onload = function(e) {
-             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' title='Click to remove'></a>";
+             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' title='Click to remove' style='width:400; height: 400;'></a>";
              $(".imgs_wrap").append(html);
              index++;
 
