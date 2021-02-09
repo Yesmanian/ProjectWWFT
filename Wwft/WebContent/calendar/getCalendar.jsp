@@ -46,6 +46,11 @@
         $(document).ready(function () {
           setDateBox();
 
+//           $('.widget-left').on('click',function(){
+//   alert('클릭됨')
+// $('.widget-left').attr("id","widget");
+// });
+
           $('#eventStart, #eventEnd').datetimepicker({
             format: 'YYYY-MM-DD HH:mm',
             ignoreReadonly: true,
@@ -134,7 +139,7 @@
           max-width: 1000px;
           margin: 0 auto;
         }
-        .widget-left {
+        div.widget-left {
           margin-left: auto; 
           margin-right: auto;
            display: block; 
@@ -203,15 +208,20 @@ function getLocation() {
   
  
     </script>
-<div id="openweathermap-widget-11" ></div>
+<div id="openweathermap-widget-11"></div>
+
+
+
 <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
 <script>
+  
     function createCityName(city){
      let cityName=city;
       alert(cityName)
 
-      window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11, city_name : cityName,appid: '9757e2feaa36992cfefe1fef3b91199d',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "/resources/weather/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
+      window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11, city_name : cityName,appid: '9757e2feaa36992cfefe1fef3b91199d',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
       
+       
   }
 
 
@@ -219,9 +229,11 @@ function getLocation() {
 
 </script>
 
+
+
       <!-- </header> -->
      
-    <div id="openweathermap-widget-11" ></div>
+    
       <div id='calendar'>
         
       </div>
@@ -423,6 +435,8 @@ function getLocation() {
       <script src='/resources/packages/list/main.js'></script>
       <script src='/resources/packages/js/fullcalendar.js?ver=1 '></script>
       <script src='/resources/packages/js/addEvent.js?ver=1'></script>
+
+     
 
     </body>
 

@@ -17,6 +17,14 @@ WHERE i.seed_no = t.seed_no
 AND t.activity_total_point BETWEEN i.activity_point_start AND i.activity_point_end
 AND t.tree_no = 1;
 
+CREATE OR REPLACE VIEW MINFILE AS
+SELECT a.post_no, i.save_image_name
+from image_and_like i, (
+select post_no,min(image_and_like_no) imgmin
+FROM image_and_like
+GROUP BY post_no) a
+WHERE a.imgmin = i.image_and_like_no;
+
 
 달력 오타 calender ==> calendar로 고칠것 반복일정 추가 되면서 freq: 반복주기 yearly,monthly,weekly //by_day : bymonthday, byweekday// dow : 0~6 월~일 // dom : 1~31
 CREATE TABLE  "CALENDAR" 
