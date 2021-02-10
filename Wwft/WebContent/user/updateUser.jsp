@@ -1,47 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>íšŒì› ì •ë³´ ìˆ˜ì •</title>
+<meta charset="EUC-KR">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>È¸¿ø Á¤º¸ ¼öÁ¤</title>
+<script>
+		
+	
+        function check_pw(){
+ 				
+            var pw = document.getElementById('pw').value;
+            var SC = ["!","@","#","$","%"];
+            var check_SC = 0;
+        
+           
+            
+            if(pw.length<6 ||pw.length>16){
+                window.alert('ºñ¹Ğ¹øÈ£´Â 6±ÛÀÚ ÀÌ»ó, 16±ÛÀÚ ÀÌÇÏ¸¸ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù.');
+                document.getElementById('pw').value='';
+            }
+            for(var i=0;i<SC.length;i++){
+                if(pw.indexOf(SC[i]) != -1){
+                    check_SC = 1;
+                }
+            }
+            if(check_SC == 0){
+                window.alert('!,@,#,$,% ÀÇ Æ¯¼ö¹®ÀÚ°¡ µé¾î°¡ ÀÖÁö ¾Ê½À´Ï´Ù.')
+                document.getElementById('pw').value='';
+            }
+            if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+                if(document.getElementById('pw').value==document.getElementById('pw2').value){
+                    document.getElementById('check').innerHTML='ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÕ´Ï´Ù.'
+                    document.getElementById('check').style.color='blue';
+                }
+                else{
+                    document.getElementById('check').innerHTML='ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.';
+                    document.getElementById('check').style.color='red';
+                }
+            }
+      
+        }
+    </script>
 </head>
 <body>
-<h3>íšŒì› ì •ë³´ ìˆ˜ì •</h3>
-<p>${user.userId} ë‹˜ ë¡œê·¸ì¸ì„ ìœ ì§€ì¤‘</p>
-<section id="container">
-	<form action="/user/updateUser" method="post">
-		<p>
-			<label for="userid">ì•„ì´ë””: ${user.userId}</label>
-		</p>
-		<div class="form-group has-feedback">
-			<label class="control-label" for="password">íŒ¨ìŠ¤ì›Œë“œ</label>
-			<input class="form-control" type="text" id="password" name="password" value="${user.password}">
-		</div>
+	<h3>È¸¿ø Á¤º¸ ¼öÁ¤</h3>
+	<!--  -->
+	<form action="/user/addUser" method="post">
+	<input type="hidden" id="userId" value="${tree.userId}"></input>
+	<input type="hidden" id="seedNo" value="${tree.seedNo}"></input>
 	
-		
+			<label for="userId">¾ÆÀÌµğ: ${user.userId}</label>
+		<table>
+			<tr>
+			<tr>
+				<td width="5%" align="center">*</td>
+				<td width="20%">ºñ¹Ğ¹øÈ£</td>
+				<td><input type="password" name="password" id="pw" onchange="check_pw()"></td>
+			</tr>
+			<tr>
+				<td width="5%" align="center">*</td>
+				<td width="20%">ºñ¹Ğ¹øÈ£ È®ÀÎ</td>
+				<td><input type="password" name="password1" id="pw2" onchange="check_pw()">&nbsp;<span id="check"></span></td>
+			</tr>
+			<tr>
+				<td width="5%" align="center">*</td>
+				<td width="20%">ÀÌ¸ŞÀÏ</td>
+				<td><input type="text" name="email" id="email" onchange="check_pw()"></td>
+			</tr>
+			<tr>
+				<td width="5%" align="center"></td>
+				<td width="20%">³ª¹« ´Ğ³×ÀÓ</td>
+				<td><input type="text" name="treeName" id="treeName"/>
+			</tr>
+			<tr>
+				<td width="5%" align="center"></td>
+				<td width="20%">³ª¹« ÁÖ¼Ò</td>
+				<td><input type="text" name="countryId" id="countryId"/>
+			</tr>
+		</table>
 		<p>
-			<label for="email">ì´ë©”ì¼: ${user.email}</label> 
-		</p>
-		 <p>
-			<label for="treeName">ë‚˜ë¬´ ë‹‰ë„¤ì„</label>
+		<label for="seedNo">³» ¾¾¾Ñ : ${tree.seedNo}</label>
 		</p>
 		<p>
-			<label for="treeAddress">ë‚˜ë¬´ ì£¼ì†Œ </label>
+			<input type="submit" value="¼öÁ¤ ¿Ï·á" /> <input type="button" value="µÚ·Î°¡±â" onclick="history.back(-1);">
 		</p>
-		  <p>
-			<label>ë‘¥ê·¼ì”¨ì•—</label> 
-		</p>
-			<div class="form-group has-feedback">
-			<button class="btn btn-success" type="submit" id="submit">ìˆ˜ì •</button>
-			<button class="cencle btn btn-danger" type="button">ì·¨ì†Œ</button>
-		</div>
-	<a href="updateUser.jsp">ìˆ˜ì •</a>
-	<a href="getUser.jsp">ì·¨ì†Œ</a>
-		
-		
-	
-	
-	</form>
-</section>
+		</form>
 </body>
 </html>

@@ -39,8 +39,11 @@
 	<update	id="updateUser"	parameterType="user" >
 	   	UPDATE users
 	   	<set>
+	   		tree_name = #{treeName},
 			password = #{password}
+			user_id = #{userId}
 	   	</set>
+	   	
 	   	WHERE user_id = #{userId}
 	 </update>
 		 
@@ -49,7 +52,8 @@
 	  	SELECT 
 	  		user_id AS userId,
 			email AS email,
-			user_reg_date AS userRegDate
+			user_reg_date AS userRegDate,
+			tree_no AS treeNo
 		FROM users
 		ORDER BY userId
 			
@@ -74,6 +78,11 @@
 				WHERE ROWNUM <![CDATA[ <=]]> #{endRowNum} )
 		-->
 		
+	<select id="idOverlap" resultType="int">
+   	select count(identification)
+   	from user
+   	where identification = #{identification}
+	</select>
 	
 	
 	 

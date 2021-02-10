@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.User;
+import com.wwft.service.tree.TreeService;
 import com.wwft.service.user.UserService;
 
 
@@ -30,6 +31,9 @@ public class UserServiceTest {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	@Autowired
+	@Qualifier("treeServiceImpl")
+	private TreeService treeService;
 
 	//@Test
 	public void testAddUser() throws Exception {
@@ -39,8 +43,9 @@ public class UserServiceTest {
 		user.setPassword("test12345");
 		user.setEmail("test5@gmail.com");
 		user.setUserState("1");
-		
 		userService.addUser(user);
+		userService.updateUser(user);
+		
 		
 		user = userService.getUser("testUserId");
 	}

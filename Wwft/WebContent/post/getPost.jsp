@@ -18,13 +18,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getPost»≠∏È</title>
 <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" /> -->
    <!--  <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -37,13 +37,13 @@
 
 .carousel-inner /* > .carousel-item > img */{
 		  width: 30%;
-		height: 600px; 
+		height: 400px; 
 		padding: 6em;
 		background-color: #DCDCDC	;
  }
 .carousel-item {
 		  width: 5%;
-		height: 600px; 
+		height: 400px; 
 		padding: 6em;
  }
 
@@ -150,43 +150,15 @@ img {vertical-align: middle;} */
 
 </head>
 <body>
-<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">WWFT</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+<header id="wrap"> 
+        
+          
+        <jsp:include page="../common/navBar.jsp"/>
       
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-			<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
-		</a>
-      </li> 
-      <li>
-      </li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Tree</a>
-          <a class="dropdown-item" href="#">Search</a>
-          <a class="dropdown-item" href="#">Change Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-      
-    </ul>
-    
-  </div>
-</nav>
 
-</header>
-<form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
+      </header>
+      
+<%-- <form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data"> --%>
 	<input type="hidden" name="treeNo" value="${post.postTreeNo}">
 	<input type="hidden" name="postNo" value="${post.postNo}">
 	<input type="hidden"  name="menu" value="${menu}" />
@@ -194,15 +166,16 @@ img {vertical-align: middle;} */
 <div class="container">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-  	<c:set var ="i" value ="0"/>
-  		<c:forEach var ="i" items="${fileList}">
-  			 <li data-target="#carouselExampleIndicators" data-slide-to="${i}" class="active"></li>
+ <%--  	<c:set var ="i" value ="0"/>
+  		<c:forEach var ="file" items="${fileList}">
+  		<c:set var ="i" value="${i+1}"/>
+  			 <li data-target="#carouselExampleIndicators" data-slide-to="${i}" id ="liList"></li>
   		
   		</c:forEach>
-  	
-  <!--   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+  	 --%>
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> 
   </ol>
    <div class="carousel-inner">
    	<c:forEach var="file" items="${fileList}">
@@ -251,7 +224,7 @@ img {vertical-align: middle;} */
 <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
 
 <!-- </div> -->
-<br>
+
 </div>
 </div>
 </div>
@@ -369,6 +342,16 @@ ${post.postDetail}
    slides[slideIndex-1].style.display = "block";  
    dots[slideIndex-1].className += " active";
  } */
+ 
+/*  var aaa = document.getElementById('carousel-indicators');
+ var bbb = aaa.firstChild.value; */
+ 
+ /* .firstChild.val() */
+ /* alert(aaa); */
+/*  setAttribute("class","active"); */
+
+$("#liList").addClass("active");
+$('.carousel').carousel()
  
  function fn_comment(){
 		//alert(JSON.stringify($("#commentForm").serializeObject()));

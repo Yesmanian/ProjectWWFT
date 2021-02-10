@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,6 +42,14 @@ public class PostController {
 	public PostController() {
 		System.out.println(this.getClass() + "controller");
 	}
+	
+	@Value("#{commonProperties['pageUnit']}")
+	
+	int pageUnit;
+	
+	@Value("#{commonProperties['pageSize']}")
+	
+	int pageSize;
 
 	@RequestMapping(value = "addPostView", method = RequestMethod.GET)
 	public String addPostView() throws Exception {
@@ -149,26 +159,54 @@ public class PostController {
 	}
 	
 	
-	@RequestMapping(value="getPostList", method = RequestMethod.GET)
-	public String getPostList( @ModelAttribute("search") Search search, int postTreeNo, Model model) throws Exception{
+	@RequestMapping(value="getPostList")
+	public String getPostList( @ModelAttribute("search") Search search,
+			@RequestParam(value ="searchCondition",required = false)String searchCondition, 
+			@RequestParam(value = "searchKeyword" ,required = false) String searchKeyword,
+			int postTreeNo, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("/post/getPostlist : GET / POST");
-		/*
-		 * if(search.getCurrentPage() == 0 ){ search.setCurrentPage(1); }
-		 * search.setPageSize(pageSize);
-		 */
-		search.setCurrentPage(1);
-		search.setPageSize(9);
+		System.out.println("searchCondition  ? :"+searchCondition);
+		System.out.println("searchKeyword  ?: "+searchKeyword);
 		
+		/*
+		 * search.setCurrentPage(1); search.setPageSize(12);
+		 */
+		
+		 search = new Search(); 
+		 search.setCurrentPage(1);
+		 search.setPageSize(12);
+		 search.setSearchCondition(searchCondition);
+		 search.setSearchKeyword(searchKeyword);
+		 
+			
+		/*
+		 * if(search==null) {
+		 * 
+		 * search = new Search(); search.setCurrentPage(1); search.setPageSize(12);
+		 * if(searchCondition.equals("null") || searchCondition==null) {
+		 * search.setSearchCondition(""); }else {
+		 * search.setSearchCondition(searchCondition); } if(searchKeyword.equals("null")
+		 * || searchKeyword==null) { search.setSearchKeyword(""); }else {
+		 * search.setSearchKeyword(searchKeyword); }
+		 * 
+		 * }
+		 */
+			 System.out.println(search);
+			 System.out.println("엔드:"+search.getEndRowNum()+"스타트:"+search.getStartRowNum());
+	
 		// Business logic 수행
 		Map<String , Object> map = postService.getPostList(search, postTreeNo);
 		
 	//	Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		//System.out.println(resultPage);
-		
+		List<Post> dd = (List<Post>)map.get("list");
+		System.out.println("$#!%@$#^^%#UEFGHFHFDGDF"+dd.size());
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		// Model 과 View 연결
 		model.addAttribute("list", map.get("list"));
 		model.addAttribute("albumList", map.get("albumList"));
+		model.addAttribute("resultPage", resultPage);
 	//	model.addAttribute("resultPage", resultPage);
 		//model.addAttribute("search", search);
 		
