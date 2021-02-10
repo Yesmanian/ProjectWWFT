@@ -78,20 +78,7 @@
         
         <!-- 사이드 바 -->
         <div class="column column10 ">
-         	<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1"><h5>작성자</h5></label>
-    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
-    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
-  </div>
- 
-  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
-</form>
-       
+        
  
  </div>
       
@@ -120,7 +107,20 @@
         <div class="column column10 text-center">
         
         
+  	<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1"><h5>작성자</h5></label>
+    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
+    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
+  </div>
  
+  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
+</form>
+       
 
 
 <table class="table table-striped table-dark">
@@ -143,7 +143,7 @@
       <td><h5>${bucketList.bucketListWriter}</h5></td>
       <td><h5> ${bucketList.bucketListDetail}</h5></td>
       <td><h5> ${bucketList.bucketListRegDate}</h5></td>
-       <td><button type="button"  id="del" class="btn  btn-sm btn" 
+       <td><button type="button"   class="btn  btn-sm btn" 
        onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'><h5 class="text-white">삭제</h5></button></td>
       
       </c:forEach>

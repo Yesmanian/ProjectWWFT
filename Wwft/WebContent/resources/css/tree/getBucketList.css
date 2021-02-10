@@ -20,13 +20,13 @@
             grid-template-rows: repeat(3, minmax(100px, auto));
             grid-template-areas:
                 "a a a"
-                "b c c"
-                "b c c"
+                "b b b"
+                "b b b"
                 "d d d";
         } 
         .column10:nth-child(1) {grid-area: a;}
         .column10:nth-child(2) {grid-area: b;}
-        .column10:nth-child(3) {grid-area: c;}
+        .column10:nth-child(3) {grid-area: b;}
         .column10:nth-child(4) {grid-area: d;}
         
         
