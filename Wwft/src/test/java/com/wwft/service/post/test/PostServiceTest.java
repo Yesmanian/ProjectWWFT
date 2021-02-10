@@ -198,6 +198,21 @@ public class PostServiceTest {
 	  
 	  
 	  }
+	
+	//@Test
+	public void getPostFirstImage() throws Exception{
+		int postNo = 8;
+		
+		System.out.println(postService.getPostFirstImage(postNo));
+	}
+	 
+	
+	
+	
+	
+	 
+
+	 
 	 
 	 
 

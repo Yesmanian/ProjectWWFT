@@ -31,7 +31,7 @@ public interface PostService {
 
 	public void uploadFile(ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 
-	
+	public String getPostFirstImage(int postNo) throws Exception;
 	
 	
 	

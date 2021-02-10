@@ -137,7 +137,11 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	
-
+	@Override
+	public String getPostFirstImage(int postNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PostMapper.getPostFirtImage", postNo);
+	}
 	
 
 	

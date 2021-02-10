@@ -39,11 +39,12 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 	}
 
 	@Override
-	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception {
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, int profileNo, Search search) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("treeNo", treeNo);
 		map.put("search", search);
+		map.put("profileNo", profileNo);
 
 		List<NoticeMessage> list = sqlSession.selectList("NoticeMessageMapper.getTreeNoticeMessage", map);
 //		int totalCount = sqlSession.selectOne("NoticeMessageMapper.getTreeTotalCount", treeNo);
@@ -73,10 +74,14 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 	}
 
 	@Override
-	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception {
+	public int getTreeNoticeMessageStateCount(int treeNo, int profileNo) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", treeNo);
+		map.put("profileNo", profileNo);
 		
 		
-		return sqlSession.selectOne("NoticeMessageMapper.getTreeNoticeMessageStateCount", treeNo);
+		return sqlSession.selectOne("NoticeMessageMapper.getTreeNoticeMessageStateCount", map);
 	}
 
 	@Override
@@ -86,8 +91,12 @@ public class NoticeMessageDaoImpl implements NoticeMessageDao {
 	}
 	
 	@Override
-	public void updateTreeNoticeMessageState(int treeNo) throws Exception {
-		sqlSession.update("NoticeMessageMapper.updateTreeNoticeMessageState", treeNo);
+	public void updateTreeNoticeMessageState(int treeNo,int profileNo) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("treeNo", treeNo);
+		map.put("profileNo", profileNo);
+		sqlSession.update("NoticeMessageMapper.updateTreeNoticeMessageState", map);
 	}
 
 

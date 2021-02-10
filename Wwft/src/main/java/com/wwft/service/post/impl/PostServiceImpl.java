@@ -94,7 +94,7 @@ public class PostServiceImpl implements PostService {
 		for(int i =0; i< albumList.size(); i++) {
 			System.out.println("¿©±â´Â!!!!!!!!!!!!!!!!!!!"+albumList.get(i));
 		}
-		System.out.println("list !!!!!!!111?????? : "+list.get(0).getPostNo());
+		//System.out.println("list !!!!!!!111?????? : "+list.get(0).getPostNo());
 		System.out.println("???????????????"+albumList.size());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -208,6 +208,11 @@ public class PostServiceImpl implements PostService {
 	}
 
 	
+	@Override
+	public String getPostFirstImage(int postNo) throws Exception {
+		// TODO Auto-generated method stub
+		return postDao.getPostFirstImage(postNo);
+	}
 
 
 
