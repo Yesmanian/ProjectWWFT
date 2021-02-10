@@ -94,8 +94,7 @@
 				id="seed3"  width="20%" type="radio" value="2" name="seedNo">
 		</p>
 		<p>
-			<input type="submit" value="회원가입 완료" /> <input type="submit"
-				value="취소" />
+			<input type="submit" value="회원가입 완료" /> <input type="button" value="취소" onclick="history.back(-1);">
 		</p>
 	</form>
 </body>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.wwft.service.domain.Tree;
@@ -59,6 +60,9 @@ public class UserController {
 		System.out.println(tree);
 		userService.addUser(user);
 		treeService.addTree(tree);
+		user.setTreeNo(treeService.getTreeNo(user.getUserId()));
+		System.out.println("»Æ¿Œ"+ treeService.getTreeNo(user.getUserId()));
+		
 		userService.updateUser(user);
 		
 		return "redirect:/user/login.jsp";
@@ -77,6 +81,7 @@ public class UserController {
 		
 		return "forward:/user/getUser.jsp";
 	}
+	
 	
 	@RequestMapping( value="updateUser", method=RequestMethod.GET)
 	public String updateUser(@RequestParam("userId") String userId , Model model ) throws Exception {

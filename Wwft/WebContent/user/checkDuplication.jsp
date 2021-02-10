@@ -19,22 +19,6 @@
 	
 		$(function() {
 			
-			$("#userId").focus();
-		
-			//==> keydown Event 연결
-			//==> CallBackFunction  :  EventObject 인자로 받을수 있다.
-			//==> 본실습 에서는
-			//==> - Event Object 를 인자로 받을 수 있는 것 확인.
-			//==> - keyCode 값 alert() 확인하는 것 으로 종료
-			$("#userId").on("keydown" , function(event) {
-				
-				alert("keyCode  : "+event.keyCode);
-				
-				if(event.keyCode == '13'){
-					//fncCheckDuplication();
-				}
-			});
-			
 		});
 		
 		
@@ -102,30 +86,17 @@
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
 		<td width="15" height="37">
-			<img src="/images/ct_ttl_img01.gif" width="15" height="37"/>
 		</td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="93%" class="ct_ttl01">ID중복확인</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
-		</td>
-		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif" width="12" height="37"/>
-		</td>
-	</tr>
-</table>
 <!-- 타이틀 끝 -->
 
 <!-- 검색결과 시작 -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
-		<td height="32" style="padding-left:12px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:3px;">
-				<tr>
-					<td width="8" style="padding-bottom:3px;"><img src="/images/ct_bot_ttl01.gif" width="4" height="7"></td>
 					<td class="ct_ttl02">
 						<c:if test="${ ! empty result }">
 							${userId} 는 사용
@@ -134,14 +105,7 @@
 					</td>
 				</tr>
 			</table>
-		</td>
-	</tr>
 	
-	<tr>
-		<td background="/images/ct_line_ttl.gif" height="1"></td>
-	</tr>
-	
-</table>
 <!-- 검색결과 끝 -->
 
 <!-- 등록 테이블시작 -->
@@ -153,10 +117,8 @@
 	
 	<tr>
 		<td width="104" class="ct_write">아이디 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"></td>
-		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<!-- 테이블 시작 -->
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
 						<input type="text" name="userId" id="userId" 
@@ -165,28 +127,19 @@
 					</td>
 					
 					<td>
-						<table border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td width="4" height="21">
-									<img src="/images/ct_btng01.gif" width="4" height="21">
 								</td>
 								<td align="center" background="/images/ct_btng02.gif" class="ct_btn" style="padding-top:3px;">
 									중복확인
 								</td>
 								<td width="4" height="21">
-									<img src="/images/ct_btng03.gif" width="4" height="21"/>
 								</td>
 							</tr>
 						</table>
-					</td>
 					
-				</tr>
-			</table>
 			<!-- 테이블 끝 -->
-		</td>
-	</tr>
 
-	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	
