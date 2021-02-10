@@ -27,6 +27,7 @@ public interface UserService {
 
 		// 비밀번호  찾기
 		public void findPassword(User user) throws Exception ;
+		
 			
 //		// 회원 탈퇴
 //		public void userWithdrawal(User user) throws Exception ;
@@ -38,13 +39,6 @@ public interface UserService {
 		public boolean checkDuplication(String userId) throws Exception ;
 		
 			
-		
-//		// 인증
-//		public String certified(String userId) throws Exception;
-//		
-//		// 인증
-//		public String Authentication(String user) throws Exception;
-
 
 		
 }

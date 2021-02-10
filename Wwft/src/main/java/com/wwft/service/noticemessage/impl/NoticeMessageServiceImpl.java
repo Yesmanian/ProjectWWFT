@@ -34,9 +34,9 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 	}
 
 	@Override
-	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception {
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, int profileNo, Search search) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeMessageDao.getTreeNoticeMessageList(treeNo,search);
+		return noticeMessageDao.getTreeNoticeMessageList(treeNo, profileNo,search);
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 	}
 
 	@Override
-	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception {
+	public int getTreeNoticeMessageStateCount(int treeNo, int profileNo) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeMessageDao.getTreeNoticeMessageStateCount(treeNo);
+		return noticeMessageDao.getTreeNoticeMessageStateCount(treeNo, profileNo);
 	}
 	
 	@Override
@@ -58,8 +58,8 @@ public class NoticeMessageServiceImpl implements NoticeMessageService {
 	}
 
 	@Override
-	public void updateTreeNoticeMessageState(int treeNo) throws Exception {
-		noticeMessageDao.updateTreeNoticeMessageState(treeNo);		
+	public void updateTreeNoticeMessageState(int treeNo, int profileNo) throws Exception {
+		noticeMessageDao.updateTreeNoticeMessageState(treeNo, profileNo);		
 	}
 
 

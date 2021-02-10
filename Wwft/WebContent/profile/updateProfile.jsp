@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <meta charset="EUC-KR">
 <title>프로필 수정</title>
 </head>
@@ -17,12 +20,12 @@
 			{
 				var form = document.userInfo;
 				
-				if(!form.profileimage.value){
+				if(!form.profileImage.value){
 					alert("프로필 이름을 입력 해주세요.");
 					return false;
 				}
 
-				if(!form.familylelations.value){
+				if(!form.familyRelations.value){
 					alert("가족관계를 적어주세요.");
 					return false;
 				}	
@@ -81,7 +84,7 @@
 		</p>
 	
 		<p>
-		<input type="submit" value="프로필 생성" /> <input type="submit" value="되돌아가기" />
+		<input type="submit" value="프로필 수정" /> <input type="button" value="뒤로가기" onclick="history.back(-1);">
 		</p>
 </form>
 </body>

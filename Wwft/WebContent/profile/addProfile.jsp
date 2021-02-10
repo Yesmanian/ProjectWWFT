@@ -4,36 +4,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="EUC-KR" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>프로필 생성</title>
+<script type="text/javascript">
+var remote = require('electron').remote;
+var dialog = remote.dialog;
+
+document.getElementById('btn-select-file').addEventListener('click', function () {
+  dialog.showOpenDialog(function (fileNames) {
+    if (fileNames !== undefined) {
+      document.getElementById("txt-filename").value = fileNames[0];
+    }
+  });
+}, false);
+function checkValue(formElem) {
+	
+	var elemArray = formElem.elements;
+	var value = "";
+	
+	for (var index = 0; index < elemArray.length; index++) {
+
+		if( elemArray[index].type == "file" && elemArray[index].checked ){
+			value += (index+1) +" : "+elemArray[index].name +" : "+  elemArray[index].value+"\n"
+		}
+		alert(value);
+		if( elemArray[index].type == "text" ){
+			var temp = ( elemArray[index].value == "" ? "입력값 없음" : elemArray[index].value );
+			value += (index+1) +" : "+elemArray[index].name +" : "+ temp+"\n"
+		}
+		alert(value);
+
+		if( elemArray[index].type == "radio" && elemArray[index].checked ){
+			value += (index+1) +" : "+elemArray[index].name +" : "+  elemArray[index].value+"\n"
+		}
+		alert(value);
+	}
+		</script>
+		<style type="text/css">
+
+#my-file { visibility: hidden; }
+
+</style>
+
+
 </head>
 <body>
 
+
+
 <form action="/profile/addProfile" method="post">
 <h3>프로필 생성</h3>
-		<script>
-			
-			function checkValue()
-			{
-				var form = document.userInfo;
-				
-				if(!form.profileimage.value){
-					alert("프로필 이름을 입력 해주세요.");
-					return false;
-				}
 
-				if(!form.familylelations.value){
-					alert("가족관계를 적어주세요.");
-					return false;
-				}	
-			
-				if(!form.name.value){
-					alert("이름을  입력하세요.");
-					return false;
-				}	
-				
-			}
+ <div>
+    <input type="text" placeholder="Please select a file" id="txt-filename" disabled="disabled" />
+    <input type="button" value="Choose a file" id="btn-select-file" />
+  </div>
+  <script type="text/javascript" src="./script.js"></script>
+<input type="button" id="my-button" value="Select Files">
+<input type="file" name="my_file" id="my-file">
+
+<input type="file" id="file" name="file" onchange="changeValue(this)"/>
+
+<button type="button" id="btn-upload">Image</button>
+
+
+		프로필 이미지<input type="file" name="profileImage" id="profileimage" accept="image/*" onchange="setThumbnail(event);"/>
+		<div id="image_container"></div> 
+		<script> function setThumbnail(event) 
+		{ var reader = new FileReader();
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			document.querySelector("div#image_container").appendChild(img); }; 
+			reader.readAsDataURL(event.target.files[0]); }
 		</script>
+
 		<input type ="hidden" name = "treeNo" value ="${user.treeNo}"> 
 		<table>
 			<tr>
@@ -80,7 +127,9 @@
 		</p>
 	
 		<p>
-		<input type="submit" value="프로필 생성" /> <input type="submit" value="되돌아가기" />
+		<input type="button"  onclick="javascript:checkValue(this.form)"  value='button전송'> 
+		<input type="submit" value="submit전송">
+		<input type="button" value="뒤로가기" onclick="history.back(-1);">
 		</p>
 </form>
 </body>

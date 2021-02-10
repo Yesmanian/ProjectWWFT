@@ -71,6 +71,15 @@ public class PostDaoImpl implements PostDao {
 	}
 	
 	@Override
+	public int getTotalCount(Search search,int postTreeNo) throws Exception {
+		System.out.println("토탈카운트??????들어왔음");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("postTreeNo", postTreeNo);
+		return sqlSession.selectOne("PostMapper.getTotalCount", map);
+	}
+	
+	@Override
 	public List<String> getAlbumList(int postTreeNo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("PostMapper.getAlbumList", postTreeNo);
@@ -128,7 +137,11 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	
-
+	@Override
+	public String getPostFirstImage(int postNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PostMapper.getPostFirtImage", postNo);
+	}
 	
 
 	

@@ -19,6 +19,8 @@ public interface PostDao {
 	
 	public int lastPosttNo() throws Exception;
 	
+	public int getTotalCount(Search search,int postTreeNo) throws Exception;
+	
 	public List<Post> getPostList(Search search,int postTreeNo) throws Exception;
 	
 	public List<String> getAlbumList(int PostTreeNo) throws Exception;
@@ -35,6 +37,6 @@ public interface PostDao {
 		
 	public int removeImageAndLike(int imageAndLikeNo) throws Exception;
 
-	
+	public String getPostFirstImage(int postNo) throws Exception;
 
 }

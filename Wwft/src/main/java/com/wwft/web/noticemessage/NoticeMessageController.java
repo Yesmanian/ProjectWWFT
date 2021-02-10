@@ -30,7 +30,7 @@ public class NoticeMessageController {
 
 	
 	@RequestMapping(value = "getTreeNoticeMessageList", method = RequestMethod.GET)
-	public String getTreeNoticeMessageList(@RequestParam int treeNo, Model model,@ModelAttribute("search") Search search) throws Exception{
+	public String getTreeNoticeMessageList(@RequestParam("treeNo") int treeNo, @RequestParam("profileNo") int profieNo, Model model,@ModelAttribute("search") Search search) throws Exception{
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
@@ -45,8 +45,8 @@ public class NoticeMessageController {
 //		System.out.println(resultPage);
 //		
 //		
-		model.addAttribute("noticeMessageList", noticeMessageService.getTreeNoticeMessageList(treeNo, search));
-		model.addAttribute("count", noticeMessageService.getTreeNoticeMessageStateCount(treeNo));
+		model.addAttribute("noticeMessageList", noticeMessageService.getTreeNoticeMessageList(treeNo,profieNo, search));
+		model.addAttribute("count", noticeMessageService.getTreeNoticeMessageStateCount(treeNo,profieNo));
 		return "forward:/noticemessage/getNoticeMessage.jsp";
 	}
 	

@@ -69,7 +69,5 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.delete("UserMapper.removeUser", user);
 	}
 
-		
-
 	
 }

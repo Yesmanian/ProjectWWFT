@@ -5,6 +5,10 @@
 
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        
 	<link rel="stylesheet" href="../resources/css/user/login.css" >
 	<meta charset="EUC-KR">
 	<title>로그인</title>
@@ -12,8 +16,11 @@
 	<script src="jquery-3.4.1.js"></script>
 </head>
 <body>
-	
-		<script>
+
+		
+
+        <script>
+            
 			let user_id = $('#userId');
 			let password = $('#password');
 			let btn = $('#btn');
@@ -38,11 +45,11 @@
 			<h1>로그인</h1>
 			<form action="/user/login" method="post">
 				<div class="int-area">
-					<input type="text" value="" name="userId" id="userId" 
-					autocomplete="off"required> <label for="userId">아이디</label>
+					<input type="text" value="" name="userId" id="id" 
+					autocomplete="off"required> <label for="userId" >아이디</label>
 				</div>
 				<div class="int-area">
-					<input type="password" name="password" id="password"
+					<input type="password" name="password" id="pw"
 						autocomplete="off" required><label for="password">패스워드</label>
 				</div>
 				<div class="btn-area">

@@ -1,5 +1,5 @@
- <%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page pageEncoding="EUC-KR"%>
+ <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -368,44 +368,62 @@ img {
 } */
   
 </style>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 </head>
  
 <body>
+	<header id="wrap"> 
+        
+        <jsp:include page="../common/navBar.jsp"/>
 
+    </header>
+    
+    <form name = "detailForm" action="/post/getPostList">
+    	<!-- 임시데이터 -->
+    	<%-- <input type="hidden" name="treeNo" value="${post.postTreeNo}"> --%>
+    	<input type="hidden" name="postTreeNo" value="1">
+   		
+<!-- Page Content -->
+<div class="container">
 
+  <!-- <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"> -->
+  	<input type="hidden" id="currentPage" name="currentPage" value=""/>
+  	<select class="form-control" name="sel" id ="sel">
+  	
+  			<option value="">기본</option>
+  			<c:set var ="i" value ="0"/>
+            <c:forEach var="item" items="${albumList}" begin="0" end="6" step="1">
+            <%-- <c:set var ="i" value="${i+1}"/> --%>
+                <option value ="${item}"  ${ ! empty search.searchKeyword && search.searchKeyword=='${item}' ? "selected" : "" }>${item}</option>
+            </c:forEach>
+        </select>
+  <!-- </h1> -->
+  
+  <hr class="mt-2 mb-5">
+
+	 	
+		  <div class="row text-center text-lg-left">
+			<c:forEach var="post" items ="${list}">
+		    <div class="col-lg-3 col-md-4 col-6">
+		     ${post.postRegDate} 
+		      <a href="/post/getPost?postNo=${post.postNo}" class="d-block mb-4 h-100">
+		            <img class="img-fluid img-thumbnail" src="/resources/images/uploadFiles/${post.firstImageName}" alt="" style="width: 200; height: 200;">
+		      </a>
+		     
+		    </div>
+	   </c:forEach> 
+
+    
+    </div> 
+   </div>
+   <div align="center">
+		<jsp:include page="../common/pageNavigator.jsp"/>
+	</div>
+<!-- /.container -->
  
-<c:forEach var="post" items ="${list}">
-	
-		<div class="card" style="width: 30%;">
-			 <a href="/post/getPost?postNo=${post.postNo}"  class = btn pull-right btn-success style=text-decoration:none> 
-			 <img src="/resources/images/uploadFiles/${post.firstImageName}" class="card-img-top" alt="..." style="width: 300px; height: 300px"></a>
-			  <div class="card-body">
-			    <p class="card-text">${post.postRegDate}</p>
-			  </div>
-		</div>
-
-</c:forEach> 
-
-
-<%-- 
-<div class="card1" style="width: 20rem;">
-			 <a href="/post/getPost?postNo=${post.postNo}"   class = btn pull-right btn-success style=text-decoration:none> 
-			 <img src="/resources/images/uploadFiles/${post.firstImageName}" class="card-img-top" alt="..." style="width: 300px; height: 300px"></a>
-			  <div class="card-body">
-			    <p class="card-text">${post.postRegDate}</p>
-			  </div>
-		</div>
- --%>
 
 
 
+ </form>
 
 
 
@@ -431,7 +449,25 @@ $(function(){
 </script>  -->
 <script type="text/javascript">
 
+$("#sel").change(function(){
+   /*  var  searchCondition =  $("#sel option:Selected").val();
+    alert(searchCondition); */
+   /*  var searchKeyword = 'dddkdi'; */
+     var searchKeyword = $("#sel option:Selected").val();
+	alert(searchKeyword);
+	var postTreeNo = '1';
+	alert(postTreeNo);
+	javascript:fncGetList('1'); 
+	self.location ="/post/getPostList?postTreeNo="+postTreeNo+"&searchKeyword="+searchKeyword
+})
+  function fncGetList(currentPage){
+	   document.getElementById("currentPage").value = currentPage;
+  		document.detailForm.submit();
+}
 
+
+/* var 컨디션 = $  var()
+atr */
 
 </script>
 </body>

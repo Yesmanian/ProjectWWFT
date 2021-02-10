@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.User;
@@ -65,6 +66,41 @@ public class ProfileController {
 		}
 
 		return "/tree/getUserTree";
+	}
+
+	@RequestMapping( value="updateProfile", method=RequestMethod.GET)
+	public String updateProfile(@RequestParam("profileNo") int profileNo , Model model ) throws Exception {
+		
+		System.out.println("/user/updateProfile : GET");
+		//Business Logic
+		Profile profile = profileService.getProfile(profileNo);
+		// Model 과 View 연결
+		model.addAttribute("profile", profile);
+		
+		
+		return "forward:/profile/updateProfile.jsp";
+	}
+	
+	@RequestMapping( value="updateProfile", method=RequestMethod.POST )
+	public String updateProfile( @ModelAttribute("profile") Profile profile , Model model , HttpSession session) throws Exception{
+
+		System.out.println("/profile/updateProfile : POST");
+		//Business Logic
+		profileService.updateProfile(profile);
+		
+		Profile dbprofile = profileService.getProfile(profile.getProfileNo());
+		System.out.println(dbprofile.getTreeNo());
+		System.out.println(profile.getTreeNo());
+		// Model 과 View 연결
+		if( profile.getTreeNo()==(dbprofile.getTreeNo())){
+			session.setAttribute("profile", dbprofile);
+		}
+//		String sessionId=((User)session.getAttribute("user")).getUserId();
+//		if(sessionId.equals(user.getUserId())){
+//			session.setAttribute("user", user);
+//		}
+		
+		return "redirect:/profile/updateProfile?profileNo="+profile.getProfileNo();
 	}
 
 	@RequestMapping(value = "getProfileList", method = RequestMethod.GET)
