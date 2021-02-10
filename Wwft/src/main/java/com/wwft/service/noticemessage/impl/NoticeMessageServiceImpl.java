@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
-import com.wwft.service.noticemassage.NoticeMessageDao;
-import com.wwft.service.noticemassage.NoticeMessageService;
+import com.wwft.service.noticemessage.NoticeMessageDao;
+import com.wwft.service.noticemessage.NoticeMessageService;
 @Service("noticeMessageServiceImpl")
 public class NoticeMessageServiceImpl implements NoticeMessageService {
 

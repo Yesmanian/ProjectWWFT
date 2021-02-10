@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wwft.common.web.Search;
-import com.wwft.service.noticemassage.NoticeMessageService;
+import com.wwft.service.noticemessage.NoticeMessageService;
 
 @Controller
 @RequestMapping("/noticeMessage/*")

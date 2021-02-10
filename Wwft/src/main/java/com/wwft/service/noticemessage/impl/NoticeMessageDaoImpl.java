@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
-import com.wwft.service.noticemassage.NoticeMessageDao;
+import com.wwft.service.noticemessage.NoticeMessageDao;
 
 @Repository("noticeMessageDaoImpl")
 public class NoticeMessageDaoImpl implements NoticeMessageDao {

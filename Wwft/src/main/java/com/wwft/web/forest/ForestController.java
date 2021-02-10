@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wwft.service.domain.Forest;
 import com.wwft.service.forest.ForestService;
-import com.wwft.service.noticemassage.NoticeMessageService;
+import com.wwft.service.noticemessage.NoticeMessageService;
 import com.wwft.service.post.PostService;
 
 @Controller
