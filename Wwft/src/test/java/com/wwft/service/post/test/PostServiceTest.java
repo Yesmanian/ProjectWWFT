@@ -206,6 +206,13 @@ public class PostServiceTest {
 		System.out.println(postService.getPostFirstImage(postNo));
 	}
 	 
+	
+	
+	
+	
+	 
+
+	 
 	 
 	 
 

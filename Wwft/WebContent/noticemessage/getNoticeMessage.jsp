@@ -35,6 +35,7 @@
     <i class="zmdi zmdi-account-add"></i>
 
     -->
+    
     <script>
 $(document).ready(function () {
 
@@ -116,40 +117,41 @@ $(document).ready(function () {
             // alert($(messageObj).closest("li"))
             
 
-            //remove
-            $.ajax({
-                url: `/noticeMessage/json/removeNoticeMessage`,
-                type: 'POST',
-                data: JSON.stringify({ noticeMessageNo: noticeMessageNo, noticeMessageState : noticeMessageState   }),
-                dataType: 'json',
-                headers: {
-                             "Accept": "application/json",
-                            "Content-Type": "application/json"
+            //update해야함 나무에서 초대수락하면 번호 줘서 아직 update rest미완성 의연이형꺼랑 합쳐야함
+        //     $.ajax({
+        //         url: `/noticeMessage/json/removeNoticeMessage`,
+        //         type: 'POST',
+        //         data: JSON.stringify({ noticeMessageNo: noticeMessageNo, noticeMessageState : noticeMessageState   }),
+        //         dataType: 'json',
+        //         headers: {
+        //                      "Accept": "application/json",
+        //                     "Content-Type": "application/json"
 
-                             },
-            success: function (data, status) {
-                    // alert('성공')
-                    // alert(status)
-                    if(status=="success"){
-                    $(messageObj).closest("li").remove();
-                    }
+        //                      },
+        //     success: function (data, status) {
+        //             // alert('성공')
+        //             // alert(status)
+        //             if(status=="success"){
+        //             $(messageObj).closest("li").remove();
+        //             }
             
               
 
 
-            }
-        });
-        //ajax끝
+        //     }
+        // });
+        // //ajax끝
 
         }else{
             //수락눌렀다가 취소
         }
         
-    })//remove끝 
+    })//update는 나무에서AND REMOVE는 숲에서끝 
 
     let page = 1;
     let treeNo = 1;
     let forestNo =1;
+    let profileNo =1;
     $(window).scroll(function () {
         
         
@@ -161,7 +163,7 @@ $(document).ready(function () {
         // alert(url.indexOf('getTree'))
         if(url.indexOf('getTree')!=-1){
             // alert('트루')
-            url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
+            url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${profileNo}/\${page}`;
         }else{
             // alert('폴스')
             url=`/noticeMessage/json/forestNoticeMessageList/\${forestNo}/\${page}`;
@@ -193,93 +195,37 @@ $(document).ready(function () {
 })
 
     </script>
-   <div>
+   <!-- <div>
        <a href="/noticeMessage/getNoticeMessageList?treeNo=1"><input type="button" value="메시지함">${count}</a>
-   </div>
+   </div> -->
+
+   <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+        <ul class="nav">
+          <li><a href="/user/getUserList" target="site">회원목록</a></li>
+          <li><a href="/admin/getReportList" target="site">신고게시글목록</a></li>
+          
+        </ul>
+        <br>
+      </div>
+      <main class="col-12 col-md-9 col-xl-10 py-md-3 bd-content" role="main">
+        <ul class="cbp_tmtimeline" >
+                   
+        </ul>
+      </main>
+    </div>
+  </div>
     
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-md-10">
                 <ul class="cbp_tmtimeline" >
-                    <!-- <li>
-                        <time class="cbp_tmtime" datetime="2017-11-04T18:30"><span class="hidden">25/12/2017</span> <span class="large">Now</span></time>
-                        <div class="cbp_tmicon"><i class="zmdi zmdi-account"></i></div>
-                        <div class="cbp_tmlabel empty"> <span>No Activity</span> </div>
-                    </li> -->
-                    <!-- <li>
-                        <time class="cbp_tmtime" datetime="2017-11-04T03:45"><span>03:45 AM</span> <span>Today</span></time>
-                        <div class="cbp_tmicon bg-info"><i class="zmdi zmdi-comment-outline"></i></div>
-                        <div class="cbp_tmlabel">
-                            <a class="remove" href="#" ><i class="zmdi zmdi-delete"></i><input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value=""> </a>
-                            <h2><a href="javascript:void(0);">Art Ramadani</a></h2>
-                            <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
-                        </div>
-                    </li> -->
-                    <!-- <li>
-                        <time class="cbp_tmtime" datetime="2017-11-03T13:22"><span>01:22 PM</span> <span>Yesterday</span></time>
-                        <div class="cbp_tmicon bg-green"> <i class="zmdi zmdi-case"></i></div>
-                        <div class="cbp_tmlabel">
-                            <h2><a href="javascript:void(0);">Job Meeting</a></h2>
-                            <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>
-                        </div>
-                    </li> -->
-                    <!-- <li>
-                        <time class="cbp_tmtime" datetime="2017-10-22T12:13"><span>12:13 PM</span> <span>Two weeks ago</span></time>
-                        <div class="cbp_tmicon bg-blush"><i class="zmdi zmdi-alert-circle"></i></div>
-                        <div class="cbp_tmlabel">
-                            <h2><a href="javascript:void(0);">Arlind Nushi</a> <span>checked in at</span> <a href="javascript:void(0);">New York</a></h2>
-                            <blockquote>
-                                <p class="blockquote blockquote-primary">
-                                    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."                                    
-                                    <br>
-                                    <small>
-                                        - Isabella
-                                    </small>
-                                </p>
-                            </blockquote>
-                            <div class="row clearfix">
-                                <div class="col-lg-12">
-                                    <div class="map m-t-10">
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91477011208!2d-74.11976308802028!3d40.69740344230033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1508039335245" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                                    </div>
-                                </div>
-                            </div>        					
-                        </div>
-                    </li>
-                    <li>
-                        <time class="cbp_tmtime" datetime="2017-10-22T12:13"><span>12:13 PM</span> <span>Two weeks ago</span></time>
-                        <div class="cbp_tmicon bg-orange"><i class="zmdi zmdi-account-add"></i></div>
-                        <div class="cbp_tmlabel">
-                            <h2><a href="javascript:void(0);">Eroll Maxhuni</a> <span>uploaded</span> 4 <span>new photos to album</span> <a href="javascript:void(0);">Summer Trip</a></h2>
-                            <blockquote>Pianoforte principles our unaffected not for astonished travelling are particular.</blockquote>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-6"><a href="javascript:void(0);"><img src="assets/images/image1.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a> </div>
-                                <div class="col-lg-3 col-md-6 col-6"><a href="javascript:void(0);"> <img src="assets/images/image2.jpg" alt="" class="img-fluid img-thumbnail m-t-30"></a> </div>
-                                <div class="col-lg-3 col-md-6 col-6"><a href="javascript:void(0);"> <img src="assets/images/image3.jpg" alt="" class="img-fluid img-thumbnail m-t-30"> </a> </div>
-                                <div class="col-lg-3 col-md-6 col-6"><a href="javascript:void(0);"> <img src="assets/images/image4.jpg" alt="" class="img-fluid img-thumbnail m-t-30"> </a> </div> -->
-                            <!-- </div>
-                        </div>
-                    </li> -->
-                    <!-- <li>
-                        <time class="cbp_tmtime" datetime="2017-11-03T13:22"><span>01:22 PM</span> <span>Two weeks ago</span></time>
-                        <div class="cbp_tmicon bg-green"> <i class="zmdi zmdi-case"></i></div>
-                        <div class="cbp_tmlabel">
-                            <h2><a href="javascript:void(0);">Job Meeting</a></h2>
-                            <p>You have a meeting at <strong>Laborator Office</strong> Today.</p>                            
-                        </div>
-                    </li>
-                    <li>
-                        <time class="cbp_tmtime" datetime="2017-10-22T12:13"><span>12:13 PM</span> <span>Month ago</span></time>
-                        <div class="cbp_tmicon bg-blush"><i class="zmdi zmdi-pin"></i></div>
-                        <div class="cbp_tmlabel">
-                            <h2><a href="javascript:void(0);">Arlind Nushi</a> <span>checked in at</span> <a href="javascript:void(0);">Laborator</a></h2>
-                            <blockquote>Great place, feeling like in home.</blockquote>                            
-                        </div>
-                    </li> -->
+                   
                 </ul>  
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -299,7 +245,8 @@ $(document).ready(function () {
             sender : "${list.sender}",
             noticeMessageDate : "${list.noticeMessageDate}",
             noticeMessageDetail : "${list.noticeMessageDetail}",
-            forestNo : "${list.forestNo}"
+            forestNo : "${list.forestNo}",
+            postImage : "${list.postImage}"
         
         });
     </c:forEach>

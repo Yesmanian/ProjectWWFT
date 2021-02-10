@@ -12,6 +12,8 @@ public class NoticeMessage {
 	private String noticeMessageDate; // 메시지 등록일자
 	private String noticeMessageDetail;//메시지 내용
 	private int forestNo;
+	private String postImage;
+	private int profileNo;// 메시지를 받는 프로필 번호 , 조회할 번호
 //	String postImageName;//필요없음
 //	char noticeMessageboxState;//필요없음 
 	public int getNoticeMessageNo() {
@@ -74,6 +76,18 @@ public class NoticeMessage {
 	public void setForestNo(int forestNo) {
 		this.forestNo = forestNo;
 	}
+	public String getPostImage() {
+		return postImage;
+	}
+	public void setPostImage(String postImage) {
+		this.postImage = postImage;
+	}
+	public int getProfileNo() {
+		return profileNo;
+	}
+	public void setProfileNo(int profileNo) {
+		this.profileNo = profileNo;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -97,6 +111,10 @@ public class NoticeMessage {
 		builder.append(noticeMessageDetail);
 		builder.append(", forestNo=");
 		builder.append(forestNo);
+		builder.append(", postImage=");
+		builder.append(postImage);
+		builder.append(", profileNo=");
+		builder.append(profileNo);
 		builder.append("]");
 		return builder.toString();
 	}

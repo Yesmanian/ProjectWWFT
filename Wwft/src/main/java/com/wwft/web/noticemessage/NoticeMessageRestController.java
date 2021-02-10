@@ -18,12 +18,17 @@ import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
 import com.wwft.service.noticemessage.NoticeMessageService;
 import com.wwft.service.noticemessage.test.NoticeMessageServiceTest;
+import com.wwft.service.post.PostService;
 @RestController
 @RequestMapping("/noticeMessage/*")
 public class NoticeMessageRestController {
 	@Autowired
 	@Qualifier("noticeMessageServiceImpl")
 	private NoticeMessageService noticeMessageService;
+	
+	@Autowired
+	@Qualifier("postServiceImpl")
+	private PostService postService;
 	
 	private static final Logger lOGGER = Logger.getLogger(NoticeMessageRestController.class);
 
@@ -37,6 +42,12 @@ public class NoticeMessageRestController {
 	@RequestMapping(value = "json/sendNoticeMessage",method = RequestMethod.POST)
 	public Map sendNoticeMessage(@RequestBody NoticeMessage message) throws Exception{
 		
+		if(message.getNoticeMessageType()=='0') {
+			lOGGER.debug("[Debug] 타입이 0이라면"+message.getNoticeMessageType() );
+			message.setPostImage(postService.getPostFirstImage(message.getPostNo()));
+		}else {
+			lOGGER.debug("[Debug] 잘못된 문자열 비교입니다");
+		}
 		noticeMessageService.sendNoticeMessage(message);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -55,8 +66,9 @@ public class NoticeMessageRestController {
 		return map;
 	}
 	
-	@RequestMapping( value = "json/treeNoticeMessageList/{treeNo}/{page}" , method = RequestMethod.GET)
-	public Map treeNoticeMessageList(@PathVariable("treeNo") int treeNo, @PathVariable("page") int page) throws Exception{
+	@RequestMapping( value = "json/treeNoticeMessageList/{treeNo}/{profileNo}/{page}" , method = RequestMethod.GET)
+	public Map treeNoticeMessageList(@PathVariable("treeNo") int treeNo, @PathVariable("profileNo") int profileNo,
+			@PathVariable("page") int page) throws Exception{
 		
 		BasicConfigurator.configure();
 
@@ -66,7 +78,7 @@ public class NoticeMessageRestController {
 		search.setPageSize(pageSize);
 		lOGGER.debug("서치는"+search);
 	
-		Map<String, Object> map = noticeMessageService.getTreeNoticeMessageList(treeNo, search);
+		Map<String, Object> map = noticeMessageService.getTreeNoticeMessageList(treeNo,profileNo, search);
 		lOGGER.debug("map의 리스트"+map.get("list"));
 		
 		return map;

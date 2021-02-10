@@ -52,16 +52,14 @@ function createTag(value) {
                                     <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
                                    <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
                             </div>
-                            <h2><a href="javascript:void(0);">${item.sender}</a></h2>
-                            <p>${item.noticeMessageDetail}</p>
-                            <div class="row clearfix">
-                            <div class="col-lg-12">
-                                <div class="map m-t-10">
-                                    <iframe src="/post/getPost?postNo=${item.postNo}" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=yes vspace=0
-                                     style="border:0; width: 100%; overflow-x:hidden;  overflow-y:scroll;" ></iframe>
-                                </div>
-                            </div>
-                        </div> 
+                            <h2><a href="javascript:void(0);">${item.sender}</a>${item.noticeMessageDetail}</h2>
+                            <p>
+                            <a href="/post/getPost?postNo=${item.postNo}"  >
+                            <img src="/resources/images/uploadFiles/${item.postImage}"></a>
+                            </p>
+                           
+                                    
+                          
                         </div>
                     </li>`);
         } else if (item.noticeMessageType == '1') {

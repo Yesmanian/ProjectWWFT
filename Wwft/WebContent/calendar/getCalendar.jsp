@@ -7,7 +7,7 @@
     <head>
       <meta charset='euc-kr' />
 
-      <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+  
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
@@ -20,12 +20,7 @@
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-      <link href="/resources/packages/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" /> -->
-      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
-      <!-- <script src='/resources/packages/moment-timezone/main.js'></script> -->
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.0-beta.4/moment/main.js" ></script> -->
+      
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
 
       <link href='/resources/packages/core/main.css' rel='stylesheet' />
@@ -37,19 +32,13 @@
 
 
       <script>
-        // document.cookie = "crossCookie=bar; SameSite=None; Secure";
-        // alert( document.cookie)
+     
 
 
 
 
         $(document).ready(function () {
           setDateBox();
-
-//           $('.widget-left').on('click',function(){
-//   alert('클릭됨')
-// $('.widget-left').attr("id","widget");
-// });
 
           $('#eventStart, #eventEnd').datetimepicker({
             format: 'YYYY-MM-DD HH:mm',
