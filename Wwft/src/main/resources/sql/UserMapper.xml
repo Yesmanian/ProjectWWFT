@@ -52,7 +52,7 @@
 	  	SELECT 
 	  		user_id AS userId,
 			email AS email,
-			user_reg_date AS userRegDate
+			user_reg_date AS userRegDate,
 			tree_no AS treeNo
 		FROM users
 		ORDER BY userId
