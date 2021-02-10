@@ -276,7 +276,7 @@
 			                
 			                 for(i=0; i<res.length; i++){
 			                	 
-			                	   html += `<div style= display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
+			                	   html += `<div style=text-align: left; display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
 				                	   </strong></h6>\${res[i].commentDetail} 
 				                	   <a href=# onClick="remove_comment('\${res[i].commentNo}'); return false;"  class = btn pull-right btn-success style=text-decoration:none>ªË¡¶</a>
 				                	   <input type=hidden name=commentNo
