@@ -151,7 +151,7 @@
         <div class="col-2-1">
         	<c:set var ="i" value="0"/>
 			<c:forEach var="file" items="${fileList}">
-			<c:set var ="i" value="${i+1}"/>
+			<c:set var ="i" value="${i}"/>
 			<div class="mySlides fade">
 		 		<div class="numbertext">1 / 3</div>
 				<img src = "/resources/images/uploadFiles/${file}" style=" width:50%;  display: block; margin: 0px auto;">

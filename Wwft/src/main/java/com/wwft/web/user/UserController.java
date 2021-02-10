@@ -1,8 +1,8 @@
 package com.wwft.web.user;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,20 +11,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.wwft.service.domain.Tree;
 import com.wwft.service.domain.User;
 import com.wwft.service.tree.TreeService;
-import com.wwft.service.user.UserDao;
 import com.wwft.service.user.UserService;
-import com.wwft.service.user.impl.UserDaoImpl;
 
 @Controller
 @RequestMapping("/user/*")
@@ -117,20 +113,24 @@ public class UserController {
 	
 		System.out.println("/user/getUserList start..");
 		// 1. 관리자 세션 제어
-		String id = (String) session.getAttribute("id");
+		User user = (User)session.getAttribute("user");
+		String id = user.getUserId();
+		
+//		String id = (String) session.getAttribute("id");
 		if(id == null || !(id.equals("admin"))){
-			return "redirect:/user/getUserList";
+			return "redirect:/";
 	}
 			
 		System.out.println("/user/getUserList end..");
 		// 2. 서비스 - 회원 목록 가져오는 동작
 		//List<MemberVO> memberList = service.getMemberList();
-
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("list", userService.getUserList());
 		// 3. 정보 저장 -> 뷰(/member/memberlist.jsp) -> (Model 객체 )
-		model.addAttribute("getUserList", userService.getUserList());
+		model.addAttribute("userList", map);
 
 		// 4. 페이지이동
-		return "forward:/user/getUserList.jsp";
+		return "forward:/user/listUser.jsp";
 	}	
 	
 	

@@ -237,6 +237,14 @@ CREATE TABLE  "COMMENTS"
 	"STAMP_STATE" CHAR(1) NOT NULL ENABLE, 
 	"TREE_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	 CONSTRAINT "BUCKETLIST_PK" PRIMARY KEY ("BUCKETLIST_NO") ENABLE );
+	 
+	 CREATE OR REPLACE VIEW MINFILE AS
+SELECT a.post_no, i.save_image_name
+from image_and_like i, (
+select post_no,min(image_and_like_no) imgmin
+FROM image_and_like
+GROUP BY post_no) a
+WHERE a.imgmin = i.image_and_like_no;
   
    
 	회원정보

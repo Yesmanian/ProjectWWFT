@@ -145,3 +145,19 @@ function createTag(value) {
 
     })
 }
+
+function createUserTag(value) {
+
+    $.each(value, function (index, item) { 
+      $('tbody').append(`<tr>
+      <td>${item.treeNo}</td>
+      <td>${item.userId}</td>
+      <td>${item.email}</td>
+      <td>${item.userState}</td>
+      <td>${item.userRegDate}</td>
+      <td></td>
+    </tr>
+    `);
+    });
+        };
+
