@@ -5,7 +5,8 @@
          
         }
         .column {
-      
+        
+      		
             min-height: 100px; 
             padding: 10px;
         }
@@ -21,21 +22,24 @@
             grid-template-areas:
                 "a a a"
                 "b b b"
-                "b b b"
+                "c c c"
                 "d d d";
         } 
         .column10:nth-child(1) {grid-area: a;}
-        .column10:nth-child(2) {grid-area: b;}
-        .column10:nth-child(3) {grid-area: b;}
+        .column11:nth-child(2) {grid-area: b;}
+        .column10:nth-child(3) {grid-area: c;}
         .column10:nth-child(4) {grid-area: d;}
         
         
-        button.button-click{
-        	 outline-style: solid; 
-        	 outline-color: white; 
-        	 
-        	 }
-
-
+      .column11{
+      
+      		display: grid;
+      		justify-content: center;
+   			 text-align: center;
+   			 
+   			 align-items: center;
+  			min-height: 30vh;
+      
+      }
         
        

@@ -76,10 +76,25 @@
         
         
         
-        <!-- 사이드 바 -->
-        <div class="column column10 ">
+        <!-- 첫번째 줄  -->
+        <div class="column column11 ">
         
  
+ 
+ 
+ 	<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1"><h5 >작성자</h5></label>
+    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
+    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
+  </div>
+ 
+  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
+</form>
  </div>
       
        
@@ -107,19 +122,7 @@
         <div class="column column10 text-center">
         
         
-  	<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1"><h5>작성자</h5></label>
-    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
-  </div>
   
-  <div class="form-group">
-    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
-    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
-  </div>
- 
-  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
-</form>
        
 
 
@@ -167,8 +170,8 @@
         
         <!-- 푸터 -->
         <div class="column column10">
+         	   <input type="button" 	id="btn1FamilyMotto" onclick="location.href='/tree/getUserTree?${param.treeNo}'"	value="뒤로가기" />
         
- 	   <input type="button" 	id="btn1FamilyMotto" onclick="location.href='/tree/getUserTree?${param.treeNo}'"	value="뒤로가기" />
         </div>
     </div>
         
