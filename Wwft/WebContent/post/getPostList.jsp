@@ -376,9 +376,12 @@ img {
         <jsp:include page="../common/navBar.jsp"/>
 
     </header>
-    <%-- <input type="hidden" name="treeNo" value="${post.postTreeNo}"> --%>
+    
     <form name = "detailForm" action="/post/getPostList">
-   
+    	<!-- 임시데이터 -->
+    	<%-- <input type="hidden" name="treeNo" value="${post.postTreeNo}"> --%>
+    	<input type="hidden" name="postTreeNo" value="1">
+   		
 <!-- Page Content -->
 <div class="container">
 
@@ -386,11 +389,11 @@ img {
   	<input type="hidden" id="currentPage" name="currentPage" value=""/>
   	<select class="form-control" name="sel" id ="sel">
   	
-  			<option>기본</option>
+  			<option value="">기본</option>
   			<c:set var ="i" value ="0"/>
             <c:forEach var="item" items="${albumList}" begin="0" end="6" step="1">
-            <c:set var ="i" value="${i+1}"/>
-                <option value ="${i}"  ${ ! empty search.searchCondition && search.searchCondition=='${i}' ? "selected" : "" }>${item}</option>
+            <%-- <c:set var ="i" value="${i+1}"/> --%>
+                <option value ="${item}"  ${ ! empty search.searchKeyword && search.searchKeyword=='${item}' ? "selected" : "" }>${item}</option>
             </c:forEach>
         </select>
   <!-- </h1> -->
@@ -447,15 +450,15 @@ $(function(){
 <script type="text/javascript">
 
 $("#sel").change(function(){
-    var  searchCondition =  $("#sel option:Selected").val();
-    alert(searchCondition);
+   /*  var  searchCondition =  $("#sel option:Selected").val();
+    alert(searchCondition); */
    /*  var searchKeyword = 'dddkdi'; */
-     var searchKeyword = $("#sel option:Selected").text(); 
+     var searchKeyword = $("#sel option:Selected").val();
 	alert(searchKeyword);
 	var postTreeNo = '1';
 	alert(postTreeNo);
 	javascript:fncGetList('1'); 
-	self.location ="/post/getPostList?postTreeNo="+postTreeNo+"&searchCondition="+searchCondition+"&searchKeyword="+searchKeyword
+	self.location ="/post/getPostList?postTreeNo="+postTreeNo+"&searchKeyword="+searchKeyword
 })
   function fncGetList(currentPage){
 	   document.getElementById("currentPage").value = currentPage;

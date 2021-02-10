@@ -37,6 +37,6 @@ public interface PostDao {
 		
 	public int removeImageAndLike(int imageAndLikeNo) throws Exception;
 
-	
+	public String getPostFirstImage(int postNo) throws Exception;
 
 }

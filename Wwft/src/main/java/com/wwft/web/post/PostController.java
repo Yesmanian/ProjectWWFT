@@ -173,11 +173,12 @@ public class PostController {
 		 * search.setCurrentPage(1); search.setPageSize(12);
 		 */
 		
-		 search = new Search(); 
-		 search.setCurrentPage(1);
-		 search.setPageSize(12);
-		 search.setSearchCondition(searchCondition);
-		 search.setSearchKeyword(searchKeyword);
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		search.setSearchCondition(searchCondition);
+		search.setSearchKeyword(searchKeyword);
 		 
 			
 		/*
