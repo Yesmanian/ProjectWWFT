@@ -42,7 +42,6 @@ public class PostServiceTest {
 		post.setPostTreeNo(2);
 		post.setPostWriter("비트네");
 		post.setAlbumName("확인앨범");
-		post.setProfileNo(1);
 
 		postService.addPost(post);
 		Map<String, Object> test = new HashMap<String, Object>();
@@ -199,12 +198,21 @@ public class PostServiceTest {
 	  
 	  
 	  }
-	@Test
+	
+	//@Test
 	public void getPostFirstImage() throws Exception{
 		int postNo = 8;
 		
 		System.out.println(postService.getPostFirstImage(postNo));
 	}
+	 
+	
+	
+	
+	
+	 
+
+	 
 	 
 	 
 

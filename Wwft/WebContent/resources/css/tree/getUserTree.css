@@ -1,0 +1,96 @@
+html,
+
+body {
+
+    margin:0;
+
+    padding:0;
+
+    height:	60px;
+    
+    background-image:url("/resources/images/tree/main-tree.jpg");
+    
+     background-size: cover;
+
+}
+
+#wrapper {
+
+	position:relative;
+
+    min-height: 70%;
+
+}
+
+#header {
+
+	height:70px;
+
+    background:#ccc;
+    
+    
+
+}
+
+#container {
+
+    padding:20px;
+
+}
+
+#footer {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+  	
+ 
+}
+   
+
+h4{
+		font-family: 'Black And White Picture', sans-serif;
+		
+
+	}
+
+h5{
+		font-family: 'Black Han Sans', sans-serif;
+	
+	}
+
+
+
+
+button.button-add{
+outline-style: solid;
+	
+	outline-color: dark; 
+	
+	outline-width: thin; 
+}
+
+
+tr.tb{
+
+background-image: url("/resources/images/tree/tree3.png" ); 
+
+}
+
+ 
+h5.style {
+ color: silver;
+ text-decoration: none;
+ transition: 1s;
+}
+h5.style:hover { text-shadow: 0 0 .1em, 0 0 .3em; }
+
+ 
+
+
+
+
