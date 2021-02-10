@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wwft.common.web.Search;
 import com.wwft.service.domain.NoticeMessage;
-import com.wwft.service.noticemessage.NoticeMessageService;
-import com.wwft.service.noticemessage.test.NoticeMessageServiceTest;
+import com.wwft.service.noticemassage.NoticeMessageService;
 @RestController
 @RequestMapping("/noticeMessage/*")
 public class NoticeMessageRestController {

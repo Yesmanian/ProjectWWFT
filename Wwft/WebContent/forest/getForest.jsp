@@ -60,6 +60,11 @@ li:hover {
                 margin-bottom: 2.77rem;
             }
         }
+.dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+
 .col-md-6{
 	height: 500px;
 	overflow: auto;
@@ -131,7 +136,7 @@ li:hover {
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패6")
 				}
 			})
 			
@@ -191,7 +196,7 @@ li:hover {
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패7")
 				}
 			})
 		
@@ -295,8 +300,10 @@ ${forest}
             <div class="col-md-6 gedf-main">
 
                 <!--- \\\\\\\Post-->
+                <!-- 
                 <iframe src="/post/getPost?postNo=1" width="390px" height="100%"  scrolling="auto" frameborder="0" align="middle" marginwidth="100px"></iframe>
-                <div class="card gedf-card">
+                 -->
+                <!-- <div class="card gedf-card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -344,11 +351,11 @@ ${forest}
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Post /////-->
 
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
+                <!-- <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -356,8 +363,8 @@ ${forest}
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">@LeeCross</div>
-                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                    <div class="h5 m-0">{profileName}</div>
+                                    <div class="h7 text-muted">{treeName}</div>
                                 </div>
                             </div>
                             <div>
@@ -379,7 +386,7 @@ ${forest}
                     <div class="card-body">
                         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
                         <a class="card-link" href="#">
-                            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                            <h5 class="card-title">\${postList }</h5>
                         </a>
 
                         <p class="card-text">
@@ -393,10 +400,10 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post /////
 
 
-                <!--- \\\\\\\Post-->
+                - \\\\\\\Post
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -454,10 +461,10 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post /////
 
 
-                <!--- \\\\\\\Post-->
+                - \\\\\\\Post
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -506,7 +513,7 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post ///// -->
 
 
 
@@ -597,13 +604,98 @@ var restLoadMore = function(list){
 	}	
 }
 
-var restLoadPostMore = function(list){
+var restLoadPostMore = function(postList,fileList){
 	
-	for (var post in list){
-		var item = document.createElement('li');
-		item.innerText = list[post].postNo;
-		var postNo = list
-	}
+	$(".col-md-6").append(`
+			
+			<div class="card gedf-card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="mr-2">
+                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                        </div>
+                        <div class="ml-2">
+                            <div class="h5 m-0">\${postList.postWriter}</div>
+                            <div class="h7 text-muted">treeName</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                <div class="h6 dropdown-header">Configuration</div>
+                                <a class="dropdown-item" href="#">Save</a>
+                                <a class="dropdown-item" href="#">Hide</a>
+                                <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            
+           
+           	 <!--<div>
+            <img src="../resources/images/uploadFiles/16bcf38b-c035-41f3-acc0-50662f67cecb_6.jpg" alt="숲" class="img-responsive img-rounded"> 
+       		 </div>
+       		 -->
+       		 
+       		 
+       		 
+       		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+       	  <ol class="carousel-indicators">
+       	  		
+       	  			 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+   
+       	  </ol>
+       	   <div class="carousel-inner">
+       	   	
+       	    <div class="carousel-item active w-5 h-10">
+       	      <img src="../resources/images/uploadFiles/16bcf38b-c035-41f3-acc0-50662f67cecb_6.jpg" class="d-block w-100 h-100" alt="...">
+       	    </div>
+       	    
+       	    
+       	     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+       	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+       	    <span class="sr-only">Previous</span>
+       	  </a>
+       	  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+       	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+       	    <span class="sr-only">Next</span>
+       	  </a>
+       	    
+       	<br>
+       	</div>
+       	</div>
+
+            
+            
+            
+            <div class="card-body">
+                <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
+                <a class="card-link" href="#">
+                    <h5 class="card-title">Totam non adipisci hic! Possimus ducimus amet, dolores illo ipsum quos
+                        cum.</h5>
+                </a>
+
+                <p class="card-text">
+                    \${postList.postDetail}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+            </div>
+        </div>
+			
+			
+			`);
+	
 	
 	
 }
@@ -647,17 +739,19 @@ window.onload = function(){
 		success : function(res,status){
 			
 			
-			//alert(status)
-			//alert(res.treeList.list[0].treeName)
-			//alert(res.treeList.list[2].treeName)
-			var list = res.postList.list;
-			alert(list[0].postNo)
-			restLoadPostMore(list);
+			
+			var postList = res.post0;
+			var fileList = res.fileList0;
+			//alert(postList.postNo)
+			//alert(fileList[0])
+			restLoadPostMore(postList,fileList);
+			
+		
 			
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패1")
 		}
 	})
 	
@@ -692,9 +786,12 @@ window.onload = function(){
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패2")
 		}
 	})
+	
+	
+	
 	
 	
 	
@@ -741,7 +838,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패3")
 		}
 	})
 	
@@ -859,7 +956,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패4")
 				}
 			}) 
 			
@@ -872,7 +969,8 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
  	post
  	<script type="text/javascript">
  		//RestPost
- 		
+ 		//postRest
+	
  	</script>
  	
  

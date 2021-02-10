@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wwft.service.admin.AdminService;
 import com.wwft.service.domain.NoticeMessage;
 import com.wwft.service.domain.Report;
-import com.wwft.service.noticemessage.NoticeMessageService;
+import com.wwft.service.noticemassage.NoticeMessageService;
 import com.wwft.service.tree.TreeService;
 
 @RestController
