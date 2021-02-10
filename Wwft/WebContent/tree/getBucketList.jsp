@@ -68,38 +68,42 @@
 	
 	
 	
-    <div class="grid grid10">
+    <div class="grid grid10 ">
     
     <!-- 홈페이지 제목 -->
-        <div class="column column10">
-        	<h1 class="text-center">버킷리스트 목록</h1>
+        <div class="column column10 ">
+        	<h1 class="text-center ">버킷리스트 목록</h1>
         </div>
         
         
         
         <!-- 사이드 바 -->
-        <div class="column column10 side">
+        <div class="column column10 ">
        
-        <form class="form-horizontal">
+ <form>
   <div class="form-group">
-    <label for="inputEmail3" class="col control-label">작성자</label>
-    <div class="col-sm-10">
-      <input type="writer"  name="bucketListWriter"	class="form-control"  placeholder="작성자를 입력하세요.">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col control-label">버킷리스트 작성하기</label>
-    <div class="col-sm-10">
-      <input type="detail"   name="bucketListDetail"		class="form-control" placeholder="버킷리스트를 입력하세요">
-    </div>
+    <label for="exampleInputEmail1">작성자</label>
+    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요." >
   </div>
   
-  
-      <button type="submit"  id="btn1"	class="btn btn-danger float-right ">등록</button>
-  
+  <div class="form-group">
+    <label for="exampleInputPassword1">버킷리스트 내용</label>
+    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
+  </div>
+ 
+  <button type="submit" 		id="btn1"		class="btn btn-danger float-right">등록</button>
 </form>
-         </div>   
-        
+       
+ </div>
+      
+       
+       
+       
+       
+       
+       
+       
+
         
         
         

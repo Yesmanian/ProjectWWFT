@@ -44,6 +44,11 @@
 		
 	}
 	
+	function goGetPost() {
+		window.location.href="/post/getPostList?postTreeNo=${tree.treeNo}"
+
+	}
+	
 </script>
 
 
@@ -116,6 +121,9 @@
    
    <button type="button" 	class="btn  button-add"	a href="#">
    <i class="fas fa-tree  text-white"></i><h6 class="text-white"> 내 숲 보기</h6></button>
+   
+   <button type="button" 	class="btn  button-add"		onclick="goGetPost()">
+   <i class="far fa-images text-white"></i><h6 class="text-white"> 사진 게시글 보기</h6></button>
    
    <button type="button" 	class="btn   button-add"	onclick="goGetNoticeMessage()" > 
    <i class="fas fa-envelope-open-text  text-white"></i><h6 class="text-white">알림메시지 보기</h6></button>

@@ -1,11 +1,11 @@
      .grid {
             
-            border-radius: 3px;
+          
             padding: 20px;
-            counter-reset: items;
+       
         }
         .column {
-            border-radius: 3px;
+    
         
             border: 1px solid #4390E1;
             box-sizing: border-box;
@@ -34,4 +34,4 @@
         .column10:nth-child(3) {grid-area: c;}
         .column10:nth-child(4) {grid-area: d;}
         
-       
+ 
