@@ -34,9 +34,4 @@
         .column10:nth-child(3) {grid-area: c;}
         .column10:nth-child(4) {grid-area: d;}
         
-        div.side{
-        
-        margin: 0 auto;
-        width:80%;
-        
-		}
+       

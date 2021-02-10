@@ -13,9 +13,6 @@
 	<script type="text/javascript">
 
 
-
-	
-
 	$(document).ready(function () {
 		$("#btn1").click( function () {
 			var bucketListWriter = $("input[name=bucketListWriter]").val();
@@ -87,22 +84,21 @@
   <div class="form-group">
     <label for="inputEmail3" class="col control-label">작성자</label>
     <div class="col-sm-10">
-      <input type="bucketListWriter" class="form-control" id="bucketListWriter" placeholder="작성자를 입력하세요.">
+      <input type="writer"  name="bucketListWriter"	class="form-control"  placeholder="작성자를 입력하세요.">
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col control-label">버킷리스트 작성하기</label>
     <div class="col-sm-10">
-      <input type="bucketListDetail" class="form-control" id="bucketListDetail" placeholder="버킷리스트를 입력하세요">
+      <input type="detail"   name="bucketListDetail"		class="form-control" placeholder="버킷리스트를 입력하세요">
     </div>
   </div>
   
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-danger">등록</button>
-    </div>
-  </div>
+  
+      <button type="submit"  id="btn1"	class="btn btn-danger float-right ">등록</button>
+  
 </form>
+         </div>   
         
         
         
@@ -114,13 +110,7 @@
         
         
         
-        
-        
-             <input type = "text" 	name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/>
-		     <input type = "text" 	name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
-		     <input id="btn1"  type="button" value="등록" >
-        
-        </div>
+    
         
         
       <!-- 메인 내용 -->

@@ -22,21 +22,27 @@
 	
 
 	function goGetBucketList() {
-		var treeNo = $("#treeNo").val();
+	
 		window.location.href="/tree/getBucketList?treeNo=${tree.treeNo}"
 		
 	}
 	
 	function goGetFamilyMotto(){
-		var treeNo = $("#treeNo").val();
+	
 		window.location.href="/tree/getFamilyMotto?treeNo=${tree.treeNo}"
 	}
 	
 	function goGetCalendar() {
-		var treeNo = $("#treeNo").val();
+
 		window.location.href="/event/getCalendar?treeNo=${tree.treeNo }" 
 	}
 
+	function goGetNoticeMessage() {
+	
+
+		window.location.href="/noticeMessage/getTreeNoticeMessageList?treeNo=${tree.treeNo}&profileNo=${profile.profileNo}"
+		
+	}
 	
 </script>
 
@@ -102,7 +108,7 @@
 <div id="footer" class="btn-group ">
 
 
-<button type="button"   class="btn button-add btn-bgGreyDark3"	onclick="goGetBucketList()" >
+<button type="button"   class="btn button-add "	onclick="goGetBucketList()" >
 <i class="fas fa-list-ol   text-white"></i><h6 class="text-white">버킷리스트 목록</h6></button>  
    
    <button type="button"   	class="btn   button-add"	onclick="goGetFamilyMotto()">
@@ -111,7 +117,7 @@
    <button type="button" 	class="btn  button-add"	a href="#">
    <i class="fas fa-tree  text-white"></i><h6 class="text-white"> 내 숲 보기</h6></button>
    
-   <button type="button" 	class="btn   button-add"	a href="#" > 
+   <button type="button" 	class="btn   button-add"	onclick="goGetNoticeMessage()" > 
    <i class="fas fa-envelope-open-text  text-white"></i><h6 class="text-white">알림메시지 보기</h6></button>
    
     <button type="button" 	class="btn   button-add"  onclick="goGetCalendar()">
