@@ -49,6 +49,11 @@
 
 	}
 	
+	function goGetForest() {
+		window.location.href="/forest/getForestList?postTreeNo=${tree.treeNo}"
+
+	}
+	
 </script>
 
 
@@ -119,7 +124,7 @@
    <button type="button"   	class="btn   button-add"	onclick="goGetFamilyMotto()">
    <i class="fas fa-edit  text-white"></i><h6 class="text-white">가훈 입력하기</h6></button>
    
-   <button type="button" 	class="btn  button-add"	a href="#">
+   <button type="button" 	class="btn  button-add"		onclick="goGetForest()">
    <i class="fas fa-tree  text-white"></i><h6 class="text-white"> 내 숲 보기</h6></button>
    
    <button type="button" 	class="btn  button-add"		onclick="goGetPost()">
