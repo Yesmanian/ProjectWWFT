@@ -240,6 +240,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
 
+//       alert($('#eventTitle').val());
+
+      let blank_pattern = /^\s+|\s+$/g;
+// if( $('#eventTitle').val().replace( blank_pattern, '' ) == '' ){
+// alert(' 공백만 입력되었습니다 ');
+// return false;
+// }
+      //공백체크 
+      if($('#eventTitle').val()==null || $('#eventTitle').val()==''|| $('#eventTitle').val().replace( blank_pattern, '' ) == ''){
+       
+        alert('일정명은 반드시 입력하셔야 합니다.');
+        return false;
+
+      }
+      
+
   
       var eventData = $('#event').serializeObject();
       eventData.allDay= false;

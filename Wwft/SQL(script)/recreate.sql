@@ -1,6 +1,6 @@
 DROP TABLE ACTIVITY_POINT;
  DROP TABLE BUCKETLIST;
- DROP TABLE CALENDER;
+ DROP TABLE CALENDAR;
  DROP TABLE COMMENTS;
  DROP TABLE FOREST;
  DROP TABLE FOREST_NOTICE;
@@ -143,6 +143,8 @@ CREATE TABLE  "USERS"
 	"POST_NO" NUMBER, 
 	"FOREST_NO" NUMBER, 
 	"TREE_NO" NUMBER(38,0), 
+	"POST_IMAGE" VARCHAR2(2000), 
+	"PROFILE_NO" NUMBER(38,0), 
 	 CONSTRAINT "NOTICE_MESSAGE_PK" PRIMARY KEY ("NOTICE_MESSAGE_NO") ENABLE );
    
 	 
@@ -175,7 +177,7 @@ CREATE TABLE  "USERS"
    
   
 	 
-	CREATE TABLE  "POST" 
+CREATE TABLE  "POST" 
    (	"POST_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	"TREE_NO" NUMBER(30,0) NOT NULL ENABLE, 
 	"ALBUM_NAME" VARCHAR2(30), 
@@ -184,6 +186,7 @@ CREATE TABLE  "USERS"
 	"POST_STATE" CHAR(1) NOT NULL ENABLE, 
 	"POST_REG_DATE" DATE NOT NULL ENABLE, 
 	"SAVE_IMAGE_NAME" VARCHAR2(200), 
+	"PROFILE_NO" NUMBER(38,0), 
 	 CONSTRAINT "POST_PK" PRIMARY KEY ("POST_NO") ENABLE  );
 	 
 	
@@ -248,13 +251,13 @@ WHERE a.imgmin = i.image_and_like_no;
   
    
 	회원정보
-    INSERT INTO USERS values('admin' , 'admin',2, 'a1sasd@asd', 'admin',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user01', '1111' ,3, 'a2asd@asd' , 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user02', '2222' ,4, 'a3sasd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user03', '3333' ,4, 'as4asd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user04', '4444' ,5, 'asa5sd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user05', '5555' ,6, 'asa6sd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user06', '6666' ,7, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('admin' , 'admin',1000, 'a1sasd@asd', 'admin',  SYSDATE, null, 1);
+    INSERT INTO USERS values('user01', '1111' ,1, 'a2asd@asd' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user02', '2222' ,2, 'a3sasd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user03', '3333' ,3, 'as4asd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user04', '4444' ,4, 'asa5sd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user05', '5555' ,5, 'asa6sd@asd', 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('user06', '6666' ,6, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
     
     
     나무정보

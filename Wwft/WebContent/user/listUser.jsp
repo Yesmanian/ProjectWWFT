@@ -65,9 +65,9 @@
             <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
           </thead>
           <tbody>
-            
-
-
+            <tr>
+           
+            </tr>
           </tbody>
         </table>
       </div>
