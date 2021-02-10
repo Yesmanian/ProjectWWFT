@@ -87,7 +87,6 @@ public class UserServiceImpl implements UserService{
 	public void removeUser(User user) throws Exception {
 		userDao.removeUser(user);
 	}
-	
 
 
 
