@@ -415,7 +415,7 @@ img {
     
     </div> 
    </div>
-   <div align="center">
+   <div align="center" style="margin-top: 50px">
 		<jsp:include page="../common/pageNavigator.jsp"/>
 	</div>
 <!-- /.container -->

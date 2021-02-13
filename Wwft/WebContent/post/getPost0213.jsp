@@ -15,23 +15,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	</head>
 <style type="text/css">
-
-/* html,
-
-body {
-
-    margin:0;
-
-    padding:0;
-
-    height:	60px;
-    
-    background-image:url("/resources/images/tree/post.jfif");
-    
-     background-size: cover;
-
-}
-	 */
+	
 	.wrapper {
   display: flex;
   justify-content: center;
@@ -56,50 +40,16 @@ body {
 			
 			
 			<div class="wrapper">
- 				 <div class="content" >
-			<div class="card gedf-card" style="width: 100%">
-				<div class="card-header">
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="mr-2">
-								<!-- <img class="rounded-circle" width="45"
-									src="https://picsum.photos/50/50" alt=""> -->
-							</div>
-							<div class="ml-2">
-								<!-- <div class="h5 m-0">@LeeCross</div> -->
-								<div class="h7 text-muted">커피네#김커피</div>
-							</div>
-						</div>
-						<div>
-							<div class="dropdown">
-								<button class="btn btn-link dropdown-toggle" type="button"
-									id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">
-									<i class="fa fa-ellipsis-h"></i>
-								</button>
-								<div class="dropdown-menu dropdown-menu-right"
-									aria-labelledby="gedf-drop1">
-									<div  style="text-align-last: center;">
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-										 	 신고
-										</button>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-					</div>
+ 				 <div class="content" style="border: dotted">
 
-				</div>
-			<!-- <!-- 신고영역 start 
+			<!-- 신고영역 start  -->
 			<div  style="text-align-last: right;">
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 				 	 신고
 				</button>
 			</div>
-			신고영역 end -->
+			<!-- 신고영역 end -->
 			
-			<div class="card-body">
 			<!-- 슬라이드 start -->
 			<div class="" style="margin-left: 60px; margin-right: 60px;">
 				<div id="carouselExampleIndicators" class="carousel slide"
@@ -172,11 +122,10 @@ body {
 			</div>	
 			<!-- 게시글END -->
 			
-			<div class="card-footer">
 			<!-- 댓글start -->
 			<div>
 				<form id="commentForm" name="commentForm" method="post" style="float: left; width: 100%;">
-					 <p  style="text-align: left;"><span ><strong>Comment</strong></span>  <span id="cCnt"></span></p>
+					 <p><span ><strong>Comment</strong></span>  <span id="cCnt"></span></p>
 					<div>
 						<textarea style="width: 80%" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
 						<a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
@@ -184,12 +133,12 @@ body {
 						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
 						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />   
 	        			<!-- <input type="hidden" name="commentWriter" value="초초">  -->
-	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`"> --%> 
-	        			<input type="hidden" name="commentWriter" value="커피네#김커피">
+	        			<input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`"> 
+	        			
 					</div>
 				</form>
 				<div>
-					<form id="commentListForm" name="commentListForm" method="post" style="width: 80%;margin-left: 5%; text-align-last: left;">
+					<form id="commentListForm" name="commentListForm" method="post" style="width: 80%;margin-left: 5%;">
 						<div id="commentList">
 			       
 			        	</div>
@@ -197,8 +146,7 @@ body {
 				</div>
 			</div>
 			<!-- 댓글END -->
-			</div>
-		</div>
+		
 		</div>
 		</div>
 		
