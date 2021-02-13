@@ -13,14 +13,11 @@
 	<script type="text/javascript">
 
 
-
-	
-
 	$(document).ready(function () {
-		$("#btn1").click( function () {
+		$("#btn2").click( function () {
 			var bucketListWriter = $("input[name=bucketListWriter]").val();
 			var bucketListDetail = $("input[name=bucketListDetail]").val();
-			var treeNo = ${param.treeNo}
+			var treeNo = ${tree.treeNo}
 	
 
 			$.ajax({
@@ -42,20 +39,14 @@
 				error : function (status) {
 				}
 			
-			})	
+			})	//ajax 끝
 				
-		})	
-	
-	})	
+		})	//click 끝
+		
+	})
+		
 
 	
-		$(document).ready(function () {
-			$("#delete_bucketList").click(function () {
-				var result = confirm("버킷리스트를 삭제하시겠습니까?");
-				
-			})
-			
-		})
 
 	
 		
@@ -71,38 +62,49 @@
 	
 	
 	
-    <div class="grid grid10">
+    <div class="grid grid10 ">
     
     <!-- 홈페이지 제목 -->
-        <div class="column column10">
-        	<h1 class="text-center">버킷리스트 목록</h1>
-        </div>
+        <div class="column column10 ">
+        	<h1 class="text-center ">버킷리스트 목록</h1>
+        	   </div>
+        	
+      
+        	
+        	
+     
         
         
         
-        <!-- 사이드 바 -->
-        <div class="column column10 side">
-       
-        <form class="form-horizontal">
+        <!-- 첫번째 줄  -->
+        <div class="column column11 ">
+        
+ 
+ 
+ 
+ 	<form>
   <div class="form-group">
-    <label for="inputEmail3" class="col control-label">작성자</label>
-    <div class="col-sm-10">
-      <input type="bucketListWriter" class="form-control" id="bucketListWriter" placeholder="작성자를 입력하세요.">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col control-label">버킷리스트 작성하기</label>
-    <div class="col-sm-10">
-      <input type="bucketListDetail" class="form-control" id="bucketListDetail" placeholder="버킷리스트를 입력하세요">
-    </div>
+    <label for="exampleInputEmail1"><h5 >작성자</h5></label>
+    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
   </div>
   
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-danger">등록</button>
-    </div>
+    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
+    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
   </div>
+ 
+  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
 </form>
+ </div>
+      
+       
+       
+       
+       
+       
+       
+       
+
         
         
         
@@ -113,30 +115,48 @@
         
         
         
-        
-        
-        
-             <input type = "text" 	name="bucketListWriter"  placeholder="작성자를 입력하세요."	size="30"/>
-		     <input type = "text" 	name="bucketListDetail"  placeholder="버킷리스트를 입력하세요."	size="30"/>
-		     <input id="btn1"  type="button" value="등록" >
-        
-        </div>
+    
         
         
       <!-- 메인 내용 -->
         <div class="column column10 text-center">
+        
+        
+  
+       
+
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"><h4>작성자</h4></th>
+      <th scope="col"><h4>작성 내용</h4></th>
+      <th scope="col"><h4>작성 일자</h4></th>
+      <th scope="col"><h4></h4></th>
+    </tr>
+  </thead>
+  <tbody>
+  
              <c:set var="i" value="0" />
 				<c:forEach var="bucketList" items="${list}">
 				<c:set var="i" value="${ i+1 }" />
+    <tr>
+      <th scope="row"></th>
+      <td><h5>${bucketList.bucketListWriter}</h5></td>
+      <td><h5> ${bucketList.bucketListDetail}</h5></td>
+      <td><h5> ${bucketList.bucketListRegDate}</h5></td>
+       <td><button type="button"   class="btn  btn-sm btn" 
+       onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'><h5 class="text-white">삭제</h5></button></td>
+      
+      </c:forEach>
+    </tr>
+</tbody>
+</table>
 
-			<div>버킷리스트 번호: ${bucketList.bucketListNo}<br/></div>
-			<div>작성자 : ${bucketList.bucketListWriter}<br/></div>
-			<div >작성 내용 : ${bucketList.bucketListDetail}<br/></div>
-			<div>작성 일자 : ${bucketList.bucketListRegDate}<br/></div>
+</div>
 		
-          <input type="button" id="delete_bucketList" value="삭제" onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'>
-		</c:forEach>
-	   </div>
+	   
         
 	
    
@@ -150,7 +170,8 @@
         
         <!-- 푸터 -->
         <div class="column column10">
-        	<input type="button" value="뒤로가기" onclick="history.back(-1);">
+         	   <input type="button" 	id="btn1FamilyMotto" onclick="location.href='/tree/getUserTree?${param.treeNo}'"	value="뒤로가기" />
+        
         </div>
     </div>
         
