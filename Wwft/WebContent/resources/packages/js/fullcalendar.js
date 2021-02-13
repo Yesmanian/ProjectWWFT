@@ -13,41 +13,59 @@ document.addEventListener('DOMContentLoaded', function () {
       locale: "ko",
       timezone: "local",
       dayPopoverFormat: 'MM/DD dddd',
+      eventLimitClick           : 'week',
+      minTime                   : '00:00:00',
+      maxTime                   : '24:00:00',
       header: {
         left: 'prev,next today',
         height: 655,
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth,listYear'
       },
+      buttonText :{
+        today:'오늘',
+        dayGridMonth : '월',
+        timeGridWeek: '주',
+        timeGridDay: '일',
+        listMonth: '월간일정',
+        listYear:'년간일정'
+
+      },
+      allDayText:'종 　　일',
       intialView: 'dayGridMonth',
+      eventRender: function(info) {
+        alert(info.event.title)
+        var tooltip = new Tooltip(info.el, {
+          
+          // title: $('<div />', {
+          //   class: 'popoverTitleCalendar',
+          //   text: info.event.title
+          // }).css({
+          //   'background': info.event.backgroundColor,
+          //   'color': info.event.textColor
+          // }),
+          // content: $('<div />', {
+          //     class: 'popoverInfoCalendar'
+          //   }).append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + info.event.extendedProps.eventDetail + '</div>'),
+          //   //.append('<p><strong>시간:</strong> ' + getDisplayEventDate(info.event) + '</p>')
+          // delay: {
+          //   show: "800",
+          //   hide: "50"
+          // },
+          // trigger: 'hover',
+          // placement: 'top',
+          // html: true,
+          // container: 'body'
+          
+          
+          title: info.event.extendedProps.description,
+          placement: 'top',
+          trigger: 'hover',
+          container: 'body'
+        });
+      },
       dateClick: function (info) {
-        //alert(info.date)
-        //alert(moment(info.date).format('YYYY-MM-DD HH:mm'));
-        //   startDate = (moment(info.date).format('YYYY-MM-DD HH:mm'));
-        //    //var date = new Date
-        //    var today = moment();
-        //   alert(date.getDate());
-        //   alert(moment(today).format('YYYY-MM-DD HH:mm'));
-        //   startDate = moment(today).format('YYYY-MM-DD HH:mm');
-        //   startDate.set({
-
-        //     hours : today.hours(),
-        //     minute : today.minute()
-        //   });
-
-
-        //   $('#exampleModalLabel').html('일정 등록');
-        //    $('#eventTitle').val('');
-        //    $('#eventStart').val(startDate);
-        //    $('#eventEnd').val('');
-        //    $('#dDay').val('0');
-        //    $('#eventDetail').val('');
-        //  $('#removeEvent').hide();
-        //  $('#addEvent').show();
-        //  $('#testModal').modal('show');
-
-
-        //alert('clicked on : '+info.dateStr );
+       
       },
       eventClick: function (info) {
         // alert("Event :" + info.event.extendedProps.eventDetail);
@@ -77,11 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#testModal').modal('show');
 
       },
-      headerToolbar: {
-        center: 'addEventButton'
-      },
-
-
       selectable: true,
       select: function (start, end, allDay) {
 
@@ -89,8 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var today = moment();
         let hours = today.hours();
         let minute = today.minutes();
-        alert(hours)
-        alert(minute)
        
         // console.log(start.start)
         // console.log(start.end)
@@ -102,20 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
         
        addEvent(start, end);//이놈은 addEvent.js함수를 호출한다 .
-
-        // $('#exampleModalLabel').html('일정 등록');
-        // $('#eventTitle').val('');
-        // $('#eventStart').val(start);
-        // $('#eventEnd').val(end);
-        // $('#dDay').val('0');
-        // $('#eventDetail').val('');
-        // $('#removeEvent').hide();
-        // $('#addEvent').show();
-        // $('#testModal').modal('show');
-
-
-        // $('#testModal').modal('show');
-
       },
       views: {
         month: { eventLimit: 5 } // 한 날짜에 최대 이벤트 n개, 나머지는 + 처리됨
@@ -124,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       editable: true,
-
+      
       eventSources: [{
         events: function (info, successCallback, failureCallback) {
 
@@ -201,25 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // exdate: ['2021-01-30'] // will also accept a single string
               });//each 끝 
 
-              //반복테스트 
-
-              // events.push({
-              //   id: 100,
-              //   title: '월테스트',
-              //   allDay: true,
-              //   // start: '2021-01-20 18:00',
-              //   // end: '2021-01-20 18:00',
-              //   eventDetail: '월반복테스트',
-              //   rrule: {
-              //     //  freq: '',
-              //     freq: 'monthly',
-              //     bymonthday: [ 2,4 ],
-              //     // interval: 1,
-              //     // dtstart: item.start,
-              //     until: '2023-03-01'
-              //   }
-
-              // });
               successCallback(events);
             }
           });
