@@ -562,6 +562,7 @@ ${forest}
  Hello GetForest.jsp<br/>
  <div>
 	 ${forest}
+	
  </div><br/>
  
  <div>
@@ -608,93 +609,9 @@ var restLoadPostMore = function(postList,fileList){
 	
 	$(".col-md-6").append(`
 			
-			<div class="card gedf-card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="mr-2">
-                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                        </div>
-                        <div class="ml-2">
-                            <div class="h5 m-0">\${postList.postWriter}</div>
-                            <div class="h7 text-muted">treeName</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                <div class="h6 dropdown-header">Configuration</div>
-                                <a class="dropdown-item" href="#">Save</a>
-                                <a class="dropdown-item" href="#">Hide</a>
-                                <a class="dropdown-item" href="#">Report</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            
-           
-           	 <!--<div>
-            <img src="../resources/images/uploadFiles/16bcf38b-c035-41f3-acc0-50662f67cecb_6.jpg" alt="Ω£" class="img-responsive img-rounded"> 
-       		 </div>
-       		 -->
-       		 
-       		 
-       		 
-       		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-       	  <ol class="carousel-indicators">
-       	  		
-       	  			 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-   
-       	  </ol>
-       	   <div class="carousel-inner">
-       	   	
-       	    <div class="carousel-item active w-5 h-10">
-       	      <img src="../resources/images/uploadFiles/16bcf38b-c035-41f3-acc0-50662f67cecb_6.jpg" class="d-block w-100 h-100" alt="...">
-       	    </div>
-       	    
-       	    
-       	     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-       	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-       	    <span class="sr-only">Previous</span>
-       	  </a>
-       	  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-       	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-       	    <span class="sr-only">Next</span>
-       	  </a>
-       	    
-       	<br>
-       	</div>
-       	</div>
-
-            
-            
-            
-            <div class="card-body">
-                <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
-                <a class="card-link" href="#">
-                    <h5 class="card-title">Totam non adipisci hic! Possimus ducimus amet, dolores illo ipsum quos
-                        cum.</h5>
-                </a>
-
-                <p class="card-text">
-                    \${postList.postDetail}
-                </p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-            </div>
-        </div>
+			 <iframe src="/post/getPost&postNo=${postList.postNo }"></iframe>
 			
-			
-			`);
+		`);
 	
 	
 	
@@ -740,8 +657,16 @@ window.onload = function(){
 			
 			
 			
-			var postList = res.post0;
-			var fileList = res.fileList0;
+			//var postList = res.post0;
+			//var fileList = res.fileList0;
+			var postList = 
+					{'postNo' : 3, 'postRegDate':'2021-02-04' , 'postDetail':123, 'postWriter':'√ √ ', 'postState':0, 'postTreeNo':1, 'checkboxState':null, 'albumName':null, 'firstImageName':null, 'profileNo':0};	
+				
+			var fileList = ['1.jpg', '2.jpg', '3.jpg'];
+			
+
+			alert(postList.postNo)
+			alert(fileList[0])
 			//alert(postList.postNo)
 			//alert(fileList[0])
 			restLoadPostMore(postList,fileList);
