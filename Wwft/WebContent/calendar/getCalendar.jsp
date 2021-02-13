@@ -7,7 +7,7 @@
     <head>
       <meta charset='euc-kr' />
 
-      <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
+  
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
@@ -19,13 +19,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
-      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-      <link href="/resources/packages/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" /> -->
-      <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
-      <!-- <script src='/resources/packages/moment-timezone/main.js'></script> -->
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.0.0-beta.4/moment/main.js" ></script> -->
+        <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
+        <!-- 툴팁 -->
+      
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
 
       <link href='/resources/packages/core/main.css' rel='stylesheet' />
@@ -33,23 +29,27 @@
       <link href='/resources/packages/timegrid/main.css' rel='stylesheet' />
       <link href='/resources/packages/list/main.css' rel='stylesheet' />
      
+      <!-- <style>
+        body{
+              background-image: url('/resources/images/uploadFiles/father-656734_1920.jpg');
+              background-repeat: no-repeat;
+              background-size: cover;
+              /* '/resources/images/uploadFiles/family.jpg' */
+              /* C:\Users\shwls\git\ProjectWWFT\Wwft\WebContent\resources\images\uploadFiles\father-656734_1920.jpg */
+              /* https://cdn.pixabay.com/photo/2020/10/04/17/35/boat-5627042_960_720.jpg */
+        }
 
+      </style> -->
 
 
       <script>
-        // document.cookie = "crossCookie=bar; SameSite=None; Secure";
-        // alert( document.cookie)
+     
 
 
 
 
         $(document).ready(function () {
           setDateBox();
-
-//           $('.widget-left').on('click',function(){
-//   alert('클릭됨')
-// $('.widget-left').attr("id","widget");
-// });
 
           $('#eventStart, #eventEnd').datetimepicker({
             format: 'YYYY-MM-DD HH:mm',
@@ -136,7 +136,7 @@
         }
 
         #calendar {
-          max-width: 1000px;
+          max-width: 70%;
           margin: 0 auto;
         }
         div.widget-left {
@@ -145,24 +145,52 @@
            display: block; 
 
         }
-        /* header {
-	width:100%;
-	height:100px;
-	display: flex;
-	align-items: center;
-  justify-content: center;
-  padding: 35px;
-  border: 1px solid red;
-} */
+        /* .navbar-nav > li > a 
+        { padding: 26px 25px } */
+  
 
 
 
       </style>
     </head>
-
-    <body>
+<header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-brand">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">WWFT</a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle"> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/tree/getUserTree">My Tree</a></li>
+                <li><a href="/profile/getProfileList">Change Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/user/logout">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
       <!-- <header id="wrap"> 
         
+         <a class="dropdown-item" href="/tree/getUserTree">My Tree</a>
+                <a class="dropdown-item" href="#">Search</a>
+                <a class="dropdown-item" href="/profile/getProfileList">Change Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/user/logout">Logout</a>
+              </div>
           
         <div class="container">
         

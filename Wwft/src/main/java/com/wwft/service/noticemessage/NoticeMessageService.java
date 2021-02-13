@@ -10,16 +10,16 @@ public interface NoticeMessageService {
 	
 	public void sendNoticeMessage(NoticeMessage noticeMessage) throws Exception;
 	
-	public Map<String, Object> getTreeNoticeMessageList(int treeNo, Search search) throws Exception;
+	public Map<String, Object> getTreeNoticeMessageList(int treeNo, int profileNo, Search search) throws Exception;
 	
 	public Map<String, Object> getForestNoticeMessageList(int forestNo, Search search) throws Exception;
 	
 	
-	public int getTreeNoticeMessageStateCount(int treeNo) throws Exception;
+	public int getTreeNoticeMessageStateCount(int treeNo, int profileNo) throws Exception;
 	
 	public int getForestNoticeMessageStateCount(int forestNo) throws Exception;
 	
-	public void updateTreeNoticeMessageState(int treeNo) throws Exception;
+	public void updateTreeNoticeMessageState(int treeNo, int profileNo) throws Exception;
 	
 	public void updateForestNoticeMessageState(int forest) throws Exception;
 	

@@ -14,6 +14,28 @@
 <title>게시글 작성</title>
 <style type="text/css">
 
+/* 		
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #007bff;
+    text-align: left;
+    background-color: #fff;
+} */
+
+
+      * {
+        font-size: 16px;
+        font-family: Consolas, sans-serif;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+      }
+  
         input[type=file] {
             display: none;
         }
@@ -51,13 +73,13 @@
 
     </style>
     <meta name="viewport" content="width=device-width" , initial-scale="1">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script> -->
 
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
  <script type="text/javascript">
@@ -274,82 +296,149 @@
     </script>
 </head>
 <body>
-    <form id="form" enctype="multipart/form-data" method ="post">
-        <table class="board_view">
-            <colgroup>
-                <col width="15%" >
-                <col width="*" >
-            </colgroup>
-            <caption>게시글 작성</caption>
-            <tbody>
-                <tr>
-                 <div>
-        <h2><b>이미지 미리보기</b></h2>
-        <div class="input_wrap">
-            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-            <input multiple="multiple" type="file" id="input_imgs" name = "input_imgs" maxlength="10"/>
-             
-        </div>
-    </div>
-
-    <div>
-        <div class="imgs_wrap">
-            <img id="img" />
-        </div>
-    </div>
-                <tr>
-                    <th scope="row">내용</th>
-                    
-                     
-                    <td><textarea cols="80" rows="20" id="postDetail" name="postDetail" title="내용"></textarea></td>
-                	
-                	
-                </tr>
-            </tbody>
-        </table>
-	     <label class="radio-inline">
-			  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 공개
-		</label>
-		<label class="radio-inline">
-			  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 비공개
-		</label>
+<header id="wrap"> 
         
-         <br/>
-         <button type="button" class="btn btn-lg btn-primary" disabled="disabled" value="등록" onclick="fncAddPost();"/>
-     <!--  // <input type="button" value="등록" onclick="fncAddPost();"/> -->
- 
-      
-    </form>
-   <%--  <%@ include file="/WEB-INF/include/include-body.jspf" %>   --%>
-     <div class="container">
-		<div class="row">
-			<form method="post" action="writeAction.jsp">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="2"
-								style="background-color: #eee; text-align: center;">게시판 글쓰기
-								양식</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
-						</tr>
-						<tr>
-							<td><textarea type="text" class="form-control"
-									placeholder="글 내용" name="bbsContent" maxlength="2048"
-									style="height: 350px;">
-                        </textarea></td>
-						</tr>
-					</tbody>
-				</table>
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-			</form>
-		</div>
-	</div>
+        <jsp:include page="../common/navBar.jsp"/>
+
+    </header>
     
+    
+    <form id="form" enctype="multipart/form-data" method ="post">
+    
+    	
+		 <div class="container-sm">
+		  	<div class="row row-cols-3">
+		  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8" align="center"> 
+					    <div>
+					    	<h4><b>게시글 등록</b></h4>
+					    </div>
+				    </div>
+				    <div class="col-2">Column</div>
+				  
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8">
+					    <div class="input_wrap">
+				            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+				            <input multiple="multiple" type="file" id="input_imgs" name = "input_imgs" maxlength="10"/>
+						             
+			        	</div>
+			        </div>
+					<div class="col-2">Column</div>
+				   
+				  </div>
+				  
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8"> 
+					    <div>
+				        <div class="imgs_wrap">
+				            <img id="img" />
+						 </div>
+					    </div>
+				   </div>
+				    <div class="col-2">Column</div>
+				   
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8">Column</div>
+				    <div class="col-2">Column</div>
+				   
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8"><b>게시글 작성 내용</b></div>
+				    <div class="col-2">Column</div>
+				   
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8">
+					    <textarea  cols="10" rows="5" id="postDetail" name="postDetail" title="내용">
+					    </textarea>
+				    </div>
+				    <div class="col-2">Column</div>
+				   
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8">
+				    	<input type='radio' name='postState' value='0' />공개
+  						<input type='radio' name='postState' value='1' />비공개
+				    </div>
+				    <div class="col-2">Column</div>
+				   
+				  </div>
+				  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8">
+				    	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+							  앨범생성
+						</button>
+						  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">신고</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <div class="form-group">
+								    <label for="exampleFormControlSelect1">신고 내용</label>
+								    <select class="form-control" id="exampleFormControlSelect1">
+								      <option value="0">욕설</option>
+								      <option value="1">음란물</option>
+								      <option value="2">도박</option>
+								      <option value="3">아동학대</option>
+								      
+								    </select>
+								  </div>
+						      </div>
+						      <div class="modal-footer">
+						    <input Type="hidden" value='$("#exampleFormControlSelect1 option:selected").val();'>  
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						        <button type="button"  onClick="fn_addReport()" class="btn btn-primary">신고하기</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				    
+				    </div>
+				    
+				    </div>
+				    <div class="col-2">Column</div>
+				    	
+			  	  <div class="row row-cols-3">
+			  		
+				    <div class="col-2">Column</div>
+				    <div class="col-8" align="right">
+				    	<button type="button" class="btn btn-primary" onclick="fncAddPost();">등록</button>
+				    </div>
+				    <div class="col-2">Column</div>
+				   
+			  	  </div>
+			  
+			  	<div class="row-9">
+			  
+			  </div>
+			  
+		</div>
+		    
+    
+    
+      </form>
 </body>
 </html>

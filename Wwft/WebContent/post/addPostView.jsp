@@ -294,7 +294,7 @@
         </div>
     </div>
                 <tr>
-                    <th scope="row">내용</th>
+                    <th scope="row">게시글 작성 내용</th>
                     
                      
                     <td><textarea cols="80" rows="20" id="postDetail" name="postDetail" title="내용"></textarea></td>

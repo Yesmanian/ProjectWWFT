@@ -14,7 +14,7 @@ public class Post {
 	private String checkboxState;		//게시글 체크박스 선택여부(이동,삭제등)
 	private String albumName;			//앨범이름
 	private String firstImageName;		//첫번쨰  이미지 이름
-	
+	private int profileNo;				//게시글 등록자 노진우 수정
 	public Post() {
 		}
 
@@ -92,6 +92,14 @@ public class Post {
 		this.albumName = albumName;
 	}
 
+	public int getProfileNo() {
+		return profileNo;
+	}
+
+	public void setProfileNo(int profileNo) {
+		this.profileNo = profileNo;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -113,6 +121,8 @@ public class Post {
 		builder.append(albumName);
 		builder.append(", firstImageName=");
 		builder.append(firstImageName);
+		builder.append(", profileNo=");
+		builder.append(profileNo);
 		builder.append("]");
 		return builder.toString();
 	}

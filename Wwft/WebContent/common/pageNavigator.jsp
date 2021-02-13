@@ -13,7 +13,7 @@
 <c:forEach var="i"  begin="${resultPage.beginUnitPage}" end="${resultPage.endUnitPage}" step="1">
 	<a href="javascript:fncGetList('${ i }');">
 	<div class="btn-group" role="group">
-    <button type="button" class="btn btn-secondary">${ i }</button>
+    	<button type="button" class="btn btn-secondary">${ i }</button>
   </div>
 	</a>
 </c:forEach>
