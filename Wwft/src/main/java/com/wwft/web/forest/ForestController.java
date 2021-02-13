@@ -48,7 +48,7 @@ public class ForestController {
 		System.out.println("/getForest Start...");
 		
 		
-		//Business Logic
+		//Business /Logic
 		Forest forest = forestService.getForest(forestNo);
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);
