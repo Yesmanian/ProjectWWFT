@@ -272,8 +272,8 @@ ${forest}
                             <div class="h6 text-muted">Forest Board</div>
                         </li>
                         <h2 class="forestInformText">${forest.forestInformText }</h2>
-	 					<h2 class="forsetInformTextWriter">${forest.forestInformWriter }</h2>
-	 					<h2 class="forestInformTextRegDate">${forest.forestInformRegDate }</h2>
+	 					<h5 class="forsetInformTextWriter">작성자 :${forest.forestInformWriter }</h5>
+	 					<h5 class="forestInformTextRegDate">작성일자 :${forest.forestInformRegDate }</h5>
 	 					<h2 class="forestInformTextForm">
 						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText }>
 					 	</h2>
