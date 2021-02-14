@@ -184,6 +184,8 @@ input[type=file] {
          var postWriter = `\${treeName}#\${profileName}`;
          var postDetail = $("#postDetail").val();
      	 var postState = $("[name='postState']").val();
+     	alert(postTreeNo);
+     	 alert(treeName);
          $.ajax({
         	
         	 url : "/post/json/addPost/" ,
@@ -344,6 +346,7 @@ input[type=file] {
 		<input type="hidden" name="treeName" value="${tree.treeName}">
 		<input type="hidden" name="profileName" value="${profile.profileName}">
 		<input type="hidden"  name="menu" value="${menu}"/>
+		
 		<div class="container-sm" style="border: outset;">
 			<div class="row row-cols-3">
 

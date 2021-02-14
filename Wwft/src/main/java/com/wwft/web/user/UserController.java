@@ -152,8 +152,14 @@ public class UserController {
 		if( user.getPassword().equals(dbUser.getPassword())){
 			session.setAttribute("user", dbUser);
 		}
+		if(dbUser.getUserId().equals("admin")) {
+			return "redirect:/admin/admin.jsp";
+			
+		}else {
+			return "redirect:/profile/getProfileList";
+		}
 		
-		return "redirect:/profile/getProfileList";
+		
 	}
 	
 	

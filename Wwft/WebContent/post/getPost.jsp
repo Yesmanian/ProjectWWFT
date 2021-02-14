@@ -182,10 +182,12 @@ body {
 						<a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
 						
 						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
-						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />   
-	        			<!-- <input type="hidden" name="commentWriter" value="초초">  -->
-	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`"> --%> 
-	        			<input type="hidden" name="commentWriter" value="커피네#김커피">
+						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />  
+						<input type="hidden" name="profileNo" value="${profile.profileNo}">
+	        			<input type="hidden" name="treeName" value="${tree.treeName}">
+	        			<input type="hidden" name="profileName" value="${profile.profileName}">
+	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`">  --%>
+	        			<!-- <input type="hidden" name="commentWriter" value="커피네#김커피"> -->
 					</div>
 				</form>
 				<div>
@@ -254,12 +256,19 @@ body {
 		
 		function fn_comment(){
 			
+			 var commentTreeNo = $("[name='commentTreeNo']").val();
+			 var commentPostNo = $("[name='commentPostNo']").val();
+	    	 var profileName = $("[name='profileName']").val();
+	         var treeName	= $("[name='treeName']").val();
+	         var commentWriter = `\${treeName}#\${profileName}`;
+	         var commentDetail = $("#commentDetail").val();
 		   
 			$.ajax({
 
 					url : "/comment/json/addComment",
 					method : 'POST',
-					data : JSON.stringify($("#commentForm").serializeObject()),
+					data : JSON.stringify({commentTreeNo : commentTreeNo, commentPostNo : commentPostNo, commentWriter : commentWriter, commentDetail : commentDetail}),
+					/* data : JSON.stringify($("#commentForm").serializeObject()), */
 					dateType : "json",
 					headers : {
 						"Accept" : "application/json",
@@ -292,7 +301,7 @@ body {
 
 				/* var commentNo = $('input[name=commentNo]').val(); */
 				var postNo = $('input[name=commentPostNo]').val();
-				alert(commentNo);
+				//alert(commentNo);
 				$.ajax({
 
 					url : "/comment/json/removeComment/" + commentNo,
@@ -330,7 +339,7 @@ body {
 				 
 				var postNo = $('input[name=commentPostNo]').val();
 
-				
+				//alert(postNo);
 				
 				//alert("넘어오는지 확인중");
 			    $.ajax({
@@ -400,7 +409,7 @@ body {
 				
 					var profileName = $("[name='profileName']").val();
 				    var treeName	= $("[name='treeName']").val();
-				    
+				    var profileNo = $("[name='profileNo']").val();
 				    var noticeMessageType = '0';
 					var noticeMessageDetail ="게시글에 댓글이 달렸어요~";
 					var sender = `\${treeName}#\${profileName}`;
@@ -410,6 +419,7 @@ body {
 					alert(postNo);
 					alert(treeNo);
 					alert(sender);
+					alert(profileNo);
 					
 					 
 				    $.ajax({
@@ -417,7 +427,7 @@ body {
 				        url : "/noticeMessage/json/sendNoticeMessage",
 				        method :'POST',
 				        data : JSON.stringify({noticeMessageType : noticeMessageType, noticeMessageDetail : noticeMessageDetail,
-				        	sender : sender, postNo: postNo, treeNo : treeNo }),
+				        	sender : sender, postNo: postNo, treeNo : treeNo, profileNo : profileNo }),
 				        dateType : "json",
 				        headers : {
 							"Accept" : "application/json",

@@ -34,7 +34,7 @@ public class CommentRestController {
 		
 		/* comment.setCommentTreeNo(1); */
 		/* comment.setCommentWriter("ÃÊÃÊ"); */
-		
+		System.out.println("commentW!!!!!!!!!!!!11 : "+comment.getCommentWriter());
 	
 	    commentService.addComment(comment);
 		System.out.println("¿©±â´Â addcontroller  commentService°¬´Ù¿È");

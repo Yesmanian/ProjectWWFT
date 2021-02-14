@@ -58,7 +58,7 @@
           });//시간설정
 
           $('input[name=dow]').on('click', function () {
-            alert($(this).val())
+            // alert($(this).val())
 
           })
           //반복일정 눌렀을떄
@@ -75,7 +75,7 @@
           });
           //반복일정 눌렀을때
           $("select[name=freq]").change(function () {
-            alert($(this).val())
+            // alert($(this).val())
             if ($(this).val() == "yearly") {//매년을 선택시  매월,매주 form tag를 비활성화 시키고 하이드 시킨다.
               $(".dom").hide();
               $('.dom').attr('disabled', true);
@@ -206,7 +206,7 @@ function getLocation() {
 		latitude = position.coords.latitude;
         longitude = position.coords.longitude;
         let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=\${latitude},\${longitude}&key=\${KEY}&language=en`
-        alert(url)
+        // alert(url)
   fetch(url)
   .then(Response=>Response.json())
   .then(data=>{
@@ -217,8 +217,8 @@ function getLocation() {
 .catch(Error=>console.warn(Error.message));
 
 
-        alert(latitude);
-  alert(longitude);
+        // alert(latitude);
+  // alert(longitude);
 		// alert(latitude + ' ' + longitude);
 	  }, function(error) {
 		console.error(error);
@@ -245,7 +245,7 @@ function getLocation() {
   
     function createCityName(city){
      let cityName=city;
-      alert(cityName)
+      // alert(cityName)
 
       window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 11, city_name : cityName,appid: '9757e2feaa36992cfefe1fef3b91199d',units: 'metric',containerid: 'openweathermap-widget-11',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
       
