@@ -50,7 +50,7 @@ public class UserController {
 	
 	
 	@RequestMapping( value = "addUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute() User user,@ModelAttribute Tree tree) throws Exception{
+	public String addUser(@ModelAttribute("user") User user,@ModelAttribute("tree") Tree tree) throws Exception{
 		System.out.println("/user/addUser: POST");
 		System.out.println(user);
 		System.out.println(tree);

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.wwft.service.mail.MailService;
 
-//@Service("mailServiceImpl")
+@Service("mailServiceImpl")
 public class MailServiceImpl implements MailService {
 	// org.springframework.mail.javamail.JavaMailSender
 

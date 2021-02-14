@@ -24,6 +24,9 @@ public interface UserService {
 			
 		// 아이디 찾기
 		public void findId(User user) throws Exception ;
+		
+		//email 인증
+		public User findEmail(String email) throws Exception ;
 
 		// 비밀번호  찾기
 		public void findPassword(User user) throws Exception ;
