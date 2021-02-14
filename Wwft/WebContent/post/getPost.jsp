@@ -67,7 +67,7 @@ body {
 							</div>
 							<div class="ml-2">
 								<!-- <div class="h5 m-0">@LeeCross</div> -->
-								<div class="h7 text-muted">커피네#김커피</div>
+								<div class="h7 text-muted">${post.postWriter}<h4>${post.postRegDate}</h4></div>
 							</div>
 						</div>
 						<div>
@@ -288,9 +288,9 @@ body {
 		
 		
 			/* 댓글 삭제하기(Ajax) */
-			function remove_comment() {
+			function remove_comment(commentNo) {
 
-				var commentNo = $('input[name=commentNo]').val();
+				/* var commentNo = $('input[name=commentNo]').val(); */
 				var postNo = $('input[name=commentPostNo]').val();
 				alert(commentNo);
 				$.ajax({

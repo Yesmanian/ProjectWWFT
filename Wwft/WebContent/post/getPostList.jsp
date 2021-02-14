@@ -387,7 +387,7 @@ img {
 
   <!-- <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"> -->
   	<input type="hidden" id="currentPage" name="currentPage" value=""/>
-  	<select class="form-control" name="sel" id ="sel">
+  	<select class="form-control" name="sel" id ="sel" style="width: 50%">
   	
   			<option value="">기본</option>
   			<c:set var ="i" value ="0"/>
@@ -397,16 +397,18 @@ img {
             </c:forEach>
         </select>
   <!-- </h1> -->
+		 <!-- <button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-primary">게시글 쓰기</button> -->
+  
   
   <hr class="mt-2 mb-5">
 
-	 	
+	 	<button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-primary">게시글 쓰기</button>
 		  <div class="row text-center text-lg-left">
 			<c:forEach var="post" items ="${list}">
-		    <div class="col-lg-3 col-md-4 col-6">
+		    <div class="col-lg-3 col-md-4 col-6" style="width:40%; height: 40%">
 		     ${post.postRegDate} 
-		      <a href="/post/getPost?postNo=${post.postNo}" class="d-block mb-4 h-100">
-		            <img class="img-fluid img-thumbnail" src="/resources/images/uploadFiles/${post.firstImageName}" alt="" style="width: 200; height: 200;">
+		      <a href="/post/getPost?postNo=${post.postNo}" class="d-block mb-4 h-70">
+		            <img class="img-fluid img-thumbnail" src="/resources/images/uploadFiles/${post.firstImageName}" alt="" style="width: 400px; height: 200px;">
 		      </a>
 		     
 		    </div>

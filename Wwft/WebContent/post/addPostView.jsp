@@ -13,7 +13,7 @@
 
 <title>게시글 작성</title>
 <style type="text/css">
- html,
+/*  html,
 
 body {
 
@@ -27,7 +27,7 @@ body {
     
      background-size: cover;
 
-} 
+} */ 
 /* 		
 body {
     margin: 0;
@@ -178,6 +178,7 @@ input[type=file] {
          alert("한개이상의 파일을 선택해주세요.");
          return false;
      } else {
+    	 var postTreeNo = $("[name='treeNo']").val();
     	 var profileName = $("[name='profileName']").val();
          var treeName	= $("[name='treeName']").val();
          var postWriter = `\${treeName}#\${profileName}`;
@@ -187,7 +188,7 @@ input[type=file] {
         	
         	 url : "/post/json/addPost/" ,
         	 method : "POST" ,
-        	 data :  JSON.stringify({postDetail : postDetail, postState : postState ,postWriter : postWriter}) ,
+        	 data :  JSON.stringify({postDetail : postDetail, postState : postState ,postWriter : postWriter ,postTreeNo : postTreeNo}) ,
         	 dateType : "json" ,
         	 headers : {
     				"Accept" : "application/json",
@@ -337,13 +338,13 @@ input[type=file] {
 	</header>
 
 	<div>
-	<form id="form" enctype="multipart/form-data" method="post">
+	<form id="form" enctype="multipart/form-data" method="post" style="margin-top: 100px;">
 
 		<input type="hidden" name="treeNo" value="${tree.treeNo}">
 		<input type="hidden" name="treeName" value="${tree.treeName}">
 		<input type="hidden" name="profileName" value="${profile.profileName}">
 		<input type="hidden"  name="menu" value="${menu}"/>
-		<div class="container-sm">
+		<div class="container-sm" style="border: outset;">
 			<div class="row row-cols-3">
 
 				<div class="col-2"></div>
@@ -426,7 +427,7 @@ input[type=file] {
 
 				<div class="col-2"></div>
 				<div class="col-8">
-					<button type="button" class="btn btn-primary" data-toggle="modal"
+					<!-- <button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModal">앨범생성</button>
 					<div class="modal fade" id="exampleModal" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -461,7 +462,7 @@ input[type=file] {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 
