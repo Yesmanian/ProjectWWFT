@@ -1,6 +1,8 @@
 package com.wwft.web.forest;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Post;
 import com.wwft.service.forest.ForestService;
+import com.wwft.service.post.PostService;
+import com.wwft.service.tree.TreeService;
 
 @RestController
 @RequestMapping("/forest/*")
@@ -23,6 +28,14 @@ public class ForestRestController {
 	@Autowired
 	@Qualifier("forestServiceImpl")
 	private ForestService forestService;
+	
+	@Autowired
+	@Qualifier("postServiceImpl")
+	private PostService postService;
+	
+	@Autowired
+	@Qualifier("treeServiceImpl")
+	private TreeService treeService;
 	
 	//Constructor
 	public ForestRestController() {
@@ -93,15 +106,30 @@ public class ForestRestController {
 		System.out.println(restMap.get("pageNumber"));
 		
 		//Business Logic
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("postList", forestService.getPostRestList(
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("postList", forestService.getPostRestList(
 				(Integer)restMap.get("forestNo"),(Integer)restMap.get("pageNumber")));
-		System.out.println(map);
-		
-		
-		
+		System.out.println(postMap);
+		System.out.println(((List)((Map<String, Object>)postMap.get("postList")).get("list")).size());
+		//Post Business Logic
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		for (int i = 0; i < ((List)((Map<String, Object>)postMap.get("postList")).get("list")).size(); i++) {
+			System.out.println(((Post)((List)((Map<String, Object>)postMap.get("postList")).get("list")).get(i)).getPostNo());
+			map = postService.getPost(((Post)((List)((Map<String, Object>)postMap.get("postList")).get("list")).get(i)).getPostNo());
+			
+			Post post = (Post)map.get("post");
+			String treeName = treeService.getUserTree(post.getPostTreeNo()).getTreeName();
+			System.out.println(treeName);
+			List<String> fileList = (List<String>)map.get("fileList");
+			
+			resultMap.put("post"+i, post);
+			resultMap.put("fileList"+i, fileList);
+			
+		}
+		System.out.println(resultMap);
 		System.out.println("/forest/json/getPostList End..");
-		return map;
+		return resultMap;
 		
 	}
 	
