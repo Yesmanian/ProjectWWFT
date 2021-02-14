@@ -5,6 +5,8 @@ package com.wwft.service.user.test;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,8 @@ import com.wwft.service.user.UserService;
 										"classpath:config/context-mybatis.xml",
 										"classpath:config/context-transaction.xml"})
 public class UserServiceTest {
+	
+	private final static Logger LOGGER = Logger.getLogger(UserServiceTest.class);
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
@@ -50,17 +54,23 @@ public class UserServiceTest {
 		user = userService.getUser("testUserId");
 	}
 		
-	//@Test
+//	@Test
 	public void testGetUser() throws Exception {
 			
-		User user = new User();
-		user.setUserId("testUserId5");
-		user.setPassword("test12345");
-		user.setEmail("test5@gmail.com");
-		user.setUserState("1");
+		BasicConfigurator.configure();
 		
-		user = userService.getUser("testUserId");
-			
+		boolean result = false;
+		
+		
+		
+		
+	User user = userService.getUser("abc");
+	if(user!=null) {
+		result=true;
+	}else {
+		result=false;
+	}
+		LOGGER.debug("[DEBUG]'userIdCheck' :"+result);
 		
 	 }
 	//@Test
@@ -102,7 +112,7 @@ public class UserServiceTest {
 //				
 //	}
 
-	 @Test
+//	 @Test
 	 public void testGetUserList() throws Exception{
 		 
 	 	List<User> list = userService.getUserList();
@@ -114,5 +124,20 @@ public class UserServiceTest {
 	 	
 	}	 
 
+	 @Test
+	 public void emailCheck() throws Exception{
+			BasicConfigurator.configure();
+			boolean result = false;
+			String email = "shwlsdn123@naver.com";
+		User user = userService.findEmail(email);
+			if(user!=null) {
+				result = false; // 이미 email 사용중
+			}else {
+				result = true;
+			}
+			
+			LOGGER.debug("[checkEmail]"+result);
+		 
+	 }
 }
 	 

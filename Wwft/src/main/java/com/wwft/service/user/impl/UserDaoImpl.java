@@ -68,6 +68,12 @@ public class UserDaoImpl implements UserDao {
 	public void removeUser(User user) throws Exception {
 		sqlSession.delete("UserMapper.removeUser", user);
 	}
+	//email¿Œ¡ı
+	@Override
+	public User findEmail(String email) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("UserMapper.findEmail", email);
+	}
 
 	
 }

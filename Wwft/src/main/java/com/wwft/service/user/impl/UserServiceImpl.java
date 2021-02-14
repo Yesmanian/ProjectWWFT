@@ -87,6 +87,11 @@ public class UserServiceImpl implements UserService{
 	public void removeUser(User user) throws Exception {
 		userDao.removeUser(user);
 	}
+	//email ¿Œ¡ı
+	@Override
+	public User findEmail(String email) throws Exception {
+		return userDao.findEmail(email);
+	}
 
 
 

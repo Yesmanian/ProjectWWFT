@@ -32,6 +32,14 @@
 		FROM users 
 		WHERE user_id = #{value}
 		ORDER BY user_id
+	 </select>  
+	 
+	 
+	 <select 	id="findEmail"	parameterType="string"	resultMap="userSelectMap">
+		SELECT
+			 email 		
+		FROM users 
+		WHERE email = #{value}
 	 </select> 
 	 
 	 
@@ -39,8 +47,8 @@
 	<update	id="updateUser"	parameterType="user" >
 	   	UPDATE users
 	   	<set>
-	   		tree_name = #{treeName},
-			password = #{password}
+	   		tree_no = #{treeNo},
+			password = #{password},
 			user_id = #{userId}
 	   	</set>
 	   	

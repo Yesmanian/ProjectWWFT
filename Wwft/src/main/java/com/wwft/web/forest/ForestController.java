@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wwft.service.domain.Forest;
 import com.wwft.service.forest.ForestService;
 import com.wwft.service.noticemessage.NoticeMessageService;
+import com.wwft.service.post.PostService;
 
 @Controller
 @RequestMapping("/forest/*")
@@ -32,6 +33,10 @@ public class ForestController {
 	@Qualifier("noticeMessageServiceImpl")
 	private NoticeMessageService noticeMessageService;
 	
+	@Autowired
+	@Qualifier("postServiceImpl")
+	private PostService postService;
+	
 	public ForestController() {
 		System.out.println("::"+this.getClass()+"default ForestController Constructor..");
 		
@@ -43,7 +48,7 @@ public class ForestController {
 		System.out.println("/getForest Start...");
 		
 		
-		//Business Logic
+		//Business /Logic
 		Forest forest = forestService.getForest(forestNo);
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);

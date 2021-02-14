@@ -32,8 +32,8 @@ public class CommentRestController {
 		
 		System.out.println("/comment/addComment : POST");
 		
-		comment.setCommentTreeNo(1);
-		comment.setCommentWriter("段段");
+		/* comment.setCommentTreeNo(1); */
+		/* comment.setCommentWriter("段段"); */
 		
 	
 	    commentService.addComment(comment);

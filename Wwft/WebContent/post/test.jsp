@@ -13,35 +13,42 @@
 
 
  
-<html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>getPost화면</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <!-- <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> -->
-    <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
-  <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
- <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>  -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-    <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
-  <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
- <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>  -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+   
 <style type="text/css">
 	
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;}
+body {
+            background-color: #eeeeee;
+        }
+
+        .h7 {
+            font-size: 0.8rem;
+        }
+
+        .gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+
+        @media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+
+        /**Reset Bootstrap*/
+        .dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
 
 /* Slideshow container */
 .slideshow-container {
@@ -140,30 +147,205 @@ img {vertical-align: middle;}
 
 </head>
 <body>
-<form action="uploadFormAction.jsp" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="postNo" value="${post.postNo}">
-	<input type="hidden"  name="menu" value="${menu}" />
+
+	<header id="wrap">
+
+		<jsp:include page="../common/navBar.jsp" />
+
+	</header>
+	<form action="uploadFormAction.jsp" method="post"
+		enctype="multipart/form-data" style="text-align: -webkit-center">
+		<input type="hidden" name="postNo" value="${post.postNo}"> <input
+			type="hidden" name="menu" value="${menu}" /> <input type="hidden"
+			name="treeName" value="${tree.treeName}"> <input
+			type="hidden" name="profileName" value="${profile.profileName}">
 
 
-<div class="slideshow-container shadow-lg bg-white">
-<c:set var ="i" value="0"/>
-<c:forEach var="file" items="${fileList}">
-	<c:set var ="i" value="${i+1}"/>
-		<div class="mySlides fade">
-		  <div class="numbertext">1 / 3</div>
-		  <img src = "/resources/images/uploadFiles/${file}" style=" width:50%; display: block; margin: 0px auto;">
-	</div>
-</c:forEach>
-
-  
-
-
-<!-- "C:\\uploadFiles\\"; -->
+		<%-- <div class="slideshow-container shadow-lg bg-white" style="width: 60%">
+			<c:set var="i" value="0" />
+			<c:forEach var="file" items="${fileList}">
+				<c:set var="i" value="${i+1}" />
+				<div class="mySlides fade">
+					<div class="numbertext">1 / 3</div>
+					<img src="/resources/images/uploadFiles/${file}"
+						style="width: 50%; display: block; margin: 0px auto;">
+				</div>
+			</c:forEach> --%>
 
 
+			<!--- \\\\\\\Post-->
+			<div class="card gedf-card" style="width: 60%">
+				<div class="card-header">
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="mr-2">
+								<!-- <img class="rounded-circle" width="45"
+									src="https://picsum.photos/50/50" alt=""> -->
+							</div>
+							<div class="ml-2">
+								<!-- <div class="h5 m-0">@LeeCross</div> -->
+								<div class="h7 text-muted">커피네#김커피</div>
+							</div>
+						</div>
+						<div>
+							<div class="dropdown">
+								<button class="btn btn-link dropdown-toggle" type="button"
+									id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<i class="fa fa-ellipsis-h"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="gedf-drop1">
+									<div  style="text-align-last: center;">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				 	 신고
+				</button>
+			</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="card-body">
+					<!-- 슬라이드 start -->
+			<div class="" style="margin-left: 60px; margin-right: 60px;">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<c:set var ="i" value ="0"/>
+			  			<c:forEach var ="file" items="${fileList}">
+				  			<c:set var ="i" value="${i+1}"/>
+				  			<li data-target="#carouselExampleIndicators" data-slide-to="${i}" id ="liList"></li>
+  						</c:forEach>
+						<!-- <li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+					</ol>
+					<div class="carousel-inner" style="width: 500px;">
+						<c:set var="i" value="-1" />
+						<c:forEach var="file" items="${fileList}">
+							<c:set var="i" value="${i+1}" />
+							<c:choose>
+								<c:when test="${i eq 0}">
+								    <div class="carousel-item active">
+										<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="..." style=" height: 400px;">
+									</div>
+								    </c:when>
+								
+								  <c:otherwise>
+								       <div class="carousel-item">
+											<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="..." style=" height: 400px;">
+										</div>
+								   </c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<%-- <c:forEach var="file" items="${fileList}">
+							<div class="carousel-item active">
+								<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="...">
+							</div>
+						</c:forEach> --%>
+						<!-- <div class="carousel-item">
+							<img src="/resources/images/uploadFiles/4f9e8cf8-f435-4634-9196-30a9eabea543_8.jpg" class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/resources/images/uploadFiles/4f9e8cf8-f435-4634-9196-30a9eabea543_8.jpg" class="d-block w-100" alt="...">
+						</div> -->
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>  
+					<!-- 게시글Start -->
+			<div>
+				<div>
+					<p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p>
+				</div>
+						
+				<div style="text-align:center;">
+					<p style="width:500px; display: block; margin: 0px auto;">
+						${post.postDetail}
+					</p>
+				</div>
+			</div>	
+			<!-- 게시글END -->
+				<div class="card-footer">
+					<!-- 댓글start -->
+			<div>
+				<form id="commentForm" name="commentForm" method="post" style="float: left; width: 100%;">
+					 <p><span ><strong>Comment</strong></span>  <span id="cCnt"></span></p>
+					<div>
+						<textarea style="width: 80%" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
+						<a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
+						
+						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
+						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />   
+	        			<!-- <input type="hidden" name="commentWriter" value="초초">  -->
+	        			<input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`"> 
+	        			
+					</div>
+				</form>
+				<div>
+					<form id="commentListForm" name="commentListForm" method="post" style="width: 80%;margin-left: 5%;">
+						<div id="commentList">
+			       
+			        	</div>
+					</form>
+				</div>
+			</div>
+			<!-- 댓글END -->
+				</div>
+			</div>
+			
+			
+			<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		     	 	<div class="modal-body">
+		        		<div class="form-group">
+				    		<label for="exampleFormControlSelect1">신고 내용</label>
+				    		<select class="form-control" id="exampleFormControlSelect1">
+						      <option value="0">욕설</option>
+						      <option value="1">음란물</option>
+						      <option value="2">도박</option>
+						      <option value="3">아동학대</option>
+				    		</select>
+				  		</div>
+		      		</div>
+		      		<div class="modal-footer">
+		    			<input Type="hidden" value='$("#exampleFormControlSelect1 option:selected").val();'>  
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				        <button type="button"  onClick="fn_addReport()" class="btn btn-primary">신고하기</button>
+		      		</div>
+		    	</div>
+		  	</div>
+		</div>
+	
+		<!-- Modal -->
+			<!-- Post /////-->
+
+			<!-- "C:\\uploadFiles\\"; -->
 
 
-<!-- <div class="mySlides fade">
+
+
+			<!-- <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
   <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_11.jfif" style=" width:50%; display: block; margin: 0px auto;">
 </div>
@@ -177,59 +359,71 @@ img {vertical-align: middle;}
   <div class="numbertext" >3 / 3</div>
   <img src="/resources/images/uploadFiles/385b48a9-ab0a-42ba-bb6d-26ef48d5d29b_14.jfif" style=" width:50%; display: block; margin: 0px auto;">
 </div> -->
-</div>
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		<%-- </div>
+		<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next"
+			onclick="plusSlides(1)">&#10095;</a>
 
-<!-- </div> -->
-<br>
+		<!-- </div> -->
+		<br>
 
-<div style="text-align:center">
-  <span class="dot"  onclick="currentSlide(1)"></span> 
-  <span class="dot"  onclick="currentSlide(2)"></span> 
-  <span class="dot"  onclick="currentSlide(3)"></span> 
-  
-  <p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p>
-  <button type="button" class="btn btn-danger" style="">신고</button>
-</div>
+		<div style="text-align: center">
+			<span class="dot" onclick="currentSlide(1)"></span> <span class="dot"
+				onclick="currentSlide(2)"></span> <span class="dot"
+				onclick="currentSlide(3)"></span>
 
-<div style="text-align:center;">
-<p style="width:500px; display: block; margin: 0px auto;">
-${post.postDetail}
-</p>
-</div>
-</form>
- </tr></tr></tr> </tr></tr>
-   
-  
- 
-
-<div class="container" style=" width:50%; display: block; margin: 0px auto;">
-	<form id="commentForm" name="commentForm" method="post">
-	<div class="shadow-lg p-4 mb-2 bg-white author" style=" width:50%; display: block; margin: 0px auto;">
-		  <p><span ><strong>Comment</strong></span>  <span id="cCnt"></span></p> 
-       <textarea style="width: 500px" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
-                <!-- <div> -->
-            <a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
-               <!--  </div> -->
-       
-        <input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />   
-        <input type="hidden" name="commentWriter" value="초초"> 
-    </form>
-			 
-			</div>
-		   </div><!--/ col-lg-3 -->
-		   <div class="container"  style=" width:500px; display: block; margin: 0px auto;">
-		    <form id="commentListForm" name="commentListForm" method="post">
-		        <div id="commentList">
-		       
-		        </div>
-    		</form>
+			<p style="display: block; margin: 0px auto;">
+			<h4>${post.postRegDate}</h4>
+			</p>
+			<button type="button" class="btn btn-danger" style="">신고</button>
 		</div>
-</div>
+
+		<div style="text-align: center;">
+			<p style="width: 500px; display: block; margin: 0px auto;">
+				${post.postDetail}</p>
+		</div>
 	</form>
-	
- <script type="text/javascript">
+	</tr>
+	</tr>
+	</tr>
+	</tr>
+	</tr>
+
+
+
+
+	<div class="container"
+		style="width: 50%; display: block; margin: 0px auto;">
+		<form id="commentForm" name="commentForm" method="post">
+			<div class="shadow-lg p-4 mb-2 bg-white author"
+				style="width: 50%; display: block; margin: 0px auto;">
+				<p>
+					<span><strong>Comment</strong></span> <span id="cCnt"></span>
+				</p>
+				<textarea style="width: 500px" rows="2" cols="50" id="commentDetail"
+					name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
+				<!-- <div> -->
+				<a href='#' onClick="fn_comment('${post.postNo}'); return false;"
+					class="btn btn-link" style="text-decoration: none">등록</a>
+				<!--  </div> -->
+
+				<input type="hidden" id="postNo" name="commentPostNo"
+					value="${post.postNo} " /> <input type="hidden"
+					name="commentWriter" value="초초">
+		</form>
+
+	</div>
+	</div>
+	<!--/ col-lg-3 -->
+	<div class="container"
+		style="width: 500px; display: block; margin: 0px auto;">
+		<form id="commentListForm" name="commentListForm" method="post">
+			<div id="commentList"></div>
+		</form>
+	</div>
+	</div> --%>
+	</form>
+
+	<script type="text/javascript">
  var slideIndex = 1;
  showSlides(slideIndex);
 
@@ -403,7 +597,7 @@ ${post.postDetail}
 	    });
 	}
 
-</script> 
+</script>
 </body>
 
 </html>

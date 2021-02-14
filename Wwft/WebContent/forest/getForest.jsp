@@ -60,6 +60,11 @@ li:hover {
                 margin-bottom: 2.77rem;
             }
         }
+.dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+
 .col-md-6{
 	height: 500px;
 	overflow: auto;
@@ -131,7 +136,7 @@ li:hover {
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패6")
 				}
 			})
 			
@@ -191,7 +196,7 @@ li:hover {
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패7")
 				}
 			})
 		
@@ -295,8 +300,10 @@ ${forest}
             <div class="col-md-6 gedf-main">
 
                 <!--- \\\\\\\Post-->
-                <iframe src="/post/getPost?postNo=1"></iframe>
-                <div class="card gedf-card">
+                <!-- 
+                <iframe src="/post/getPost?postNo=1" width="390px" height="100%"  scrolling="auto" frameborder="0" align="middle" marginwidth="100px"></iframe>
+                 -->
+                <!-- <div class="card gedf-card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -344,11 +351,11 @@ ${forest}
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Post /////-->
 
                 <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
+                <!-- <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -356,8 +363,8 @@ ${forest}
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">@LeeCross</div>
-                                    <div class="h7 text-muted">Miracles Lee Cross</div>
+                                    <div class="h5 m-0">{profileName}</div>
+                                    <div class="h7 text-muted">{treeName}</div>
                                 </div>
                             </div>
                             <div>
@@ -379,7 +386,7 @@ ${forest}
                     <div class="card-body">
                         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
                         <a class="card-link" href="#">
-                            <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                            <h5 class="card-title">\${postList }</h5>
                         </a>
 
                         <p class="card-text">
@@ -393,10 +400,10 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post /////
 
 
-                <!--- \\\\\\\Post-->
+                - \\\\\\\Post
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -454,10 +461,10 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post /////
 
 
-                <!--- \\\\\\\Post-->
+                - \\\\\\\Post
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -506,7 +513,7 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                <!-- Post /////-->
+                Post ///// -->
 
 
 
@@ -555,6 +562,7 @@ ${forest}
  Hello GetForest.jsp<br/>
  <div>
 	 ${forest}
+	
  </div><br/>
  
  <div>
@@ -597,13 +605,14 @@ var restLoadMore = function(list){
 	}	
 }
 
-var restLoadPostMore = function(list){
+var restLoadPostMore = function(postList,fileList){
 	
-	for (var post in list){
-		var item = document.createElement('li');
-		item.innerText = list[post].postNo;
-		var postNo = list
-	}
+	$(".col-md-6").append(`
+			
+			 <iframe src="/post/getPost&postNo=${postList.postNo }"></iframe>
+			
+		`);
+	
 	
 	
 }
@@ -647,17 +656,27 @@ window.onload = function(){
 		success : function(res,status){
 			
 			
-			//alert(status)
-			//alert(res.treeList.list[0].treeName)
-			//alert(res.treeList.list[2].treeName)
-			var list = res.postList.list;
-			alert(list[0].postNo)
-			restLoadPostMore(list);
+			
+			//var postList = res.post0;
+			//var fileList = res.fileList0;
+			var postList = 
+					{'postNo' : 3, 'postRegDate':'2021-02-04' , 'postDetail':123, 'postWriter':'초초', 'postState':0, 'postTreeNo':1, 'checkboxState':null, 'albumName':null, 'firstImageName':null, 'profileNo':0};	
+				
+			var fileList = ['1.jpg', '2.jpg', '3.jpg'];
+			
+
+			alert(postList.postNo)
+			alert(fileList[0])
+			//alert(postList.postNo)
+			//alert(fileList[0])
+			restLoadPostMore(postList,fileList);
+			
+		
 			
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패1")
 		}
 	})
 	
@@ -692,9 +711,12 @@ window.onload = function(){
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패2")
 		}
 	})
+	
+	
+	
 	
 	
 	
@@ -741,7 +763,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 			
 		},
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
-			alert("통신 실패")
+			alert("통신 실패3")
 		}
 	})
 	
@@ -859,7 +881,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 					
 				},
 				error :  function(XMLHttpRequest, textStatus,errorThrown){
-					alert("통신 실패")
+					alert("통신 실패4")
 				}
 			}) 
 			
@@ -872,7 +894,8 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
  	post
  	<script type="text/javascript">
  		//RestPost
- 		
+ 		//postRest
+	
  	</script>
  	
  
