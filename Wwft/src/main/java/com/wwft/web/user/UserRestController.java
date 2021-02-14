@@ -125,5 +125,29 @@ public class UserRestController {
 			return  mailService.send(subject, sb.toString(), "WWFT<mybark7@gmail.com>", email, null);
 		}
 	    
+	    @RequestMapping( value="json/checkJoinCode", method=RequestMethod.POST )
+		public boolean checkJoinCode(@RequestParam String userJoinCode, HttpSession session) throws Exception{
+	    	
+	    	boolean result;
+	    	
+	    	BasicConfigurator.configure();
+	    	LOGGER.debug("[DEBUG] json/checkJoinCode :'POST' ");
+		        String joinCode = (String)session.getAttribute("joinCode");
+		    LOGGER.debug("[DEBUG] userJoinCode :'"+userJoinCode+"'\njoinCode : '"+joinCode+"'");
+		        if(joinCode.equals(userJoinCode)) {
+		        	result = true;
+		        	
+		        }else {
+		        	result = false;
+		        	
+		        }
+		       
+	    	
+	    	
+			
+		
+			return result;
+		}
+	    
 	
 	}

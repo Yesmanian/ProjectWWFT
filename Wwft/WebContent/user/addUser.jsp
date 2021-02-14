@@ -27,8 +27,20 @@
 	</head>
 
 	<script>
+		//회원가입 flag 전역 변수 선언
+			let isUserId=false;
+			let isUserEmail=false;
+			let isUserPassword=false;
+			let isUserJoinCode=false;
 
 		$(document).ready(function () {
+
+
+			
+			
+
+
+
 
 			//email 유효성 체크
 			function chkEmail(str) {
@@ -70,10 +82,12 @@
 	            // alert('성공')
 	            //  alert(JSON.stringify(data))
 	            if(data==true){
+					isUserId=true;
 					$('input[name=userId]').removeClass('is-invalid');
 					$('input[name=userId]').addClass('is-valid');
 					$('dd[name=userId]').html(`\${userId}는 사용가능한 아이디 입니다.`).css("color","green")
 	            }else{
+					isUserId=false;
 					$('input[name=userId]').removeClass('is-valid');
 					$('input[name=userId]').addClass('is-invalid');
 					$('dd[name=userId]').html(`\${userId}는 이미 사용중인 아이디 입니다.`).css("color","red")
@@ -91,7 +105,7 @@
 	}
 
 				})//end Keyup
-
+				// bluer 와 focus
 				//id input blur()
 
 				$(document).on('blur',"input[name=userId]",function(){
@@ -116,6 +130,34 @@
 				//id input forcus()
 				$(document).on('focus',"input[name=email]",function(){
 					$('dd[name=email]').show()
+
+
+				})
+
+				$(document).on('blur',"input[name=joinCode]",function(){
+					$('dd[name=joinCode]').hide()
+
+
+				})
+
+				//id input forcus()
+				$(document).on('focus',"input[name=joinCode]",function(){
+					$('dd[name=joinCode]').show()
+
+
+				})
+
+				//password 안내
+				$(document).on('focus',"input[name=password]",function(){
+					$('dd[name=password]').show()
+					$('dd[name=password]').html(`비밀번호는 비밀번호는 6글자 이상, 16글자 이하여야 하며,<br/>
+					특수문자 !,@,#,$,%를 반드시 포함하여야합니다. `).css('color','blue');
+
+
+				})
+
+				$(document).on('blur',"input[name=password]",function(){
+					$('dd[name=password]').hide()
 
 
 				})
@@ -145,12 +187,14 @@
 	            // alert('성공')
 	            //  alert(JSON.stringify(data))
 	            if(data==true){
+					isUserEmail=true;
 
 					$('input[name=email]').removeClass('is-invalid');
 					$('input[name=email]').addClass('is-valid');
 					$('dd[name=email]').html(`\${email}는 사용가능한 Email 입니다.`).css("color","green");
 					$('#sendEmailAuth').show();//인증코드 발송버튼창 show
 	            }else{
+					isUserEmail=false;
 					$('input[name=email]').removeClass('is-valid');
 					$('input[name=email]').addClass('is-invalid');
 					$('dd[name=email]').html(`\${email}는 이미 사용중인 Email 입니다.`).css("color","red");
@@ -183,8 +227,9 @@
 
 				//발송 버튼을 누르면
 				$(document).on("click","#sendEmailAuth",function() {
-					$( '#joinCode' ).prop( "disabled", true );//disable
-					$('input[joinCode]').attr("placeholder", "인증코드 발송 중입니다.");
+					$('input[name=joinCode]').prop( "disabled", true );//disable
+					$('input[name=joinCode]').attr("placeholder", "인증코드 발송 중입니다.");
+					$('#joinCodeButton').hide();
 					$('#joinCode').show()
 				let email = $("input[name=email]").val();
 					
@@ -199,11 +244,14 @@
 	            // alert('성공')
 	            //  alert(JSON.stringify(data))
 	            if(data==true){
+					// alert("전송성공")
+					$('input[name=joinCode]').prop( "disabled", false );//disable
+					$('input[name=joinCode]').attr("placeholder", "인증코드를 입력해주세요.");
+					$('#joinCodeButton').show();
 					
-					alert("전송성공")
 				
 	            }else{
-					alert("전송실패")
+					alert("전송실패 다시 전송해주세요")
 				}
 		
                 }
@@ -213,12 +261,55 @@
 
 
 				})//end sendEmailAuth
+		//인증하기 버튼 클릭시
+		$(document).on('click','#joinCodeButton',function(){
 
+			let userJoinCode = $.trim($('input[name=joinCode]').val());
+			if(userJoinCode!=''){
+				// alert(userJoinCode);
+			}
 
+			//session의 코드와 회원이 입력한 코드간 비교
+			$.ajax({
+	        url: `/user/json/checkJoinCode`,
+	        type: 'POST',
+	        data: { userJoinCode: userJoinCode },
+	        dataType: 'json',
+	       
+	    success: function (data, status) {
+	            // alert('성공')
+	            //  alert(JSON.stringify(data))
+	            if(data==true){
+					// alert("일치")
+					isUserJoinCode=true;
+					$('input[name=joinCode]').removeClass('is-invalid');
+					$('input[name=joinCode]').addClass('is-valid');
+					$('dd[name=joinCode]').html('인증 완료').css("color","green");
+					
+					// $('input[name=joinCode]').prop( "disabled", false );//disable
+					// $('input[name=joinCode]').attr("placeholder", "인증코드를 입력해주세요.");
+					// $('#joinCodeButton').show();
+					
+				
+	            }else{
+					// alert("불일치")
+					isUserJoinCode=false;
+					$('dd[name=joinCode]').html(`\${userJoinCode}는 잘못된 인증번호입니다.`).css("color","red");
+					$('input[name=joinCode]').removeClass('is-valid');
+					$('input[name=joinCode]').addClass('is-invalid');
+					$('dd[name=joinCode]').show()
+				}
+		
+                }
+            }); // end ajax
+			
 
 		})
 
 
+		})
+
+		//비밀번호 유효성 체크
 		function check_pw() {
 
 			var pw = document.getElementById('pw').value;
@@ -242,15 +333,50 @@
 				&& document.getElementById('pw2').value != '') {
 				if (document.getElementById('pw').value == document
 					.getElementById('pw2').value) {
+					isUserPassword=true;
 					document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
 					document.getElementById('check').style.color = 'blue';
 				} else {
+					isUserPassword=false;
 					document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
 					document.getElementById('check').style.color = 'red';
 				}
 			}
 
 		}
+
+		$(document).on('click','#submitButton',function(){
+
+			if(isUserId==false){
+				alert('유효하지 않은 id입니다.다시입력 해주세요.')
+				return;
+			}
+			if(isUserEmail==false){
+				alert('유효하지 않은 email입니다.다시입력 해주세요.')
+				return;
+			}
+			if(isUserPassword==false){
+				alert('유효하지 않은 password입니다.다시입력 해주세요.')
+				return;
+			}
+			if(isUserJoinCode==false){
+				alert('잘못된 email인증입니다. 다시 인증 해주세요.')
+				return;
+			}
+			if($('input[name=countryId]').val().length>3){
+				alert('countryId는 ex)kr,uk,na 형식으로 입력 하셔야합니다.')
+				return;
+			}
+			// alert("email"+isUserEmail)
+			// alert("id"+isUserId)
+			// alert("pw"+isUserPassword)
+			// alert("code"+isUserJoinCode)
+
+			$('form').attr('method',"POST").attr("action","/user/addUser").submit();
+
+
+		})
+
 	</script>
 	
 	<body>
@@ -298,9 +424,10 @@
 							</div>
 							<input name="joinCode" class="form-control" placeholder="joinCode" type="text" >
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button">인증하기</button>
+								<button class="btn btn-outline-secondary" type="button" id="joinCodeButton">인증하기</button>
 							  </div>
 						</div>
+						<dd name="joinCode"></dd>
 
 						
 						<!-- form-group// -->
@@ -312,6 +439,7 @@
 							<input name="password"class="form-control" placeholder="Create password" type="password" id="pw"
 								onchange="check_pw()">
 						</div>
+						<dd name="password"></dd>
 
 						<div class="form-group input-group">
 							<div class="input-group-prepend">
@@ -342,7 +470,7 @@
 
 						<!-- form-group// -->
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-block">
+							<button type="button" id="submitButton" class="btn btn-primary btn-block">
 								Create Account</button>
 								<button type="submit" class="btn btn-primary btn-block" onclick="history.back(-1);">
 								back</button>
