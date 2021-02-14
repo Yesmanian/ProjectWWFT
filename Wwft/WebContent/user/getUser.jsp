@@ -31,6 +31,9 @@
 
 </head>
 <body>
+<header id="wrap"> 
+           <jsp:include page="../common/navBar.jsp"/>
+      </header>   
 <h3>내정보보기</h3>
 		<input type="hidden" id="userId" value="${user.userId}"></input>
 		<input type="hidden" id="treeNo" value="${tree.treeNo}"></input>

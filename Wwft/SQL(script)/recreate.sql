@@ -259,7 +259,6 @@ WHERE a.imgmin = i.image_and_like_no;
     INSERT INTO USERS values('user05', '5555' ,5, 'asa6sd@asd', 'user' ,  SYSDATE, null, 1);
     INSERT INTO USERS values('user06', '6666' ,6, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
     
-    
     나무정보
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
