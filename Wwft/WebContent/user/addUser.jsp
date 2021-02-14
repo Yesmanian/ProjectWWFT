@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 	<!DOCTYPE html>
 	<html>
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill"
-		viewBox="0 0 16 16">
-		<path
-			d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
-	</svg>
+
+	
 
 	<head>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 		<link rel=”stylesheet” href=”http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css“>
 		<meta charset="EUC-KR">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,21 @@
 		
 		<!------ Include the above in your HEAD tag ---------->
 
+		<style type="text/css">
 		
+		h1{
+		font-family: 'Anton', sans-serif;
+		}
+		
+		#foot{
+		 line-height: 400%;
+		
+		}
+		
+	
+		
+		
+		</style>
 		
 		
 	</head>
@@ -317,7 +331,17 @@
 			var check_SC = 0;
 
 			if (pw.length < 6 || pw.length > 16) {
-				window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+				Swal.fire({
+					  icon:'warning',
+					  title: '비밀번호 글자수 제한 오류!' ,
+					  text: '비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+				
+			
 				document.getElementById('pw').value = '';
 			}
 			for (var i = 0; i < SC.length; i++) {
@@ -326,7 +350,16 @@
 				}
 			}
 			if (check_SC == 0) {
-				window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '비밀번호 특수문자 오류!' ,
+					  text: '!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+				
 				document.getElementById('pw').value = '';
 			}
 			if (document.getElementById('pw').value != ''
@@ -348,23 +381,68 @@
 		$(document).on('click','#submitButton',function(){
 
 			if(isUserId==false){
-				alert('유효하지 않은 id입니다.다시입력 해주세요.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '유효하지 않은 ID입니다!' ,
+					  text: 'ID를 다시 입력해 주세요.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+				
 				return;
 			}
 			if(isUserEmail==false){
-				alert('유효하지 않은 email입니다.다시입력 해주세요.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '유효하지 않은 EMAIL입니다!' ,
+					  text: 'EMAIL을 다시 입력해 주세요.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+			
 				return;
 			}
 			if(isUserPassword==false){
-				alert('유효하지 않은 password입니다.다시입력 해주세요.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '유효하지 않은 PASSWORD입니다!' ,
+					  text: 'PASSWORD를 다시 입력해 주세요.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+			
 				return;
 			}
 			if(isUserJoinCode==false){
-				alert('잘못된 email인증입니다. 다시 인증 해주세요.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '잘못된 EMAIL입니다!' ,
+					  text: 'EMAIL을 다시 인증해 주세요.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+			
 				return;
 			}
 			if($('input[name=countryId]').val().length>3){
-				alert('countryId는 ex)kr,uk,na 형식으로 입력 하셔야합니다.')
+				Swal.fire({
+					  icon:'warning',
+					  title: '국가명은' ,
+					  text: 'EX)KR, UK, NA 형식으로 입력 하셔야합니다.',
+					  showConfirmButton: true,
+					  confirmButtonText: '확인',
+					  confirmButtonColor:'#282828',
+					  timer: 5000
+					})
+		
 				return;
 			}
 			// alert("email"+isUserEmail)
@@ -385,8 +463,8 @@
       </header>    -->
 		<div class="container">
 			<br>
-			<p class="text-center">
-				W W F T
+			<p >
+				<h1 class="text-center">World Wide Family Tree</h1>
 			</p>
 			<hr>
 
@@ -400,7 +478,7 @@
 								<span class="input-group-text"> <i class="fa fa-user"></i>
 								</span>
 							</div>
-							<input name="userId" id="userId" class="form-control" placeholder="ID" type="text" id="userId"
+							<input name="userId" id="userId" class="form-control" placeholder="User Id" type="text" id="userId"
 								onsubmit="check_pw();">
 						</div>
 						<dd name="userId"></dd>
@@ -456,7 +534,7 @@
 								<span class="input-group-text"><i class="fas fa-tree "></i>
 								</span>
 							</div>
-							<input name="treeName" class="form-control" placeholder="treeName" type="text" id="treeName">
+							<input name="treeName" class="form-control" placeholder="Tree name" type="text" id="treeName">
 						</div>
 						<!-- form-group// -->
 					  	<div class="form-group input-group">
@@ -464,21 +542,19 @@
 								<span class="input-group-text"><i class="fas fa-flag"></i>
 								</span>
 							</div>
-							<input name="countryId" class="form-control" placeholder="country" type="text" id="countryId">
+							<input name="countryId" class="form-control" placeholder="Country" type="text" id="countryId">
 						</div>
 						<!-- form-group// -->
 
 						<!-- form-group// -->
 						<div class="form-group">
-							<button type="button" id="submitButton" class="btn btn-primary btn-block">
+							<button type="button" id="submitButton" class="btn  btn-dark btn-block">
 								Create Account</button>
-								<button type="submit" class="btn btn-primary btn-block" onclick="history.back(-1);">
-								back</button>
+								<button type="button" class="btn  btn-dark btn-block" onclick="history.back(-1);">
+								Go Back</button>
 						</div>
 						<!-- form-group// -->
-						<p class="text-center">
-							Have an account? <a href="">Log In</a>
-						</p>
+					
 					</form>
 				</article>
 			</div>
@@ -487,26 +563,25 @@
 		</div>
 		<!--container end.//-->
 
+
+
+
 		<br>
 		<br>
-		<article class="bg-secondary mb-3">
-			<div class="card-body text-center">
-				<h3 class="text-white mt-3"></h3>
-				<p class="h5 text-white">
-					Components and templates <br> W: WOLRD W: WIDE F: FAMILY T: TREE
-				</p>
-				<br>
-				<p>
-					<a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/">
-						Bootstrap-ecommerce.com
-						<i class="fa fa-window-restore "></i>
-					</a>
-					
-					
-				</p>
+		
+			<div class="card bg-light">
+	</div>
+		<article class="bg-deafult mb-3 text-center">
+			<div class="card-body">
+				<h5 id="foot" class="mt-6">ⓒ WWFT Corp All Rights Reserved</h5>
+					 <h6 class="mt-6">This site is a family community site.<br> 
+					 We hope that our site reflects on the true meaning of family.</h6>
+						
+			
+				
+		
 			</div>
-			<br>
-			<br>
+			
 		</article>
 
 	</body>
