@@ -260,8 +260,8 @@ WHERE a.imgmin = i.image_and_like_no;
     INSERT INTO USERS values('user06', '6666' ,6, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
     
     나무정보
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(1000, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(1, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user02', '나무이름2', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user03', '나무이름3', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
