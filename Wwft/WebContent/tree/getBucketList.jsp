@@ -5,13 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+
+
+
+
 <link rel="stylesheet" href="../resources/css/tree/getBucketList.css" >
 
 <meta charset="EUC-KR">
 <title>버킷리스트 목록 보기</title>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript">
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="text/javascript">
 
 	$(document).ready(function () {
 		$("#btn2").click( function () {
@@ -29,11 +41,31 @@
 							"Accept" : "application/json",
 							"Content-Type" : "application/json"
 						},
-				success : function(data){
-							alert("확인요:"+data);
-							location.reload();
-				
-							
+				success : function(){
+					
+
+					const Toast = Swal.mixin({ 
+						toast: true, 
+						position: 'center-center', 
+						showConfirmButton:false, 
+						timer: 1000, 
+						timerProgressBar: true, 
+						didOpen: (toast) => { 
+							toast.addEventListener('mouseenter', Swal.stopTimer) 
+							toast.addEventListener('mouseleave', Swal.resumeTimer)
+							} 
+						}) 
+							Toast.fire({ 
+								icon: 'success', 
+								title: '버킷리스트가 등록되었습니다.'
+								})
+
+								setTimeout('location.reload()',1000);
+					
+					
+					
+					
+						
 				},
 			
 				error : function (status) {
@@ -44,6 +76,9 @@
 		})	//click 끝
 		
 	})
+		
+
+	
 		
 
 	
@@ -59,81 +94,71 @@
       </header>   
 	
 
-	
-	
-	
-    <div class="grid grid10 ">
-    
-    <!-- 홈페이지 제목 -->
-        <div class="column column10 ">
-        	<h1 class="text-center ">버킷리스트 목록</h1>
+	     
+      
+      <div class="wrapper">
+  <div class="header"><h1 class="text-white">BUCKET LIST</h1>
+        	<div class="text-white">
+        	<h3>There is nothing impossible for us in this world.<br>
+        	What do you want to challenge?<br>
+        		Then challenge your dreams now.<br>
+        		 You can do anything.</h3>
         	   </div>
-        	
-      
-        	
-        	
+        	</div>
+		</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="leftCol">
+      <i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="location.href='/tree/getUserTree?${param.treeNo}'"></i>
+ 
+  </div>
+  
+  <div class="rightCol">
+  
+  </div>
+  
+  
+  
+  
+  <div class="midTop text-center">
+   	<form class="text-center ">
+  <div class="form-group col-sm-3 col-md-6 col-lg-4"  style="width: 30%; float:center; margin:0 auto">
+    <label for="exampleInputEmail1 bk"><h5>작성자</h5></label>
+    <input type="text" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
+  </div>
+ <br>
+     <hr width="100%" color="silver" >
      
-        
-        
-        
-        <!-- 첫번째 줄  -->
-        <div class="column column11 ">
-        
- 
- 
- 
- 	<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1"><h5 >작성자</h5></label>
-    <input type="writer" class="form-control" name="bucketListWriter" placeholder="작성자를 입력하세요" >
+  <div class="form-group col-sm-3 col-md-6 col-lg-4"  style="width: 30%; float:center; margin:0 auto">
+    <label for="exampleInputPassword1 "><h5>버킷리스트</h5></label>
+    <input type="text" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
   </div>
-  
-  <div class="form-group">
-    <label for="exampleInputPassword1"><h5>버킷리스트 내용</h5></label>
-    <input type="detail" class="form-control"  name="bucketListDetail"  placeholder="버킷리스트를 입력하세요">
-  </div>
+ <br>
  
-  <button type="button" 		id="btn2"		class="btn btn-danger float-right">등록</button>
+  <button type="button" 		id="btn2"		class="btn btn-outline-dark  btn-lg btn2">등록</button>
 </form>
- </div>
-      
-       
-       
-       
-       
-       
-       
-       
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-        
-        
-      <!-- 메인 내용 -->
-        <div class="column column10 text-center">
-        
-        
+     <hr width="100%" color="silver" >
+   </div>
+  <br><br>
   
-       
-
-
-<table class="table table-striped table-dark">
-  <thead>
+  
+    
+  <div class="midBottom text-center">
+ <table class="table">
+  <thead class="thead-light">
     <tr>
       <th scope="col"></th>
       <th scope="col"><h4>작성자</h4></th>
-      <th scope="col"><h4>작성 내용</h4></th>
-      <th scope="col"><h4>작성 일자</h4></th>
-      <th scope="col"><h4></h4></th>
+      <th scope="col"><h4>버킷리스트</h4></th>
+      <th scope="col"><h4>작성 날짜</h4></th>
+      <th scope="col"><h4>삭제</h4></th>
     </tr>
   </thead>
   <tbody>
@@ -147,14 +172,86 @@
       <td><h5> ${bucketList.bucketListDetail}</h5></td>
       <td><h5> ${bucketList.bucketListRegDate}</h5></td>
        <td><button type="button"   class="btn  btn-sm btn" 
-       onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'><h5 class="text-white">삭제</h5></button></td>
+       onclick='location.href="/tree/removeBucketList?bucketListNo=${bucketList.bucketListNo}&treeNo=${param.treeNo }"'><i class="far fa-trash-alt fa-2x"></i></button></td>
       
       </c:forEach>
     </tr>
 </tbody>
 </table>
-
+  </div>
+ 
+ 
+ 
+  
+   
+ 
+  <div class="footer text-center ">
+           
+ 
 </div>
+     
+      
+	
+</body>
+</html>      
+      
+      
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+      
+      
+
+     
+        
+        
+     
+       
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+  
+       
+
+
+
 		
 	   
         
@@ -166,15 +263,8 @@
 		
 		
 	
-        
-        
-        <!-- 푸터 -->
-        <div class="column column10">
-         	   <input type="button" 	id="btn1FamilyMotto" onclick="location.href='/tree/getUserTree?${param.treeNo}'"	value="뒤로가기" />
-        
-        </div>
-    </div>
-        
+       
+  
        
      
         
@@ -203,6 +293,3 @@
 
 	
 	
-	
-</body>
-</html>

@@ -32,9 +32,9 @@ public class CommentRestController {
 		
 		System.out.println("/comment/addComment : POST");
 		
-		comment.setCommentTreeNo(1);
-		comment.setCommentWriter("초초");
-		
+		/* comment.setCommentTreeNo(1); */
+		/* comment.setCommentWriter("초초"); */
+		System.out.println("commentW!!!!!!!!!!!!11 : "+comment.getCommentWriter());
 	
 	    commentService.addComment(comment);
 		System.out.println("여기는 addcontroller  commentService갔다옴");

@@ -182,7 +182,7 @@ CREATE TABLE  "POST"
 	"TREE_NO" NUMBER(30,0) NOT NULL ENABLE, 
 	"ALBUM_NAME" VARCHAR2(30), 
 	"POST_DETAIL" VARCHAR2(500), 
-	"POST_WRITER" VARCHAR2(30) NOT NULL ENABLE, 
+	"POST_WRITER" VARCHAR2(200) NOT NULL ENABLE, 
 	"POST_STATE" CHAR(1) NOT NULL ENABLE, 
 	"POST_REG_DATE" DATE NOT NULL ENABLE, 
 	"SAVE_IMAGE_NAME" VARCHAR2(200), 
@@ -204,7 +204,7 @@ CREATE TABLE  "IMAGE_AND_LIKE"
 CREATE TABLE  "COMMENTS" 
    (	"COMMENT_NO" NUMBER NOT NULL ENABLE, 
 	"COMMENT_DETAIL" VARCHAR2(400) NOT NULL ENABLE, 
-	"COMMENT_WRITER" VARCHAR2(30) NOT NULL ENABLE, 
+	"COMMENT_WRITER" VARCHAR2(200) NOT NULL ENABLE, 
 	"COMMENT_REG_DATE" DATE NOT NULL ENABLE, 
 	"POST_NO" NUMBER NOT NULL ENABLE, 
 	"TREE_NO" NUMBER NOT NULL ENABLE, 
@@ -260,8 +260,8 @@ WHERE a.imgmin = i.image_and_like_no;
     INSERT INTO USERS values('user06', '6666' ,6, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
     
     나무정보
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(1000, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(1, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user02', '나무이름2', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user03', '나무이름3', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );

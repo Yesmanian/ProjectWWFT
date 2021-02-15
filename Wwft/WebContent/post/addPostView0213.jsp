@@ -13,42 +13,6 @@
 
 <title>게시글 작성</title>
 <style type="text/css">
-/*  html,
-
-body {
-
-    margin:0;
-
-    padding:0;
-
-    height:	60px;
-    
-    background-image:url("/resources/images/tree/post.jfif");
-    
-     background-size: cover;
-
-} */ 
-/* 		
-body {
-    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #007bff;
-    text-align: left;
-    background-color: #fff;
-} */
-* {
-	font-size: 16px;
-	font-family: Consolas, sans-serif;
-}
-
-textarea {
-	width: 100%;
-	height: 100px;
-}
-
 input[type=file] {
 	display: none;
 }
@@ -78,17 +42,11 @@ input[type=file] {
 	margin-right: 10px;
 }
 </style>
-<meta name="viewport" content="width=device-width" , initial-scale="1">
-<!-- script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
 <script type="text/javascript">
 //이미지 정보들을 담을 배열
@@ -124,7 +82,7 @@ input[type=file] {
 
          var reader = new FileReader();
          reader.onload = function(e) {
-             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' style='width:800px; height:200px;' title='Click to remove'></a>";
+             var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' title='Click to remove' style='width:400; height: 400;'></a>";
              $(".imgs_wrap").append(html);
              index++;
 
@@ -165,7 +123,7 @@ input[type=file] {
  }
 
  function fncAddPost() {
-     /* console.log("업로드 파일 갯수 : "+sel_files.length);*/
+     /* console.log("업로드 파일 갯수 : "+sel_files.length);
      var data = new FormData();
 
      for(var i=0, len=sel_files.length; i<len; i++) {
@@ -176,40 +134,14 @@ input[type=file] {
      
      if(sel_files.length < 1) {
          alert("한개이상의 파일을 선택해주세요.");
-         return false;
-     } else {
-    	 var postTreeNo = $("[name='treeNo']").val();
-    	 var profileName = $("[name='profileName']").val();
-         var treeName	= $("[name='treeName']").val();
-         var postWriter = `\${treeName}#\${profileName}`;
-         var postDetail = $("#postDetail").val();
-     	 var postState = $("[name='postState']").val();
-     	alert(postTreeNo);
-     	 alert(treeName);
-         $.ajax({
-        	
-        	 url : "/post/json/addPost/" ,
-        	 method : "POST" ,
-        	 data :  JSON.stringify({postDetail : postDetail, postState : postState ,postWriter : postWriter ,postTreeNo : postTreeNo}) ,
-        	 dateType : "json" ,
-        	 headers : {
-    				"Accept" : "application/json",
-    				"Content-Type" : "application/json"
-    			},
-    			success : function(redata){
-    				alert(redata);
-    				fnAddFiles(redata);
-    			}
-        	 
-         })
-    	 
-     }      
-     
-  /*    var profileName = $("[name='profileName']").val();
+         return;
+     } */      
+     var profileName = $("[name='profileName']").val();
      var treeName	= $("[name='treeName']").val();
      var postWriter = `\${treeName}#\${profileName}`;
      var postDetail = $("#postDetail").val();
  	 var postState = $("[name='postState']").val();
+ 	 alert(postWriter);
      $.ajax({
     	
     	 url : "/post/json/addPost/" ,
@@ -239,7 +171,7 @@ input[type=file] {
          alert("한개이상의 파일을 선택해주세요.");
          return;
      }
-	 */
+	
 
     // $("form").attr("method","POST").attr("enctype","multipart/form-data").attr("action","/post/addPost").submit();
  /*     var xhr = new XMLHttpRequest();
@@ -334,161 +266,59 @@ input[type=file] {
 </head>
 <body>
 	<header id="wrap">
-
 		<jsp:include page="../common/navBar.jsp" />
-
 	</header>
-
+	
 	<div>
-	<form id="form" enctype="multipart/form-data" method="post" style="margin-top: 100px;">
-
+	<form id="form" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="treeNo" value="${tree.treeNo}">
 		<input type="hidden" name="treeName" value="${tree.treeName}">
 		<input type="hidden" name="profileName" value="${profile.profileName}">
 		<input type="hidden"  name="menu" value="${menu}"/>
-		
-		<div class="container-sm" style="border: outset;">
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8" align="center">
+		<table class="board_view">
+			<colgroup>
+				<col width="15%">
+				<col width="*">
+			</colgroup>
+			<caption>게시글 작성</caption>
+			<tbody>
+				<tr>
 					<div>
-						<h4>
-							<b>게시글 등록</b>
-						</h4>
+						<h2>
+							<b>이미지 미리보기</b>
+						</h2>
+						<div class="input_wrap">
+							<a href="javascript:" onclick="fileUploadAction();"
+								class="my_button">파일 업로드</a> <input multiple="multiple"
+								type="file" id="input_imgs" name="input_imgs" maxlength="10" />
+
+						</div>
 					</div>
-				</div>
-				<div class="col-2"></div>
 
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
-					<div class="input_wrap">
-						<a href="javascript:" onclick="fileUploadAction();"
-							class="my_button">파일 업로드</a> <input multiple="multiple"
-							type="file" id="input_imgs" name="input_imgs" maxlength="10" />
-
-					</div>
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
 					<div>
 						<div class="imgs_wrap">
 							<img id="img" />
 						</div>
 					</div>
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8"></div>
-				<div class="col-2"></div>
-
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
-					<b>게시글 작성 내용</b>
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
-					<textarea cols="10" rows="5" id="postDetail" name="postDetail"
-						title="내용">
-					    </textarea>
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
-					<input type='radio' name='postState' value='0' />공개 <input
-						type='radio' name='postState' value='1' />비공개
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8">
-					<!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#exampleModal">앨범생성</button>
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">신고</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<div class="form-group">
-										<label for="exampleFormControlSelect1">신고 내용</label> <select
-											class="form-control" id="exampleFormControlSelect1">
-											<option value="0">욕설</option>
-											<option value="1">음란물</option>
-											<option value="2">도박</option>
-											<option value="3">아동학대</option>
-
-										</select>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<input Type="hidden"
-										value='$("#exampleFormControlSelect1 option:selected").val();'>
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">취소</button>
-									<button type="button" onClick="fn_addReport()"
-										class="btn btn-primary">신고하기</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
-
-				</div>
-
-			</div>
-			<div class="col-2"></div>
-
-			<div class="row row-cols-3">
-
-				<div class="col-2"></div>
-				<div class="col-8" align="right">
-					<button type="button" class="btn btn-primary"
-						onclick="fncAddPost();">등록</button>
-				</div>
-				<div class="col-2"></div>
-
-			</div>
-
-			<div class="row-9"></div>
-
-		</div>
+				<tr>
+					<th scope="row">게시글 작성 내용</th>
 
 
+					<td><textarea cols="80" rows="20" id="postDetail"
+							name="postDetail" title="내용"></textarea></td>
 
+
+				</tr>
+			</tbody>
+		</table>
+
+		<input type='radio' name='postState' value='0' />공개 <input
+			type='radio' name='postState' value='1' />비공개 <br />
+
+		<input type="button" value="등록" onclick="fncAddPost();" />
 	</form>
+	<%--  <%@ include file="/WEB-INF/include/include-body.jspf" %>   --%>
+	</div>
+
 </body>
 </html>
