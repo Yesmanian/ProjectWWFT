@@ -13,7 +13,7 @@
 
 <title>게시글 작성</title>
 <style type="text/css">
-/*  html,
+  html,
 
 body {
 
@@ -23,11 +23,11 @@ body {
 
     height:	60px;
     
-    background-image:url("/resources/images/tree/post.jfif");
+    background-image:url("/resources/images/tree/add.png");
     
      background-size: cover;
 
-} */ 
+} 
 /* 		
 body {
     margin: 0;
@@ -178,6 +178,7 @@ input[type=file] {
          alert("한개이상의 파일을 선택해주세요.");
          return false;
      } else {
+    	 var profileNo = $("[name='profileNo']").val();
     	 var postTreeNo = $("[name='treeNo']").val();
     	 var profileName = $("[name='profileName']").val();
          var treeName	= $("[name='treeName']").val();
@@ -345,6 +346,7 @@ input[type=file] {
 		<input type="hidden" name="treeNo" value="${tree.treeNo}">
 		<input type="hidden" name="treeName" value="${tree.treeName}">
 		<input type="hidden" name="profileName" value="${profile.profileName}">
+		<input type="hidden" name="profileNo" value="${profile.profileNo}">
 		<input type="hidden"  name="menu" value="${menu}"/>
 		
 		<div class="container-sm" style="border: outset;">

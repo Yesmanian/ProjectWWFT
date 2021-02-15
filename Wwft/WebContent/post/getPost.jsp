@@ -184,8 +184,8 @@ body {
 						
 						<input type="hidden" name="treeNo" value="${tree.treeNo}">
 						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
-						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />  
-						<input type="hidden" name="profileNo" value="${profile.profileNo}">
+						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo}">  
+						<input type="hidden" name="profileNo" value="${post.profileNo}">
 	        			<input type="hidden" name="treeName" value="${tree.treeName}">
 	        			<input type="hidden" name="profileName" value="${profile.profileName}">
 	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`">  --%>
