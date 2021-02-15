@@ -32,18 +32,16 @@
 </head>
 <body>
 <header id="wrap"> 
-           <jsp:include page="../common/navBar.jsp"/>
       </header>   
 <h3>내정보보기</h3>
+      <form action="/user/getUser" method="get">
 		<input type="hidden" id="userId" value="${user.userId}"></input>
 		<input type="hidden" id="treeNo" value="${tree.treeNo}"></input>
 		<p>
 			<label for="userId">아이디: ${user.userId}</label>
 		</p>
-		
 		<p>
 			<label for="password">비밀번호: ${user.password}</label>
-			 
 		</p>
 		<p>
 			<label for="email">이메일: ${user.email}</label> 
@@ -55,13 +53,10 @@
 			<label for="countryId">나무 주소  : ${tree.countryId}</label>
 		</p>
 		  <p>
-				<label for="seedNo">내 씨앗 : ${tree.seedNo}</label>
+			<label for="seedNo">내 씨앗 : ${tree.seedNo}</label>
 		</p>
-		<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-			수정
-		</td>
 		<input type="submit" value="수정" /> <input type="button" value="뒤로가기" onclick="history.back(-1);">
-		
+		</form>
 
 </body>
 </html>
