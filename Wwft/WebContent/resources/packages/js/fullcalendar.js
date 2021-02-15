@@ -33,44 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       allDayText:'종 　　일',
       intialView: 'dayGridMonth',
-      eventRender: function(info) {
-        alert(info.event.title)
-        var tooltip = new Tooltip(info.el, {
-          
-          // title: $('<div />', {
-          //   class: 'popoverTitleCalendar',
-          //   text: info.event.title
-          // }).css({
-          //   'background': info.event.backgroundColor,
-          //   'color': info.event.textColor
-          // }),
-          // content: $('<div />', {
-          //     class: 'popoverInfoCalendar'
-          //   }).append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + info.event.extendedProps.eventDetail + '</div>'),
-          //   //.append('<p><strong>시간:</strong> ' + getDisplayEventDate(info.event) + '</p>')
-          // delay: {
-          //   show: "800",
-          //   hide: "50"
-          // },
-          // trigger: 'hover',
-          // placement: 'top',
-          // html: true,
-          // container: 'body'
-          
-          
-          title: info.event.extendedProps.description,
-          placement: 'top',
-          trigger: 'hover',
-          container: 'body'
-        });
-      },
-      dateClick: function (info) {
-       
-      },
       eventClick: function (info) {
         // alert("Event :" + info.event.extendedProps.eventDetail);
         // alert("Event :" + info.event.end);
-
+        // alert(JSON.stringify(info.event.start))
+        // alert(JSON.stringify(info.event.end))
         $('#exampleModalLabel').html('일정 수정');
       
         $('#eventId').val(info.event.id);
@@ -106,9 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // console.log(start.start)
         // console.log(start.end)
         var end = start.end;
-        var start = moment(start.start).format('YYYY-MM-DD HH:mm');
-        //  alert(start)
+        // var start = moment(start.start).format('YYYY-MM-DD HH:mm');
+        //  alert(start.start)
+        // var start= moment(start.start).format('YYYY-MM-DD HH:mm');
+        var start= moment(start.start).add(12,'hours').format('YYYY-MM-DD HH:mm');
         var end = moment(end).add(-1,'days').format('YYYY-MM-DD HH:mm');
+        end = moment(end).add(12,'hours').add(30,'minutes').format('YYYY-MM-DD HH:mm');
         // alert(end)
         
         
@@ -242,14 +212,14 @@ document.addEventListener('DOMContentLoaded', function () {
         eventData.allDay = true;
         
       }
-      alert(eventData.allDay)
+      // alert(eventData.allDay)
 
       if($('#dDay').is(":checked")==true ){
         eventData.dDay='1'
       }else{
         eventData.dDay='0'
       }
-      alert(eventData.dDay)
+      // alert(eventData.dDay)
       
       
      
@@ -258,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // calendar.addEvent(eventData)
   
   
-      alert('post')
+      // alert('post')
       $.ajax({
         method: 'POST',
         url: '/event/json/addEvent',
@@ -274,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
           calendar.addEvent(eventData);
           calendar.removeAllEvents();
           calendar.refetchEvents();
-          alert(response)
+          // alert(response)
          
           // alert("응답확인용")
           // console.log('응답성공')
@@ -314,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         success: function (res, status) {
 
-          alert('삭제')
+          // alert('삭제')
         }
         
 
@@ -357,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // calendar.addEvent({title : title, treeNo : treeNo, start : start, end : end, dDay : dDay, eventDetail : eventDetail});
 
 
-      alert('post')
+      // alert('post')
       $.ajax({
         method: 'POST',
         url: '/event/json/updateEvent',
@@ -370,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         success: function (response, status) {
-          alert(status)
+          // alert(status)
           //리스폰 나중에 필요하면 쓸것 현재 CalenerRestController의 return type null임
           //POST로 보내고 싶은데 ...
           // alert("응답확인용")
