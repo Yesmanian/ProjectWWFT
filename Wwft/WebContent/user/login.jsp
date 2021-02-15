@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         
 	<link rel="stylesheet" href="../resources/css/user/login.css" >
 	<meta charset="EUC-KR">
@@ -43,8 +43,8 @@
 
 
 	<section class="login-form">
-			<h1>로그인</h1>
-			<form action="/user/login" method="post">
+			<P style="text-align: center;margin-block: revert;margin-top: -100;margin-bottom: -50px;">Login</p>
+			<form action="/user/login" method="post" style="margin-top: 0px;padding-top: 100px;">
 				<div class="int-area">
 					<input type="text" value="" name="userId" id="userId" 
 					autocomplete="off"required> <label for="userId" >아이디</label>
@@ -53,12 +53,13 @@
 					<input type="password" name="password" id="password"
 						autocomplete="off" required><label for="password">패스워드</label>
 				</div>
-				<div class="btn-area">
-					<button type="submit">login</button>
+				<div class="btn-area" style="text-align-last: center;">
+					<button type="submit" style="background: border-box;">
+					<h5>Login</h5></button>
 					</div>
 				
 			<div class="caption">
-				<a href="/user/addUser">회원가입</a>
+				<a href="/user/addUser"><h5>Sign up</h5></a>
 			</div>
 			
 	</form>
