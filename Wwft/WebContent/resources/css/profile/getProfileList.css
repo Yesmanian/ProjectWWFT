@@ -1,5 +1,7 @@
 	html,body{
 			height: 100%;
+			background-image: url("/resources/images/profile/tree.jpg");
+			background-size: cover;
 		}
 		.product-item {
  		 @include text-hide;
