@@ -7,19 +7,23 @@
 <html>
 <head>
 <meta charset="EUC-KR" /> 
-<meta name="viewport" content="width=device-width, init
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-ial-scale=1.0" />
+
+
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>프로필 생성</title>
 <style type="text/css">
 /*-----Background-----*/
 
 body{
-	 background-image:url(https://s3.envato.com/files/243754334/primag.jpg);
+	 background-color:black;
 	 background-repeat:no-repeat;
 	 background-size:cover;
 	 width:100%;
@@ -27,21 +31,42 @@ body{
 	 overflow:auto;
 	 
 }
+button{
+   width: 100px;
+   height: 50px;
+   border: 20px solid gold;
+   border-radius: 10px;
+    background-color:black;
+	
+	
+}
 
+
+h1{
+font-family: 'Anton', sans-serif;
+}
+
+h3{
+font-family: 'Anton', sans-serif;
+}
+
+label{
+font-family: 'Song Myung', serif;
+}
 /*-----for border----*/
 .container{
 	font-family:Roboto,sans-serif;
-	  background-image:url(https://image.freepik.com/free-vector/dark-blue-blurred-background_1034-589.jpg) ;
-    
-     border-style: 1px solid grey;
+
+     border-style: 1px solid black;
      margin: 0 auto;
      text-align: center;
      opacity: 0.8;
      margin-top: 67px;
-   box-shadow: 2px 5px 5px 0px #eee;
+	 border: solid;
+	 border: outset white;
      max-width: 500px;
      padding-top: 10px;
-     height: 450px;
+     height: 650px;
      margin-top: 166px;
 }
 /*--- for label of first and last name---*/
@@ -118,12 +143,7 @@ body{
 }
 
      /*---------- for Input type--------*/
-.col-xs-4.male{
-	 color: white;
-     font-size: 13px;
-     margin-top: 9px;
-     padding-bottom: 16px;
-}
+
 .col-xs-4.female {
      color: white;
      font-size: 13px;
@@ -150,99 +170,118 @@ body{
 	transition: background-color 1.15s ease-in-out,border-color 1.15s ease-in-out,box-shadow 1.15s ease-in-out;
 	
 }	 
+	 
 	  </style>
 </head>
 
 
-
 <body>
-<form action="/profile/addProfile" method="post">
+<form action="/profile/addProfile" method="post" >
  <div class="container">
  <input type ="hidden" name = "treeNo" value ="${user.treeNo}"> 
  <!---heading---->
-     <header class="heading">프로필 생성</header><hr></hr>
+     <header class="heading"><h1 style="color: white;font-size: -webkit-xxx-large;">Create Profile</h1></header><hr style="border-bottom: thin;
+    border-color: aliceblue;">
+</hr>
+  
+    
+    
+    
+    
+
 	<!---Form starting----> 
-	<div class="row ">
-	 <!--- For Name---->
-         <div class="col-sm-12">
-             <div class="row">
-			     <div class="col-xs-4">
-          	         <label class="profileImage">프로필 이미지 :</label> </div>
-		         <div class="col-xs-8">
-		             <input type="file" name="profileImage" id="profileimage" placeholder="Enter your First Name" class="form-control ">
-             </div>
-		      </div>
-		 </div>
-		 
-		 
-         <div class="col-sm-12">
-		     <div class="row">
-			     <div class="col-xs-4">
-                     <label class="profileName">프로필이름  :</label></div>
-				<div class ="col-xs-8">	 
-		             <input type="text" name="profileName" id="profilename" placeholder="Enter your profilename" class="form-control last">
+	<br>
+	<div class="col-sm-12">
+		     <div class="row" style="display: -webkit-inline-box;">
+			     <div class="col-xs-4" style="color: white;	 font-size: larger;	
+					width: 150px; height: 28px;" >
+                     <label class="profileImage">Prfile Image </label></div>
+                     
+				<div class ="col-xs-8" style="width: 270px;">	 
+		             <input type="file" name="profileImage" id="profileImage" placeholder="프로필 이미지를 선택하세요" class="form-control last">
                 </div>
 		     </div>
 		 </div>
+		 <br>
+		 
+	
+
+	<div class="col-sm-12">
+		     <div class="row" style="display: -webkit-inline-box;">
+			     <div class="col-xs-4" style="color: white;	 font-size: larger;	
+					width: 150px; height: 28px;" >
+                     <label class="profileName">Profile Name </label></div>
+                     
+				<div class ="col-xs-8" style="width: 270px;">	 
+		             <input type="text" name="profileName" id="profilename" placeholder="프로필 이름을 입력하세요" class="form-control last">
+                </div>
+		     </div>
+		 </div>
+		 <br>
+		 
      <!-----For email---->
-		 <div class="col-sm-12">
-		     <div class="row">
-			     <div class="col-xs-4">
-		             <label class="familyRelations" >가족관계 :</label></div>
-			     <div class="col-xs-8"	>	 
-			          <input type="text" name="familyRelations"  id="email"placeholder="Enter your familyRelations" class="form-control" >
+		 <div class="col-sm-12" >
+		     <div class="row" style="display: -webkit-inline-box;">
+			     <div class="col-xs-4 "  style="color: white;	 font-size: larger;	
+					width: 150px; height: 28px;">
+		             
+		             <label class="familyRelations" >Family Relations</label></div>
+			     <div class="col-xs-8"  style="width: 270px;"	>	 
+			          <input type="text" name="familyRelations"  id="email"placeholder="가족관계를 입력하세요" class="form-control last" >
 		         </div>
 		     </div>
 		 </div>
+		 <br>
 	 <!-----For Password and confirm password---->
-          <div class="col-sm-12">
-		         <div class="row">
-				     <div class="col-xs-4">
-		 	              <label class="name">이름 :</label></div>
-				  <div class="col-xs-8">
-			             <input type="text" name="name" id="name" placeholder="Enter your name" class="form-control">
-				 </div>
-          </div>
-		  </div>
 		  
           <div class="col-sm-12">
-		         <div class="row">
-				     <div class="col-xs-4">
-		 	              <label class="birthday">생년월일 :</label></div>
-				  <div class="col-xs-8">
-			             <input type="text" name="birthday" id="birthday" placeholder="Enter your birthday" class="form-control">
+		         <div class="row"  style="display: -webkit-inline-box;">
+				     <div class="col-xs-4"  style="color: white;	 font-size: larger;
+					width: 150px; height: 28px;"	>
+		 	              <label class="birthday">Birthday</label></div>
+				  <div class="col-xs-8"  style="width: 270px;">
+			             <input type="text" name="birthday" id="birthday" placeholder="생년월일을 입력하세요" class="form-control last">
 				 </div>
           </div>
 		  </div>
+		  <br>
      <!-----------For Phone number-------->
           <div class="col-sm-12">
-		         <div class="row">
-				     <div class="col-xs-4">
-		 	              <label class="phone">핸드폰 번호 :</label></div>
-				  <div class="col-xs-8">
-			             <input type="text" name="phone" id="phone" placeholder="Enter your phone" class="form-control">
+		         <div class="row"  style="display: -webkit-inline-box;">
+				     <div class="col-xs-4 "	  style="color: white;	 font-size: larger;
+					width: 150px; height: 28px;">
+		 	              <label class="phone">Phone</label></div>
+				  <div class="col-xs-8"  style="width: 270px;">
+			             <input type="text" name="phone" id="phone" placeholder="핸드폰 번호를 입력하세요" class="form-control last">
 				 </div>
           </div>
 		  </div>
+		  <br>
 		  
           <div class="col-sm-12">
-		         <div class="row">
-				     <div class="col-xs-4">
-		 	              <label class="address">주소 :</label></div>
-				  <div class="col-xs-8">
-			             <input type="text" name="address" id="address" placeholder="Enter your address" class="form-control">
+		         <div class="row"  style="display: -webkit-inline-box;">
+				     <div class="col-xs-4"  style="color: white;	 font-size: larger;	
+					width: 150px; height: 28px;">
+		 	              <label class="address">Address</label></div>
+				  <div class="col-xs-8"  style="width: 270px;">
+			             <input type="text" name="address" id="address" placeholder="이메일을 입력하세요" class="form-control last">
 				 </div>
           </div>
 		  </div>
-		  <input type="submit" value="submit전송">
-		<input type="button" value="뒤로가기" onclick="history.back(-1);">
+		  <br>
+		  <br>
+		  <br>
+		  
+		  <button type="submit" class="btn " 	onclick="history.back(-1);" style="font-size: 20px;width: 106px; color: white;""><h3>Create</h3></button>
+		
+		  <button type="button" class="btn " 	onclick="history.back(-1);"  style="font-size: 20px;width: 106px; color: white;""><h3>Go Back</h3></button>
 		     <div class="col-sm-12">
-		         <div class="btn btn-warning">Submit</div>
-		   </div>
 		 </div>
-	 </div>	 
-		 		 
+
 		 
-</form>
+	
+	
+	
+	
 </body>		
 </html>
