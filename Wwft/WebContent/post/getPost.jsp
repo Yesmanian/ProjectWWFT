@@ -13,6 +13,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>getPost화면</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+	
 	</head>
 <style type="text/css">
 
@@ -55,8 +62,15 @@ body {
 			<input type="hidden" name="treeNo" value="${tree.treeNo}">
 			<input type="hidden" name="profileName" value="${profile.profileName}">
 			
-			
+			<!-- <i class="bi bi-backspace" onclick="history.back(-1);"></i> -->
+			<div class="leftCol" style="float: left;">
+		      <i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="history.back(-1);"></i>
+		 
+		   </div>
+			<!-- <button type="button" class="btn btn-outline-secondary" onclick="history.back(-1);">이전</button> -->
+			<!--  <input type="button" value="이전" onclick="history.back(-1);"> --> 
 			<div class="wrapper">
+			
  				 <div class="content" >
 			<div class="card gedf-card" style="width: 100%">
 				<div class="card-header">
@@ -188,6 +202,7 @@ body {
 						<input type="hidden" name="profileNo" value="${post.profileNo}">
 	        			<input type="hidden" name="treeName" value="${tree.treeName}">
 	        			<input type="hidden" name="profileName" value="${profile.profileName}">
+	        			<input type="hidden" name="commentProfileNo" value="${profile.profileNo}">
 	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`">  --%>
 	        			<!-- <input type="hidden" name="commentWriter" value="커피네#김커피"> -->
 					</div>
@@ -411,13 +426,16 @@ body {
 					var sender = `\${treeName}#\${profileName}`;
 					var postNo = $('input[name=commentPostNo]').val();
 					var treeNo = $('input[name=treeNo]').val();
+					var commentProfileNo = $('input[name=commentProfileNo]').val();
 					
 					alert(postNo);
 					alert(treeNo);
 					alert(sender);
 					alert(profileNo);
-					
-					 
+					if(commentProfileNo == profileNo){
+						alert("안보냄");
+					}else{
+					 alert("보냄");
 				    $.ajax({
 				       
 				        url : "/noticeMessage/json/sendNoticeMessage",
@@ -445,6 +463,7 @@ body {
 				       }
 				        
 				    }); 
+					}
 				} 
 			
 			/*신고하기  */
