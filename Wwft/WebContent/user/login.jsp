@@ -16,40 +16,41 @@
 	<script src="jquery-3.4.1.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+    console.log("fighting!");
+    console.log(document); // html 태그 전체를 콘솔에 띄워주자.
 
+    var signinButton = document.getElementById("signinButton") // 버튼을 만들고.
+    signinButton.addEventListener('click', signinFunc) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+
+    function signinFunc () {
+      var userId = document.getElementById("userId").value; // userid 의 값을 받아와 넣음.
+      var password = document.getElementById("password").value; // userpw 의 값을 받아와 넣음.
+
+
+      if(user_id == $("#userId").val() && password == $("#password").val() ){
+        alert("로그인 성공");
+        console.log("로그인 성공했습니다.");
+      } else {
+        alert("로그인 실패");
+        console.log("로그인 실패했습니다.");
+      }
+
+    }
+
+  </script>
 		
 
-        <script>
-            
-			let user_id = $('#userId');
-			let password = $('#password');
-			let btn = $('#btn');
-			
-			$(btn).on('click', function() {
-				if($(user_id).val() == "") {
-					$(user_id).next('label').addClass('warning');
-					setTimeout(function() {
-						$('label').removeClass('warning');
-					},1500);
-				}
-				else if($(password).val() == "") {
-					$(password).next('label').addClass('warning');
-					setTimeout(function(){
-						$('label').removeClass('warning');
-					},1500);
-				}
-			});
-		</script>
 
 	<section class="login-form">
 			<h1>로그인</h1>
 			<form action="/user/login" method="post">
 				<div class="int-area">
-					<input type="text" value="" name="userId" id="id" 
+					<input type="text" value="" name="userId" id="userId" 
 					autocomplete="off"required> <label for="userId" >아이디</label>
 				</div>
 				<div class="int-area">
-					<input type="password" name="password" id="pw"
+					<input type="password" name="password" id="password"
 						autocomplete="off" required><label for="password">패스워드</label>
 				</div>
 				<div class="btn-area">
@@ -62,7 +63,7 @@
 			
 	</form>
 </section>
+
 	
-		
 </body>
 </html>
