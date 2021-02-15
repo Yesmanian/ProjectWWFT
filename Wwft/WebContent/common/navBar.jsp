@@ -40,6 +40,7 @@
                 <a class="dropdown-item" href="/tree/getUserTree">My Tree</a>
                 <a class="dropdown-item" href="#">Search</a>
                 <a class="dropdown-item" href="/profile/getProfileList">Change Profile</a>
+                <a class="dropdown-item" href="/user/getUser?userId=${user.userId}">Edit User</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/user/logout">Logout</a>
               </div>
