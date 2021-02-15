@@ -90,9 +90,9 @@ $("#btnFamilyMotto").click(function () {
       
       
       <div class="wrapper">
-  <div class="header"><h1 class="text-white">FAMILY MOTTO</h1>
+  <div class="header"><h1 class="text-white" style="font-size: 100px;">FAMILY MOTTO</h1>
         	<div class="text-white">
-        	<h3>There is nothing more precious than family.<br>
+        	<h3 style="font-size: 35px;">There is nothing more precious than family<br>
         	What does family mean to you?<br>
         	Write a family motto to unite your family</h3>
         	   </div>

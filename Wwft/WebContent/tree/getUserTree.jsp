@@ -50,7 +50,7 @@
 	}
 	
 	function goGetForest() {
-		window.location.href="/forest/getForest?forestNo=${tree.treeNo}"
+		window.location.href="/forest/getForest?forestNo=${tree.treeNo}&$profileNo=${profile.profileNo}"
 
 	}
 	

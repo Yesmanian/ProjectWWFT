@@ -97,12 +97,12 @@
 	     
       
       <div class="wrapper">
-  <div class="header"><h1 class="text-white">BUCKET LIST</h1>
+  <div class="header"><h1 class="text-white" style="font-size: 100px;">BUCKET LIST</h1>
         	<div class="text-white">
-        	<h3>There is nothing impossible for us in this world.<br>
+        	<h3 style="font-size: 40px;">There is nothing impossible for us in this world<br>
         	What do you want to challenge?<br>
-        		Then challenge your dreams now.<br>
-        		 You can do anything.</h3>
+        		Then challenge your dreams now<br>
+        		 You can do anything</h3>
         	   </div>
         	</div>
 		</div>
