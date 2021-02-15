@@ -48,10 +48,11 @@ body {
 			 <jsp:include page="../common/navBar.jsp"/>
 		 </header>
 		 <div>
-			<input type="hidden" name="treeNo" value="${post.postTreeNo}">
+			<input type="hidden" name="postTreeNo" value="${post.postTreeNo}">
 			<input type="hidden" name="postNo" value="${post.postNo}">
 			<input type="hidden"  name="menu" value="${menu}"/>
 			<input type="hidden" name="treeName" value="${tree.treeName}">
+			<input type="hidden" name="treeNo" value="${tree.treeNo}">
 			<input type="hidden" name="profileName" value="${profile.profileName}">
 			
 			
@@ -181,6 +182,7 @@ body {
 						<textarea style="width: 80%" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
 						<a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
 						
+						<input type="hidden" name="treeNo" value="${tree.treeNo}">
 						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
 						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo} " />  
 						<input type="hidden" name="profileNo" value="${profile.profileNo}">
@@ -256,7 +258,7 @@ body {
 		
 		function fn_comment(){
 			
-			 var commentTreeNo = $("[name='commentTreeNo']").val();
+			 var commentTreeNo = $("[name='treeNo']").val();
 			 var commentPostNo = $("[name='commentPostNo']").val();
 	    	 var profileName = $("[name='profileName']").val();
 	         var treeName	= $("[name='treeName']").val();
@@ -360,25 +362,19 @@ body {
 			                
 			                 for(i=0; i<res.length; i++){
 			                	 
+			                	 if(res[i].commentTreeNo == $('input[name=treeNo]').val()){
+		                		 
 			                	   html += `<div style= display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
-				                	   </strong></h6>\${res[i].commentDetail} 
-				                	   <a href=# onClick="remove_comment('\${res[i].commentNo}'); return false;"  class = btn pull-right btn-success style=text-decoration:none>삭제</a>
+				                	   </strong></h6>\${res[i].commentDetail}
+										<a href=# onClick="remove_comment('\${res[i].commentNo}'); return false;"  class = btn pull-right btn-success style=text-decoration:none>삭제</a>
 				                	   <input type=hidden name=commentNo
 				                	   value='\${res[i].commentNo}'<tr><td></td></tr></table></div></div>`;
-			                	/* html += `<div style= width:50%; display: block; margin: 0px auto;> \${res[i].commentRegDate}<tr><strong>\${res[i].commentWriter}
-			                	   </strong></h6>\${res[i].commentDetail} 
-			                	   <a href=# onClick=remove_comment(\${res[i].commentNo}) class = btn pull-right btn-success>삭제</a>
-			                	   <input type=hidden name=commentNo
-			                	   value='\${res[i].commentNo}'</div>`; */
-				                   
-			                  /*    html += "<div>";
-			                    html += res[i].commentRegDate + "<tr><td></td></tr>";
-			                    html +=" <div><table class='table'><h6><strong>"+res[i].commentWriter+"</strong></h6>";
-			                    html += res[i].commentDetail + "<tr><td></td></tr>&emsp; <a href='#' onClick=\'remove_comment("+res[i].commentNo+")\; return false;' class='btn pull-right btn-success'>삭제</a><input type='hidden' name='commentNo' value='"+res[i].commentNo+"'>";
-			                    html += "</table></div>"; 							 */
-			                   // html += "</div><input type= 'button' value='삭제'><input type='hidden' name='commentNo' value='${res[i].commentNo }'>";
-			                   
-			                }
+			                	 } else {
+			                		 html += `<div style= display: block; margin: 0px auto;> <table class= table><h6><strong>\${res[i].commentRegDate} \${res[i].commentWriter}<tr><strong></h6>
+												</strong></h6>\${res[i].commentDetail}`;
+			                		 }
+			                	 }
+			                
 			                
 			            } else {
 			                
