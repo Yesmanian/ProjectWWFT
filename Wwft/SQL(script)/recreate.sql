@@ -262,11 +262,11 @@ WHERE a.imgmin = i.image_and_like_no;
     나무정보
     INSERT INTO tree values(1000, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     INSERT INTO tree values(1, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user02', '나무이름2', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user03', '나무이름3', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user05', '나무이름5', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user06', '나무이름6', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(2, 'user02', '나무이름2', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(3, 'user03', '나무이름3', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(4, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(5, 'user05', '나무이름5', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(6, 'user06', '나무이름6', '0', '나무이미지이름' , 'kr', '가훈', 0 );
    
     프로필정보
     INSERT INTO profiles values(SEQ_PROFILE_NO.nextval,나무번호넣어야됩니다,'프로필이름','2001-08-18','가족관계','서울시','01088311324','프로필이미지','1');
