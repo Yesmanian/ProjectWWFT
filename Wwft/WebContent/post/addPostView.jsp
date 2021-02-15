@@ -191,7 +191,7 @@ input[type=file] {
         	
         	 url : "/post/json/addPost/" ,
         	 method : "POST" ,
-        	 data :  JSON.stringify({postDetail : postDetail, postState : postState ,postWriter : postWriter ,postTreeNo : postTreeNo}) ,
+        	 data :  JSON.stringify({postDetail : postDetail, postState : postState ,postWriter : postWriter ,postTreeNo : postTreeNo , profileNo : profileNo}) ,
         	 dateType : "json" ,
         	 headers : {
     				"Accept" : "application/json",
@@ -478,8 +478,10 @@ input[type=file] {
 
 				<div class="col-2"></div>
 				<div class="col-8" align="right">
-					<button type="button" class="btn btn-primary"
-						onclick="fncAddPost();">등록</button>
+					<!-- <button type="button" class="btn btn-primary"
+						onclick="fncAddPost();">등록</button> -->
+					
+						<button type="button" class="btn btn-outline-success" onclick="fncAddPost();">등록</button>
 				</div>
 				<div class="col-2"></div>
 
