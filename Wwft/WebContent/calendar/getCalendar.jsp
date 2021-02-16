@@ -170,10 +170,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle"> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  <img src="/resources/images/profile/${profile.profileImage}"  width="40" height="40" class="rounded-circle"> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/tree/getUserTree">My Tree</a></li>
                 <li><a href="/profile/getProfileList">Change Profile</a></li>
+                <li><a href="/profile/updateProfile?profileNo=${profile.profileNo}">Edit Profile</a></li>
+                <li><a href="/user/getUser?userId=${user.userId}">Edit User</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/user/logout">Logout</a></li>
               </ul>
