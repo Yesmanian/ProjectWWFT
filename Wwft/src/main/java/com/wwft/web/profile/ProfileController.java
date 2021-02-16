@@ -1,5 +1,8 @@
 package com.wwft.web.profile;
 
+import java.io.File;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.User;
@@ -53,18 +58,20 @@ public class ProfileController {
 	}
 	
 	@RequestMapping( value="getProfile", method=RequestMethod.GET )
-	public String login(@ModelAttribute("profile") Profile profile , HttpSession session, HttpServletResponse response) throws Exception{
+	public String login(@RequestParam("profileNo") int profileNo , HttpSession session, HttpServletResponse response) throws Exception{
 		System.out.println("/profile/getProfile : GET");
 		//Business Logic
 		
-		Profile dbprofile = profileService.getProfile(profile.getProfileNo());
+		Profile dbprofile = profileService.getProfile(profileNo);
+		//회원의 나무 번호와 프로필 번호가 같아야함 방어적코딩
+		User user = (User) session.getAttribute("user");
 		System.out.println(dbprofile.getTreeNo());
-		System.out.println(profile.getTreeNo());
 		// Model 과 View 연결
-		if( profile.getTreeNo()==(dbprofile.getTreeNo())){
+		if( user.getTreeNo()==(dbprofile.getTreeNo())){
+			System.out.println("세션 저장되나 ??????????");
 			session.setAttribute("profile", dbprofile);
 		}
-
+		System.out.println("프로필이미지 "+dbprofile);
 		return "/tree/getUserTree";
 	}
 
@@ -95,6 +102,7 @@ public class ProfileController {
 		if( profile.getTreeNo()==(dbprofile.getTreeNo())){
 			session.setAttribute("profile", dbprofile);
 		}
+		
 //		String sessionId=((User)session.getAttribute("user")).getUserId();
 //		if(sessionId.equals(user.getUserId())){
 //			session.setAttribute("user", user);

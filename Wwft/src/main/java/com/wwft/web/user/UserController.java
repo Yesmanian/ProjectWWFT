@@ -66,8 +66,11 @@ public class UserController {
 	
 	
 	@RequestMapping( value="getUser", method=RequestMethod.GET  )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+	public String getUser( @RequestParam("userId") String userId , Model model, HttpSession session ) throws Exception {
 		
+		User sessionUser = (User)session.getAttribute("user");
+		
+		if(sessionUser.getUserId().equals(userId)) {
 		System.out.println("/user/getUser : GET");
 		System.out.println("/user/getUser start..");		
 		//Business Logic
@@ -76,6 +79,9 @@ public class UserController {
 		model.addAttribute("user", user);
 		
 		return "forward:/user/getUser.jsp";
+		}else {
+			return "redirect:/";
+		}
 	}
 	
 	

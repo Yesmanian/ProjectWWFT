@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../resources/css/tree/getBucketList.css" >
 
 <meta charset="EUC-KR">
-<title>버킷리스트 목록 보기</title>
+<title>버킷리스트 목록</title>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -97,12 +97,12 @@
 	     
       
       <div class="wrapper">
-  <div class="header"><h1 class="text-white">BUCKET LIST</h1>
+  <div class="header"><h1 class="text-white" style="font-size: 100px;">BUCKET LIST</h1>
         	<div class="text-white">
-        	<h3>There is nothing impossible for us in this world.<br>
+        	<h3 style="font-size: 40px;">There is nothing impossible for us in this world<br>
         	What do you want to challenge?<br>
-        		Then challenge your dreams now.<br>
-        		 You can do anything.</h3>
+        		Then challenge your dreams now<br>
+        		 You can do anything</h3>
         	   </div>
         	</div>
 		</div>

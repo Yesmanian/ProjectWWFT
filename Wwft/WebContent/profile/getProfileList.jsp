@@ -9,14 +9,14 @@
 
 				<link rel="stylesheet" href="../resources/css/profile/getProfileList.css">
 				<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-				<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
-					id="bootstrap-css">
-				<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-				<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-				<script src="jquery-3.4.1.js"></script>
-				<link rel="stylesheet" href="getProfileList.css">
 				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 					rel="stylesheet">
+				<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+					id="bootstrap-css">
+					<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+				<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+				<!-- <link rel="stylesheet" href="getProfileList.css"> -->
+				
 				<meta charset="EUC-KR">
 				<title>프로필 목록</title>
 				<script type="text/javascript">
@@ -41,7 +41,8 @@
 					html,
 					body {
 						height: 50%;
-						margin-top: 150px;
+						margin-top: 200px;
+						background-size: cover;
 
 					}
 
@@ -103,7 +104,7 @@
 										<div class="image_inner_container">
 											<a
 												href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img
-													src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"></a>
+													src="/resources/images/profile/${list.profileImage}"></a>
 											<div class="d-flex justify-content-center">
 												${list.profileName}</div>
 
@@ -119,8 +120,7 @@
 					</ul>
 					<!--/ Product Item -->
 					<div class="d-flex justify-content-center">
-						<button type="submit">프로필 관리 </button>
-						<input type="button" value="취소" onclick="history.back(-1);">
+							<button class="snip1535">프로필 관리</button>
 					</div>
 
 				</form>

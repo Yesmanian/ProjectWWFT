@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
 <meta charset="EUC-KR">
-<title>Family Motto</title>
+<title>가훈 등록</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -90,9 +90,9 @@ $("#btnFamilyMotto").click(function () {
       
       
       <div class="wrapper">
-  <div class="header"><h1 class="text-white">FAMILY MOTTO</h1>
+  <div class="header"><h1 class="text-white" style="font-size: 100px;">FAMILY MOTTO</h1>
         	<div class="text-white">
-        	<h3>There is nothing more precious than family.<br>
+        	<h3 style="font-size: 35px;">There is nothing more precious than family<br>
         	What does family mean to you?<br>
         	Write a family motto to unite your family</h3>
         	   </div>

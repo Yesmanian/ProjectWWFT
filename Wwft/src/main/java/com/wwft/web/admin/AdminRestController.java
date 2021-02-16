@@ -37,6 +37,7 @@ public class AdminRestController {
 	 System.out.println(report.getReportType());//3
 	 
 	 report.setReportedPostNo(1);
+	 report.setReportState('0');
 	 
 	 
 	 
@@ -45,7 +46,7 @@ public class AdminRestController {
 	 //noticeMessage Logic
 	 //프로필 이름 받아오기 아마도 세숀으로 받을것
 	 NoticeMessage noticeMessage =  new NoticeMessage();
-	 noticeMessage.setNoticeMessageDetail("~게시글 신고가 접수되었습니다");
+	 noticeMessage.setNoticeMessageDetail("게시글 신고가 접수되었습니다");
 	 noticeMessage.setNoticeMessageState('0');
 	 noticeMessage.setNoticeMessageType('1');
 	 //noticeMessage.setPostNo(report.getReportedPostNo());
