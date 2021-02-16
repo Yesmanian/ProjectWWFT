@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>WWFT</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -81,7 +82,46 @@ li:hover {
   } */
 </style>
 <script type="text/javascript">
+ 	//
+ 	//얼마나 지났는지
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+    // alert("타임벨류"+timeValue+"today : "+today)
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+}
+//오전 오후 
+function formatAMPM(value) {
+    let date = new Date(value);
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? '오후' : '오전';
+    // hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
  	
+ 	
+ 	//bluer
  	var newValue;
     
  	 function blurFunction(){
@@ -249,7 +289,7 @@ li:hover {
     
   </div>
 </nav>
-${forest}
+<%-- ${forest} --%>
 <!--navbar end  -->
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
@@ -298,64 +338,15 @@ ${forest}
                 </div>
             </div>
             <div class="col-md-6 gedf-main">
-
-                <!--- \\\\\\\Post-->
-                <!-- 
-                <iframe src="/post/getPost?postNo=1" width="390px" height="100%"  scrolling="auto" frameborder="0" align="middle" marginwidth="100px"></iframe>
-                 -->
-                <!-- <div class="card gedf-card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Make
-                                    a publication</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Images</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                                <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
-                                </div>
-
-                            </div>
-                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Upload image</label>
-                                    </div>
-                                </div>
-                                <div class="py-4"></div>
-                            </div>
-                        </div>
-                        <div class="btn-toolbar justify-content-between">
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">share</button>
-                            </div>
-                            <div class="btn-group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-globe"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- Post /////-->
-
-                <!--- \\\\\\\Post-->
-                <!-- <div class="card gedf-card">
+				
+				
+                <c:forEach var="postFile" items="${listPost}">
+                	
+                	<%-- ${postFile.listPostMapPost }
+                	${postFile.listPostMapList } --%>
+                	
+                	 <!--- \\\\\\\Poststart-->
+                <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -363,8 +354,9 @@ ${forest}
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">{profileName}</div>
-                                    <div class="h7 text-muted">{treeName}</div>
+                                    <div class="h5 m-0">${postFile.listPostMapPost.postWriter}</div>
+                                    <!-- <div class="h7 text-muted">{treeName}</div> -->
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>${postFile.listPostMapPost.postRegDate}</div>
                                 </div>
                             </div>
                             <div>
@@ -384,27 +376,171 @@ ${forest}
 
                     </div>
                     <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <!-- <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div> -->
                         <a class="card-link" href="#">
-                            <h5 class="card-title">\${postList }</h5>
-                        </a>
+                           
+                           <!-- 슬라이드 start -->
+							<div class="" style="margin-left: 5px; margin-right: 5px;">
+								<div id="carouselExampleIndicators" class="carousel slide"
+									data-ride="carousel">
+									<ol class="carousel-indicators">
+										<c:set var ="i" value ="0"/>
+							  			<c:forEach var ="file" items="${postFile.listPostMapList}">
+								  			<c:set var ="i" value="${i+1}"/>
+								  			<li data-target="#carouselExampleIndicators" data-slide-to="${i}" id ="liList"></li>
+				  						</c:forEach>
+									
+									</ol>
+									<div class="carousel-inner">
+										<c:set var="i" value="-1" />
+										<c:forEach var="file" items="${postFile.listPostMapList}">
+											<c:set var="i" value="${i+1}" />
+											<c:choose>
+												<c:when test="${i eq 0}">
+												    <div class="carousel-item active">
+														<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="...">
+													</div>
+												    </c:when>
+												
+												  <c:otherwise>
+												       <div class="carousel-item">
+															<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="...">
+														</div>
+												   </c:otherwise>
+											</c:choose>
+										</c:forEach>
+										
+									</div>
+									<a class="carousel-control-prev" href="#carouselExampleIndicators"
+										role="button" data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+										class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+										role="button" data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span> <span
+										class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>  
+			<!-- 슬라이드END -->
+                           
+                         </a> 
 
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
-                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                            ${postFile.listPostMapPost.postDetail}
                         </p>
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;">
+                        <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
+                        <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
                     </div>
                 </div>
-                Post /////
+                <div></br></div>
+				<!-- postend -->
+                	
+                	
+                	
+                	
+                	
+                </c:forEach>
 
-
-                - \\\\\\\Post
+                <!--- \\\\\\\Poststart-->
                 <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">${postList.post15.postWriter}</div>
+                                    <!-- <div class="h7 text-muted">{treeName}</div> -->
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div> -->
+                        <a class="card-link" href="#">
+                           
+                           <!-- 슬라이드 start -->
+							<div class="" style="margin-left: 5px; margin-right: 5px;">
+								<div id="carouselExampleIndicators" class="carousel slide"
+									data-ride="carousel">
+									<ol class="carousel-indicators">
+										<c:set var ="i" value ="0"/>
+							  			<c:forEach var ="file" items="${postList.fileList5}">
+								  			<c:set var ="i" value="${i+1}"/>
+								  			<li data-target="#carouselExampleIndicators" data-slide-to="${i}" id ="liList"></li>
+				  						</c:forEach>
+									
+									</ol>
+									<div class="carousel-inner">
+										<c:set var="i" value="-1" />
+										<c:forEach var="file" items="${postList.fileList5}">
+											<c:set var="i" value="${i+1}" />
+											<c:choose>
+												<c:when test="${i eq 0}">
+												    <div class="carousel-item active">
+														<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="...">
+													</div>
+												    </c:when>
+												
+												  <c:otherwise>
+												       <div class="carousel-item">
+															<img src="/resources/images/uploadFiles/${file}" class="d-block w-100" alt="...">
+														</div>
+												   </c:otherwise>
+											</c:choose>
+										</c:forEach>
+										
+									</div>
+									<a class="carousel-control-prev" href="#carouselExampleIndicators"
+										role="button" data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+										class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+										role="button" data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span> <span
+										class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>  
+			<!-- 슬라이드END -->
+                           
+                         </a> 
+
+                        <p class="card-text">
+                            ${postList.post10.postDetail}
+                        </p>
+                    </div>
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;">
+                        <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
+                        <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
+                    </div>
+                </div>
+                
+				<!-- postend -->
+
+                
+                <!--<div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -461,10 +597,10 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
-                Post /////
+                
 
 
-                - \\\\\\\Post
+                
                 <div class="card gedf-card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
@@ -512,8 +648,8 @@ ${forest}
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
-                </div>
-                Post ///// -->
+                </div>-->
+                
 
 
 
@@ -559,9 +695,9 @@ ${forest}
 
 
 
- Hello GetForest.jsp<br/>
+ <!-- Hello GetForest.jsp --><br/>
  <div>
-	 ${forest}
+	 $<%-- {forest} --%>
 	
  </div><br/>
  
@@ -610,7 +746,7 @@ var restLoadPostMore = function(postList,fileList){
 	$(".col-md-6").append(`
 			
 			 <iframe src="/post/getPost&postNo=${postList.postNo }"></iframe>
-			
+			 
 		`);
 	
 	
@@ -637,7 +773,7 @@ var inviteTreeLoad = function(list){
 
 window.onload = function(){
 	
-	var postPageNumber = 1;
+/* 	var postPageNumber = 1;
 	var postParams = {
 			forestNo   : ${param.forestNo},
 			pageNumber : postPageNumber
@@ -657,19 +793,19 @@ window.onload = function(){
 			
 			
 			
-			//var postList = res.post0;
-			//var fileList = res.fileList0;
+			var postList = res.post0;
+			var fileList = res.fileList0;
 			var postList = 
 					{'postNo' : 3, 'postRegDate':'2021-02-04' , 'postDetail':123, 'postWriter':'초초', 'postState':0, 'postTreeNo':1, 'checkboxState':null, 'albumName':null, 'firstImageName':null, 'profileNo':0};	
 				
 			var fileList = ['1.jpg', '2.jpg', '3.jpg'];
 			
 
-			alert(postList.postNo)
-			alert(fileList[0])
 			//alert(postList.postNo)
 			//alert(fileList[0])
-			restLoadPostMore(postList,fileList);
+			alert(postList.postNo)
+			alert(fileList[0])
+			//restLoadPostMore(postList,fileList);
 			
 		
 			
@@ -678,7 +814,7 @@ window.onload = function(){
 		error :  function(XMLHttpRequest, textStatus,errorThrown){
 			alert("통신 실패1")
 		}
-	})
+	}) */
 	
 	
 	
@@ -785,7 +921,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
  
  <div>
 	 공지글
-	 ${param.profileNo}
+	 <%-- ${param.profileNo} --%>
 	 <h2 class="forestInformText">${forest.forestInformText }0</h2>
 	 <h2 class="forsetInformTextWriter">${forest.forestInformWriter }1</h2>
 	 <h2 class="forestInformTextRegDate">${forest.forestInformRegDate }2</h2>
@@ -902,7 +1038,14 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
  </div>
  
  <div>
- 	<%-- ${acceptTreeList } --%>
+ 	<%-- ${acceptTreeList }
+ 	 ${postList.post9.postNo}
+ 	${postList.fileList9[0]}
+ 	${postList.fileList5}
+ 	${postList.post15.postDetail}
+ 	${postSize } --%>
+ 	${listPost[0].listPostMapPost }
+ 	${listPost[0].listPostMapList }
  </div>
  
  

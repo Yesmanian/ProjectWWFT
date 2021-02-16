@@ -117,4 +117,19 @@ public class ForestServiceImpl implements ForestService {
 		return map;
 	}
 
+	@Override
+	public List<Forest> getForestList(int treeNo) throws Exception {
+		System.out.println("forestServiceImpl getForestList");
+		return forestDao.getForestList(treeNo);
+	}
+
+	@Override
+	public Map<String, Object> getPostList(int forestNo) throws Exception {
+		System.out.println("forestServiceImpl getPostList");
+		List<Post> list = forestDao.getPostList(forestNo);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		return map;
+	}
+
 }

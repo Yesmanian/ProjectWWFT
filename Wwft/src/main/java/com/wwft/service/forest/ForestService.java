@@ -25,5 +25,8 @@ public interface ForestService {
 	
 	public void inviteTree(List<Integer> treeNo,int forestNo, int profileNo) throws Exception;
 	
+	public List<Forest> getForestList(int treeNo) throws Exception;
+	
+	public Map<String, Object> getPostList(int forestNo) throws Exception;
 	
 }

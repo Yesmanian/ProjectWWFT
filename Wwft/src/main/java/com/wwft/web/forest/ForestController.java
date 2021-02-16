@@ -1,6 +1,9 @@
 package com.wwft.web.forest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Post;
 import com.wwft.service.forest.ForestService;
 import com.wwft.service.noticemessage.NoticeMessageService;
 import com.wwft.service.post.PostService;
+import com.wwft.service.tree.TreeService;
 
 @Controller
 @RequestMapping("/forest/*")
@@ -37,10 +42,46 @@ public class ForestController {
 	@Qualifier("postServiceImpl")
 	private PostService postService;
 	
+	@Autowired
+	@Qualifier("treeServiceImpl")
+	private TreeService treeService;
+	
 	public ForestController() {
 		System.out.println("::"+this.getClass()+"default ForestController Constructor..");
 		
 	}
+	
+	public StringBuffer postTime(Date timeValue) {
+		Date today =  new Date();
+		StringBuffer time = new StringBuffer();
+		String temp = String.valueOf((Math.floor((today.getTime()-timeValue.getTime()) / 1000 / 60)));
+		System.out.println(temp.substring(0, temp.length()-2));
+		int betweenTime = Integer.parseInt(temp.substring(0, temp.length()-2));
+		System.out.println(betweenTime);
+		if(betweenTime < 1) {
+			return time.append("just few seconds ago");
+		}
+		if(betweenTime < 60) {
+			return time.append(betweenTime+"seconds ago");
+		}
+		
+		int betweenTimeHour = Integer.parseInt(String.valueOf((int)Math.floor(betweenTime / 60)));
+		System.out.println("betweenTimeHour "+betweenTimeHour);
+		if (betweenTimeHour < 24) {
+	        return time.append(betweenTimeHour+"hours ago");
+	    }
+		
+		int betweenTimeDay = (int)Integer.parseInt(String.valueOf((int)Math.floor(betweenTime / 60 / 24)));
+		System.out.println("betweenTimeDay "+betweenTimeDay);
+	    if (betweenTimeDay < 365) {
+	        return time.append(betweenTimeDay+"days ago");
+	    }
+
+	    return time.append(betweenTimeDay+"years ago");
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "getForest", method = RequestMethod.GET)
 	public ModelAndView getForset(@RequestParam("forestNo")int forestNo,HttpServletRequest req) throws Exception {
@@ -50,6 +91,62 @@ public class ForestController {
 		
 		//Business /Logic
 		Forest forest = forestService.getForest(forestNo);
+		
+		//PostBusiness Logic
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("postList", forestService.getPostList(forestNo));
+		System.out.println(postMap.get("postList").toString());
+		//Post Business Logic
+		Map<String, Object> getPostMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<HashMap<String, Object>> listPost = new ArrayList<HashMap<String,Object>>();
+		for (int i = 0; i < ((List)((Map<String, Object>)postMap.get("postList")).get("list")).size(); i++) {
+			System.out.println(((Post)((List)((Map<String, Object>)postMap.get("postList")).get("list")).get(i)).getPostNo());
+			getPostMap = postService.getPost(((Post)((List)((Map<String, Object>)postMap.get("postList")).get("list")).get(i)).getPostNo());
+			
+			Post post = (Post)getPostMap.get("post");
+			
+			//settime
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			
+			
+			Date timeValue = transFormat.parse(post.getPostRegDate());
+			System.out.println("timeValue"+timeValue);
+			String postTime = postTime(timeValue).toString();
+			post.setPostRegDate(postTime);
+			//String betweenTime = Integer.toString(Integer.parseInt(String.valueOf((Math.floor((today.getTime()-timeValue.getTime()) / 1000 / 60)))));
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			String treeName = treeService.getUserTree(post.getPostTreeNo()).getTreeName();
+			System.out.println(treeName);
+			List<String> fileList = (List<String>)getPostMap.get("fileList");
+			
+			resultMap.put("post"+i, post);
+			resultMap.put("fileList"+i, fileList);
+			
+			HashMap<String, Object> listPostMap = new HashMap<String, Object>();
+			listPostMap.put("listPostMapPost", post);
+			listPostMap.put("listPostMapList", fileList);
+			listPost.add(listPostMap);
+			
+			
+			
+		}
+		int postSize = ((List)((Map<String, Object>)postMap.get("postList")).get("list")).size();
+		
+		
+		
 		//System.out.println(forest);
 		Map<String, Object> map = forestService.getTreeList(forestNo);
 		
@@ -61,6 +158,9 @@ public class ForestController {
 		modelAndView.addObject("list", map.get("list"));
 		modelAndView.addObject("acceptTreeList", map.get("acceptTreeList"));
 		modelAndView.addObject("forest", forest);
+		modelAndView.addObject("postList", resultMap);
+		modelAndView.addObject("postSize", postSize);
+		modelAndView.addObject("listPost", listPost);
 		
 		
 		System.out.println("/getForest End...");
