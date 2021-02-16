@@ -22,8 +22,8 @@
         <div class="text">
             <h2>We can do it</h2>
             <h3>We are the Family</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus odit facilis voluptate tempore reiciendis eum rem iusto autem quaerat perspiciatis?</p>
+            <p>Welcome to our site. We hope that this site rethinks the meaning of family and builds a strong bond and makes a positive impact. 
+            Thank you</p>
             <a href="#">Join</a>
         </div>
 

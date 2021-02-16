@@ -5,6 +5,11 @@
     --overlay-color: #03a9f4;
 }
 
+.go{
+	font-family: 'Reggae One', cursive;
+	padding-left: 15px;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;

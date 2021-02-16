@@ -17,7 +17,7 @@ public interface PostDao {
 	
 	public Post getPost( int postNo) throws Exception;
 	
-	public int lastPosttNo() throws Exception;
+	public int lastPostNo() throws Exception;
 	
 	public int getTotalCount(Search search,int postTreeNo) throws Exception;
 	
