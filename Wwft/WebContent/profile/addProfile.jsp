@@ -62,6 +62,14 @@ button{
 
 }
 
+/* radio 버튼 아래로 내려오는 CSS*/
+#image{
+
+ inline-size: -webkit-fill-available;
+
+
+}
+
 
 h1{
 font-family: 'Anton', sans-serif;
@@ -255,7 +263,7 @@ font-family: 'Archivo Narrow', sans-serif;
 	<br>
 	
 	<div>
-        
+        <!--  input class로 된것을 name으로 다시 고침 -->
         <label class="radio-inline">
             <img src="/resources/images/profile/profile_1.png" alt="기본 이미지 - 나무" width="70" height="70">
             <input type="radio" name="profileImage" 	 id="image" value="profile_1.png"  checked="checked">  

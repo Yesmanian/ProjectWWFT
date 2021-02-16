@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
 <meta charset="EUC-KR">
-<title>내 나무보기</title>
+<title>회원 나무 보기</title>
 
 
 
