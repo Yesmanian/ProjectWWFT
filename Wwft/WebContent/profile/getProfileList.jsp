@@ -66,6 +66,12 @@
 					
 					}
 					
+					.img{
+					height: 140px;
+					margin: 50px;"
+					
+					}
+				
 				
 
 					.ul {
@@ -82,6 +88,7 @@
 					}
 
 					.image_inner_container {
+					
 						
 						padding: 5px;
 						background: white;
@@ -90,6 +97,8 @@
 					}
 
 					.image_inner_container img {
+					
+				
 						height: 100px;
 						width: 100px;
 						border-radius: 50%;
@@ -110,33 +119,35 @@
 							<div class="flex-container" id="flex">
 								<div class="d-flex justify-content-center h-100" >
 
+								
 									<div class="image_outer_container" style="width: 250px; line-height: 200px;">
 										<div class="green_icon"></div>
+										
+										
 										<div class="image_inner_container">
-											<a
-												href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img
+											<a href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img
 													src="/resources/images/profile/${list.profileImage}" style="width: 100%;height: 100%;"></a>
-											<div class="d-flex justify-content-center" style="position: absolute;">
-												${list.profileName}</div>
-
+											<div class="d-flex justify-content-center ok"style="position: absolute;left: 100px;">
+													${list.profileName}
+													
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+					
 						</c:forEach>
-						<div class="d-flex justify-content-center">
-							<a href="/profile/addProfile"><img src="/resources/images/profile/412rXWdCJ7L.png" ></a>
+						<div class="d-flex justify-content-center ok">
+							<a href="/profile/addProfile"><img src="/resources/images/profile/plus.png" class="img"></a>
 							<div class="d-flex justify-content-center"></div>
 						</div>
 					</ul>
 					<!--/ Product Item -->
 						
 			<div class="card bg-light" style="top: 120px;">
+			
 	</div>
 		
-				<div class="d-flex justify-content-center">
-							<button class="snip1535">프로필 관리</button>
-					</div>
 				
 		
 			</div>
