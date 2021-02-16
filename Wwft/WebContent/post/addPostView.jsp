@@ -10,10 +10,27 @@
 
 <html>
 <head>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 <title>게시글 작성</title>
 <style type="text/css">
-  html,
+
+
+video {
+	position : fixed;
+	top : 0; 
+	left : 0;
+	min-width : 80 %;
+	min-height : 80 %;
+	width : auto;
+	height : auto;
+	z-index : -1;
+}
+ 
+
+ 
+html,
 
 body {
 
@@ -23,11 +40,22 @@ body {
 
     height:	60px;
     
-    background-image:url("/resources/images/tree/add.png");
+    background-image:url("/resources/images/tree/Inkedpostadd1_LI.jpg");
     
      background-size: cover;
+     
+     
 
-} 
+}   
+b{
+font-family: 'Hi Melody', cursive;
+}
+.input_wrap{
+font-family: 'Hi Melody', cursive;
+}
+.col-8{
+font-family: 'Hi Melody', cursive;
+}
 /* 		
 body {
     margin: 0;
@@ -87,6 +115,7 @@ input[type=file] {
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
 <%-- <%@ include file="/WEB-INF/include/include-header.jspf" %> --%>
@@ -175,16 +204,26 @@ input[type=file] {
      data.append("image_count", sel_files.length);
      
      if(sel_files.length < 1) {
-         alert("한개이상의 파일을 선택해주세요.");
+         /* alert("한개이상의 파일을 선택해주세요."); */
+		  Swal.fire({
+			  title: '한개이상의 파일을 선택해주세요.',
+			  icon: 'warning',
+			  showClass: {
+			    popup: 'animate__animated animate__fadeInDown'
+			  },
+			  hideClass: {
+			    popup: 'animate__animated animate__fadeOutUp'
+			  }
+		})
          return false;
      } else {
-    	 var profileNo = $("[name='profileNo']").val();
-    	 var postTreeNo = $("[name='treeNo']").val();
-    	 var profileName = $("[name='profileName']").val();
-         var treeName	= $("[name='treeName']").val();
-         var postWriter = `\${treeName}#\${profileName}`;
-         var postDetail = $("#postDetail").val();
-     	 var postState = $("[name='postState']").val();
+    	 var profileNo = $("[name='profileNo']").val();				//게시글 작성자 프로필번호
+    	 var postTreeNo = $("[name='treeNo']").val();				//게시글 작성자 나무번호
+    	 var profileName = $("[name='profileName']").val();			//게시글 작성자 프로필 이름
+         var treeName	= $("[name='treeName']").val();				//게시글 작성자 나무 이름
+         var postWriter = `\${treeName}#\${profileName}`;			//게시글 작성자
+         var postDetail = $("#postDetail").val();					//게시글 내용
+     	 var postState = $("[name='postState']").val();				//게시글 공개여부
      	alert(postTreeNo);
      	 alert(treeName);
          $.ajax({
@@ -339,8 +378,11 @@ input[type=file] {
 		<jsp:include page="../common/navBar.jsp" />
 
 	</header>
-
+	
 	<div>
+		<!-- <div class="leftCol" style="float: left;">
+		 	<i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="history.back(-1);"></i>
+		</div> -->
 	<form id="form" enctype="multipart/form-data" method="post" style="margin-top: 100px;">
 
 		<input type="hidden" name="treeNo" value="${tree.treeNo}">
@@ -350,14 +392,15 @@ input[type=file] {
 		<input type="hidden"  name="menu" value="${menu}"/>
 		
 		<div class="container-sm" style="border: outset;">
+		<video src="/resources/images/tree/postadd1.mp4" muted loop autoplay></video>
 			<div class="row row-cols-3">
 
 				<div class="col-2"></div>
 				<div class="col-8" align="center">
 					<div>
-						<h4>
+						<h2>
 							<b>게시글 등록</b>
-						</h4>
+						</h2>
 					</div>
 				</div>
 				<div class="col-2"></div>
@@ -368,8 +411,10 @@ input[type=file] {
 				<div class="col-2"></div>
 				<div class="col-8">
 					<div class="input_wrap">
-						<a href="javascript:" onclick="fileUploadAction();"
-							class="my_button">파일 업로드</a> <input multiple="multiple"
+						<button type="button" class="btn btn-outline-success" onclick="fileUploadAction();">파일업로드</button>
+						<!-- <a href="javascript:" onclick="fileUploadAction();"
+							class="my_button">파일 업로드</a>  -->
+							<input multiple="multiple"
 							type="file" id="input_imgs" name="input_imgs" maxlength="10" />
 
 					</div>
@@ -402,7 +447,9 @@ input[type=file] {
 
 				<div class="col-2"></div>
 				<div class="col-8">
+					<h2>
 					<b>게시글 작성 내용</b>
+					</h2>
 				</div>
 				<div class="col-2"></div>
 
@@ -422,8 +469,8 @@ input[type=file] {
 
 				<div class="col-2"></div>
 				<div class="col-8">
-					<input type='radio' name='postState' value='0' />공개 <input
-						type='radio' name='postState' value='1' />비공개
+					<input type='radio' name='postState' id = "postState" value='0' />공개 <input
+						type='radio' name='postState' id = "postState" value='1' />비공개
 				</div>
 				<div class="col-2"></div>
 
@@ -432,47 +479,13 @@ input[type=file] {
 
 				<div class="col-2"></div>
 				<div class="col-8">
-					<!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#exampleModal">앨범생성</button>
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">신고</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<div class="form-group">
-										<label for="exampleFormControlSelect1">신고 내용</label> <select
-											class="form-control" id="exampleFormControlSelect1">
-											<option value="0">욕설</option>
-											<option value="1">음란물</option>
-											<option value="2">도박</option>
-											<option value="3">아동학대</option>
-
-										</select>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<input Type="hidden"
-										value='$("#exampleFormControlSelect1 option:selected").val();'>
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">취소</button>
-									<button type="button" onClick="fn_addReport()"
-										class="btn btn-primary">신고하기</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
+					
 
 				</div>
 
 			</div>
 			<div class="col-2"></div>
+			</div>
 
 			<div class="row row-cols-3">
 
@@ -482,7 +495,9 @@ input[type=file] {
 						onclick="fncAddPost();">등록</button> -->
 					
 						<button type="button" class="btn btn-outline-success" onclick="fncAddPost();">등록</button>
+						<button type="button" class="btn btn-outline-success" onclick="history.back(-1);">취소</button>
 				</div>
+			
 				<div class="col-2"></div>
 
 			</div>
