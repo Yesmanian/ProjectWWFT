@@ -158,4 +158,20 @@ public class ForestDaoImpl implements ForestDao {
 		return sqlSession.selectList("ForestMapper.getPostRestList", map );
 	}
 
+
+	@Override
+	public List<Forest> getForestList(int treeNo) throws Exception {
+		System.out.println("ForestDao getForestList");
+		return sqlSession.selectList("ForestMapper.getForestList", treeNo);
+	}
+
+
+	@Override
+	public List<Post> getPostList(int forestNo) throws Exception {
+		System.out.println("ForestDao getPostList");
+		List<Post> list = sqlSession.selectList("ForestMapper.getPostList", forestNo);
+		System.out.println(list.toString());
+		return sqlSession.selectList("ForestMapper.getPostList", forestNo);
+	}
+
 }

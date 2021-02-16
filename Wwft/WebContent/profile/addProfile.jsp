@@ -43,6 +43,12 @@ button{
 	
 	
 }
+#image{
+
+ inline-size: -webkit-fill-available;
+
+
+}
 
 /* radio 버튼 아래로 내려오는 CSS*/
 #image{

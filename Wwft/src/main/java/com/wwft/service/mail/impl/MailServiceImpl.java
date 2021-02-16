@@ -24,9 +24,9 @@ public class MailServiceImpl implements MailService {
 		// TODO Auto-generated constructor stub
 	}
 	
-	 public void setJavaMailSender(JavaMailSender javaMailSender) {
-	        this.javaMailSender = javaMailSender;
-	    }
+//	 public void setJavaMailSender(JavaMailSender javaMailSender) {
+//	        this.javaMailSender = javaMailSender;
+//	    }
 
 
 

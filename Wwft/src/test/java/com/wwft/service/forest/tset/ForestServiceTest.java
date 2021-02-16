@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.wwft.service.calendar.EventService;
 import com.wwft.service.domain.Event;
 import com.wwft.service.domain.Forest;
+import com.wwft.service.domain.Tree;
 import com.wwft.service.forest.ForestService;
 
 
@@ -45,28 +46,28 @@ public class ForestServiceTest {
 	private ForestService forestService;
 
 	//@Test
-	public void testgetTreeList() throws Exception {
-		
-		//Event event = new Event();
-		/*
-		 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
-		 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
-		 * transFormat.format(new Date(time)); System.out.println(nowTime);
-		 */
-		Forest forest =  new Forest();
-		forest.setForestNo(21);
-		int pageNumber = 1;
-		
-		
-		
-		
-
-		forestService.getTreeRestList(forest.getForestNo(), pageNumber);
-		
-	}
+//	public void testgetTreeList() throws Exception {
+//		
+//		//Event event = new Event();
+//		/*
+//		 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
+//		 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
+//		 * transFormat.format(new Date(time)); System.out.println(nowTime);
+//		 */
+//		Forest forest =  new Forest();
+//		forest.setForestNo(21);
+//		int pageNumber = 1;
+//		
+//		
+//		
+//		
+//
+//		forestService.getTreeRestList(forest.getForestNo(), pageNumber);
+//		
+//	}
+//	
 	
-	
-	@Test
+	//@Test
 	public void testupdateInformText() throws Exception {
 		
 		//Event event = new Event();
@@ -88,7 +89,24 @@ public class ForestServiceTest {
 		
 	}
 	
+	@Test
+	public void testgetForestList() throws Exception {
+		
+		//Event event = new Event();
+		/*
+		 * long time = System.currentTimeMillis(); SimpleDateFormat transFormat = new
+		 * SimpleDateFormat("yyyy-mm-dd HH:mm:ss"); String nowTime =
+		 * transFormat.format(new Date(time)); System.out.println(nowTime);
+		 */
+		System.out.println("123");
+		Tree tree =  new Tree();
+		tree.setTreeNo(1);
+		
 	
+		List<Forest> list = forestService.getForestList(tree.getTreeNo());
+		System.out.println(list.toString());
+		
+	}
 		
 	
 }
