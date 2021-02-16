@@ -371,6 +371,7 @@ img {
 </head>
  
 <body>
+
 	<header id="wrap"> 
         
         <jsp:include page="../common/navBar.jsp"/>
@@ -380,13 +381,15 @@ img {
     <form name = "detailForm" action="/post/getPostList">
     	<!-- 임시데이터 -->
     	<%-- <input type="hidden" name="treeNo" value="${post.postTreeNo}"> --%>
-    	<input type="hidden" name="postTreeNo" value="1">
+    	<%-- <input type="hidden" name="postTreeNo" value="${ }"> --%>
    		
 <!-- Page Content -->
 <div class="container">
-
+	<%-- ${tree.treeNo }
+	${param.postTreeNo} --%>
   <!-- <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0"> -->
   	<input type="hidden" id="currentPage" name="currentPage" value=""/>
+  	<input type="hidden" name="postTreeNo" value="${param.postTreeNo}">
   	<select class="form-control" name="sel" id ="sel" style="width: 50%">
   	
   			<option value="">기본</option>
@@ -401,8 +404,10 @@ img {
   
   
   <hr class="mt-2 mb-5">
-
-	 	<button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-primary">게시글 쓰기</button>
+  		<c:set var ="treeNo" value="${tree.treeNo }"/>
+		<c:if test="${treeNo == param.postTreeNo}">
+			<button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-primary">게시글 쓰기</button>
+		</c:if>
 		  <div class="row text-center text-lg-left">
 			<c:forEach var="post" items ="${list}">
 		    <div class="col-lg-3 col-md-4 col-6" style="width:40%; height: 40%">
@@ -457,7 +462,8 @@ $("#sel").change(function(){
    /*  var searchKeyword = 'dddkdi'; */
      var searchKeyword = $("#sel option:Selected").val();
 	alert(searchKeyword);
-	var postTreeNo = '1';
+	 var postTreeNo = $("[name='postTreeNo']").val();
+	/* var postTreeNo = '1'; */
 	alert(postTreeNo);
 	javascript:fncGetList('1'); 
 	self.location ="/post/getPostList?postTreeNo="+postTreeNo+"&searchKeyword="+searchKeyword
