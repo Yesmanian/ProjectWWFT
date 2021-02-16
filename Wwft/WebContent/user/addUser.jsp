@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 	<!DOCTYPE html>
 	<html>
-
-	
-
 	<head>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
