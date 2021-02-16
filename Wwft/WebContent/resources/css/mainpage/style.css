@@ -5,6 +5,10 @@
     --overlay-color: #03a9f4;
 }
 
+h4{
+	font-family: 'Headland One', serif;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;

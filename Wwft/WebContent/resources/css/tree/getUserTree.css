@@ -8,7 +8,7 @@ body {
 
     height:	60px;
     
-    background-image:url("/resources/images/tree/main-tree.jpg");
+    background-image:url("/resources/images/tree/tree-247122_960.jpg");
     
      background-size: cover;
 
@@ -18,7 +18,7 @@ body {
 
 	position:relative;
 
-    min-height: 70%;
+    min-height: 80%;
 
 }
 
@@ -26,7 +26,7 @@ body {
 
 	height:70px;
 
-    background:#ccc;
+ 
     
     
 
@@ -50,12 +50,12 @@ body {
   	
 	background-color: black;/* 까만색(0,0,0) */
 	
-    opacity:0.7; /* 80% 투명도 */
+    opacity:65%; /* 80% 투명도 */
   	
 }
    
 
-h4{
+h4, h6{
 		font-family: 'Black And White Picture', sans-serif;
 		
 
@@ -79,14 +79,12 @@ outline-style: solid;
 }
 
 
-button.button-add{
 
-}
 
 
 tr.tb{
-
-background-image: url("/resources/images/tree/tree3.png" ); 
+opacity:65%; /* 80% 투명도 */
+background-color: black;/* 까만색(0,0,0) */
 
 }
 
