@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Headland+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mainpage/style.css">
     <title>World Wild Family Tree</title>
 </head>
@@ -24,7 +24,7 @@
         <div class="text">
             <h2>We can do it</h2>
             <h3>We are the Family</h3>
-            <h4>Welcome to our site.<br> 
+            <h4 class="go">Welcome to our site.<br> 
             We hope that this site rethinks the meaning of family and builds a strong bond and makes a positive impact.<br>
             We want you to enjoy the content. May your family be full of blessings.</h4>
           

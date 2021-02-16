@@ -5,8 +5,9 @@
     --overlay-color: #03a9f4;
 }
 
-h4{
-	font-family: 'Headland One', serif;
+.go{
+	font-family: 'Reggae One', cursive;
+	padding-left: 15px;
 }
 
 *{

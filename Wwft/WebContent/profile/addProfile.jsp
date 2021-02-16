@@ -250,7 +250,7 @@ font-family: 'Archivo Narrow', sans-serif;
  
  
  	 
-     <header class="heading"><h1 style="color:white; font-size: -webkit-xxx-large;">Create a Profile</h1></header><hr style="border-bottom: thin;
+     <header class="heading"><h1 style="color:white; font-size: -webkit-xxx-large;">Create Profile</h1></header><hr style="border-bottom: thin;
     border-color: aliceblue;">
 </hr>
   

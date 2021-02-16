@@ -31,7 +31,7 @@
 	 
 	 .bar{
 	 		
-		      background-color:white;
+		      background-color:whitesmoke;
 	 }
 	 
    </style> 

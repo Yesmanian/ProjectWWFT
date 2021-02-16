@@ -30,7 +30,7 @@ body {
 	border-radius: 50%;
 	padding: 5px;
 	background: #833ab4;
-	background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+	background: -webkit-linear-gradient(to bottom, rgb(255, 255, 128), #fd1d1d, #833ab4);
 	background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
 }
 
