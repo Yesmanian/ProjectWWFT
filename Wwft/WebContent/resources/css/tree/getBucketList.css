@@ -1,45 +1,59 @@
-     .grid {
-            
-        
-            padding: 20px;
-         
-        }
-        .column {
-        
-      		
-            min-height: 100px; 
-            padding: 10px;
-        }
-      
-        
-        /* grid */
-        .grid10 {
-            display: grid;
-            grid-gap: 20px;
-            grid-template-columns: repeat(3, 1fr);
-            /* grid-template-rows: repeat(3, 100px); */
-            grid-template-rows: repeat(3, minmax(100px, auto));
-            grid-template-areas:
-                "a a a"
-                "b b b"
-                "c c c"
-                "d d d";
-        } 
-        .column10:nth-child(1) {grid-area: a;}
-        .column11:nth-child(2) {grid-area: b;}
-        .column10:nth-child(3) {grid-area: c;}
-        .column10:nth-child(4) {grid-area: d;}
-        
-        
-      .column11{
-      
-      		display: grid;
-      		justify-content: center;
-   			 text-align: center;
-   			 
-   			 align-items: center;
-  			min-height: 30vh;
-      
-      }
-        
-       
+.header{
+   grid-area: header;
+   display: grid;
+   height:400px;
+		background-image: url("/resources/images/tree/box.jpg");
+	background-position: center;
+	background-size: cover;
+   
+
+ }
+  
+ .leftCol{
+   grid-area: leftCol;
+   
+ }
+ .rightCol{
+   grid-area: rightCol;
+
+ }
+  
+  .midTop{
+   grid-area: midTop;
+
+  
+ }
+  
+ .midBottom{
+   grid-area: midBottom;
+  
+  
+ }
+  
+ .footer{
+   grid-area: footer;
+}
+
+h1{
+ font-family: 'Anton', sans-serif;
+ 
+ }
+ 
+ h3{
+font-family: 'Fjalla One', sans-serif;
+ }
+ 
+ h5{
+font-family: 'Do Hyeon', sans-serif; 
+}
+
+ 
+ button.btn2{
+font-family: 'Do Hyeon', sans-serif; 
+}
+
+h4{
+font-family: 'Gothic A1', sans-serif;
+}	
+	
+       	

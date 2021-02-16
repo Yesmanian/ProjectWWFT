@@ -50,7 +50,7 @@ public class UserController {
 	
 	
 	@RequestMapping( value = "addUser", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute() User user,@ModelAttribute Tree tree) throws Exception{
+	public String addUser(@ModelAttribute("user") User user,@ModelAttribute("tree") Tree tree) throws Exception{
 		System.out.println("/user/addUser: POST");
 		System.out.println(user);
 		System.out.println(tree);
@@ -66,8 +66,11 @@ public class UserController {
 	
 	
 	@RequestMapping( value="getUser", method=RequestMethod.GET  )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+	public String getUser( @RequestParam("userId") String userId , Model model, HttpSession session ) throws Exception {
 		
+		User sessionUser = (User)session.getAttribute("user");
+		
+		if(sessionUser.getUserId().equals(userId)) {
 		System.out.println("/user/getUser : GET");
 		System.out.println("/user/getUser start..");		
 		//Business Logic
@@ -76,6 +79,9 @@ public class UserController {
 		model.addAttribute("user", user);
 		
 		return "forward:/user/getUser.jsp";
+		}else {
+			return "redirect:/";
+		}
 	}
 	
 	
@@ -152,8 +158,14 @@ public class UserController {
 		if( user.getPassword().equals(dbUser.getPassword())){
 			session.setAttribute("user", dbUser);
 		}
+		if(dbUser.getUserId().equals("admin")) {
+			return "redirect:/admin/admin.jsp";
+			
+		}else {
+			return "redirect:/profile/getProfileList";
+		}
 		
-		return "redirect:/profile/getProfileList";
+		
 	}
 	
 	

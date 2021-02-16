@@ -55,7 +55,7 @@ function createTag(value) {
                             <h2><a href="javascript:void(0);">${item.sender}</a>${item.noticeMessageDetail}</h2>
                             <p>
                             <a href="/post/getPost?postNo=${item.postNo}"  >
-                            <img src="/resources/images/uploadFiles/${item.postImage}"></a>
+                            <img src="/resources/images/uploadFiles/${item.postImage}" width="35%"></a>
                             </p>
                            
                                     

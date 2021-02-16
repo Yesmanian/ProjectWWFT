@@ -52,7 +52,7 @@ public class TreeServiceTest {
 		tree.setActivityTotalPoint(20);
 		
 		
-		treeService.addFamilyMotto(tree);
+		treeService.updateFamilyMotto(tree);
 		
 		System.out.println(tree);
 		
@@ -75,7 +75,7 @@ public class TreeServiceTest {
 	//@Test
 	public void testUpdateFamilyMotto() throws Exception{
 		
-		Tree tree = treeService.getTree(62);
+		Tree tree = treeService.getUserTree(62);
 		System.out.println("확인:"+tree);
 		
 		
@@ -85,28 +85,13 @@ public class TreeServiceTest {
 		
 		treeService.updateFamilyMotto(tree);
 		
-		tree = treeService.getTree(62);
+		tree = treeService.getUserTree(62);
 		
 		Assert.assertEquals("맛있는고기", tree.getFamilyMotto());
 	}
 	
 	
-	//@Test
-	public void testRemoveFamilyMotto() throws Exception{
-		
-		Tree tree = treeService.getTree(62);
-	System.out.println("확인1:"+tree);
-	
-	tree.setFamilyMotto("");
-	
-	treeService.removeFamilyMotto(tree);
-	System.out.println("확인2:"+tree);
-	
-	Assert.assertEquals("", tree.getFamilyMotto());
 
-	}
-	
-		
 		
 
 
@@ -115,7 +100,7 @@ public class TreeServiceTest {
 		
 		Tree tree = new Tree();
 		
-		tree = treeService.getTree(62);
+//		tree = treeService.getTree(62);
 		
 		System.out.println("확인:"+tree);
 		

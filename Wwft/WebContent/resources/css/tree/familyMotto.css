@@ -1,0 +1,57 @@
+.header{
+   grid-area: header;
+   display: grid;
+   height:500px;
+	background-image: url("/resources/images/tree/family-2611748_960_720.jpg");
+	background-position: center;
+	background-size: cover;
+   
+
+ }
+  
+ .leftCol{
+   grid-area: leftCol;
+ height: 10px;
+ }
+  
+ .rightCol{
+   grid-area: rightCol;
+
+ }
+  
+  .midTop{
+   grid-area: midTop;
+  
+ }
+  
+ .midBottom{
+   grid-area: midBottom;
+   
+ }
+  
+ .footer{
+   grid-area: footer;
+  
+ }
+ 
+ h1{
+ font-family: 'Anton', sans-serif;
+ 
+ }
+ h2{
+ font-family: 'Black Han Sans', sans-serif;
+ }
+ 
+ h3{
+font-family: 'Fjalla One', sans-serif;
+ }
+ 
+
+	
+ button.btn2{
+font-family: 'Do Hyeon', sans-serif; 
+}
+
+
+
+
