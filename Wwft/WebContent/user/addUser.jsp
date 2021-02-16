@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 	<!DOCTYPE html>
 	<html>
-
-	
-
 	<head>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -464,7 +461,7 @@
 		<div class="container">
 			<br>
 			<p >
-				<h1 class="text-center">World Wide Family Tree</h1>
+				<h1 class="text-center">FAMILY TREE</h1>
 			</p>
 			<hr>
 
@@ -537,14 +534,8 @@
 							<input name="treeName" class="form-control" placeholder="Tree name" type="text" id="treeName">
 						</div>
 						<!-- form-group// -->
-					  	<div class="form-group input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-flag"></i>
-								</span>
-							</div>
-							<input name="countryId" class="form-control" placeholder="Country" type="text" id="countryId">
-						</div>
-						<!-- form-group// -->
+					  	
+					
 
 						<!-- form-group// -->
 						<div class="form-group">
@@ -569,11 +560,11 @@
 		<br>
 		<br>
 		
-			<div class="card bg-light">
+			<div class="card bg-light" style="top: 120px;">
 	</div>
 		<article class="bg-deafult mb-3 text-center">
-			<div class="card-body">
-				<h5 id="foot" class="mt-6">¨Ï WWFT Corp All Rights Reserved</h5>
+			<div class="card-body" style="margin-top: 100px;">
+				<h5 id="foot" class="mt-6">¨Ï FAMILY TREE Corp All Rights Reserved</h5>
 					 <h6 class="mt-6">This site is a family community site.<br> 
 					 We hope that our site reflects on the true meaning of family.</h6>
 						

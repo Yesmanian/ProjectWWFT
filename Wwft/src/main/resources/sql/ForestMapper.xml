@@ -102,6 +102,13 @@
 			where tree.tree_no = treef.tree_no
 	
 	</select>
+	
+	<select id="getForestList" parameterType="int" resultMap="forestSelectMap">
+		select forest.*
+			from forest,(select * from tree_forest where tree_no = #{value}) treef
+			where forest.forest_no = treef.forest_no
+	
+	</select>
 	 
 	<!-- SQL : SELECT REST LIST -->
 	<select id="getTreeRestList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
@@ -123,6 +130,18 @@
                 order by post.post_no) rt                
 			where rnum BETWEEN #{pageNumber}*4-3 and #{pageNumber}*4
 	</select>
+	
+	
+	<!-- SQL : SELECT POST LIST -->
+	<select id="getPostList" parameterType="java.util.HashMap" resultMap="postSelectMap">
+		select rt.*
+    		from (select rownum rnum,post.*
+                from post,(select * from tree_forest where forest_no = #{forestNo}) treef
+                where post.tree_no = treef.tree_no
+                order by post.post_no desc) rt
+	</select>
+	
+	
 	<!-- SQL : SELECT INVITE TREE REST LIST -->
 	<select id="getInviteTreeList" parameterType="java.util.HashMap" resultMap="treeSelectMap">
 		select tr.*

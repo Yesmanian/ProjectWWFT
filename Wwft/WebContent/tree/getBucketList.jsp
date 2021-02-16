@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../resources/css/tree/getBucketList.css" >
 
 <meta charset="EUC-KR">
-<title>버킷리스트 목록 보기</title>
+<title>버킷리스트 목록</title>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
 <meta charset="EUC-KR">
-<title>Family Motto</title>
+<title>가훈 등록</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

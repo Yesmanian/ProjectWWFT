@@ -26,6 +26,7 @@ import com.wwft.service.user.UserService;
 @ContextConfiguration(locations = { "classpath:config/context-common.xml" ,
 										"classpath:config/context-aspect.xml",
 										"classpath:config/context-mybatis.xml",
+										"classpath:config/context-mail.xml",
 										"classpath:config/context-transaction.xml"})
 public class UserServiceTest {
 	
@@ -124,7 +125,7 @@ public class UserServiceTest {
 	 	
 	}	 
 
-	 @Test
+//	 @Test//email 중복체크
 	 public void emailCheck() throws Exception{
 			BasicConfigurator.configure();
 			boolean result = false;
@@ -137,6 +138,51 @@ public class UserServiceTest {
 			}
 			
 			LOGGER.debug("[checkEmail]"+result);
+		 
+	 }
+//	 @Test// email로 id찾기
+	 public void findId() throws Exception{
+		 
+		 String email = "shwlsdn7@naver.com";
+		 String userId = "";
+		 BasicConfigurator.configure();
+		 User user = userService.findEmail(email);
+		 
+		 if(user != null) {
+			 userId = user.getUserId();
+			 LOGGER.info("[INFO] userId:: '"+userId+"'");
+		 }else {
+			 LOGGER.info("[INFO] 가입된 이메일이 없습니다.");
+			 
+		 }
+		 
+		 
+		 
+		 
+	 }
+	 @Test // userId와 email로 password 찾기 (passwoar 난수 생성후 업데이트 후 메일전송)
+	 public void findPassword() throws Exception{
+		 BasicConfigurator.configure();
+		String userId = "user01";
+		String email = "shwlsdn7@naver.com";
+		
+		User user = userService.getUser(userId);
+		
+		if(user != null) {
+			if(user.getEmail().equals(email)) {
+				
+				LOGGER.info("[info]::::::'회원의 아이디와 이메일이 일치'");
+			}else {
+				LOGGER.info("[info]::::::'회원의 아이디와 이메일이 불일치'");
+				
+			}
+			
+		}else {
+			LOGGER.info("[info]::::::가입된 id가 없습니다.");
+		}
+		 
+		 
+		 
 		 
 	 }
 }

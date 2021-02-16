@@ -26,4 +26,8 @@ public interface ForestDao {
 	public List<Tree> getInviteTreeList(int forestNo,String searchCondition) throws Exception;
 	
 	public void inviteTree(List<Integer> treeNo,int forestNo,int profileNo) throws Exception;
+	
+	public List<Forest> getForestList(int treeNo) throws Exception;
+	
+	public List<Post> getPostList(int forestNo) throws Exception;
 }

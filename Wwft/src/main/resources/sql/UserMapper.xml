@@ -37,7 +37,7 @@
 	 
 	 <select 	id="findEmail"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
-			 email 		
+		user_id , tree_no , password , email , user_reg_date , user_withdraw_reg_date , user_state 		
 		FROM users 
 		WHERE email = #{value}
 	 </select> 
