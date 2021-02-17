@@ -56,6 +56,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/tree/getUserTree">My Tree</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">Forest</a>
                 <a class="dropdown-item" href="/profile/getProfileList">Change Profile</a>
                 <a class="dropdown-item" href="/profile/updateProfile?profileNo=${profile.profileNo}">Edit Profile</a>
                 <a class="dropdown-item" href="/user/getUser?userId=${user.userId}">Edit User</a>

@@ -33,10 +33,10 @@
 	<insert 	id="inviteTree"		parameterType="java.util.HashMap" >
 	 	INSERT
 		INTO NOTICE_MESSAGE(NOTICE_MESSAGE_NO, SENDER,FOREST_NO,NOTICE_REG_DATE,NOTICE_MESSAGE_STATE,
-					NOTICE_MESSAGE_TYPE,NOTICE_MESSAGE_DETAIL,POST_NO,RECEIVER,TREE_NO) 
+					NOTICE_MESSAGE_TYPE,NOTICE_MESSAGE_DETAIL,POST_NO,RECEIVER,TREE_NO,profile_no) 
 		VALUES (
-			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestNo},#{forestNo},SYSDATE,'2','0','숲에서 초대합니다',null,
-			#{treeNo},#{treeNo})
+			 SEQ_NOTICE_MESSAGE_NO.nextval,#{forestName},#{forestNo},SYSDATE,'0','2','숲에서 초대합니다',null,
+			null,#{treeNo},0)
 	 </insert>
 	 
 	 
