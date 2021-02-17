@@ -161,12 +161,10 @@ public class PostController {
 	
 	@RequestMapping(value="getPostList")
 	public String getPostList( @ModelAttribute("search") Search search,
-			@RequestParam(value ="searchCondition",required = false)String searchCondition, 
 			@RequestParam(value = "searchKeyword" ,required = false) String searchKeyword,
 			int postTreeNo, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("/post/getPostlist : GET / POST");
-		System.out.println("searchCondition  ? :"+searchCondition);
 		System.out.println("searchKeyword  ?: "+searchKeyword);
 		
 		/*
@@ -177,7 +175,6 @@ public class PostController {
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
-		search.setSearchCondition(searchCondition);
 		search.setSearchKeyword(searchKeyword);
 		 
 			

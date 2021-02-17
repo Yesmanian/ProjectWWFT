@@ -7,7 +7,7 @@
 
 			<head>
 
-				<link rel="stylesheet" href="../resources/css/profile/getProfileList.css">
+				 <link rel="stylesheet" href="../resources/css/profile/getProfileList.css">
 				<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 					rel="stylesheet">
@@ -56,8 +56,23 @@
 					.container {
 						height: 50%;
 						align-content: center;
+						
 
 					}
+					
+					#flex{
+					
+						padding-right: 30px;
+					
+					}
+					
+					.img{
+					height: 140px;
+					margin: 50px;"
+					
+					}
+				
+				
 
 					.ul {
 						text-align: center;
@@ -66,19 +81,24 @@
 					.image_outer_container {
 						margin-top: auto;
 						margin-bottom: auto;
-						border-radius: 30%;
+						
 						position: relative;
+						line-height: 100px;
+   			 			inline-size: 200px;
 					}
 
 					.image_inner_container {
-						border-radius: 20%;
+					
+						
 						padding: 5px;
-						background: #833ab4;
-						background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
-						background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+						background: white;
+						background: -webkit-linear-gradient(70deg, #C6FF70, #94EB3E, #2E8B57);
+						background: linear-gradient(70deg,	#369F36	,#96F56E,#78E150);
 					}
 
 					.image_inner_container img {
+					
+				
 						height: 100px;
 						width: 100px;
 						border-radius: 50%;
@@ -96,32 +116,42 @@
 					<ul class="d-flex justify-content-center">
 
 						<c:forEach items="${getProfileList}" var="list">
-							<div class="flex-container">
-								<div class="d-flex justify-content-center h-100">
+							<div class="flex-container" id="flex">
+								<div class="d-flex justify-content-center h-100" >
 
-									<div class="image_outer_container">
+								
+									<div class="image_outer_container" style="width: 250px; line-height: 200px;">
 										<div class="green_icon"></div>
+										
+										
 										<div class="image_inner_container">
-											<a
-												href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img
-													src="/resources/images/profile/${list.profileImage}"></a>
-											<div class="d-flex justify-content-center">
-												${list.profileName}</div>
-
+											<a href="/profile/getProfile?profileNo=${list.profileNo}&treeNo=${user.treeNo}"><img
+													src="/resources/images/profile/${list.profileImage}" style="width: 100%;height: 100%;"></a>
+											<div class="d-flex justify-content-center ok"style="position: absolute;left: 100px;">
+													${list.profileName}
+													
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+					
 						</c:forEach>
-						<div class="d-flex justify-content-center">
-							<a href="/profile/addProfile"><img src="/resources/images/profile/412rXWdCJ7L.png"></a>
+						<div class="d-flex justify-content-center ok">
+							<a href="/profile/addProfile"><img src="/resources/images/profile/plus.png" class="img"></a>
 							<div class="d-flex justify-content-center"></div>
 						</div>
 					</ul>
 					<!--/ Product Item -->
-					<div class="d-flex justify-content-center">
-							<button class="snip1535">프로필 관리</button>
-					</div>
+						
+			<div class="card bg-light" style="top: 120px;">
+			
+	</div>
+		
+				
+		
+			</div>
+			
 
 				</form>
 			</body>

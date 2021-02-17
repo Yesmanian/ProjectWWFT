@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Post addPost(Post post) throws Exception {
 		
-		post.setPostNo(postDao.lastPosttNo());
+		post.setPostNo(postDao.lastPostNo());
 		postDao.addPost(post);
 		
 		return post;

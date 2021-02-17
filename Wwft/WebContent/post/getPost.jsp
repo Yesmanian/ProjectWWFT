@@ -12,6 +12,8 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>getPost화면</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -22,6 +24,16 @@
 	
 	</head>
 <style type="text/css">
+/* video {
+	position : fixed;
+	top : 0; 
+	left : 0;
+	min-width : 80 %;
+	min-height : 80 %;
+	width : auto;
+	height : auto;
+	z-index : -1;
+} */
 
 /* html,
 
@@ -54,6 +66,7 @@ body {
 		<header id="wrap"> 
 			 <jsp:include page="../common/navBar.jsp"/>
 		 </header>
+		 
 		 <div>
 			<input type="hidden" name="postTreeNo" value="${post.postTreeNo}">
 			<input type="hidden" name="postNo" value="${post.postNo}">
@@ -63,16 +76,20 @@ body {
 			<input type="hidden" name="profileName" value="${profile.profileName}">
 			
 			<!-- <i class="bi bi-backspace" onclick="history.back(-1);"></i> -->
-			<div class="leftCol" style="float: left;">
+			<!-- <div class="leftCol" style="float: left;">
 		      <i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="history.back(-1);"></i>
 		 
-		   </div>
+		   </div> -->
 			<!-- <button type="button" class="btn btn-outline-secondary" onclick="history.back(-1);">이전</button> -->
 			<!--  <input type="button" value="이전" onclick="history.back(-1);"> --> 
 			<div class="wrapper">
-			
+				
  				 <div class="content" >
-			<div class="card gedf-card" style="width: 100%">
+ 				 <div class="leftCol" style="float: left;">
+			      <i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="history.back(-1);"></i>
+				  
+		   		</div>
+				<div class="card gedf-card" style="width: 100%">
 				<div class="card-header">
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="d-flex justify-content-between align-items-center">
@@ -84,6 +101,12 @@ body {
 								<!-- <div class="h5 m-0">@LeeCross</div> -->
 								<div class="h7 text-muted">${post.postWriter}<h4>${post.postRegDate}</h4></div>
 							</div>
+						</div>
+						<div style="margin-left: auto;">
+							<c:set var ="treeNo" value="${tree.treeNo }"/>
+							<c:if test="${treeNo == post.postTreeNo}">
+								<button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-outline-secondary">삭제</button>
+							</c:if>
 						</div>
 						<div>
 							<div class="dropdown">
@@ -176,7 +199,7 @@ body {
 			<!-- 게시글Start -->
 			<div>
 				<div>
-					<p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p>
+					<%-- <p style="display: block; margin: 0px auto;"><h4>${post.postRegDate}</h4> </p> --%>
 				</div>
 						
 				<div style="text-align:center;">
@@ -418,15 +441,15 @@ body {
 			 function fn_sendNoticeMessage(){
 					
 				
-					var profileName = $("[name='profileName']").val();
-				    var treeName	= $("[name='treeName']").val();
-				    var profileNo = $("[name='profileNo']").val();
-				    var noticeMessageType = '0';
-					var noticeMessageDetail ="게시글에 댓글이 달렸어요~";
-					var sender = `\${treeName}#\${profileName}`;
-					var postNo = $('input[name=commentPostNo]').val();
-					var treeNo = $('input[name=treeNo]').val();
-					var commentProfileNo = $('input[name=commentProfileNo]').val();
+					var profileName = $("[name='profileName']").val();				//댓글작성자 프로필이름
+				    var treeName	= $("[name='treeName']").val();					//댓글작성자 나무이름
+				    var profileNo = $("[name='profileNo']").val();					//게시글작성자 프로필번호
+				    var noticeMessageType = '0';									//알림 메시지 상태
+					var noticeMessageDetail ="게시글에 댓글이 달렸어요~";					//알림 메시지 내용
+					var sender = `\${treeName}#\${profileName}`;					//알림 메시지 보내는 사람이름
+					var postNo = $('input[name=commentPostNo]').val();				//댓글달린 게시글 번호
+					var treeNo = $('input[name=treeNo]').val();						//댓글 달린 나무번호
+					var commentProfileNo = $('input[name=commentProfileNo]').val();	//댓글 작성자 프로필 번호
 					
 					alert(postNo);
 					alert(treeNo);

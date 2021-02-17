@@ -131,7 +131,7 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
-	public int lastPosttNo() throws Exception {
+	public int lastPostNo() throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("PostMapper.lastPostNo");
 	}
