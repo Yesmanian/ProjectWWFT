@@ -126,15 +126,17 @@ public class ForestDaoImpl implements ForestDao {
 		System.out.println("ForestDao inviteTree");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("treeNo", treeNo);
+//		map.put("treeNo", treeNo);
 		map.put("forestNo", forestNo);
 		String forestName = ((Forest)sqlSession.selectOne("ForestMapper.getForest", forestNo)).getForestName();
 		map.put("forestName", forestName);
+		System.out.println("나무번호"+treeNo.toString()+"숲번호"+forestNo+"숲이름"+forestName);
 		System.out.println(forestName);
 		for (int i = 0; i < treeNo.size(); i++) {
-			map.put("profileNo", treeNo.get(i));
+			map.put("treeNo", treeNo.get(i));
+			System.out.println("나무번호"+treeNo.toString()+"숲번호"+forestNo+"숲이름"+forestName);
 			sqlSession.insert("NoticeMessageMapper.inviteTree", map);
-			map.remove("profileNo");
+			map.remove("treeNo");
 		}
 		
 		

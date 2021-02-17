@@ -91,6 +91,8 @@ function createTag(value) {
                             <div class="btn-group btg" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-primary btn-sm" id="accept">수락</button>
                                 <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
+                                <input class="forestNo" type="hidden" name="forestNo" value="${item.noticeMessageNo.forestNo}">
+                                <input class="forestName" type="hidden" name="forestNo" value="${item.noticeMessageNo.forestName}">
                                 <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
                             </div>
                             <h2><a href="javascript:void(0);">${item.sender}</a></h2>
