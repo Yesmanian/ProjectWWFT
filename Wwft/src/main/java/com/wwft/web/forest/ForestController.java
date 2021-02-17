@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wwft.service.domain.Forest;
 import com.wwft.service.domain.Post;
+import com.wwft.service.domain.Profile;
 import com.wwft.service.forest.ForestService;
 import com.wwft.service.noticemessage.NoticeMessageService;
 import com.wwft.service.post.PostService;
@@ -204,11 +206,13 @@ public class ForestController {
 	}
 	
 	@RequestMapping(value = "inviteTree",method = RequestMethod.POST)
-	public ModelAndView inviteTree(@RequestParam("forestNo")int forestNo,@RequestParam("profileNo")int profileNo,HttpServletRequest req) throws Exception {
+	public ModelAndView inviteTree(@RequestParam("forestNo")int forestNo,HttpSession session,HttpServletRequest req) throws Exception {
 		
 		System.out.println("/forest/inviteTree Start...");
+		;
+		Profile profile = (Profile)session.getAttribute("profile"); 
 		System.out.println(forestNo);
-		System.out.println(profileNo);
+		System.out.println(profile.getProfileNo());
 		String[] stringTreeNo = req.getParameterValues("checkbox");
 		
 		List<Integer> treeNo = new ArrayList<Integer>();
@@ -219,11 +223,11 @@ public class ForestController {
 		}
 		System.out.println(treeNo.toString());
 		//Business Logic
-		forestService.inviteTree(treeNo,forestNo,profileNo);
+		forestService.inviteTree(treeNo,forestNo,profile.getProfileNo());
 		
 		//ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("redirect:/forest/getForest?forestNo="+forestNo+"&profileNo="+profileNo);
+		modelAndView.setViewName("redirect:/forest/getForest?forestNo="+forestNo+"&profileNo="+profile.getProfileNo());
 		 
 		
 		return modelAndView;

@@ -100,8 +100,8 @@ $(document).ready(function () {
             if(url.indexOf('getTree')!=-1){
             // alert('나무의메시지함')
             url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
-            $(this).closest("li").find('p').text('회원님의 나무가 ${forestName}숲에 속하셨습니다.');
-            $(this).closest("li").find('p').append('<a href="/forest/getForest?forestNo=\${forestNo}$profileNo=${profile.profileNo}">숲 둘러보기</a>');
+            $(this).closest("li").find('p').text(`회원님의 나무가 \${forestName}숲에 속하셨습니다.`);
+            $(this).closest("li").find('p').append(`<a href="/forest/getForest?forestNo=\${forestNo}&profileNo=${profile.profileNo}">숲 둘러보기</a>`);
             let messageObj = $(this);
 
         }else{

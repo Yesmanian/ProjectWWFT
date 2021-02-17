@@ -91,8 +91,8 @@ function createTag(value) {
                             <div class="btn-group btg" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-primary btn-sm" id="accept">수락</button>
                                 <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
-                                <input class="forestNo" type="hidden" name="forestNo" value="${item.noticeMessageNo.forestNo}">
-                                <input class="forestName" type="hidden" name="forestNo" value="${item.noticeMessageNo.forestName}">
+                                <input class="forestNo" type="hidden" name="forestNo" value="${item.forestNo}">
+                                <input class="forestName" type="hidden" name="forestName" value="${item.sender}">
                                 <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
                             </div>
                             <h2><a href="javascript:void(0);">${item.sender}</a></h2>
@@ -100,7 +100,7 @@ function createTag(value) {
                         </div>
                     </li>`)
 
-        }else if (item.noticeMessageType == '3') {
+        } else if (item.noticeMessageType == '3') {
             let date = timeForToday(item.noticeMessageDate);
             let ampm = formatAMPM(item.noticeMessageDate)
 
@@ -118,8 +118,8 @@ function createTag(value) {
                             <p>${item.noticeMessageDetail}</p>
                         </div>
                     </li>`)
-
-        }else if (item.noticeMessageType == '4') {
+            //숲 둘러보기 
+        } else if (item.noticeMessageType == '4') {
             let date = timeForToday(item.noticeMessageDate);
             let ampm = formatAMPM(item.noticeMessageDate)
 
@@ -133,8 +133,8 @@ function createTag(value) {
                                 <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
                             </div>
                             <h2><a href="javascript:void(0);">${item.sender}</a></h2>
-                            <p>${item.sender}의 일원이되셨습니다.
-                            <a href="javascript:void(0);">숲 둘러보기</a>
+                            <p>회원님의 나무가 ${item.sender}숲에 속하셨습니다.
+                            <a href="/forest/getForest?forestNo=${item.forestNo}">숲 둘러보기</a>
                             </p>
                         </div>
                     </li>`)
@@ -148,8 +148,8 @@ function createTag(value) {
 
 function createUserTag(value) {
 
-    $.each(value, function (index, item) { 
-      $('tbody').append(`<tr>
+    $.each(value, function (index, item) {
+        $('tbody').append(`<tr>
       <td>${item.treeNo}</td>
       <td>${item.userId}</td>
       <td>${item.email}</td>
@@ -159,5 +159,61 @@ function createUserTag(value) {
     </tr>
     `);
     });
-        };
+};
+
+function createReportTag(value) {
+
+    $.each(value, function (index, item) {
+
+        if(item.reportType=='0'){
+            $('tbody').append(`<tr>
+            <td>${item.reportNo}</td>
+            <td>${item.reportedPostNo}</td>
+            <td>${item.reportedTreeNo}</td>
+            <td>${item.reporterTreeNo}</td>
+            <td>욕설</td>
+            <td>${item.reportRegDate}</td>
+            <td></td>
+          </tr>
+          `);
+        }else if(item.reportType=='1'){
+            $('tbody').append(`<tr>
+            <td>${item.reportNo}</td>
+            <td>${item.reportedPostNo}</td>
+            <td>${item.reportedTreeNo}</td>
+            <td>${item.reporterTreeNo}</td>
+            <td>음란물</td>
+            <td>${item.reportRegDate}</td>
+            <td></td>
+          </tr>
+          `);
+        }else if(item.reportType=='2'){
+            $('tbody').append(`<tr>
+            <td>${item.reportNo}</td>
+            <td>${item.reportedPostNo}</td>
+            <td>${item.reportedTreeNo}</td>
+            <td>${item.reporterTreeNo}</td>
+            <td>도박</td>
+            <td>${item.reportRegDate}</td>
+            <td></td>
+          </tr>
+          `);
+        }else if(item.reportType=='3'){
+            $('tbody').append(`<tr>
+            <td>${item.reportNo}</td>
+            <td>${item.reportedPostNo}</td>
+            <td>${item.reportedTreeNo}</td>
+            <td>${item.reporterTreeNo}</td>
+            <td>아동학대</td>
+            <td>${item.reportRegDate}</td>
+            <td></td>
+          </tr>
+          `);
+        }
+        
+
+       
+    });
+};
+
 

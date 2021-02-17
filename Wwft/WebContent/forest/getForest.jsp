@@ -631,7 +631,7 @@ function formatAMPM(value) {
                         <input type="text" class="form-control" placeholder="TreeName" aria-describedby="basic-addon1" name="searchTree">
 						 <form name="inviteTree" action="/forest/inviteTree" method="post">
 						 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
-						 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
+						 	<!-- <input type="hidden" name = "profileNo" value="${param.profileNo }"> -->
 							 <ul id='inviteTree-list'>
 							</ul>
 							<input type="submit" name="inviteButton" value="초대하기">
