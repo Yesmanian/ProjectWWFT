@@ -142,13 +142,13 @@
 					.color{
 					  display: inline-block;
   					  padding: 1rem;
-    				  color: white;
+    				 color: forestgreen;
 					
 					}
 					
 					.bk{
-					    background-image:url("/resources/images/profile/floor.jpg");
 					
+					 background-color:black;
 					
 					}
 					
