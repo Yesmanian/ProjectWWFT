@@ -65,9 +65,9 @@ public class NoticeMessageServiceTest {
 //		message.setNoticeMessageType('0'); // 종류는 댓글=0 신고=1 초대요청=2 입장요청=3  조건이 타입 리시버 =  세션에있는 나무번호 3을 제외한 // 리시버는 숲 번호 타입이 3인것만  나무10 3번을제외  트리10   번호만 있으면되는   tree_no forest_no getNoticeMessage 하나로 하고 타입  
 //		message.setTreeNo(1); //1번나무에게
 //		message.setPostNo(1);
-////		message.setPostImage(postImage);
+//		message.setPostImage(postImage);
 //		message.setNoticeMessageDetail("게시글에 댓글이 달렸어요~");
-////		String detail = "게시글#"+postNo+"번이 사이트정책("+음란물+")에 의해 삭제 되었습니다.현재 회원님의 누적된 위반행위 횟수는 (1)회 이며 누적위반행위 횟수가 5회일 시 계정이 정지 되오니 주의 바랍니다."
+//		String detail = "게시글#"+postNo+"번이 사이트정책("+음란물+")에 의해 삭제 되었습니다.현재 회원님의 누적된 위반행위 횟수는 (1)회 이며 누적위반행위 횟수가 5회일 시 계정이 정지 되오니 주의 바랍니다."
 //		
 //		noticeMessageService.sendNoticeMessage(message);
 //		noticeMessageService.sendNoticeMessage(message);
