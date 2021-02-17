@@ -211,7 +211,20 @@ public class PostController {
 		return "forward:/post/getPostList.jsp";
 	}
 	
-	
+	@RequestMapping(value = "removePost", method = RequestMethod.POST)
+	public String removePost(@ModelAttribute("post")Post post) throws Exception{
+	System.out.println("확인:!!!!!!!!!!!1"+post.getPostNo());
+	System.out.println("확인:!!!!!!!!!!!1"+post.getPostTreeNo());
+		postService.removePost(post.getPostNo());
+		
+		//System.out.println("확인:"+postNo);
+		
+		
+		return "redirect:/post/getPostList?postTreeNo="+post.getPostTreeNo();
+		
+		
+		
+	}
 	
 	
 	

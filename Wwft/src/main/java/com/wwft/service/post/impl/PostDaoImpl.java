@@ -93,7 +93,7 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public int removePost(int postNo) throws Exception {
-		return sqlSession.delete("postMapper.removePost", postNo);
+		return sqlSession.delete("PostMapper.removePost", postNo);
 	}
 
 	
@@ -125,9 +125,9 @@ public class PostDaoImpl implements PostDao {
 
 
 	@Override
-	public int removeImageAndLike(int imageAndLikeNo) throws Exception {
+	public int removeImageAndLike(int postNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("ImageAndLikeMapper.removeImageAndLike",imageAndLikeNo);
+		return sqlSession.delete("ImageAndLikeMapper.removeImageAndLike",postNo);
 	}
 
 	@Override

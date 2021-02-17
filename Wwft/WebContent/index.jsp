@@ -6,14 +6,14 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/mainpage/style.css">
-    <title>World Wild Family Tree</title>
+    <title>FAMILY TREE</title>
 </head>
 <body>
 	 <section class="showcase">
         <header>
-            <h2 class="logo">Family Tree</h2>
+           <i><h1 class="logo">FAMILY TREE</h1></i> 
             <div class="toggle"></div>
         </header>
 
@@ -25,8 +25,12 @@
             <h2>We can do it</h2>
             <h3>We are the Family</h3>
             <h4 class="go">Welcome to our site.<br> 
-            We hope that this site rethinks the meaning of family and builds a strong bond and makes a positive impact.<br>
-            We want you to enjoy the content. May your family be full of blessings.</h4>
+            Family is not an important thing. It's everything.<br>
+			Love looks not with the eyes, But with the mind.<br>
+			The first duty of love is to listen. Hear and feel your family's voice.<br>
+			Love begins with caring for the person closest to you, Your family.<br>
+			May your family be full of blessings.</h4>
+       
           
          
         </div>

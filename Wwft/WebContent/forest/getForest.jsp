@@ -258,7 +258,7 @@ function formatAMPM(value) {
 	<header id="wrap"> 
  		    <jsp:include page="../common/navBar.jsp"/>
       </header>   
-
+${param.profileNo}
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
@@ -663,16 +663,10 @@ function formatAMPM(value) {
 
 
 
- <!-- Hello GetForest.jsp --><br/>
+ <!-- Hello GetForest.jsp -->
+
  <div>
-	 $<%-- {forest} --%>
 	
- </div><br/>
- 
- <div>
-	 나무리스트
-	<ul id='infinite-list'>
-	</ul>
 <script type="text/javascript">
 var listElm = document.querySelector('#infinite-list');
 
@@ -882,14 +876,14 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 </script>
 
  </div><br/>
- 
+ <%-- 
  <div>
 	 숲 목록
  </div><br/>
  
  <div>
 	 공지글
-	 <%-- ${param.profileNo} --%>
+	 ${param.profileNo}
 	 <h2 class="forestInformText">${forest.forestInformText }0</h2>
 	 <h2 class="forsetInformTextWriter">${forest.forestInformWriter }1</h2>
 	 <h2 class="forestInformTextRegDate">${forest.forestInformRegDate }2</h2>
@@ -911,7 +905,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 	 
 	 <input type="button" name="changeButton" value="수정">
 	 <input type="button" name="confirmButton" value="확인">
- </div><br/>
+ </div>
  
  <div>
 	 나무리스트</br>
@@ -992,30 +986,20 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 		})
 	 
 	 </script>
- </div><br/>
- 
- <div>
- 	post
- 	<script type="text/javascript">
- 		//RestPost
- 		//postRest
-	
- 	</script>
- 	
- 
  </div>
- 
+ --%>
+<%--  
  <div>
- 	<%-- ${acceptTreeList }
+ 	${acceptTreeList }
  	 ${postList.post9.postNo}
  	${postList.fileList9[0]}
  	${postList.fileList5}
  	${postList.post15.postDetail}
- 	${postSize } --%>
+ 	${postSize } 
  	${listPost[0].listPostMapPost }
  	${listPost[0].listPostMapList }
  </div>
- 
+  --%>
  
 </body>
 </html>

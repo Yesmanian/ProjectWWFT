@@ -96,7 +96,7 @@
 					</div>
 				
 			<div class="caption">
-				<a href="/user/addUser"><h5>Sign up</h5></a>
+				<a href="/user/addUser"   style="text-decoration: none;color: white;"><h5>Sign up</h5></a>
 			</div>
 			
 			<div class="btn-area" style="text-align-last: center;">

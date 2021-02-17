@@ -4,6 +4,8 @@
 	<head>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 		<link rel=”stylesheet” href=”http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css“>
 		<meta charset="EUC-KR">
@@ -29,7 +31,13 @@
 		
 		}
 		
-	
+	h5{
+	font-family: 'Patua One', cursive;
+		}
+
+	h6{
+	font-family: 'Archivo Narrow', sans-serif;
+	}
 		
 		
 		</style>
@@ -461,7 +469,7 @@
 		<div class="container">
 			<br>
 			<p >
-				<h1 class="text-center">FAMILY TREE</h1>
+				<i><h1 class="text-center">FAMILY TREE</h1></i>
 			</p>
 			<hr>
 
