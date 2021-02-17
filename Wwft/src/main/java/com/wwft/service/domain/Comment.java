@@ -10,7 +10,7 @@ public class Comment {
 	private String commentRegDate;			//댓글 작성날짜
 	private String commentDetail;			//댓글내용	
 	private int commentPostNo;				//댓글이달린 게시글번호
-	private int commentTreeNo;				//댓글이 달린 게시글 나무번호
+	private int commentTreeNo;				
 	
 	public Comment() {
 	}
