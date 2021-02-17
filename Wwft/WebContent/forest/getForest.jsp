@@ -50,7 +50,10 @@ li:hover {
   background: #ccc;
 }
 .gedf-wrapper {
-            margin-top: 0.97rem;
+            margin-top: 20px;
+            
+ 
+            
         }
 @media (min-width: 992px) {
             .gedf-main {
@@ -71,6 +74,59 @@ li:hover {
 	overflow: auto;
 	
 }
+
+#forest{
+	height: 70px;
+	background-size: cover;
+	background-color: white;
+	border: solid;
+	border-width: 2px;"
+}
+
+#fr{
+	text-align: center;
+	margin: 5px;
+	font-size: 25px;
+	
+}
+
+h2{
+	color: black;
+	text-align: center;
+    font-size: 50px;
+}
+
+
+h5{
+	color: black;
+	text-align: center;
+    text-align: inherit;
+}
+
+
+#a{
+  background-color:#464646
+
+
+
+}
+
+#button{
+color : white;
+
+
+}
+
+.bt{
+    text-align: center;
+
+}
+
+#b{
+background-color:whitesmoke;
+
+}
+
 /* .col-md-6::-webkit-scrollbar {
     width: 10px;
   }
@@ -150,6 +206,7 @@ function formatAMPM(value) {
 					forestName : $('input[name=changeName]').val(),
 					forestNo   : ${forest.forestNo}
 			}
+		
 			var jsonString = JSON.stringify(params)
 			alert(jsonString)
 			
@@ -258,46 +315,57 @@ function formatAMPM(value) {
 	<header id="wrap"> 
  		    <jsp:include page="../common/navBar.jsp"/>
       </header>   
-${param.profileNo}
+
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="forestName">${forest.forestName }</h2> 
+                <div class="card"style="width: 340px;">
+                    <div class="card-body" id="a">
+                        <h2 class="forestName" style="color:white; font-size: 30px; font-weight: 900;">${forest.forestName }</h2> 
 							 <h2 class="forsetNameTextForm">
 							 	<input type="hidden" name="changeName" value=${forest.forestName} onblur="blurFunction()">
 							 </h2>
-	                        <div class="h7 text-muted">숲 방장 : ${forest.forestCreaterTreeNo }</div>
-							 
-							 <button type="button" class="btn btn-default navbar-btn" name="changeButton" >수정</button>
-							 <button type="button" class="btn btn-default navbar-btn" name="confirmButton" >확인</button>
+	                        <div class="h7 text-muted"><h5 style="font-size: 20px;font-weight: bold;text-align: center;color: white;">숲 방장: ${forest.forestCreaterTreeNo }</h5></div>
+						
+					<div class="card bg-light" style="top: 10px;"></div>
+						 <div class="bt" style="margin-top: 20px;">
+							 <button type="button" class="btn btn-default navbar-btn" name="changeButton"  id="button"   style="border-color: white;border-radius: 30px;">수정</button>
+							 <button type="button" class="btn btn-default navbar-btn" name="confirmButton"  id="button"  style="border-color: white;border-radius: 30px;" >완료</button>
 							 <!-- <input type="button" name="changeButton" value="수정">
 							 <input type="button" name="confirmButton" value="확인"> -->
+							</div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Forest Board</div>
+                   <div class="bt2">
+                    <ul class="list-group list-group-flush" id="b">
+                        <li class="list-group-item " id="forest">
+                        <div class="a">
+                            <div class="h6 text-muted" id="fr" ><h2>Forest Board</h2></div>
+                         </div>
                         </li>
-                        <h2 class="forestInformText">${forest.forestInformText }</h2>
-	 					<h5 class="forsetInformTextWriter">작성자 :${forest.forestInformWriter }</h5>
-	 					<h5 class="forestInformTextRegDate">작성일자 :${forest.forestInformRegDate }</h5>
+                        <h2 class="forestInformText" style="color: black; margin-top: 10px;background-color: lightgray;">${forest.forestInformText }</h2>
+	 						<div class="card bg-light"></div>
+	 					<div class="bt3" style="background-color: lightgray;">
+	 					<h5 class="forsetInformTextWriter">작성자 :&nbsp;${forest.forestInformWriter }</h5>
+	 					<h5 class="forestInformTextRegDate">작성 날짜 :&nbsp;${forest.forestInformRegDate }</h5>
+	 					</div>
+	 					<div class="card bg-light"></div>
 	 					<h2 class="forestInformTextForm">
-						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText }>
+						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText } style="font-size: smaller;">
 					 	</h2>
-					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton" >수정</button>
-						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" >확인</button>
+					 <div class="bt3" style="text-align: center; margin-bottom: 13px">
+					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton" style="border-color: black; border-radius: 30px;" >수정</button>
+						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton"   style="border-color: black; border-radius: 30px;" >완료</button>
 						 <!-- <input type="button" name="informTextchangeButton" value="수정">
 						 <input type="button" name="informTextconfirmButton" value="확인"> -->
-						 
-                        
+					</div>
+      
                     </ul>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Trees</div>
+                    <ul class="list-group list-group-flush" id="c">
+                        <li class="list-group-item"  id="forest">
+                            <div class="h6 text-muted" id="fr"><h2>Trees</h2></div>
                             
                         </li>
-                        <li class="list-group-item">	
+                        <li class="list-group-item" style="background-color:whitesmoke ;border: solid;border-width: thick;"">	
                             <ul id='infinite-list'>
 							</ul>
                         </li>
@@ -305,6 +373,7 @@ ${param.profileNo}
                     </ul>
                 </div>
             </div>
+           </div>
             <div class="col-md-6 gedf-main">
 				
 				
@@ -625,16 +694,17 @@ ${param.profileNo}
             <div class="col-md-3">
                 <div class="card gedf-card">
                     <div class="card-body">
-                        <h5 class="card-title">Invite Tree</h5>
+                        <h5 class="card-title" style="margin-bottom: 50px;text-align: center;font-size: 30px;">Invite Tree</h5>
                        <!--  <h6 class="card-subtitle mb-2 text-muted">Tree List</h6> -->
                         <!-- <input type="text" name="searchTree" > -->
-                        <input type="text" class="form-control" placeholder="TreeName" aria-describedby="basic-addon1" name="searchTree">
+                        	<div class="card bg-light" style="top: -25px;"></div>
+                        <input type="text" class="form-control" placeholder="나무 이름을 입력하세요" aria-describedby="basic-addon1" name="searchTree">
 						 <form name="inviteTree" action="/forest/inviteTree" method="post">
 						 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
 						 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
 							 <ul id='inviteTree-list'>
 							</ul>
-							<input type="submit" name="inviteButton" value="초대하기">
+							<button type="submit" 	class="btn btn-default navbar-btn"	name="inviteButton"  style="border-color: black; border-radius: 30px;">초대하기</button>
 							 
 						 </form>
                     </div>
@@ -917,7 +987,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 		</ul>
 		<input type="submit" name="inviteButton" value="초대하기">
 		 
-	 </form>
+	 </form>--%>
 	 <script type="text/javascript">
 	 
 	 var treeElm = document.querySelector('#inviteTree-list');
@@ -986,7 +1056,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 		})
 	 
 	 </script>
- </div>
+ <%--</div>
  --%>
 <%--  
  <div>
