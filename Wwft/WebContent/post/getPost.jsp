@@ -66,15 +66,18 @@ body {
 		<header id="wrap"> 
 			 <jsp:include page="../common/navBar.jsp"/>
 		 </header>
-		 
+		 <form name="postForm" id="postForm">
+		 	<input type="hidden" name="postTreeNo" value="${post.postTreeNo}"> <!-- 게시글의 나무번호 -->
+			<input type="hidden" name="postNo" value="${post.postNo}"> <!-- 게시글번호 -->
+		 </form>
 		 <div>
-			<input type="hidden" name="postTreeNo" value="${post.postTreeNo}">
-			<input type="hidden" name="postNo" value="${post.postNo}">
+			<input type="hidden" name="postTreeNo" value="${post.postTreeNo}"> <!-- 게시글의 나무번호 -->
+			<input type="hidden" name="postNo" value="${post.postNo}"> <!-- 게시글번호 -->
 			<input type="hidden"  name="menu" value="${menu}"/>
-			<input type="hidden" name="treeName" value="${tree.treeName}">
-			<input type="hidden" name="treeNo" value="${tree.treeNo}">
-			<input type="hidden" name="profileName" value="${profile.profileName}">
-			
+			<input type="hidden" name="treeName" value="${tree.treeName}"> <!-- 로그인한 나무이름 -->
+			<input type="hidden" name="treeNo" value="${tree.treeNo}"> <!-- 로그인한 나무번호 -->
+			<input type="hidden" name="profileName" value="${profile.profileName}">	<!-- 로그인한 프로필이름 -->
+		
 			<!-- <i class="bi bi-backspace" onclick="history.back(-1);"></i> -->
 			<!-- <div class="leftCol" style="float: left;">
 		      <i class="fas fa-arrow-circle-left fa-2x" type="button" onclick="history.back(-1);"></i>
@@ -104,8 +107,8 @@ body {
 						</div>
 						<div style="margin-left: auto;">
 							<c:set var ="treeNo" value="${tree.treeNo }"/>
-							<c:if test="${treeNo == post.postTreeNo}">
-								<button type="button"  onClick="location.href='/post/addPostView.jsp'"class="btn btn-outline-secondary">삭제</button>
+							<c:if test="${treeNo == post.postTreeNo or user.role == 'admin'}">
+								<button type="button" id="remove" class="btn btn-outline-secondary">삭제</button>
 							</c:if>
 						</div>
 						<div>
@@ -208,6 +211,8 @@ body {
 					</p>
 				</div>
 			</div>	
+			</div>
+			
 			<!-- 게시글END -->
 			
 			<div class="card-footer">
@@ -219,13 +224,13 @@ body {
 						<textarea style="width: 80%" rows="2" cols="50" id="commentDetail" name="commentDetail" placeholder="댓글을 입력하세요"></textarea>
 						<a href='#' onClick="fn_comment('${post.postNo}'); return false;" class="btn btn-link" style="text-decoration:none">등록</a>
 						
-						<input type="hidden" name="treeNo" value="${tree.treeNo}">
-						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}">
-						<input type="hidden" id="postNo" name="commentPostNo" value="${post.postNo}">  
-						<input type="hidden" name="profileNo" value="${post.profileNo}">
-	        			<input type="hidden" name="treeName" value="${tree.treeName}">
-	        			<input type="hidden" name="profileName" value="${profile.profileName}">
-	        			<input type="hidden" name="commentProfileNo" value="${profile.profileNo}">
+						<input type="hidden" name="treeNo" value="${tree.treeNo}"> <!-- 로그인한 나무번호 -->
+						<input type="hidden" name="commentTreeNo" value="${post.postTreeNo}"> <!-- 게시글 나무번호 -->
+						<input type="hidden" id="postNo" name="postNo" value="${post.postNo}"> <!-- 게시글번호  --> 
+						<input type="hidden" name="profileNo" value="${post.profileNo}"> <!-- 게시글 프로필번호 -->
+	        			<input type="hidden" name="treeName" value="${tree.treeName}"> <!-- 로그인한 나무이름 -->
+	        			<input type="hidden" name="profileName" value="${profile.profileName}"> <!-- 로그인한 프로필이름 -->
+	        			<input type="hidden" name="commentProfileNo" value="${profile.profileNo}"> <!-- 로그인한 프로필번호 -->
 	        			<%-- <input type="hidden" name="commentWriter" value="`\${tree.treeName}#\${profile.profileName}`">  --%>
 	        			<!-- <input type="hidden" name="commentWriter" value="커피네#김커피"> -->
 					</div>
@@ -241,8 +246,8 @@ body {
 			<!-- 댓글END -->
 			</div>
 		</div>
-		</div>
-		</div>
+	</div>
+</div>
 		
 		
 		
@@ -283,7 +288,22 @@ body {
 		/*슬라이드  */
 		$("#liList").addClass("active");
 		$('.carousel').carousel()
- 
+ 		
+		/* function removePost(formName){
+			formName.action ="/post/removePost";
+			formName.method ="post";
+			formName.submit();
+		} */
+			
+		$('#remove').on("click", function(){
+			alert("ddd");
+		
+			var postNo = $("[name='postNo']").val();
+			$("#postForm").attr("method","POST").attr("action","/post/removePost").submit();
+		
+		})
+		
+		 
 		
 		/**
 		 * 초기 페이지 로딩시 댓글 불러오기
@@ -293,15 +313,15 @@ body {
 		    getCommentList();
 		    
 		});
-		
+		/* 댓글등록 Ajax */
 		function fn_comment(){
 			
-			 var commentTreeNo = $("[name='treeNo']").val();
-			 var commentPostNo = $("[name='commentPostNo']").val();
-	    	 var profileName = $("[name='profileName']").val();
-	         var treeName	= $("[name='treeName']").val();
-	         var commentWriter = `\${treeName}#\${profileName}`;
-	         var commentDetail = $("#commentDetail").val();
+			 var commentTreeNo = $("[name='commentTreeNo']").val();  	//댓글이 달린 게시글 나무번호
+			 var commentPostNo = $("[name='postNo']").val();		//댓글이 달린 게시글번호
+	    	 var profileName = $("[name='profileName']").val();			//댓글 작성자 프로필이름
+	         var treeName	= $("[name='treeName']").val();				//댓글 작성자 나무 이름
+	         var commentWriter = `\${treeName}#\${profileName}`;		//댓글작성자
+	         var commentDetail = $("#commentDetail").val();				//댓글 내용
 		   
 			$.ajax({
 
@@ -377,7 +397,7 @@ body {
 			 */
 			function getCommentList(){
 				 
-				var postNo = $('input[name=commentPostNo]').val();
+				var postNo = $('input[name=postNo]').val();
 
 				//alert(postNo);
 				
@@ -447,18 +467,18 @@ body {
 				    var noticeMessageType = '0';									//알림 메시지 상태
 					var noticeMessageDetail ="게시글에 댓글이 달렸어요~";					//알림 메시지 내용
 					var sender = `\${treeName}#\${profileName}`;					//알림 메시지 보내는 사람이름
-					var postNo = $('input[name=commentPostNo]').val();				//댓글달린 게시글 번호
+					var postNo = $('input[name=postNo]').val();				//댓글달린 게시글 번호
 					var treeNo = $('input[name=treeNo]').val();						//댓글 달린 나무번호
 					var commentProfileNo = $('input[name=commentProfileNo]').val();	//댓글 작성자 프로필 번호
 					
-					alert(postNo);
+					/* alert(postNo);
 					alert(treeNo);
 					alert(sender);
-					alert(profileNo);
+					alert(profileNo); */
 					if(commentProfileNo == profileNo){
-						alert("안보냄");
+						/* alert("안보냄"); */
 					}else{
-					 alert("보냄");
+					 /* alert("보냄"); */
 				    $.ajax({
 				       
 				        url : "/noticeMessage/json/sendNoticeMessage",
@@ -475,7 +495,7 @@ body {
 				        	//alert(status);
 				            if(status=="success")
 				            {
-				            	 alert(JSON.stringify(res));
+				            	 /* alert(JSON.stringify(res)); */
 				               
 				            	 
 				               
@@ -492,16 +512,16 @@ body {
 			/*신고하기  */
 			 function fn_addReport(){
 					
-				    var reporterTreeNo  = '2';										//신고하는 나무번호
+				    var reporterTreeNo  = =$('input[name=treeNo]').val();			//신고하는 나무번호
 					var reportedPostNo	 =$('input[name=postNo]').val();		//신고받은게시글번호
-					var reportedTreeNo	 = $('input[name=treeNo]').val();		//신고받은나무번호
+					var reportedTreeNo	 = $('input[name=postTreeNo]').val();		//신고받은나무번호
 					var reportType	 = $("#exampleFormControlSelect1 option:selected").val();	//신고종류
 				
 					
-					alert(reporterTreeNo);
+					/* alert(reporterTreeNo);
 					alert(reportedPostNo);
 					alert(reportedTreeNo);
-					alert(reportType);
+					alert(reportType); */
 					
 					 
 				    $.ajax({

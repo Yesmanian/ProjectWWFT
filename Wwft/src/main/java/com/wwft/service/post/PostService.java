@@ -27,7 +27,7 @@ public interface PostService {
 	
 	public void updatePost(Post post,ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 
-	public void removePost(int postNo ,int imageAndLikeNo) throws Exception;
+	public void removePost(int postNo) throws Exception;
 
 	public void uploadFile(ImageAndLike imageAndLike, MultipartHttpServletRequest request) throws Exception;
 

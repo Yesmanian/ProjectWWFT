@@ -35,7 +35,7 @@ public interface PostDao {
 	
 	public List<String> getImageAndLikeList(int postNo) throws Exception;
 		
-	public int removeImageAndLike(int imageAndLikeNo) throws Exception;
+	public int removeImageAndLike(int postNo) throws Exception;
 
 	public String getPostFirstImage(int postNo) throws Exception;
 

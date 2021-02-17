@@ -224,8 +224,8 @@ input[type=file] {
          var postWriter = `\${treeName}#\${profileName}`;			//게시글 작성자
          var postDetail = $("#postDetail").val();					//게시글 내용
      	 var postState = $("[name='postState']").val();				//게시글 공개여부
-     	alert(postTreeNo);
-     	 alert(treeName);
+     	/* alert(postTreeNo);
+     	 alert(treeName); */
          $.ajax({
         	
         	 url : "/post/json/addPost/" ,
@@ -237,7 +237,7 @@ input[type=file] {
     				"Content-Type" : "application/json"
     			},
     			success : function(redata){
-    				alert(redata);
+    				/* alert(redata); */
     				fnAddFiles(redata);
     			}
         	 
