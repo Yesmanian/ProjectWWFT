@@ -136,8 +136,61 @@
  
 </div>
  
+<div class="container">
+  
 
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-sm modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title">³»°¡ ¼ÓÇÑ ½£</h1>
+          <button type="button" class="close" data-dismiss="modal">¡¿</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         
+          <ul class="list-group list-group-flush ">
+            <!-- <li class="list-group-item"><h5 class="text-black style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-black style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li> -->
+          </ul>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script>
+let forestList = [];
+<c:forEach items="${forest}" var="forest" >
+  forestList.push({ 
+            forestNo  : "${forest.forestNo}",
+            forestName  : "${forest.forestName}"
+           
+        
+        });
+      </c:forEach>
+   
+    $.each(forestList, function(index, forest){
+      $('ul.list-group.list-group-flush').append(
+        `<li class="list-group-item">
+          <a href="/forest/getForest?forestNo=\${forest.forestNo}&profileNo=${profile.profileNo}"><h5 class="text-black style">\${forest.forestName}</h5></a> </li>`
+      )
 
+    })
+</script>
 
 
 	

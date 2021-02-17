@@ -25,6 +25,7 @@ import com.wwft.service.domain.BucketList;
 import com.wwft.service.domain.Profile;
 import com.wwft.service.domain.Tree;
 import com.wwft.service.domain.User;
+import com.wwft.service.forest.ForestService;
 import com.wwft.service.profile.ProfileService;
 import com.wwft.service.tree.TreeService;
 
@@ -37,6 +38,10 @@ public class TreeController {
 	@Autowired
 	@Qualifier("treeServiceImpl")
 	private TreeService treeService;
+	
+	@Autowired
+	@Qualifier("forestServiceImpl")
+	private ForestService forestService;
 	
 	public TreeController() {
 		System.out.println("::"+this.getClass()+"default TreeController Constructor...");
@@ -53,7 +58,7 @@ public class TreeController {
 		
 		Profile profile = (Profile)session.getAttribute("profile");
 		System.out.println("»Æ¿Œ:"+profile);
-		
+		model.addAttribute("forest", forestService.getForestList(profile.getTreeNo()));
 	
 
 		session.setAttribute("tree", treeService.getUserTree(profile.getTreeNo()));
