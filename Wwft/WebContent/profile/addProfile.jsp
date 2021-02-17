@@ -250,7 +250,7 @@ font-family: 'Archivo Narrow', sans-serif;
  
  
  	 
-     <header class="heading"><h1 style="color:white; font-size: -webkit-xxx-large;">Create a Profile</h1></header><hr style="border-bottom: thin;
+     <header class="heading"><h1 style="color:white; font-size: -webkit-xxx-large;">Create Profile</h1></header><hr style="border-bottom: thin;
     border-color: aliceblue;">
 </hr>
   
@@ -362,11 +362,11 @@ font-family: 'Archivo Narrow', sans-serif;
 		     <div class="col-sm-12">
 		 </div>
 	</div>
-		 		<div class="card bg-light"	style="margin-top: 35px;">
+		 		<div class="card bg-light"	style="margin-top: 50px;">
 	</div>
-		<article class="bg-deafult mb-3 text-center">
+		<article class="bg-deafult mb-3 text-center" style="padding-top: 0px;">
 			<div class="card-body" style="margin-top: 10px;">
-				<h5 id="foot" class="mt-6">¨Ï WWFT Corp All Rights Reserved</h5>
+				<h5 id="foot" class="mt-6">¨Ï FAMILY TREE Corp All Rights Reserved</h5>
 					 <h6 class="mt-6">This site is a family community site.<br> 
 					 We hope that our site reflects on the true meaning of family.</h6>
 						

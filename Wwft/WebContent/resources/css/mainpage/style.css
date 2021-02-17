@@ -5,6 +5,12 @@
     --overlay-color: #03a9f4;
 }
 
+.go{
+	padding-left: 15px;
+    font-size: 20px;
+	font-weight: 900;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -45,8 +51,8 @@
 }
 
 .logo{
-    text-transform: uppercase;
-    cursor: pointer;
+    font-size: 65px;
+    font-family: 'Anton', sans-serif;
 }
 
 .toggle{

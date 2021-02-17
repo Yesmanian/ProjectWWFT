@@ -5,13 +5,15 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/mainpage/style.css">
-    <title>World Wild Family Tree</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/mainpage/style.css">
+    <title>FAMILY TREE</title>
 </head>
 <body>
 	 <section class="showcase">
         <header>
-            <h2 class="logo">WWFT</h2>
+           <i><h1 class="logo">FAMILY TREE</h1></i> 
             <div class="toggle"></div>
         </header>
 
@@ -22,22 +24,21 @@
         <div class="text">
             <h2>We can do it</h2>
             <h3>We are the Family</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus odit facilis voluptate tempore reiciendis eum rem iusto autem quaerat perspiciatis?</p>
-            <a href="#">Join</a>
+            <h4 class="go">Welcome to our site.<br> 
+            Family is not an important thing. It's everything.<br>
+			Love looks not with the eyes, But with the mind.<br>
+			The first duty of love is to listen. Hear and feel your family's voice.<br>
+			Love begins with caring for the person closest to you, Your family.<br>
+			May your family be full of blessings.</h4>
+       
+          
+         
         </div>
-
-        <ul class="social">
-            <li><a href="#"><img src="/resources/images/mainpage/facebook.png" alt=""></a></li>
-            <li><a href="#"><img src="/resources/images/mainpage/instagram.png" alt=""></a></li>
-            <li><a href="#"><img src="/resources/images/mainpage/twitter.png" alt=""></a></li>
-        </ul>
     </section>
 
     <div class="menu">
         <ul>
             <li><a href="/user/login.jsp">Login</a></li>
-            <li><a href="#">Contact</a></li>
         </ul>
     </div>
 

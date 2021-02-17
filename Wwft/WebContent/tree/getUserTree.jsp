@@ -50,7 +50,7 @@
 	}
 	
 	function goGetForest() {
-		window.location.href="/forest/getForest?forestNo=${tree.treeNo}&$profileNo=${profile.profileNo}"
+		window.location.href="/forest/getForest?forestNo=${tree.treeNo}$profileNo=${profile.profileNo}"
 
 	}
 	
@@ -81,12 +81,10 @@
         <tr class="tb" >
           <th></th>
           <th><i class="fab fa-pagelines fa-2x text-white "></i><br>
-         <h4 class="text-white">나무이름</h4></th>
+         <h4 class="text-white">나무 이름</h4></th>
           <th><i class="fas fa-user fa-2x text-white"></i><br> 
           <h4 class="text-white">유저 아이디</h4></th>
           <th><i class="fas fa-globe-asia fa-2x text-white"></i><br>	
-          <h4 class="text-white">국가명</h4></th>
-          <th><i class="far fa-comment-alt fa-2x text-white"></i><br>
           <h4 class="text-white">가훈</h4></th>
            <th><i class="fas fa-coins fa-2x text-white"></i><br>
            <h4 class="text-white">총 활동지수</h4></th>
@@ -97,7 +95,6 @@
           <th scope="row"></th>
           <td><h5 class="text-white style">${tree.treeName}</h5> </td>
           <td><h5 class="text-white style"> ${tree.userId}</h5> </td>
-          <td><h5 class="text-white style"> ${tree.countryId}</h5> </td>
           <td><h5 class="text-white style"> ${tree.familyMotto}</h5> </td>
           <td><h5 class="text-white style"> ${tree.activityTotalPoint }</h5> </td>
         </tr>
@@ -139,8 +136,61 @@
  
 </div>
  
+<div class="container">
+  
 
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-sm modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title">내가 속한 숲</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         
+          <ul class="list-group list-group-flush ">
+            <!-- <li class="list-group-item"><h5 class="text-black style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-black style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li>
+            <li class="list-group-item"><h5 class="text-white style">${tree.treeName}</h5></li> -->
+          </ul>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script>
+let forestList = [];
+<c:forEach items="${forest}" var="forest" >
+  forestList.push({ 
+            forestNo  : "${forest.forestNo}",
+            forestName  : "${forest.forestName}"
+           
+        
+        });
+      </c:forEach>
+   
+    $.each(forestList, function(index, forest){
+      $('ul.list-group.list-group-flush').append(
+        `<li class="list-group-item">
+          <a href="/forest/getForest?forestNo=\${forest.forestNo}&profileNo=${profile.profileNo}"><h5 class="text-black style">\${forest.forestName}</h5></a> </li>`
+      )
 
+    })
+</script>
 
 
 	

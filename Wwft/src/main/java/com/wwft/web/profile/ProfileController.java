@@ -108,7 +108,7 @@ public class ProfileController {
 //			session.setAttribute("user", user);
 //		}
 		
-		return "redirect:/profile/updateProfile?profileNo="+profile.getProfileNo();
+		return "redirect:/profile/getProfileList";
 	}
 
 	@RequestMapping(value = "getProfileList", method = RequestMethod.GET)
