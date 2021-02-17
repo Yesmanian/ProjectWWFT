@@ -8,9 +8,9 @@
 <title>WWFT</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400&display=swap');
@@ -255,42 +255,10 @@ function formatAMPM(value) {
 </script>
 </head>
 <body>
-<!--navbar  -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">WWFT</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<header id="wrap"> 
+ 		    <jsp:include page="../common/navBar.jsp"/>
+      </header>   
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-			<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
-		</a>
-      </li> 
-      <li>
-      </li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Tree</a>
-          <a class="dropdown-item" href="#">Search</a>
-          <a class="dropdown-item" href="#">Change Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-      
-    </ul>
-    
-  </div>
-</nav>
-<%-- ${forest} --%>
-<!--navbar end  -->
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
@@ -731,11 +699,11 @@ var restLoadMore = function(list){
 	for (var tree in list){
 		 var item = document.createElement('li');
 		 item.innerText = list[tree].treeName;
-		 var forestNo = list[tree].treeNo
+		 var treeNo = list[tree].treeNo
 		 //클릭시 수정필요
 		 //getTree로 이동!
 		 /* item.setAttribute('onclick',"location.href='getForest?forestNo=21") */
-		 item.setAttribute('onclick',`location.href='/forest/getForest?forestNo=\${forestNo}'`)
+		 item.setAttribute('onclick',`location.href='/tree/getUserTree?treeNo=\${treeNo}'`)
 		 listElm.appendChild(item);
 		 	
 	}	
