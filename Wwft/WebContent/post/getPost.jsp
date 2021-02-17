@@ -467,7 +467,7 @@ body {
 				    var noticeMessageType = '0';									//알림 메시지 상태
 					var noticeMessageDetail ="게시글에 댓글이 달렸어요~";					//알림 메시지 내용
 					var sender = `\${treeName}#\${profileName}`;					//알림 메시지 보내는 사람이름
-					var postNo = $('input[name=commentPostNo]').val();				//댓글달린 게시글 번호
+					var postNo = $('input[name=postNo]').val();				//댓글달린 게시글 번호
 					var treeNo = $('input[name=treeNo]').val();						//댓글 달린 나무번호
 					var commentProfileNo = $('input[name=commentProfileNo]').val();	//댓글 작성자 프로필 번호
 					
@@ -512,9 +512,9 @@ body {
 			/*신고하기  */
 			 function fn_addReport(){
 					
-				    var reporterTreeNo  = '2';										//신고하는 나무번호
+				    var reporterTreeNo  = =$('input[name=treeNo]').val();			//신고하는 나무번호
 					var reportedPostNo	 =$('input[name=postNo]').val();		//신고받은게시글번호
-					var reportedTreeNo	 = $('input[name=treeNo]').val();		//신고받은나무번호
+					var reportedTreeNo	 = $('input[name=postTreeNo]').val();		//신고받은나무번호
 					var reportType	 = $("#exampleFormControlSelect1 option:selected").val();	//신고종류
 				
 					
