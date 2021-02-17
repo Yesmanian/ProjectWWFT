@@ -258,7 +258,7 @@ function formatAMPM(value) {
 	<header id="wrap"> 
  		    <jsp:include page="../common/navBar.jsp"/>
       </header>   
-
+${param.profileNo}
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
