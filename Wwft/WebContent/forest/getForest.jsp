@@ -197,11 +197,11 @@ function formatAMPM(value) {
 			$('input[name=changeInformText]').attr("type","text");
 		}) 
 		$('button[name=informTextconfirmButton]').on("click",function(){
-			
+			// var forestInformWriter = "${profile.profileName}";
 			var params = {
 					forestNo         : ${forest.forestNo},
 					forestInformText : $('input[name=changeInformText]').val(),
-					forestInformWriter   : ${param.profileNo}
+					forestInformWriter   : "${profile.profileName}"
 			}
 			var jsonString = JSON.stringify(params)
 			alert(jsonString)
@@ -917,7 +917,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 	 나무리스트</br>
 	 <input type="text" name="searchTree" >
 	 <form name="inviteTree" action="/forest/inviteTree" method="post">
-	 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
+	 	<input type="hidden" name = "forestNo" value="${forest.forestNo }">
 	 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
 		 <ul id='inviteTree-list'>
 		</ul>
