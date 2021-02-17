@@ -117,9 +117,9 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void removePost(int postNo,int imageAndLikeNo) throws Exception {
+	public void removePost(int postNo) throws Exception {
 		 postDao.removePost(postNo);
-		 postDao.removeImageAndLike(imageAndLikeNo);
+		 postDao.removeImageAndLike(postNo);
 	}
 
 	@Override

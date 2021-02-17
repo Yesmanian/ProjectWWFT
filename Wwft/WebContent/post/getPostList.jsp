@@ -461,10 +461,10 @@ $("#sel").change(function(){
     alert(searchCondition); */
    /*  var searchKeyword = 'dddkdi'; */
      var searchKeyword = $("#sel option:Selected").val();
-	alert(searchKeyword);
+	/* alert(searchKeyword); */
 	 var postTreeNo = $("[name='postTreeNo']").val();
 	/* var postTreeNo = '1'; */
-	alert(postTreeNo);
+	/* alert(postTreeNo); */
 	javascript:fncGetList('1'); 
 	self.location ="/post/getPostList?postTreeNo="+postTreeNo+"&searchKeyword="+searchKeyword
 })

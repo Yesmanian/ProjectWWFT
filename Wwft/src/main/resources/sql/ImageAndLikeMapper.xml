@@ -86,15 +86,14 @@
 	</select>
 	
 	<update id="removeImageAndLike" parameterType="java.util.List">
-		<foreach collection="list" item="imageAndLike" separator=";">
 			UPDATE  image_and_like
 			
 			<set>
-	 		delete_image_state =#{imageAndLike.deleteImageState}
+	 		delete_image_state =1
 	 	
 	 	</set>
-	 	WHERE image_And_Like_no =#{imageAndLike.imageAndLikeNo} AND image_and_like_state = #{imageAndLike.image_and_like_state}
-		</foreach>
+	 	WHERE post_no =#{postNo}
+		
 	
 	</update>
 	 

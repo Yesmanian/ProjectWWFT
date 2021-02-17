@@ -146,9 +146,8 @@
 	  <delete id="removePost" parameterType="int">
 	 	DELETE
 	 	FROM post
-	 	WHERE post_no =#{postNo}
-	 
-	 </delete>
+	 	WHERE post_no =#{value}
+ 	 </delete>
 	 
 	 
 	 
