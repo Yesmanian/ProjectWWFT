@@ -6,8 +6,9 @@
 }
 
 .go{
-	font-family: 'Reggae One', cursive;
 	padding-left: 15px;
+    font-size: 20px;
+	font-weight: 900;
 }
 
 *{
@@ -50,8 +51,8 @@
 }
 
 .logo{
-    text-transform: uppercase;
-    cursor: pointer;
+    font-size: 65px;
+    font-family: 'Anton', sans-serif;
 }
 
 .toggle{
