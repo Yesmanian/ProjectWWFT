@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 <meta charset="EUC-KR">
 <title>WWFT</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
@@ -82,7 +84,7 @@ li:hover {
 #forest{
 	height: 70px;
 	background-size: cover;
-	color: #147814;
+	color: #1E821E;
 	border:solid;
 	border-color:#288C28
 	}
@@ -98,14 +100,16 @@ h2{
 	color: #006400;
 	text-align: center;
     font-size: 50px;
+    font-family: 'Cute Font', cursive;
 }
 
 
 h5{
-	color: black;
+	color:	#3CA03C;
 	text-align: center;
     text-align: inherit;
-    font-family: 'Black Han Sans', sans-serif;
+  	font-family: 'Gamja Flower', cursive;
+
 }
 
 h6{
@@ -134,14 +138,28 @@ font-family: 'Do Hyeon', sans-serif;
 .bt3{
 
     background-color: white;
-
+	text-align: center;
 }
 
 #b{
  	background-color:#4AB34A	
+}
 
+#post{
+font-family: 'Do Hyeon', sans-serif;
+color : white;
+}
 
+.time{
+color : black;
+}
 
+#f{
+font-family: 'Cute Font', cursive;
+color: #1E821E
+}
+h1{
+ font-family: 'Anton', sans-serif;
 }
 
 /* .col-md-6::-webkit-scrollbar {
@@ -336,30 +354,33 @@ function formatAMPM(value) {
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
-                <div class="card"style="width: 450px;">
-                    <div class="card-body" id="a">
-                        <h2 class="forestName" style="color:white; font-size: 30px; font-weight: 900;">${forest.forestName }</h2> 
+                <div class="card"	style="width: 450px;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
+                    <div class="card-body" id="a" style="border-top-left-radius: 50px;border-top-right-radius: 50px;">
+                        <h2 class="forestName" style="color:white; font-size: 50px; font-weight: 900;">${forest.forestName }</h2> 
 							 <h2 class="forsetNameTextForm">
 							 	<input type="hidden" name="changeName" value=${forest.forestName} onblur="blurFunction()">
 							 </h2>
-	                        <div class="h7 text-muted"><h5 style="font-size: 25px;text-align: center;color: white;">숲 방장 : ${forest.forestCreaterTreeNo }</h5></div>
+	                        <div class="h7 text-muted"><h5 style="font-size: 20px;text-align: center;color: white;">숲 방장 : ${forest.forestCreaterTreeNo }</h5></div>
 						
 					<div class="card bg-light" style="top: 10px;"></div>
 						 <div class="bt" style="margin-top: 20px;">
-							 <button type="button" class="btn btn-outline-success navbar-btn" name="changeButton"  id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:black"">수정</button>
-							 <button type="button" class="btn btn-outline-success navbar-btn" name="confirmButton"  id="button" style="border-radius: 30px;background-color: white;color:black;border-color:black"">완료</button>
+							 <button type="button" class="btn btn-outline-success navbar-btn" name="changeButton"  id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">수정</button>
+							 <button type="button" class="btn btn-outline-success navbar-btn" name="confirmButton"  id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">완료</button>
 							 <!-- <input type="button" name="changeButton" value="수정">
 							 <input type="button" name="confirmButton" value="확인"> -->
 							</div>
                     </div>
                    <div class="bt2">
-                    <ul class="list-group list-group-flush" id="b">
-                        <li class="list-group-item " id="forest">
+                    <ul class="list-group list-group-flush" id="b" >
+                        <li class="list-group-item " id="forest" style="border-bottom-left-radius: 30px;
+    						border-bottom-right-radius: 30px;
+    						border-top-left-radius: 30px;
+    						border-top-right-radius: 30px;">
                         <div class="a">
-                            <div class="h6 text-muted" id="fr" style="margin-right: auto;"><h2>Forest Board</h2></div>
+                            <div class="h6 text-muted" id="main" style="margin-right: auto;"><h1>Forest Board</h1></div>
                          </div>
                         </li>
-                        <h2 class="forestInformText" style="color: black; margin-top: 10px;background-color: lightgray;">${forest.forestInformText }</h2>
+                        <h2 class="forestInformText" id="f" style="border-radius: 30px;margin-top: 10px;background-color:white">${forest.forestInformText }</h2>
 	 						<div class="card bg-light"></div>
 	 					<div class="bt3" >
 	 					<h5 class="forsetInformTextWriter">작성자 :&nbsp;${forest.forestInformWriter }</h5>
@@ -370,16 +391,16 @@ function formatAMPM(value) {
 						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText } style="font-size: smaller;">
 					 	</h2>
 					 <div class="bt2" style="text-align: center; margin-bottom: 13px">
-					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton"	id="button" style="border-radius: 30px;background-color: white;color:black;border-color:black"" >수정</button>
-						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" id="button" style="border-radius: 30px;background-color: white;color:black;border-color:black"" >완료</button>
+					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton"	id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;border-width: thick;" >수정</button>
+						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;border-width: thick;" >완료</button>
 						 <!-- <input type="button" name="informTextchangeButton" value="수정">
 						 <input type="button" name="informTextconfirmButton" value="확인"> -->
 					</div>
       
                     </ul>
-                    <ul class="list-group list-group-flush" id="c">
+                    <ul class="list-group list-group-flush" id="c" style="border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
                         <li class="list-group-item"  id="forest">
-                            <div class="h6 text-muted" id="fr"><h2>Trees</h2></div>
+                            <div class="h6 text-muted" id="main"><h1>Trees</h1></div>
                             
                         </li>
                         <li class="list-group-item" style="background-color:white;border: solid;border-width: thick;border-color:#4AB34A">	
@@ -399,7 +420,7 @@ function formatAMPM(value) {
                 	<%-- ${postFile.listPostMapPost }
                 	${postFile.listPostMapList } --%>
                 	
-                	 <!--- \\\\\\\Poststart-->
+                	 <!--- \\\\\\Poststart-->
                 <div class="card gedf-card">
                     <div class="card-header" style="background-color: #4AB34A">
                         <div class="d-flex justify-content-between align-items-center">
@@ -408,9 +429,9 @@ function formatAMPM(value) {
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">${postFile.listPostMapPost.postWriter}</div>
+                                    <div class="h5 m-0" 	id="post"	>${postFile.listPostMapPost.postWriter}</div>
                                     <!-- <div class="h7 text-muted">{treeName}</div> -->
-                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>${postFile.listPostMapPost.postRegDate}</div>
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><h6 class="time">${postFile.listPostMapPost.postRegDate}</h6></div>
                                 </div>
                             </div>
                             <div>
@@ -419,10 +440,13 @@ function formatAMPM(value) {
                                         <i class="fa fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                        <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Hide</a>
-                                        <a class="dropdown-item" href="#">Report</a>
+                                          <div class="h6 dropdown-header"><h6 style="color:#006400;text-align: center;border-bottom-width: 10px;padding-bottom: 10px;">Category</h6></div>
+                                      <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;height: 2;padding-bottom: 7px;padding-top: 0px;margin-bottom: 10px;">Save</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#"style="text-align: center;margin-bottom: 10px;padding-top: 4px;padding-bottom: 4px;">Hide</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;">Report</a>
                                     </div>
                                 </div>
                             </div>
@@ -484,7 +508,7 @@ function formatAMPM(value) {
                             ${postFile.listPostMapPost.postDetail}
                         </p>
                     </div>
-                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;">
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A">
                         <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
                         <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
@@ -724,7 +748,7 @@ function formatAMPM(value) {
 						 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
 							 <ul id='inviteTree-list'>
 							</ul>
-							<button type="submit" 	class="btn btn-default navbar-btn"	name="inviteButton" id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:black">초대하기</button>
+							<button type="submit" 	class="btn btn-default navbar-btn"	name="inviteButton" id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">초대하기</button>
 							 
 						 </form>
                     </div>
