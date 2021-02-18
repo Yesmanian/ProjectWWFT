@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -57,7 +58,7 @@ li {
   background: #ccc;
 } */
 .gedf-wrapper {
-            margin-top: 30px;
+            margin-top: 15px;
             
  
             
@@ -268,7 +269,7 @@ function formatAMPM(value) {
 			}
 		
 			var jsonString = JSON.stringify(params)
-			alert(jsonString)
+			//alert(jsonString)
 			
 			$.ajax({
 				type : "POST",
@@ -279,9 +280,20 @@ function formatAMPM(value) {
                     "Content-Type" : "application/json"
                  },
 				success : function(res,status){
-					alert(res.forest.forestName);
+					Swal.fire({
+						
+						  icon: 'success',
+						  title: '숲의 이름이 변경되었습니다',
+						  showConfirmButton: true,
+						  confirmButtonColor: '#6ED746',
+						  confirmButtonText: '확인',
+						  timer: 2000
+						})
+					
+					
+					
 					var newName = res.forest.forestName
-					alert(newName)
+					//alert(newName)
 					if(newName == $('input[name=changeName]').val()){
 						$('input[name=changeName]').attr("type","hidden");
 						$('.forestName').text(newName)
@@ -321,7 +333,16 @@ function formatAMPM(value) {
 					forestInformWriter   : "${profile.profileName}"
 			}
 			var jsonString = JSON.stringify(params)
-			alert(jsonString)
+				Swal.fire({
+						
+						  icon: 'success',
+						  title: '숲의 공지사항이 변경되었습니다.',
+						  showConfirmButton: true,
+						  confirmButtonColor: '#6ED746',
+						  confirmButtonText: '확인',
+						  timer: 2000
+						})
+					
 			
 			$.ajax({
 				type : "POST",
@@ -425,7 +446,7 @@ function formatAMPM(value) {
 	 					</div>
 	 					<div class="card bg-light"></div>
 	 					<h2 class="forestInformTextForm">
-						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText } style="font-size: smaller;">
+						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText } style="font-size: 40px;">
 					 	</h2>
 					 <div class="bt2" style="text-align: center; margin-bottom: 13px">
 					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton"	id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;border-width: thick;" >수정</button>
@@ -779,8 +800,8 @@ function formatAMPM(value) {
 						 </form>
                     </div>
                     
-                    <div class="card-body">
-                    	<h5 class="card-title">초대요청 나무</h5>
+                    <div class="card-body" style="margin-top: -25px;">
+                    
                     </div>
        			
        		
