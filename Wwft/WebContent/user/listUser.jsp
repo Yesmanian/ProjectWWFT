@@ -91,15 +91,15 @@
 
   window.operateEvents = {
     'click .like': function (e, value, row, index) {
-      alert('You click like icon, row: ' + JSON.stringify(row))
+      // alert('You click like icon, row: ' + JSON.stringify(row))
       console.log(value, row, index)
     },
     'click .edit': function (e, value, row, index) {
-      alert('You click edit icon, row: ' + JSON.stringify(row))
+      // alert('You click edit icon, row: ' + JSON.stringify(row))
       console.log(value, row, index)
     },
     'click .remove': function (e, value, row, index) {
-      alert('remove클릭됨')
+      // alert('remove클릭됨')
       $table.bootstrapTable('remove', {
         field: 'id',
         values: [row.id]

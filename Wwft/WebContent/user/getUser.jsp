@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
-	<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<!DOCTYPE html>
 	<html>
 
 	<head>
@@ -37,27 +38,89 @@
 	<script>
 
 		let isUserPassword = false;
+		
 
 
 		$(document).ready(function () {
+			$(document).on('click','#remove',function(){
+				let userId = $('#userId').val();
+				let removeConfirm =	confirm('삭제 하시겠습니까?');
+				if(removeConfirm==true){
+
+					history.back();
+				}
+			})
 
 
 
+			// eidtButton 이벤트 클릭시 treeName disabled false saveButton 추가
+			
+			$(document).on('click','#editButton',function(){
+				let role = "${sessionScope.user.role}";
+				// alert(role)
+
+				$('#treeName').attr('disabled',false);
+				// $('#editButton').append(`<button type="button" id="saveButton" class="btn  btn-dark btn-block">
+				// 				save</button>`);
+				$(this).closest("div").prepend(`<button type="button" id="saveButton" class="btn  btn-dark btn-block">
+					save</button>`)
+				if(role!='admin'){
+				$('#saveButton').after(`<button type="button" id="changePW" data-toggle="modal" data-target="#change" class="btn  btn-dark btn-block">
+					Change PW</button>`)
+				}
+					
+					$('#editButton').remove();
+
+			}) // /edit
+
+			$(document).on('click','#saveButton', function(){
+				$('#treeName').attr('disabled',true);
+				$(this).closest("div").prepend(`<button type="button" id="editButton" class="btn  btn-dark btn-block">
+					Edit</button>`)
+				$('#saveButton').remove();
+				$('#changePW').remove();
+
+			})
 
 
+			// pw submit 이벤트
+			$(document).on('click', '#confirm1',function(){
+				let oldPw = $('#oldPw').val();
+				let isOldPw = false;
+				if(oldPw!='abcd'){
+					Swal.fire({
+					icon: 'warning',
+					title: '기존 PASSWORD가 틀립니다!',
+					text: 'PASSWORD를 다시 입력해 주세요.',
+					showConfirmButton: true,
+					confirmButtonText: '확인',
+					confirmButtonColor: '#282828',
+					timer: 5000
+				})
+				return;
 
+				}else if(oldPw == 'abcd'){
+					isOldPw==true;
 
+				}else if(isUserPassword == false){
+					Swal.fire({
+					icon: 'warning',
+					title: '유효하지 않은 PASSWORD입니다!',
+					text: 'PASSWORD를 다시 입력해 주세요.',
+					showConfirmButton: true,
+					confirmButtonText: '확인',
+					confirmButtonColor: '#282828',
+					timer: 5000
+				})
 
-			//email 유효성 체크
-			function chkEmail(str) {
+				return;
 
-				var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+				}
 
-				if (regExp.test(str)) return true;
+				location.reload();
 
-				else return false;
+			})
 
-			}// /email 유효성 체크 
 
 
 
@@ -231,86 +294,8 @@
 
 			})
 
-			//발송 버튼을 누르면
-			$(document).on("click", "#sendEmailAuth", function () {
-				$('input[name=joinCode]').prop("disabled", true);//disable
-				$('input[name=joinCode]').attr("placeholder", "인증코드 발송 중입니다.");
-				$('#joinCodeButton').hide();
-				$('#joinCode').show()
-				let email = $("input[name=email]").val();
-
-
-				$.ajax({
-					url: `/user/json/sendEmail/auth`,
-					type: 'POST',
-					data: { email: email },
-					dataType: 'json',
-
-					success: function (data, status) {
-						// alert('성공')
-						//  alert(JSON.stringify(data))
-						if (data == true) {
-							// alert("전송성공")
-							$('input[name=joinCode]').prop("disabled", false);//disable
-							$('input[name=joinCode]').attr("placeholder", "인증코드를 입력해주세요.");
-							$('#joinCodeButton').show();
-
-
-						} else {
-							alert("전송실패 다시 전송해주세요")
-						}
-
-					}
-				}); // end ajax
-
-				//총 두번 거쳐야하네 처음 메일 보낼때 세션에 인증코드 담고 메일이 보내지면 true 이고 true일때 인증코드를 restController 보내면 거기서 세션의 값과 보낸값을 비교 T/F 리턴
-
-
-			})//end sendEmailAuth
-			//인증하기 버튼 클릭시
-			$(document).on('click', '#joinCodeButton', function () {
-
-				let userJoinCode = $.trim($('input[name=joinCode]').val());
-				if (userJoinCode != '') {
-					// alert(userJoinCode);
-				}
-
-				//session의 코드와 회원이 입력한 코드간 비교
-				$.ajax({
-					url: `/user/json/checkJoinCode`,
-					type: 'POST',
-					data: { userJoinCode: userJoinCode },
-					dataType: 'json',
-
-					success: function (data, status) {
-						// alert('성공')
-						//  alert(JSON.stringify(data))
-						if (data == true) {
-							// alert("일치")
-							isUserJoinCode = true;
-							$('input[name=joinCode]').removeClass('is-invalid');
-							$('input[name=joinCode]').addClass('is-valid');
-							$('dd[name=joinCode]').html('인증 완료').css("color", "green");
-
-							// $('input[name=joinCode]').prop( "disabled", false );//disable
-							// $('input[name=joinCode]').attr("placeholder", "인증코드를 입력해주세요.");
-							// $('#joinCodeButton').show();
-
-
-						} else {
-							// alert("불일치")
-							isUserJoinCode = false;
-							$('dd[name=joinCode]').html(`\${userJoinCode}는 잘못된 인증번호입니다.`).css("color", "red");
-							$('input[name=joinCode]').removeClass('is-valid');
-							$('input[name=joinCode]').addClass('is-invalid');
-							$('dd[name=joinCode]').show()
-						}
-
-					}
-				}); // end ajax
-
-
-			})
+			
+			
 
 
 		})
@@ -359,12 +344,14 @@
 				if (document.getElementById('pw').value == document
 					.getElementById('pw2').value) {
 					isUserPassword = true;
-					document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
-					document.getElementById('check').style.color = 'blue';
+					$('dd[name=pw2]').html(`비밀번호가 일치합니다`).css('color','blue');
+					// document.getElementById('check').innerHTML = '비밀번호가 일치합니다.'
+					// document.getElementById('check').style.color = 'blue';
 				} else {
 					isUserPassword = false;
-					document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
-					document.getElementById('check').style.color = 'red';
+					$('dd[name=pw2]').html(`비밀번호가 일치하지 않습니다`).css('color','red');
+					// document.getElementById('check').innerHTML = '비밀번호가 일치하지 않습니다.';
+					// document.getElementById('check').style.color = 'red';
 				}
 			}
 
@@ -502,19 +489,24 @@
 								<span class="input-group-text"><i class="fas fa-tree "></i>
 								</span>
 							</div>
-							<input name="treeName" class="form-control" type="date" id="treeName"
-								value="${tree.treeName}" >
+							<input name="treeName" class="form-control" type="text" id="treeName"
+								value="${tree.treeName}" disabled >
 						</div>
 
 
 						<!-- form-group// -->
 						<div class="form-group">
-							<button type="button" id="changePW" class="btn  btn-dark btn-block">
-								Change PW</button>
-							<button type="button" id="submitButton" class="btn  btn-dark btn-block">
+							<!-- <button type="button" id="changePW" class="btn  btn-dark btn-block">
+								Change PW</button> -->
+							<button type="button" id="editButton" class="btn  btn-dark btn-block">
 								Edit</button>
+								<c:if test="${sessionScope.user.role == 'admin'}">
+									<button type="button" id="remove" class="btn  btn-dark btn-block">Remove</button>
+								</c:if>
 							<button type="button" class="btn  btn-dark btn-block" onclick="history.back(-1);">
 								Go Back</button>
+
+								
 						</div>
 						<!-- form-group// -->
 
@@ -546,6 +538,47 @@
 			</div>
 
 		</article>
+		<!-- 모달 -->
+		<div class="modal fade" id="change" data-backdrop="static" tabindex="-1">
+			<div class="modal-dialog modal-md">
+			  <div class="modal-content">
+				<div class="modal-header">
+			  <h5 class="modal-title">비밀번호 변경</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+			  
+		
+				  
+				  <div class="form-group" id="password-form"  >
+					<label for="exampleInputPassword1">기존 비밀번호</label>
+					<input type="password" class="form-control" name="oldPw" id="oldPw">
+			  </div>
+			  <div class="form-group" id="password-form">
+				<label for="exampleInputEmail1">새로운 비밀번호</label>
+				<input type="password" class="form-control" id="pw"  onchange="check_pw()">
+				
+				</div>
+
+				<div class="form-group" id="password-form">
+					<label for="exampleInputEmail1">비밀번호 확인</label>
+					<input type="password" class="form-control" name="password" id="pw2"  onchange="check_pw()">
+					
+					</div>
+					<dd name="pw2"></dd>
+					<button type="button" id="confirm1" class="btn btn-primary btn-block" style="text-align-last: center;">확인</button>
+				</div><!--/bady-->
+
+
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary btn-block" style="text-align-last: center;" data-dismiss="modal">닫기</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <!--// 모달 -->
 
 	</body>
 

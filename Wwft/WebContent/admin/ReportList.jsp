@@ -81,15 +81,15 @@ response.setHeader("P3P","CP='CAO PSA CONi OTR OUR DEM ONL'");
 
   window.operateEvents = {
     'click .like': function (e, value, row, index) {
-      alert('You click like icon, row: ' + JSON.stringify(row))
+      // alert('You click like icon, row: ' + JSON.stringify(row))
       console.log(value, row, index)
     },
     'click .edit': function (e, value, row, index) {
-      alert('You click edit icon, row: ' + JSON.stringify(row))
+      // alert('You click edit icon, row: ' + JSON.stringify(row))
       console.log(value, row, index)
     },
     'click .remove': function (e, value, row, index) {
-      alert('remove???')
+      // alert('remove???')
       $table.bootstrapTable('remove', {
         field: 'id',
         values: [row.id]
@@ -136,7 +136,7 @@ response.setHeader("P3P","CP='CAO PSA CONi OTR OUR DEM ONL'");
     })
 
     $alertBtn.click(function () {
-      alert('You pressed on Alert')
+      // alert('You pressed on Alert')
     })
   })
 

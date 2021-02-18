@@ -75,8 +75,10 @@ public class UserController {
 		System.out.println("/user/getUser start..");		
 		//Business Logic
 		User user = userService.getUser(userId);
+		Tree tree = treeService.getUserTree(user.getTreeNo());
 		// Model °ú View ¿¬°á
 		model.addAttribute("user", user);
+		model.addAttribute("tree", tree);
 		
 		return "forward:/user/getUser.jsp";
 		}else {
