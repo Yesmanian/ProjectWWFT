@@ -52,13 +52,13 @@ function createTag(value) {
                                     <input class="noticeMessageNo" type="hidden" name="noticeMessageNo" value="${item.noticeMessageNo}">
                                    <button type="button" class="btn btn-secondary btn-sm" id="remove">삭제</button>
                             </div>
-                            <h2><a href="javascript:void(0);">${item.sender}</a>${item.noticeMessageDetail}</h2>
+                            <h2><a href="javascript:void(0);">${item.sender}</a></h2>
                             <p>
                             <a href="/post/getPost?postNo=${item.postNo}"  >
-                            <img src="/resources/images/uploadFiles/${item.postImage}" width="35%"></a>
+                            <img src="/resources/images/uploadFiles/${item.postImage}" width="150px" height="150px"></a>
                             </p>
                            
-                                    
+                            ${item.noticeMessageDetail}
                           
                         </div>
                     </li>`);
