@@ -26,12 +26,12 @@
 	
 	#infinite-list {
   /* We need to limit the height and show a scrollbar */
-  width: 200px;
+ 
   height: 200px;
-  overflow: auto;
+  overflow: auto;  
 
   /* Optional, only to check that it works with margin/padding */
-   margin: 30px;
+   margin: 40px;
   padding: 20px;
   /* border: 10px solid black; */
 }
@@ -40,9 +40,10 @@
   width: 200px;
   height: 100px;
   overflow: auto;
+  
 
   /* Optional, only to check that it works with margin/padding */
-   margin: 30px;
+   margin: 50px;
   padding: 20px;
   /* border: 10px solid black; */
 }
@@ -52,11 +53,11 @@ li {
   padding: 10px;
   list-style-type: none;
 }
-li:hover {
+/* li:hover {
   background: #ccc;
-}
+} */
 .gedf-wrapper {
-            margin-top: 20px;
+            margin-top: 30px;
             
  
             
@@ -83,11 +84,14 @@ li:hover {
 
 #forest{
 	height: 70px;
-	background-size: cover;
-	color: #1E821E;
-	border:solid;
-	border-color:#288C28
+	
+
+	
+	background-image: url("/resources/images/forest/forest.jpg");
+
 	}
+
+
 
 #fr{
 	text-align: center;
@@ -97,7 +101,7 @@ li:hover {
 }
 
 h2{
-	color: #006400;
+	
 	text-align: center;
     font-size: 50px;
     font-family: 'Cute Font', cursive;
@@ -109,7 +113,7 @@ h5{
 	text-align: center;
     text-align: inherit;
   	font-family: 'Gamja Flower', cursive;
-
+  
 }
 
 h6{
@@ -118,8 +122,8 @@ h6{
 }
 
 #a{
-  	background-color:#4AB34A	
-
+  	background-color:#4AB34A;
+	
 
 
 }
@@ -160,6 +164,27 @@ color: #1E821E
 }
 h1{
  font-family: 'Anton', sans-serif;
+    text-align: center;
+    color: #147814;
+}
+
+#wood{
+background-image: url("/resources/images/forest/wood-2065366_960_720.jpg");
+background-size: cover;
+
+
+}
+
+#invite{
+background-image: url("/resources/images/forest/wood-2065366_960_720.jpg");
+background-size: cover;
+
+
+}
+
+.form-control{
+font-family: 'Cute Font', cursive;
+
 }
 
 /* .col-md-6::-webkit-scrollbar {
@@ -352,11 +377,13 @@ function formatAMPM(value) {
       </header>   
 
 	<div class="container-fluid gedf-wrapper">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card"	style="width: 450px;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
-                    <div class="card-body" id="a" style="border-top-left-radius: 50px;border-top-right-radius: 50px;">
-                        <h2 class="forestName" style="color:white; font-size: 50px; font-weight: 900;">${forest.forestName }</h2> 
+        <div class="row" style="background-color: ivory;">
+            <div class="col-md-3" >
+            
+         
+                <div class="card"	style="width: 450px;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;margin-bottom: 50px;">
+                    <div class="card-body" id="a" style="border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
+                        <h2 class="forestName" style="color:#1E821E;font-size: 50px;background-color: white;border-radius: 50px;font-weight: 900;">${forest.forestName }</h2> 
 							 <h2 class="forsetNameTextForm">
 							 	<input type="hidden" name="changeName" value=${forest.forestName} onblur="blurFunction()">
 							 </h2>
@@ -370,21 +397,31 @@ function formatAMPM(value) {
 							 <input type="button" name="confirmButton" value="확인"> -->
 							</div>
                     </div>
+                
+         
+            </div>
+            
+                   
                    <div class="bt2">
-                    <ul class="list-group list-group-flush" id="b" >
-                        <li class="list-group-item " id="forest" style="border-bottom-left-radius: 30px;
-    						border-bottom-right-radius: 30px;
-    						border-top-left-radius: 30px;
-    						border-top-right-radius: 30px;">
+                    <ul class="list-group list-group-flush" id="b"  style="
+    							border-top-left-radius: 50px;
+    							border-top-right-radius: 50px;
+    							border-bottom-left-radius: 50px;
+   								 border-bottom-right-radius: 50px;">
+                        <li class="list-group-item " id="forest" style="	border-top-left-radius: 50px;
+    						border-top-right-radius: 50px;">
+    					
+    					
+    						
                         <div class="a">
                             <div class="h6 text-muted" id="main" style="margin-right: auto;"><h1>Forest Board</h1></div>
                          </div>
                         </li>
-                        <h2 class="forestInformText" id="f" style="border-radius: 30px;margin-top: 10px;background-color:white">${forest.forestInformText }</h2>
+                        <h2 class="forestInformText" id="f" style="border-radius: 30px;margin-top: 10px;background-color:white;font-size: 40px;font-weight: bold;">${forest.forestInformText }</h2>
 	 						<div class="card bg-light"></div>
 	 					<div class="bt3" >
-	 					<h5 class="forsetInformTextWriter">작성자 :&nbsp;${forest.forestInformWriter }</h5>
-	 					<h5 class="forestInformTextRegDate">작성 날짜 :&nbsp;${forest.forestInformRegDate }</h5>
+	 					<h5 class="forsetInformTextWriter"	style="font-size: 25px;font-weight: bolder;">작성자 :&nbsp;${forest.forestInformWriter }</h5>
+	 					<h5 class="forestInformTextRegDate"	style="font-size: 25px;font-weight: bolder;"	>작성 날짜 :&nbsp;${forest.forestInformRegDate }</h5>
 	 					</div>
 	 					<div class="card bg-light"></div>
 	 					<h2 class="forestInformTextForm">
@@ -398,21 +435,10 @@ function formatAMPM(value) {
 					</div>
       
                     </ul>
-                    <ul class="list-group list-group-flush" id="c" style="border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
-                        <li class="list-group-item"  id="forest">
-                            <div class="h6 text-muted" id="main"><h1>Trees</h1></div>
-                            
-                        </li>
-                        <li class="list-group-item" style="background-color:white;border: solid;border-width: thick;border-color:#4AB34A">	
-                            <ul id='infinite-list'>
-							</ul>
-                        </li>
-                        
-                    </ul>
+                   
                 </div>
-            </div>
            </div>
-            <div class="col-md-6 gedf-main">
+            <div class="col-md-6 gedf-main" style="padding-left: 100px;">
 				
 				
                 <c:forEach var="postFile" items="${listPost}">
@@ -421,8 +447,8 @@ function formatAMPM(value) {
                 	${postFile.listPostMapList } --%>
                 	
                 	 <!--- \\\\\\Poststart-->
-                <div class="card gedf-card">
-                    <div class="card-header" style="background-color: #4AB34A">
+                <div class="card gedf-card"	style="border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
+                    <div class="card-header" style="border-top-left-radius: 50px;background-color: #4AB34A;border-top-right-radius: 50px;">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
@@ -508,7 +534,7 @@ function formatAMPM(value) {
                             ${postFile.listPostMapPost.postDetail}
                         </p>
                     </div>
-                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A">
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A;padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
                         <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
                         <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
@@ -735,18 +761,18 @@ function formatAMPM(value) {
 
 
             </div>
-            <div class="col-md-3">
-                <div class="card gedf-card" style="border-radius: 50px;border-color:#4AB34A;border-width: revert;">
+            <div class="col-md-3" style="padding-left: 100px;">
+                <div class="card gedf-card" id="invite" 	style="border-bottom: double;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;border-top-left-radius: 50px;border-top-right-radius: 50px;">
                     <div class="card-body">
-                        <h5 class="card-title" style="margin-bottom: 50px;text-align: center;font-size: 30px;color:#147814;">Invite Tree</h5>
+                        <h1 class="card-title" style="margin-bottom: 50px;text-align: center;font-size: 30px;color:#147814;">Invite Tree</h1>
                        <!--  <h6 class="card-subtitle mb-2 text-muted">Tree List</h6> -->
                         <!-- <input type="text" name="searchTree" > -->
                         	<div class="card bg-light" style="top: -25px;"></div>
-                        <input type="text" class="form-control" placeholder="나무 이름을 입력하세요" aria-describedby="basic-addon1" name="searchTree">
-						 <form name="inviteTree" action="/forest/inviteTree" method="post">
+                        <input type="text" class="form-control" placeholder="나무 이름을 입력하세요" aria-describedby="basic-addon1" name="searchTree" style="font-size: 20px;">
+						 <form name="inviteTree" action="/forest/inviteTree" method="post" style="text-align: center;font-weight: 900;font-size: 22px;color: #3CA03C;font-family: 'Gamja Flower', cursive;">
 						 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
 						 	<input type="hidden" name = "profileNo" value="${param.profileNo }">
-							 <ul id='inviteTree-list'>
+							 <ul id='inviteTree-list' style="inline-size: auto;">
 							</ul>
 							<button type="submit" 	class="btn btn-default navbar-btn"	name="inviteButton" id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">초대하기</button>
 							 
@@ -756,9 +782,27 @@ function formatAMPM(value) {
                     <div class="card-body">
                     	<h5 class="card-title">초대요청 나무</h5>
                     </div>
-                    
-                    
+       			
+       		
+                  
+                  
                 </div>
+                
+                
+                	<div class="trees">
+                     <ul class="list-group list-group-flush" id="c" style="border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom: double;">
+                        <li class="list-group-item"  id="forest">
+                            <div class="h6 text-muted" id="main"><h1>Trees</h1></div>
+                            
+                        </li>
+                        <li class="list-group-item"  id="wood" style="cursor: pointer;">	
+                            <ul id='infinite-list'   id="treeName" style="text-align: center;font-weight: 900;font-size: 22px;color: #3CA03C;font-family: 'Gamja Flower', cursive;">
+							</ul>
+                        </li>
+                        
+                    </ul>
+                  </div>  
+                
                 
             </div>
         </div>
@@ -779,7 +823,7 @@ function formatAMPM(value) {
 
  <!-- Hello GetForest.jsp -->
 
- <div>
+
 	
 <script type="text/javascript">
 var listElm = document.querySelector('#infinite-list');
@@ -989,7 +1033,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 //loadMore();
 </script>
 
- </div><br/>
+ 
  <%-- 
  <div>
 	 숲 목록
