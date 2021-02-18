@@ -697,7 +697,7 @@ var restLoadMore = function(list){
 		 //클릭시 수정필요
 		 //getTree로 이동!
 		 /* item.setAttribute('onclick',"location.href='getForest?forestNo=21") */
-		 item.setAttribute('onclick',`location.href='/tree/getUserTree?treeNo=\${treeNo}'`)
+		 item.setAttribute('onclick',`location.href='/post/getPostList?postTreeNo=\${treeNo}'`)
 		 listElm.appendChild(item);
 		 	
 	}	

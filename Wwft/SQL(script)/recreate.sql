@@ -76,7 +76,7 @@ CREATE TABLE  "USERS"
 	"TREE_NAME" VARCHAR2(30) NOT NULL ENABLE, 
 	"SEED_NO" CHAR(1) NOT NULL ENABLE, 
 	"TREE_IMAGE_NAME" VARCHAR2(100), 
-	"COUNTRY_ID" CHAR(3) NOT NULL ENABLE, 
+	"COUNTRY_ID" CHAR(3), 
 	"FAMILY_MOTTO" VARCHAR2(50), 
 	"ACTIVITY_TOTAL_POINT" NUMBER(10,0) NOT NULL ENABLE, 
 	 CONSTRAINT "TREE_PK" PRIMARY KEY ("TREE_NO") ENABLE  );
@@ -87,11 +87,11 @@ CREATE TABLE  "USERS"
 	"TREE_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	"PROFILE_NAME" VARCHAR2(30) NOT NULL ENABLE, 
 	"BIRTHDAY" VARCHAR2(30), 
-	"FAMILY_RELATIONS" VARCHAR2(30) NOT NULL ENABLE, 
+	"FAMILY_RELATIONS" VARCHAR2(30), 
 	"ADDRESS" VARCHAR2(100), 
 	"PHONE" VARCHAR2(30), 
 	"PROFILE_IMAGE" VARCHAR2(100) NOT NULL ENABLE, 
-	"PROFILE_STATE" CHAR(1) NOT NULL ENABLE, 
+	"PROFILE_STATE" CHAR(1), 
 	 CONSTRAINT "PROFILES_PK" PRIMARY KEY ("PROFILE_NO") ENABLE, 
 	 CONSTRAINT "PROFILES_CON" FOREIGN KEY ("TREE_NO")
 	  REFERENCES  "TREE" ("TREE_NO") ON DELETE CASCADE ENABLE  );
@@ -107,10 +107,10 @@ CREATE TABLE  "USERS"
    
    CREATE TABLE  "FOREST" 
    (	"FOREST_NO" NUMBER(10,0) NOT NULL ENABLE, 
-	"FOREST_NAME" VARCHAR2(30) NOT NULL ENABLE, 
+	"FOREST_NAME" VARCHAR2(30) , 
 	"FOREST_CTREATER_TREE_NO" NUMBER(10,0) NOT NULL ENABLE, 
-	"INVITE_POSSIBLE_STATE" CHAR(1) NOT NULL ENABLE, 
-	"FOREST_NAME_CHANGE_POSSIBLE_ST" CHAR(1) NOT NULL ENABLE, 
+	"INVITE_POSSIBLE_STATE" CHAR(1) , 
+	"FOREST_NAME_CHANGE_POSSIBLE_ST" CHAR(1) , 
 	"FOREST_INFORM_TEXT" VARCHAR2(1000), 
 	"FOREST_INFORM_WRITER" VARCHAR2(30), 
 	"FOREST_INFORM_REG_DATE" DATE, 
@@ -121,7 +121,7 @@ CREATE TABLE  "USERS"
    CREATE TABLE  "TREE_FOREST" 
    (	"TREE_AND_FOREST_NO" NUMBER NOT NULL ENABLE, 
 	"FOREST_NO" NUMBER, 
-	"TREE_NO" NUMBER NOT NULL ENABLE, 
+	"TREE_NO" NUMBER , 
 	"FOREST_ENTER_REG_DATE" DATE, 
 	 CONSTRAINT "TREE_FOREST_FK" FOREIGN KEY ("FOREST_NO")
 	  REFERENCES  "FOREST" ("FOREST_NO") ON DELETE CASCADE ENABLE, 
@@ -159,8 +159,8 @@ CREATE TABLE  "USERS"
    (	"EVENT_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	"TREE_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	"EVENT_TITLE" VARCHAR2(30) NOT NULL ENABLE, 
-	"EVENT_START_DATE" DATE NOT NULL ENABLE, 
-	"EVENT_END_DATE" DATE NOT NULL ENABLE, 
+	"EVENT_START_DATE" DATE , 
+	"EVENT_END_DATE" DATE , 
 	"D_DAY_STATE" CHAR(1), 
 	"EVENT_DETAIL" VARCHAR2(200), 
 	"FREQ" VARCHAR2(10), 
@@ -237,7 +237,7 @@ CREATE TABLE  "COMMENTS"
 	"BUCKETLIST_WRITER" VARCHAR2(30) NOT NULL ENABLE, 
 	"BUCKETLIST_DETAIL" VARCHAR2(200) NOT NULL ENABLE, 
 	"BUCKETLIST_REG_DATE" DATE NOT NULL ENABLE, 
-	"STAMP_STATE" CHAR(1) NOT NULL ENABLE, 
+	"STAMP_STATE" CHAR(1) , 
 	"TREE_NO" NUMBER(10,0) NOT NULL ENABLE, 
 	 CONSTRAINT "BUCKETLIST_PK" PRIMARY KEY ("BUCKETLIST_NO") ENABLE );
 	 
@@ -252,35 +252,220 @@ WHERE a.imgmin = i.image_and_like_no;
    
 	회원정보
     INSERT INTO USERS values('admin' , 'admin',1000, 'a1sasd@asd', 'admin',  SYSDATE, null, 1);
-    INSERT INTO USERS values('user01', '1111' ,1, 'a2asd@asd' , 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user02', '2222' ,2, 'a3sasd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user03', '3333' ,3, 'as4asd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user04', '4444' ,4, 'asa5sd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user05', '5555' ,5, 'asa6sd@asd', 'user' ,  SYSDATE, null, 1);
-    INSERT INTO USERS values('user06', '6666' ,6, 'asasd7@asd', 'user' ,  SYSDATE, null, 1);
+
+    INSERT INTO USERS values('alpha', '1111' ,1, 'alpha@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('bravo', '1111' ,2, 'bravo@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('charlie', '1111' ,3, 'charlie@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('delta', '1111' ,4, 'delta@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('echo', '1111' ,5, 'echo@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('foxtrot', '1111' ,6, 'foxtrot@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('golf', '1111' ,7, 'golf@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('hotel', '1111' ,8, 'hotel@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('india', '1111' ,9, 'india@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('juliet', '1111' ,10, 'juliet@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('kilo', '1111' ,11, 'kilo@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('lima', '1111' ,12, 'lima@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('mike', '1111' ,13, 'mike@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('november', '1111' ,14, 'november@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('oscar', '1111' ,15, 'oscar@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('papa', '1111' ,16, 'papa@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('quebec', '1111' ,17, 'quebec@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('romeo', '1111' ,18, 'romeo@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('sierra', '1111' ,19, 'sierra@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('tango', '1111' ,20, 'tango@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('uniform', '1111' ,21, 'uniform@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('victory', '1111' ,22, 'victory@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('whiskey', '1111' ,23, 'whiskey@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('xray', '1111' ,24, 'xray@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('yankee', '1111' ,25, 'yankee@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('zulu', '1111' ,26, 'zulu@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('halt', '1111' ,27, 'halt@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('freez', '1111' ,28, 'freez@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('taking ', '1111' ,29, 'taking@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('fire', '1111' ,30, 'fire@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('cease', '1111' ,31, 'cease@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('shift', '1111' ,32, 'shift@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('regulation', '1111' ,33, 'regulation@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('inspection', '1111' ,34, 'inspection@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('declaration', '1111' ,35, 'declaration@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('national ', '1111' ,36, 'national@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('foxone ', '1111' ,37, 'foxone@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('foxtwo ', '1111' ,38, 'foxtwo@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('foxthree ', '1111' ,39, 'foxthree@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('roger ', '1111' ,40, 'roger@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('mordekaiser ', '1111' ,41, 'mordekaiser@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('splash ', '1111' ,42, 'splash@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('hydrogen ', '1111' ,43, 'hydrogen@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('helium ', '1111' ,44, 'helium@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('borium ', '1111' ,45, 'borium@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('fluorum ', '1111' ,46, 'fluorum@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('neon', '1111' ,47, 'neon@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('sodium', '1111' ,48, 'sodium@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('garen', '1111' ,49, 'garen@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('galio', '1111' ,50, 'galio@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('malphite', '1111' ,51, 'malphite@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('maokai', '1111' ,52, 'maokai@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('gubalza', '1111' ,53, 'gubalza@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('bitcoin', '1111' ,54, 'bitcoin@gmail.com' , 'user' ,  SYSDATE, null, 1);
+    INSERT INTO USERS values('bitcamp', '1111' ,55, 'bitcamp@gmail.com' , 'user' ,  SYSDATE, null, 1);
     
     나무정보
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'admin', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user01', '나무이름1', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user02', '나무이름2', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user03', '나무이름3', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user04', '나무이름4', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user05', '나무이름5', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-    INSERT INTO tree values(SEQ_TREE_NO.nextval, 'user06', '나무이름6', '0', '나무이미지이름' , 'kr', '가훈', 0 );
-   
-    프로필정보
-    INSERT INTO profiles values(SEQ_PROFILE_NO.nextval,나무번호넣어야됩니다,'프로필이름','2001-08-18','가족관계','서울시','01088311324','프로필이미지','1');
+    INSERT INTO tree values(1000, 'admin', 'adminTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+
+    INSERT INTO tree values(1, 'alpha', 'alphaTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(2, 'bravo', 'bravoTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(3, 'charlie', 'charlieTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(4, 'delta', 'deltaTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(5, 'echo', 'echoTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(6, 'foxtrot', 'foxtrotTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(7, 'golf', 'golfTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(8, 'hotel', 'hotelTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(9, 'india', 'indiaTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(10, 'juliet', 'julietTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(11, 'kilo', 'kiloTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(12, 'lima', 'limaTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(13, 'mike', 'mikeTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(14, 'november', 'novemberTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(15, 'oscar', 'oscarTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(16, 'papa', 'papaTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(17, 'quebec', 'quebecTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(18, 'romeo', 'romeoTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(19, 'sierra', 'sierraTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(20, 'tango', 'tangoTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(21, 'uniform', 'uniformTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(22, 'victory', 'victoryTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(23, 'whiskey', 'whiskeyTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(24, 'xray', 'xrayTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(25, 'yankee', 'yankeeTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(26, 'zulu', 'zuluTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(27, 'halt', 'haltTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(28, 'freez', 'freezTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(29, 'taking', 'takingTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(30, 'fire', 'fireTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(31, 'cease', 'ceaseTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(32, 'shift', 'shiftTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(33, 'regulation', 'regulationTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(34, 'inspection', 'inspectionTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(35, 'declaration', 'declarationTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(36, 'national', 'nationalTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(37, 'foxone', 'foxoneTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(38, 'foxtwo', 'foxtwoTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(39, 'foxthree', 'foxthreeTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(40, 'roger', 'rogerTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(41, 'mordekaiser', 'mordekaiserTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(42, 'splash', 'splashTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(43, 'hydrogen', 'hydrogenTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(44, 'helium', 'heliumTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(45, 'borium', 'boriumTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(46, 'fluorum', 'fluorumTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(47, 'neon', 'neonTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(48, 'sodium', 'sodiumTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(49, 'garen', 'garenTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(50, 'galio', 'galioTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(51, 'malphite', 'malphiteTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(52, 'maokai', 'maokaiTree', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(53, 'gubalza', '상록수나무', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(54, 'bitcoin', '비트나무', '0', '나무이미지이름' , 'kr', '가훈', 0 );
+    INSERT INTO tree values(55, 'bitcamp', '비트캠프나무', '0', '나무이미지이름' , 'kr', '가훈', 0 );
     
-    나무이미지정보
-    INSERT INTO tree_image values(1,'1','1번씨앗',0,100);  
-    INSERT INTO tree_image values(2,'1','1번묘목',101,200);  
-    INSERT INTO tree_image values(3,'1','1번나무',201,300);  
-    INSERT INTO tree_image values(4,'2','2번씨앗',0,100);  
-    INSERT INTO tree_image values(5,'2','2번묘목',101,200);  
-    INSERT INTO tree_image values(6,'2','2번나무',201,300);  
-    INSERT INTO tree_image values(7,'3','3번씨앗',0,100);  
-    INSERT INTO tree_image values(8,'3','3번묘목',101,200);  
-    INSERT INTO tree_image values(9,'3','3번씨앗',201,300);  
+    숲 
+
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(1, 'alpha', 1, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(2, 'bravo', 2, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(3, 'charlie',3, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(4, 'delta',4, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(5, 'echo',5, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(6, 'golf',6, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(7, 'hotel',7, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(8, 'india',8, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(9, 'juliet',9, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(10, 'kilo',10, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+    
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(11, 'lima',11, '1', '1', '숲공지글', '알림글작성자', SYSDATE, SYSDATE);
+    
+   INSERT INTO FOREST (FOREST_NO, FOREST_NAME, FOREST_CTREATER_TREE_NO, INVITE_POSSIBLE_STATE, FOREST_NAME_CHANGE_POSSIBLE_ST, FOREST_INFORM_TEXT, FOREST_INFORM_WRITER, FOREST_INFORM_REG_DATE, FOREST_CREATE_TIME)
+   VALUES(53, '상록수나무',53, '1', '1', '건강하자!', '노진우', SYSDATE, SYSDATE);
+    
+
+
+
+    트리 포레스트                                                                                     숲번호 나무번호            
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(1, 1, 1, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(2, 1, 2, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(3, 1, 3, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(4, 1, 4, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(5, 1, 5, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(6, 1, 6, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(7, 1, 7, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(8, 1, 8, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(9, 1, 9, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(10, 1,10, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(11, 2,11, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(12, 2,12, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(13, 2,13, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(14, 2,14, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(15, 2,15, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(16, 2,16, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(17, 2,17, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(18, 2,18, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(19, 2,19, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(20, 2,20, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(21, 3,21, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(22, 3,22, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(23, 3,23, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(24, 3,24, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(25, 3,25, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(26, 3,26, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(27, 3,27, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(28, 3,28, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(29, 3,29, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(30, 3,30, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(31, 4,31, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(32, 4,32, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(33, 4,33, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(34, 4,34, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(35, 4,35, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(36, 4,36, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(37, 4,37, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(38, 4,38, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(39, 4,39, SYSDATE);
+	INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(40, 4,40, SYSDATE);
+	
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(41, 53,1, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(42, 53,2, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(43, 53,3, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(44, 53,4, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(45, 53,5, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(46, 53,6, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(47, 53,7, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(48, 53,8, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(49, 53,9, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(50, 53,10, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(51, 53,11, SYSDATE);
+   
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(51, 1,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(52, 2,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(53, 3,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(54, 4,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(55, 5,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(56, 6,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(57, 7,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(58, 8,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(59, 9,53, SYSDATE);
+   INSERT INTO TREE_FOREST (TREE_AND_FOREST_NO, FOREST_NO, TREE_NO, FOREST_ENTER_REG_DATE) VALUES(60, 10,53, SYSDATE);
+
+  
     
     나무주소정보
     INSERT INTO tree_address values('kor','korea');

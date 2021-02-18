@@ -471,7 +471,7 @@
 								</span>
 							</div>
 							<input name="userId" id="userId" class="form-control" type="text" id="userId"
-								value="${user.userId}" readonly>
+								value="${user.userId}" disabled>
 						</div>
 						<dd name="userId"></dd>
 						<!-- form-group// -->
@@ -480,7 +480,7 @@
 								<span class="input-group-text"> <i class="fa fa-envelope"></i>
 								</span>
 							</div>
-							<input name="email" class="form-control" type="email" value="${user.email}" readonly>
+							<input name="email" class="form-control" type="email" value="${user.email}" disabled>
 						</div>
 
 
@@ -502,8 +502,8 @@
 								<span class="input-group-text"><i class="fas fa-tree "></i>
 								</span>
 							</div>
-							<input name="treeName" class="form-control" type="text" id="treeName"
-								value="${tree.treeName}">
+							<input name="treeName" class="form-control" type="date" id="treeName"
+								value="${tree.treeName}" >
 						</div>
 
 

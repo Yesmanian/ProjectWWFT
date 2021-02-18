@@ -151,9 +151,9 @@ $(document).ready(function () {
     })//update는 나무에서AND REMOVE는 숲에서끝 
 
     let page = 1;
-    let treeNo = 1;
-    let forestNo =1;
-    let profileNo =1;
+    let treeNo = ${tree.treeNo};
+    // let forestNo = $
+    let profileNo =${profile.profileNo};
     $(window).scroll(function () {
         
         

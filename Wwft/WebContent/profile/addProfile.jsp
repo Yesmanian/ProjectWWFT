@@ -323,7 +323,8 @@ font-family: 'Archivo Narrow', sans-serif;
 					width: 150px; height: 28px;"	>
 		 	              <label class="birthday">Birthday</label></div>
 				  <div class="col-xs-8"  style="width: 270px;">
-			             <input type="text" name="birthday" id="birthday" data-toggle="datepicker" readonly placeholder="생년월일을 입력하세요" class="form-control last">
+			             <!-- <input type="text" name="birthday" id="birthday" data-toggle="datepicker" readonly placeholder="생년월일을 입력하세요" class="form-control last"> -->
+			             <input type="date" name="birthday" id="birthday" placeholder="생년월일을 입력하세요" class="form-control last">
 				 </div>
           </div>
 		  </div>
