@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 <meta charset="EUC-KR">
 <title>WWFT</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
@@ -50,7 +56,10 @@ li:hover {
   background: #ccc;
 }
 .gedf-wrapper {
-            margin-top: 0.97rem;
+            margin-top: 20px;
+            
+ 
+            
         }
 @media (min-width: 992px) {
             .gedf-main {
@@ -71,6 +80,88 @@ li:hover {
 	overflow: auto;
 	
 }
+
+#forest{
+	height: 70px;
+	background-size: cover;
+	color: #1E821E;
+	border:solid;
+	border-color:#288C28
+	}
+
+#fr{
+	text-align: center;
+	margin: 5px;
+	font-size: 25px;
+	font-family: 'Anton', sans-serif;
+}
+
+h2{
+	color: #006400;
+	text-align: center;
+    font-size: 50px;
+    font-family: 'Cute Font', cursive;
+}
+
+
+h5{
+	color:	#3CA03C;
+	text-align: center;
+    text-align: inherit;
+  	font-family: 'Gamja Flower', cursive;
+
+}
+
+h6{
+    font-family: 'Black Han Sans', sans-serif;
+
+}
+
+#a{
+  	background-color:#4AB34A	
+
+
+
+}
+
+#button{
+color : white;
+font-family: 'Do Hyeon', sans-serif;
+
+}
+
+.bt{
+    text-align: center;
+
+}
+
+.bt3{
+
+    background-color: white;
+	text-align: center;
+}
+
+#b{
+ 	background-color:#4AB34A	
+}
+
+#post{
+font-family: 'Do Hyeon', sans-serif;
+color : white;
+}
+
+.time{
+color : black;
+}
+
+#f{
+font-family: 'Cute Font', cursive;
+color: #1E821E
+}
+h1{
+ font-family: 'Anton', sans-serif;
+}
+
 /* .col-md-6::-webkit-scrollbar {
     width: 10px;
   }
@@ -150,6 +241,7 @@ function formatAMPM(value) {
 					forestName : $('input[name=changeName]').val(),
 					forestNo   : ${forest.forestNo}
 			}
+		
 			var jsonString = JSON.stringify(params)
 			alert(jsonString)
 			
@@ -258,46 +350,60 @@ function formatAMPM(value) {
 	<header id="wrap"> 
  		    <jsp:include page="../common/navBar.jsp"/>
       </header>   
-${param.profileNo}
+
 	<div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="forestName">${forest.forestName }</h2> 
+                <div class="card"	style="width: 450px;border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
+                    <div class="card-body" id="a" style="border-top-left-radius: 50px;border-top-right-radius: 50px;">
+                        <h2 class="forestName" style="color:white; font-size: 50px; font-weight: 900;">${forest.forestName }</h2> 
 							 <h2 class="forsetNameTextForm">
 							 	<input type="hidden" name="changeName" value=${forest.forestName} onblur="blurFunction()">
 							 </h2>
-	                        <div class="h7 text-muted">숲 방장 : ${forest.forestCreaterTreeNo }</div>
-							 
-							 <button type="button" class="btn btn-default navbar-btn" name="changeButton" >수정</button>
-							 <button type="button" class="btn btn-default navbar-btn" name="confirmButton" >확인</button>
+	                        <div class="h7 text-muted"><h5 style="font-size: 20px;text-align: center;color: white;">숲 방장 : ${forest.forestCreaterTreeNo }</h5></div>
+						
+					<div class="card bg-light" style="top: 10px;"></div>
+						 <div class="bt" style="margin-top: 20px;">
+							 <button type="button" class="btn btn-outline-success navbar-btn" name="changeButton"  id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">수정</button>
+							 <button type="button" class="btn btn-outline-success navbar-btn" name="confirmButton"  id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">완료</button>
 							 <!-- <input type="button" name="changeButton" value="수정">
 							 <input type="button" name="confirmButton" value="확인"> -->
+							</div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Forest Board</div>
+                   <div class="bt2">
+                    <ul class="list-group list-group-flush" id="b" >
+                        <li class="list-group-item " id="forest" style="border-bottom-left-radius: 30px;
+    						border-bottom-right-radius: 30px;
+    						border-top-left-radius: 30px;
+    						border-top-right-radius: 30px;">
+                        <div class="a">
+                            <div class="h6 text-muted" id="main" style="margin-right: auto;"><h1>Forest Board</h1></div>
+                         </div>
                         </li>
-                        <h2 class="forestInformText">${forest.forestInformText }</h2>
-	 					<h5 class="forsetInformTextWriter">작성자 :${forest.forestInformWriter }</h5>
-	 					<h5 class="forestInformTextRegDate">작성일자 :${forest.forestInformRegDate }</h5>
+                        <h2 class="forestInformText" id="f" style="border-radius: 30px;margin-top: 10px;background-color:white">${forest.forestInformText }</h2>
+	 						<div class="card bg-light"></div>
+	 					<div class="bt3" >
+	 					<h5 class="forsetInformTextWriter">작성자 :&nbsp;${forest.forestInformWriter }</h5>
+	 					<h5 class="forestInformTextRegDate">작성 날짜 :&nbsp;${forest.forestInformRegDate }</h5>
+	 					</div>
+	 					<div class="card bg-light"></div>
 	 					<h2 class="forestInformTextForm">
-						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText }>
+						 	<input type="hidden" name="changeInformText" value=${forest.forestInformText } style="font-size: smaller;">
 					 	</h2>
-					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton" >수정</button>
-						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" >확인</button>
+					 <div class="bt2" style="text-align: center; margin-bottom: 13px">
+					 	 <button type="button" class="btn btn-default navbar-btn" name="informTextchangeButton"	id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;border-width: thick;" >수정</button>
+						 <button type="button" class="btn btn-default navbar-btn" name="informTextconfirmButton" id="button" style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;border-width: thick;" >완료</button>
 						 <!-- <input type="button" name="informTextchangeButton" value="수정">
 						 <input type="button" name="informTextconfirmButton" value="확인"> -->
-						 
-                        
+					</div>
+      
                     </ul>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="h6 text-muted">Trees</div>
+                    <ul class="list-group list-group-flush" id="c" style="border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
+                        <li class="list-group-item"  id="forest">
+                            <div class="h6 text-muted" id="main"><h1>Trees</h1></div>
                             
                         </li>
-                        <li class="list-group-item">	
+                        <li class="list-group-item" style="background-color:white;border: solid;border-width: thick;border-color:#4AB34A">	
                             <ul id='infinite-list'>
 							</ul>
                         </li>
@@ -305,6 +411,7 @@ ${param.profileNo}
                     </ul>
                 </div>
             </div>
+           </div>
             <div class="col-md-6 gedf-main">
 				
 				
@@ -313,30 +420,33 @@ ${param.profileNo}
                 	<%-- ${postFile.listPostMapPost }
                 	${postFile.listPostMapList } --%>
                 	
-                	 <!--- \\\\\\\Poststart-->
+                	 <!--- \\\\\\Poststart-->
                 <div class="card gedf-card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #4AB34A">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
                                 <div class="ml-2">
-                                    <div class="h5 m-0">${postFile.listPostMapPost.postWriter}</div>
+                                    <div class="h5 m-0" 	id="post"	>${postFile.listPostMapPost.postWriter}</div>
                                     <!-- <div class="h7 text-muted">{treeName}</div> -->
-                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>${postFile.listPostMapPost.postRegDate}</div>
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><h6 class="time">${postFile.listPostMapPost.postRegDate}</h6></div>
                                 </div>
                             </div>
                             <div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown"  style="background: white;">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: aliceblue;">
                                         <i class="fa fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                        <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Hide</a>
-                                        <a class="dropdown-item" href="#">Report</a>
+                                          <div class="h6 dropdown-header"><h6 style="color:#006400;text-align: center;border-bottom-width: 10px;padding-bottom: 10px;">Category</h6></div>
+                                      <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;height: 2;padding-bottom: 7px;padding-top: 0px;margin-bottom: 10px;">Save</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#"style="text-align: center;margin-bottom: 10px;padding-top: 4px;padding-bottom: 4px;">Hide</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;">Report</a>
                                     </div>
                                 </div>
                             </div>
@@ -398,7 +508,7 @@ ${param.profileNo}
                             ${postFile.listPostMapPost.postDetail}
                         </p>
                     </div>
-                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;">
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A">
                         <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
                         <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
@@ -415,7 +525,7 @@ ${param.profileNo}
 
                 <!--- \\\\\\\Poststart-->
                 <div class="card gedf-card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #4AB34A;">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
@@ -424,19 +534,22 @@ ${param.profileNo}
                                 <div class="ml-2">
                                     <div class="h5 m-0">${postList.post15.postWriter}</div>
                                     <!-- <div class="h7 text-muted">{treeName}</div> -->
-                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><h6 style="height:10px;color:white">10 min ago</h6></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: aliceblue;">
                                         <i class="fa fa-ellipsis-h"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                        <div class="h6 dropdown-header">Configuration</div>
-                                        <a class="dropdown-item" href="#">Save</a>
-                                        <a class="dropdown-item" href="#">Hide</a>
-                                        <a class="dropdown-item" href="#">Report</a>
+                                        <div class="h6 dropdown-header"><h6 style="color:#006400;text-align: center;border-bottom-width: 10px;padding-bottom: 10px;">Category</h6></div>
+                                      <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;height: 2;padding-bottom: 7px;padding-top: 0px;margin-bottom: 10px;">Save</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#"style="text-align: center;margin-bottom: 10px;padding-top: 4px;padding-bottom: 4px;">Hide</a>
+                                        <div class="card bg-light" style="top: -10px;"></div>
+                                        <a class="dropdown-item" href="#" style="text-align: center;">Report</a>
                                     </div>
                                 </div>
                             </div>
@@ -498,7 +611,7 @@ ${param.profileNo}
                             ${postList.post10.postDetail}
                         </p>
                     </div>
-                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;">
+                    <div class="card-footer" style="padding-top: 3px;padding-bottom: 5px;padding-left: 20px;background-color:#4AB34A;">
                         <!-- <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> -->
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> See Detail</a>
                         <!-- <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a> -->
@@ -623,18 +736,19 @@ ${param.profileNo}
 
             </div>
             <div class="col-md-3">
-                <div class="card gedf-card">
+                <div class="card gedf-card" style="border-radius: 50px;border-color:#4AB34A;border-width: revert;">
                     <div class="card-body">
-                        <h5 class="card-title">Invite Tree</h5>
+                        <h5 class="card-title" style="margin-bottom: 50px;text-align: center;font-size: 30px;color:#147814;">Invite Tree</h5>
                        <!--  <h6 class="card-subtitle mb-2 text-muted">Tree List</h6> -->
                         <!-- <input type="text" name="searchTree" > -->
-                        <input type="text" class="form-control" placeholder="TreeName" aria-describedby="basic-addon1" name="searchTree">
+                        	<div class="card bg-light" style="top: -25px;"></div>
+                        <input type="text" class="form-control" placeholder="나무 이름을 입력하세요" aria-describedby="basic-addon1" name="searchTree">
 						 <form name="inviteTree" action="/forest/inviteTree" method="post">
 						 	<input type="hidden" name = "forestNo" value="${param.forestNo }">
 						 	<!-- <input type="hidden" name = "profileNo" value="${param.profileNo }"> -->
 							 <ul id='inviteTree-list'>
 							</ul>
-							<input type="submit" name="inviteButton" value="초대하기">
+							<button type="submit" 	class="btn btn-default navbar-btn"	name="inviteButton" id="button"  style="border-radius: 30px;background-color: white;color:black;border-color:#64CD3C;border-width: thick;">초대하기</button>
 							 
 						 </form>
                     </div>
@@ -917,7 +1031,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 		</ul>
 		<input type="submit" name="inviteButton" value="초대하기">
 		 
-	 </form>
+	 </form>--%>
 	 <script type="text/javascript">
 	 
 	 var treeElm = document.querySelector('#inviteTree-list');
@@ -986,7 +1100,7 @@ if ((this.scrollTop+this.clientHeight)+1 >= this.scrollHeight){
 		})
 	 
 	 </script>
- </div>
+ <%--</div>
  --%>
 <%--  
  <div>
