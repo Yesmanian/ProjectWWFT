@@ -17,6 +17,8 @@
      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
     <script src="../resources/javascript/noticemessage/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
 </head>
 <body>
 
@@ -43,10 +45,26 @@ $(document).ready(function () {
     // $(".remove").on("click",function(e) {
     $(document).on("click","#remove",function(e) {
         e.preventDefault();
-        let removeConfirm = confirm("삭제 하시겠습니까 ?")
-        if(removeConfirm==true){
-            let noticeMessageNo = $(this).closest("li").find('.noticeMessageNo').val();
-            alert(noticeMessageNo);
+        let removeConfirm =
+      	
+        	Swal.fire({
+        	  title: '알림 메시지',
+        	  text: "알림 메시지를 삭제하시겠습니까?",
+        	  icon: 'warning',
+        	  showCancelButton: true,
+        	  confirmButtonColor: '#3085d6',
+        	  cancelButtonColor: '#d33',
+        	  confirmButtonText: '삭제',
+        	  cancelButtonText: '취소'
+        	}).then((result) => {
+        	  if (result.isConfirmed) {
+        	    Swal.fire(
+        	      '알림 메시지',
+        	      '삭제되었습니다.',
+        	      'success'
+        	    )
+        	    let noticeMessageNo = $(this).closest("li").find('.noticeMessageNo').val();
+            //alert(noticeMessageNo);
             let messageObj = $(this);
 
             // alert($(messageObj).closest("li"))
@@ -76,12 +94,15 @@ $(document).ready(function () {
             }
         });
         //ajax끝
-
-        }else{
-            //취소시
-        }
+        	    
+        	  }//if
+        	})// confirm 끝
+        	
+    })//remove
         
-    })//remove끝 
+        
+        
+       
 
 
     $(document).on("click","#accept",function(e) {

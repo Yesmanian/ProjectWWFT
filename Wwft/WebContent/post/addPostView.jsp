@@ -490,7 +490,7 @@ input[type=file] {
 			<div class="row row-cols-3">
 
 				<div class="col-2"></div>
-				<div class="col-8" align="right">
+				<div class="col-8" align="right" style="min-inline-size: auto;padding-left: 0px;margin-left: -63px;top: 15px;">
 					<!-- <button type="button" class="btn btn-primary"
 						onclick="fncAddPost();">µî·Ï</button> -->
 					
