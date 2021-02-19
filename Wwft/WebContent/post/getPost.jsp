@@ -296,7 +296,7 @@ body {
 		} */
 			
 		$('#remove').on("click", function(){
-			alert("ddd");
+			/* alert("ddd"); */
 		
 			var postNo = $("[name='postNo']").val();
 			$("#postForm").attr("method","POST").attr("action","/post/removePost").submit();

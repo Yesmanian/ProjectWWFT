@@ -437,19 +437,19 @@
 			
 				return;
 			}
-			if($('input[name=countryId]').val().length>3){
-				Swal.fire({
-					  icon:'warning',
-					  title: '국가명은' ,
-					  text: 'EX)KR, UK, NA 형식으로 입력 하셔야합니다.',
-					  showConfirmButton: true,
-					  confirmButtonText: '확인',
-					  confirmButtonColor:'#282828',
-					  timer: 5000
-					})
+			// if($('input[name=countryId]').val().length>3){
+			// 	Swal.fire({
+			// 		  icon:'warning',
+			// 		  title: '국가명은' ,
+			// 		  text: 'EX)KR, UK, NA 형식으로 입력 하셔야합니다.',
+			// 		  showConfirmButton: true,
+			// 		  confirmButtonText: '확인',
+			// 		  confirmButtonColor:'#282828',
+			// 		  timer: 5000
+			// 		})
 		
-				return;
-			}
+			// 	return;
+			// }
 			// alert("email"+isUserEmail)
 			// alert("id"+isUserId)
 			// alert("pw"+isUserPassword)
