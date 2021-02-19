@@ -50,7 +50,7 @@
 	}
 	
 	function goGetForest() {
-		window.location.href="/forest/getForest?forestNo=${tree.treeNo}&profileNo=${profile.profileNo}"
+		window.location.href="/forest/getForest?forestNo=${tree.treeNo}"
 
 	}
 	
@@ -86,8 +86,7 @@
           <h4 class="text-white">유저 아이디</h4></th>
           <th><i class="fas fa-globe-asia fa-2x text-white"></i><br>	
           <h4 class="text-white">가훈</h4></th>
-           <th><i class="fas fa-coins fa-2x text-white"></i><br>
-           <h4 class="text-white">총 활동지수</h4></th>
+         
         </tr>
       </thead>
       <tbody>
@@ -96,7 +95,7 @@
           <td><h5 class="text-white style">${tree.treeName}</h5> </td>
           <td><h5 class="text-white style"> ${tree.userId}</h5> </td>
           <td><h5 class="text-white style"> ${tree.familyMotto}</h5> </td>
-          <td><h5 class="text-white style"> ${tree.activityTotalPoint }</h5> </td>
+        
         </tr>
       
       </tbody>

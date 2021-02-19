@@ -336,7 +336,8 @@ font-family: 'Archivo Narrow', sans-serif;
 					width: 150px; height: 28px;"	>
 		 	              <label class="birthday">Birthday</label></div>
 				  <div class="col-xs-8"  style="width: 270px;">
-			             <input type="text" name="birthday" id="birthday" data-toggle="datepicker" readonly  class="form-control last" value="${profile.birthday}">
+			             <!-- <input type="text" name="birthday" id="birthday" data-toggle="datepicker" readonly  class="form-control last" value="${profile.birthday}"> -->
+			             <input type="date" name="birthday" id="birthday"  class="form-control last" value="${profile.birthday}">
 				 </div>
           </div>
 		  </div>
@@ -369,9 +370,10 @@ font-family: 'Archivo Narrow', sans-serif;
 		  <br>
 		
 		<div class="button">
+			<button type="button" class="btn " 	onclick="history.back(-1);"  style="font-size: 20px;width: 106px; "><h3>Go Back</h3></button>
 		  <button type="submit" class="btn " 	 style="font-size: 20px;width: 106px;"><h3>Edit</h3></button>
+		  <button type="button" class="btn " 	 style="font-size: 20px;width: 106px;"><h3>Remove</h3></button>
 		
-		  <button type="button" class="btn " 	onclick="history.back(-1);"  style="font-size: 20px;width: 106px; "><h3>Go Back</h3></button>
 		     <div class="col-sm-12">
 		 </div>
 	</div>

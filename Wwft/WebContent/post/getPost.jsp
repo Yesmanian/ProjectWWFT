@@ -296,7 +296,7 @@ body {
 		} */
 			
 		$('#remove').on("click", function(){
-			alert("ddd");
+			/* alert("ddd"); */
 		
 			var postNo = $("[name='postNo']").val();
 			$("#postForm").attr("method","POST").attr("action","/post/removePost").submit();
@@ -512,7 +512,7 @@ body {
 			/*신고하기  */
 			 function fn_addReport(){
 					
-				    var reporterTreeNo  = $('input[name=treeNo]').val();			//신고하는 나무번호
+				    var reporterTreeNo   =$('input[name=treeNo]').val();			//신고하는 나무번호
 					var reportedPostNo	 =$('input[name=postNo]').val();		//신고받은게시글번호
 					var reportedTreeNo	 = $('input[name=postTreeNo]').val();		//신고받은나무번호
 					var reportType	 = $("#exampleFormControlSelect1 option:selected").val();	//신고종류

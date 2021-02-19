@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
   <%@ page pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <!-- <% 
+
+  response.setHeader("P3P","CP='CAO PSA CONi OTR OUR DEM ONL'"); 
+  
+  %> -->
 
 <!DOCTYPE html>
 <html>
@@ -52,15 +57,16 @@
         
         <div class="container-fluid">
           <div class="row flex-nowrap">
-            <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+            <div class="col-xl-2 bd-sidebar">
               <ul class="nav">
                 <li><a href="/user/getUserList" target="site">회원목록</a></li>
+                <li><a href="/user/getUserList"  target="site" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">회원목록</a></li>
                 <li><a href="/admin/getReportList" target="site">신고게시글목록</a></li>
                 
               </ul>
               <br>
             </div>
-            <main class="col-12 col-md-9 col-xl-10 py-md-3 bd-content" role="main">
+            <main class="col-xl-10 bd-content" role="main">
               <iframe  frameborder="0" name="site"style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"  allowfullscreen src="/user/getUserList"></iframe>
             </main>
           </div>
