@@ -116,7 +116,7 @@ body {
 								<button class="btn btn-link dropdown-toggle" type="button"
 									id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
-									<i class="fa fa-ellipsis-h"></i>
+									<i class="fa"></i>
 								</button>
 								<div class="dropdown-menu dropdown-menu-right"
 									aria-labelledby="gedf-drop1">
