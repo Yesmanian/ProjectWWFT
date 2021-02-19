@@ -70,13 +70,15 @@ public class UserController {
 		
 		User sessionUser = (User)session.getAttribute("user");
 		
-		if(sessionUser.getUserId().equals(userId)) {
+		if(sessionUser.getUserId().equals(userId) || sessionUser.getUserId().equals("admin")) {
 		System.out.println("/user/getUser : GET");
 		System.out.println("/user/getUser start..");		
 		//Business Logic
 		User user = userService.getUser(userId);
+		Tree tree = treeService.getUserTree(user.getTreeNo());
 		// Model °ú View ¿¬°á
 		model.addAttribute("user", user);
+		model.addAttribute("tree", tree);
 		
 		return "forward:/user/getUser.jsp";
 		}else {

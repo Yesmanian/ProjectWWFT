@@ -93,7 +93,7 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public int removePost(int postNo) throws Exception {
-		return sqlSession.delete("postMapper.removePost", postNo);
+		return sqlSession.delete("PostMapper.removePost", postNo);
 	}
 
 	

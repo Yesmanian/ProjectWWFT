@@ -93,16 +93,17 @@ $(document).ready(function () {
             let url = window.location.href;
             let forestNo = $(this).closest("li").find('input[name=forestNo]').val();
             let forestName = $(this).closest("li").find('input[name=forestName]').val();
-            // $(this).attr('class','<button type="button" class="btn btn-success btn-sm" >수락</button>');
+           
             console.log(`\${forestNo} ::: \${forestName}`);
             // alert(noticeMessageNo);
 
             if(url.indexOf('getTree')!=-1){
             // alert('나무의메시지함')
             url=`/noticeMessage/json/treeNoticeMessageList/\${treeNo}/\${page}`;
-            $(this).closest("li").find('p').text('회원님의 나무가 ${forestName}숲에 속하셨습니다.');
-            $(this).closest("li").find('p').append('<a href="/forest/getForest?forestNo=\${forestNo}$profileNo=${profile.profileNo}">숲 둘러보기</a>');
+            $(this).closest("li").find('p').text(`회원님의 나무가 \${forestName}숲에 속하셨습니다.`);
+            $(this).closest("li").find('p').append(`<a href="/forest/getForest?forestNo=\${forestNo}&profileNo=${profile.profileNo}">숲 둘러보기</a>`);
             let messageObj = $(this);
+            $(this).remove();
 
         }else{
             // alert('숲의메시지함')
@@ -151,9 +152,9 @@ $(document).ready(function () {
     })//update는 나무에서AND REMOVE는 숲에서끝 
 
     let page = 1;
-    let treeNo = 1;
-    let forestNo =1;
-    let profileNo =1;
+    let treeNo = ${tree.treeNo};
+    // let forestNo = $
+    let profileNo =${profile.profileNo};
     $(window).scroll(function () {
         
         

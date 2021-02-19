@@ -82,7 +82,7 @@
 			let checkAjaxSetTimeout;
 			$(document).on("keyup","input[name=userId]",function() {
 				clearTimeout(checkAjaxSetTimeout);
-				if($(this).val().length>=6){
+				if($(this).val().length>=4){
 				let userId = $(this).val()
 				checkAjaxSetTimeout = setTimeout(function(){
 					
@@ -119,7 +119,7 @@
 
 	}else{
 		$('input[name=userId]').addClass('is-invalid');
-		$('dd[name=userId]').html(`id는 6글자 이상 이어야 합니다.`).css("color","red")
+		$('dd[name=userId]').html(`id는 4글자 이상 이어야 합니다.`).css("color","red")
 
 	}
 
@@ -437,19 +437,19 @@
 			
 				return;
 			}
-			if($('input[name=countryId]').val().length>3){
-				Swal.fire({
-					  icon:'warning',
-					  title: '국가명은' ,
-					  text: 'EX)KR, UK, NA 형식으로 입력 하셔야합니다.',
-					  showConfirmButton: true,
-					  confirmButtonText: '확인',
-					  confirmButtonColor:'#282828',
-					  timer: 5000
-					})
+			// if($('input[name=countryId]').val().length>3){
+			// 	Swal.fire({
+			// 		  icon:'warning',
+			// 		  title: '국가명은' ,
+			// 		  text: 'EX)KR, UK, NA 형식으로 입력 하셔야합니다.',
+			// 		  showConfirmButton: true,
+			// 		  confirmButtonText: '확인',
+			// 		  confirmButtonColor:'#282828',
+			// 		  timer: 5000
+			// 		})
 		
-				return;
-			}
+			// 	return;
+			// }
 			// alert("email"+isUserEmail)
 			// alert("id"+isUserId)
 			// alert("pw"+isUserPassword)

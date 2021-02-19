@@ -25,6 +25,7 @@ import junit.framework.Assert;
 @ContextConfiguration(locations = {"classpath:config/context-common.xml" ,
 										"classpath:config/context-aspect.xml",
 										"classpath:config/context-mybatis.xml",
+										"classpath:config/context-mail.xml",
 										"classpath:config/context-transaction.xml"})
 
 public class AdminServiceTest {
@@ -36,7 +37,7 @@ public class AdminServiceTest {
 	
 	
 	
-	//@Test
+	@Test
 	public void addReport() throws Exception{
 		
 		Report report = new Report();
@@ -49,9 +50,21 @@ public class AdminServiceTest {
 		
 		adminService.addReport(report);
 		
+		report.setReportedPostNo(11);
+		adminService.addReport(report);
+		report.setReportedPostNo(12);
+		adminService.addReport(report);
+		report.setReportedPostNo(13);
+		adminService.addReport(report);
+		report.setReportedPostNo(14);
+		adminService.addReport(report);
+		report.setReportedPostNo(15);
+		adminService.addReport(report);
+	
+		
 	}
 	
-	@Test
+//	@Test
 	public void listReport() throws Exception{
 		
 		Search search = new Search();
