@@ -459,7 +459,7 @@ function formatAMPM(value) {
                    
                 </div>
            </div>
-            <div class="col-md-6 gedf-main" style="padding-left: 100px;">
+            <div class="col-md-6 gedf-main" style="padding-left: 100px;text-align: -webkit-center;">
 				
 				
                 <c:forEach var="postFile" items="${listPost}">
@@ -469,7 +469,7 @@ function formatAMPM(value) {
                 	
                 	 <!--- \\\\\\Poststart-->
                 <div class="card gedf-card"	style="border-top-left-radius: 50px;border-top-right-radius: 50px;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;">
-                    <div class="card-header" style="border-top-left-radius: 50px;background-color: #4AB34A;border-top-right-radius: 50px;">
+                    <div class="card-header" style="border-top-left-radius: 50px;background-color: #4AB34A;border-top-right-radius: 50px;width: 80%;">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="mr-2">
